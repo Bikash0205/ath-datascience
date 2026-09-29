@@ -14,6 +14,11 @@ document.addEventListener('DOMContentLoaded', () => {
   initTiltEffects();
   initInteractiveWidgets();
   initScrollAnimations();
+  initHeaderAutoHide();
+  initSignalWirePulses();
+  initFloatingNodeParallax();
+  initAnimatedCounters();
+  initGlobalClickRipple();
   initWalkthroughEngine();
 });
 
@@ -358,3 +363,227 @@ function initWalkthroughEngine() {
     simCursor.classList.remove('active');
   }
 }
+
+/* ==========================================================================
+   6. Header Auto-Hide on Scroll Down / Reveal on Scroll Up
+   ========================================================================== */
+function initHeaderAutoHide() {
+  const topbar = document.querySelector('.global-topbar');
+  if (!topbar) return;
+
+  let lastScrollY = window.pageYOffset || document.documentElement.scrollTop;
+  let ticking = false;
+
+  window.addEventListener('scroll', () => {
+    if (!ticking) {
+      window.requestAnimationFrame(() => {
+        const currentScrollY = window.pageYOffset || document.documentElement.scrollTop;
+        if (currentScrollY > 60 && currentScrollY > lastScrollY) {
+          // Scrolling down
+          topbar.classList.add('topbar-hidden');
+        } else {
+          // Scrolling up
+          topbar.classList.remove('topbar-hidden');
+        }
+        lastScrollY = Math.max(0, currentScrollY);
+        ticking = false;
+      });
+      ticking = true;
+    }
+  }, { passive: true });
+}
+
+/* ==========================================================================
+   7. Continuous Glowing Signal Pulses on SVG Circuit Wires
+   ========================================================================== */
+function initSignalWirePulses() {
+  if (typeof gsap === 'undefined') return;
+  const wirePaths = document.querySelectorAll('.graph-wires .wire-path');
+  if (!wirePaths.length) return;
+
+  wirePaths.forEach((path, i) => {
+    const pulse = path.cloneNode(true);
+    pulse.classList.add('wire-pulse');
+    pulse.setAttribute('stroke', '#38bdf8');
+    pulse.setAttribute('stroke-width', '2.5');
+    
+    let totalLen = 300;
+    try {
+      totalLen = path.getTotalLength() || 300;
+    } catch (e) {
+      totalLen = 300;
+    }
+    
+    const pulseLen = Math.max(30, Math.min(60, totalLen * 0.25));
+    pulse.style.strokeDasharray = `${pulseLen} ${totalLen * 2}`;
+    pulse.style.strokeDashoffset = '0';
+    pulse.style.pointerEvents = 'none';
+
+    path.parentNode.appendChild(pulse);
+
+    gsap.fromTo(pulse, 
+      { strokeDashoffset: totalLen + pulseLen },
+      {
+        strokeDashoffset: -totalLen,
+        duration: 2.4 + (i % 4) * 0.5,
+        repeat: -1,
+        ease: 'power1.inOut',
+        delay: i * 0.3
+      }
+    );
+  });
+}
+
+/* ==========================================================================
+   8. Floating Parallax Micro-Physics on Satellite Nodes
+   ========================================================================== */
+function initFloatingNodeParallax() {
+  if (typeof gsap === 'undefined') return;
+  const satelliteNodes = document.querySelectorAll('.hero-graph-container .graph-node:not(.node-central-card)');
+  
+  satelliteNodes.forEach((node, idx) => {
+    const yOffset = (idx % 2 === 0 ? 1 : -1) * (4 + (idx % 3) * 2);
+    const rotOffset = (idx % 2 === 0 ? 1 : -1) * (1.2 + (idx % 2) * 0.8);
+    const duration = 2.4 + ((idx * 0.4) % 1.6);
+
+    gsap.to(node, {
+      y: `+=${yOffset}`,
+      rotation: `+=${rotOffset}`,
+      duration: duration,
+      yoyo: true,
+      repeat: -1,
+      ease: 'sine.inOut',
+      delay: idx * 0.2
+    });
+  });
+
+  // Central ATH core subtle micro-pulse
+  const centralCard = document.querySelector('.node-central-card');
+  if (centralCard) {
+    gsap.to(centralCard, {
+      y: '-=3',
+      duration: 3.2,
+      yoyo: true,
+      repeat: -1,
+      ease: 'sine.inOut'
+    });
+  }
+}
+
+/* ==========================================================================
+   9. Scroll-Triggered Animated Counters
+   ========================================================================== */
+function initAnimatedCounters() {
+  if (typeof gsap === 'undefined' || typeof ScrollTrigger === 'undefined') return;
+
+  // Donut badge counter: +98%
+  const donutBadge = document.querySelector('.donut-badge');
+  if (donutBadge) {
+    ScrollTrigger.create({
+      trigger: donutBadge,
+      start: 'top 85%',
+      once: true,
+      onEnter: () => {
+        const obj = { val: 0 };
+        gsap.to(obj, {
+          val: 98,
+          duration: 1.8,
+          ease: 'power2.out',
+          onUpdate: () => {
+            donutBadge.textContent = `+${Math.round(obj.val)}%`;
+          }
+        });
+      }
+    });
+  }
+
+  // Token percentage: +25%
+  const tokPct = document.querySelector('.tok-pct');
+  if (tokPct) {
+    ScrollTrigger.create({
+      trigger: tokPct,
+      start: 'top 85%',
+      once: true,
+      onEnter: () => {
+        const obj = { val: 0 };
+        gsap.to(obj, {
+          val: 25,
+          duration: 1.5,
+          ease: 'power2.out',
+          onUpdate: () => {
+            tokPct.textContent = `+${Math.round(obj.val)}%`;
+          }
+        });
+      }
+    });
+  }
+
+  // Latency gauge: 4ms
+  const gaugeTag = document.querySelector('.gauge-tag');
+  if (gaugeTag) {
+    ScrollTrigger.create({
+      trigger: gaugeTag,
+      start: 'top 85%',
+      once: true,
+      onEnter: () => {
+        const obj = { val: 50 };
+        gsap.to(obj, {
+          val: 4,
+          duration: 1.4,
+          ease: 'power3.out',
+          onUpdate: () => {
+            gaugeTag.textContent = `${Math.round(obj.val)}ms`;
+          }
+        });
+      }
+    });
+  }
+
+  // Win chip: +98% RAG
+  const winChip = document.querySelector('.win-chip');
+  if (winChip) {
+    ScrollTrigger.create({
+      trigger: winChip,
+      start: 'top 85%',
+      once: true,
+      onEnter: () => {
+        const obj = { val: 0 };
+        gsap.to(obj, {
+          val: 98,
+          duration: 1.6,
+          ease: 'power2.out',
+          onUpdate: () => {
+            winChip.textContent = `+${Math.round(obj.val)}% RAG`;
+          }
+        });
+      }
+    });
+  }
+}
+
+/* ==========================================================================
+   10. Global Click Ripple Wave
+   ========================================================================== */
+function initGlobalClickRipple() {
+  document.addEventListener('click', (e) => {
+    // Prevent ripple if clicking inside interactive form elements
+    const ripple = document.createElement('div');
+    ripple.className = 'interactive-click-ripple';
+    ripple.style.left = `${e.clientX}px`;
+    ripple.style.top = `${e.clientY}px`;
+    document.body.appendChild(ripple);
+
+    if (typeof gsap !== 'undefined') {
+      gsap.to(ripple, {
+        scale: 3.5,
+        opacity: 0,
+        duration: 0.6,
+        ease: 'power2.out',
+        onComplete: () => ripple.remove()
+      });
+    } else {
+      setTimeout(() => ripple.remove(), 600);
+    }
+  });
+}
+

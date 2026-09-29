@@ -67,6 +67,9 @@ body {
 
 /* --- 2. Global Topbar (Mockup Shell Frame) --- */
 .global-topbar {
+  position: sticky;
+  top: 8px;
+  z-index: 100;
   display: flex;
   align-items: center;
   justify-content: space-between;
@@ -77,6 +80,32 @@ body {
   font-weight: 700;
   letter-spacing: 0.05em;
   color: var(--text-white);
+  background: rgba(10, 17, 40, 0.75);
+  backdrop-filter: blur(16px);
+  -webkit-backdrop-filter: blur(16px);
+  border-radius: var(--radius-pill);
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.25);
+  transition: transform 0.35s cubic-bezier(0.16, 1, 0.3, 1), opacity 0.3s ease;
+}
+
+.global-topbar.topbar-hidden {
+  transform: translateY(-120%);
+  opacity: 0;
+  pointer-events: none;
+}
+
+.interactive-click-ripple {
+  position: fixed;
+  width: 16px;
+  height: 16px;
+  margin-left: -8px;
+  margin-top: -8px;
+  border-radius: 50%;
+  border: 2px solid #38bdf8;
+  box-shadow: 0 0 14px rgba(56, 189, 248, 0.8);
+  pointer-events: none;
+  z-index: 99999;
 }
 
 .topbar-left {
@@ -85,8 +114,74 @@ body {
   gap: 8px;
 }
 
-.topbar-icon {
-  color: var(--text-white);
+.brand-logo-badge {
+  background: #ffffff;
+  padding: 4px 12px;
+  border-radius: 10px;
+  border: 1px solid rgba(0, 114, 255, 0.25);
+  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.15);
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  text-decoration: none;
+  transition: transform 0.25s ease, box-shadow 0.25s ease;
+  flex-shrink: 0;
+}
+
+.brand-logo-badge:hover {
+  box-shadow: 0 4px 18px rgba(56, 189, 248, 0.6);
+  transform: scale(1.02);
+}
+
+.brand-svg-logo {
+  height: 28px;
+  width: auto;
+  display: block;
+}
+
+.topbar-course-tag {
+  font-family: var(--font-main);
+  font-size: 0.72rem;
+  font-weight: 700;
+  letter-spacing: 0.03em;
+  padding: 4px 10px;
+  border-radius: var(--radius-pill);
+  background: rgba(56, 189, 248, 0.12);
+  border: 1px solid rgba(56, 189, 248, 0.3);
+  color: #38bdf8;
+  white-space: nowrap;
+}
+
+.ath-header-btn {
+  background: rgba(15, 23, 42, 0.6) !important;
+  border: 1px solid rgba(56, 189, 248, 0.4) !important;
+  box-shadow: 0 0 16px rgba(56, 189, 248, 0.25);
+}
+
+.ath-header-btn:hover {
+  background: rgba(30, 58, 138, 0.8) !important;
+  border-color: #38bdf8 !important;
+  box-shadow: 0 0 24px rgba(56, 189, 248, 0.6);
+}
+
+.ath-elevated-badge {
+  background: radial-gradient(circle, rgba(56, 189, 248, 0.25) 0%, rgba(15, 23, 42, 0.8) 100%) !important;
+  border: 1.5px solid rgba(56, 189, 248, 0.5) !important;
+  box-shadow: 0 16px 40px rgba(0, 0, 0, 0.4), 0 0 30px rgba(56, 189, 248, 0.6) !important;
+  animation: badgeBreath 3.5s ease-in-out infinite alternate;
+}
+
+@keyframes badgeBreath {
+  0% { box-shadow: 0 16px 40px rgba(0, 0, 0, 0.4), 0 0 20px rgba(56, 189, 248, 0.4); transform: translateX(-50%) scale(1); }
+  100% { box-shadow: 0 20px 50px rgba(0, 0, 0, 0.5), 0 0 36px rgba(56, 189, 248, 0.85); transform: translateX(-50%) scale(1.05); }
+}
+
+.wire-pulse {
+  stroke-dasharray: 20 220;
+  stroke-dashoffset: 0;
+  stroke: #38bdf8 !important;
+  stroke-width: 2.5 !important;
+  filter: drop-shadow(0 0 8px #38bdf8);
 }
 
 .topbar-controls {
@@ -683,7 +778,7 @@ body {
   justify-content: space-between;
   border: 1px solid rgba(0, 0, 0, 0.05);
   box-shadow: var(--shadow-card-light);
-  min-height: 380px;
+  min-height: 420px;
   transition: transform 0.35s var(--ease-smooth), box-shadow 0.35s var(--ease-smooth);
 }
 
@@ -694,15 +789,17 @@ body {
 
 .card-visual {
   width: 100%;
-  height: 220px;
+  height: 250px;
   border-radius: 18px;
   background: #f8fafc;
   display: flex;
+  flex-direction: column;
   align-items: center;
   justify-content: center;
   position: relative;
   overflow: hidden;
   margin-bottom: 20px;
+  padding: 14px 10px;
 }
 
 .card-caption {
@@ -1562,12 +1659,15 @@ body {
 }
 
 .bonus-visual-ai {
-  height: 80px;
+  min-height: 120px;
+  height: auto;
   display: flex;
+  flex-direction: column;
   align-items: center;
   justify-content: center;
   background: #f8fafc;
   border-radius: 14px;
+  padding: 12px 8px;
   margin-bottom: 12px;
 }
 
@@ -1584,12 +1684,15 @@ body {
 }
 
 .bonus-visual-textures {
-  height: 80px;
+  min-height: 120px;
+  height: auto;
   display: flex;
+  flex-direction: column;
   align-items: center;
   justify-content: center;
   background: #f8fafc;
   border-radius: 14px;
+  padding: 8px;
   margin-bottom: 12px;
 }
 
@@ -1682,6 +1785,412 @@ body {
 
 
 /* ==========================================================================
+   ENRICHED INFORMATION & TECHNICAL TELEMETRY STYLES
+   ========================================================================== */
+
+/* Section 2 Card 1: Feature Matrix & Preprocessing Tags */
+.feature-matrix-overlay {
+  margin-top: 14px;
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  width: 90%;
+}
+.matrix-mini-grid {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 4px;
+}
+.m-cell {
+  padding: 3px 0;
+  text-align: center;
+  border-radius: 4px;
+  font-family: var(--font-mono);
+  font-size: 0.65rem;
+  font-weight: 700;
+  box-shadow: 0 1px 3px rgba(0,0,0,0.05);
+}
+.m-cell.heat-3 { background: #dbeafe; color: #1e40af; border: 1px solid #bfdbfe; }
+.m-cell.heat-2 { background: #e0e7ff; color: #4338ca; border: 1px solid #c7d2fe; }
+.m-cell.heat-1 { background: #f1f5f9; color: #475569; border: 1px solid #e2e8f0; }
+.m-cell.heat-neg { background: #fee2e2; color: #b91c1c; border: 1px solid #fecaca; }
+
+.feature-tag-list {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 4px;
+}
+.f-tag {
+  font-family: var(--font-mono);
+  font-size: 0.6rem;
+  font-weight: 600;
+  padding: 2px 6px;
+  border-radius: 4px;
+  background: #f1f5f9;
+  color: #475569;
+  border: 1px solid #e2e8f0;
+}
+
+/* Section 2 Card 2: Attention Heads Rack */
+.attention-heads-rack {
+  position: absolute;
+  bottom: 10px;
+  left: 0;
+  right: 0;
+  display: flex;
+  justify-content: center;
+  gap: 6px;
+  flex-wrap: wrap;
+  padding: 0 10px;
+}
+.att-head-chip {
+  font-family: var(--font-mono);
+  font-size: 0.62rem;
+  font-weight: 700;
+  padding: 3px 8px;
+  border-radius: var(--radius-pill);
+  background: rgba(255, 255, 255, 0.95);
+  box-shadow: 0 2px 8px rgba(0,0,0,0.06);
+  border: 1px solid rgba(0,0,0,0.06);
+  backdrop-filter: blur(8px);
+}
+.att-head-chip.head-q { color: #2563eb; }
+.att-head-chip.head-flash { color: #ec4899; }
+.att-head-chip.head-rope { color: #8b5cf6; }
+
+/* Section 2 Card 3: LoRA Telemetry Box */
+.lora-telemetry-box {
+  margin-top: 14px;
+  width: 90%;
+  background: #ffffff;
+  border-radius: 10px;
+  padding: 8px 12px;
+  border: 1px solid rgba(0,0,0,0.06);
+  box-shadow: 0 4px 12px rgba(0,0,0,0.04);
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+}
+.telemetry-item {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  font-size: 0.65rem;
+}
+.tel-label {
+  color: #64748b;
+  font-weight: 600;
+}
+.tel-val {
+  font-family: var(--font-mono);
+  font-weight: 700;
+  color: #0f172a;
+}
+.tel-val.green { color: #10b981; }
+.tel-val.blue { color: #2563eb; }
+
+/* Section 2 Card 4: Live Production Telemetry Rack */
+.mlops-telemetry-rack {
+  margin-top: 14px;
+  width: 90%;
+  background: #ffffff;
+  border-radius: 10px;
+  padding: 8px 12px;
+  border: 1px solid rgba(0,0,0,0.06);
+  box-shadow: 0 4px 12px rgba(0,0,0,0.04);
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+}
+.mlops-stat-row {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  font-size: 0.65rem;
+}
+.mlops-dot {
+  width: 6px;
+  height: 6px;
+  border-radius: 50%;
+}
+.mlops-dot.live { background: #10b981; box-shadow: 0 0 6px #10b981; }
+.mlops-dot.blue { background: #38bdf8; }
+.mlops-dot.purple { background: #a855f7; }
+.mlops-name {
+  color: #475569;
+  font-weight: 600;
+}
+.mlops-val {
+  margin-left: auto;
+  font-family: var(--font-mono);
+  font-weight: 700;
+  color: #0f172a;
+}
+
+/* Section 3: Vector Projection Rack & Hardware Spec */
+.vector-projection-rack {
+  margin-top: 14px;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 6px;
+  justify-content: center;
+  width: 92%;
+}
+.v-proj-tag {
+  font-family: var(--font-mono);
+  font-size: 0.65rem;
+  font-weight: 700;
+  padding: 3px 8px;
+  border-radius: var(--radius-pill);
+  background: #ffffff;
+  border: 1px solid rgba(0,0,0,0.08);
+  color: #334155;
+  box-shadow: 0 2px 6px rgba(0,0,0,0.04);
+}
+.v-proj-tag.green { color: #059669; border-color: rgba(16, 185, 129, 0.3); }
+.v-proj-tag.blue { color: #2563eb; border-color: rgba(37, 99, 235, 0.3); }
+
+.curve-header-stats {
+  display: flex;
+  justify-content: space-between;
+  margin-bottom: 6px;
+  padding: 0 4px;
+}
+.stat-pill {
+  font-family: var(--font-mono);
+  font-size: 0.65rem;
+  font-weight: 700;
+  padding: 2px 6px;
+  border-radius: 4px;
+}
+.stat-pill.adamw { background: #dbeafe; color: #1e40af; }
+.stat-pill.sgd { background: #f3e8ff; color: #7e22ce; }
+.stat-pill.val { background: #ecfdf5; color: #065f46; }
+
+.hardware-spec-rack {
+  margin-top: 12px;
+  display: flex;
+  gap: 6px;
+  flex-wrap: wrap;
+  width: 90%;
+}
+.hw-chip {
+  display: inline-flex;
+  align-items: center;
+  gap: 5px;
+  font-family: var(--font-mono);
+  font-size: 0.62rem;
+  font-weight: 600;
+  padding: 3px 8px;
+  border-radius: var(--radius-pill);
+  background: #f8fafc;
+  border: 1px solid #e2e8f0;
+  color: #334155;
+}
+.hw-dot {
+  width: 6px;
+  height: 6px;
+  border-radius: 50%;
+  background: #3b82f6;
+}
+.hw-dot.green { background: #10b981; }
+.hw-dot.blue { background: #6366f1; }
+
+/* Section 4 Card 1A: Architecture Pipeline Flow */
+.anatomy-pipeline-flow {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  background: #f8fafc;
+  border-radius: 14px;
+  padding: 12px;
+  margin-bottom: 14px;
+  border: 1px solid rgba(0,0,0,0.05);
+}
+.pipe-node {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+.pipe-icon-box {
+  width: 34px;
+  height: 34px;
+  border-radius: 8px;
+  background: #ffffff;
+  border: 1px solid rgba(0,0,0,0.06);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  box-shadow: 0 2px 6px rgba(0,0,0,0.04);
+}
+.pipe-details {
+  display: flex;
+  flex-direction: column;
+}
+.pipe-name {
+  font-size: 0.72rem;
+  font-weight: 700;
+  color: var(--text-dark);
+}
+.pipe-tech {
+  font-family: var(--font-mono);
+  font-size: 0.62rem;
+  color: #64748b;
+}
+.pipe-arrow {
+  display: flex;
+  align-items: center;
+  opacity: 0.6;
+}
+
+.anatomy-telemetry-row {
+  display: flex;
+  gap: 6px;
+  flex-wrap: wrap;
+}
+.telemetry-badge {
+  font-family: var(--font-mono);
+  font-size: 0.65rem;
+  font-weight: 700;
+  padding: 4px 10px;
+  border-radius: var(--radius-pill);
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+}
+.telemetry-badge.green { background: #ecfdf5; color: #047857; border: 1px solid #a7f3d0; }
+.telemetry-badge.blue { background: #eff6ff; color: #1d4ed8; border: 1px solid #bfdbfe; }
+.telemetry-badge.purple { background: #faf5ff; color: #6b21a8; border: 1px solid #e9d5ff; }
+.badge-dot-live {
+  width: 6px;
+  height: 6px;
+  border-radius: 50%;
+  background: #10b981;
+  box-shadow: 0 0 6px #10b981;
+}
+
+/* Section 4 Card 2: Agent Reasoning Flow */
+.agent-reasoning-flow {
+  margin: 16px 0 18px;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+.agent-step-bar {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 6px;
+}
+.agent-step {
+  background: #ffffff;
+  border-radius: 8px;
+  padding: 6px 8px;
+  border: 1px solid rgba(0,0,0,0.06);
+  display: flex;
+  flex-direction: column;
+  box-shadow: 0 2px 6px rgba(0,0,0,0.03);
+}
+.agent-num {
+  font-size: 0.6rem;
+  font-weight: 800;
+  color: #3b82f6;
+}
+.agent-name {
+  font-size: 0.68rem;
+  font-weight: 700;
+  color: #1e293b;
+}
+.agent-tag {
+  font-family: var(--font-mono);
+  font-size: 0.58rem;
+  color: #64748b;
+}
+.agent-prompt-chip {
+  background: #ffffff;
+  border-radius: 10px;
+  padding: 10px 14px;
+  border: 1px solid rgba(0,0,0,0.06);
+  box-shadow: 0 4px 12px rgba(0,0,0,0.04);
+  font-size: 0.72rem;
+  color: #334155;
+  line-height: 1.4;
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+}
+.prompt-status {
+  font-family: var(--font-mono);
+  font-size: 0.65rem;
+  font-weight: 700;
+  color: #059669;
+}
+
+/* Section 4 Bonus Cards 1 & 2 */
+.bonus-rag-inspect {
+  margin-top: 12px;
+  display: flex;
+  flex-direction: column;
+  gap: 5px;
+  width: 90%;
+}
+.rag-chip {
+  font-family: var(--font-mono);
+  font-size: 0.62rem;
+  font-weight: 600;
+  padding: 3px 8px;
+  border-radius: 6px;
+  background: #ffffff;
+  border: 1px solid rgba(0,0,0,0.06);
+  color: #334155;
+  display: flex;
+  align-items: center;
+  gap: 5px;
+}
+.rag-dot {
+  width: 5px;
+  height: 5px;
+  border-radius: 50%;
+  background: #3b82f6;
+}
+.rag-dot.green { background: #10b981; }
+.rag-dot.amber { background: #f59e0b; }
+
+.bonus-dataset-grid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 6px;
+  width: 100%;
+  padding: 6px;
+}
+.ds-item {
+  background: #ffffff;
+  border-radius: 8px;
+  padding: 6px 8px;
+  border: 1px solid rgba(0,0,0,0.06);
+  box-shadow: 0 2px 6px rgba(0,0,0,0.04);
+  display: flex;
+  flex-direction: column;
+}
+.ds-icon {
+  font-size: 0.85rem;
+  margin-bottom: 2px;
+}
+.ds-name {
+  font-size: 0.65rem;
+  font-weight: 700;
+  color: #1e293b;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+.ds-size {
+  font-family: var(--font-mono);
+  font-size: 0.6rem;
+  font-weight: 700;
+  color: #2563eb;
+}
+
+/* ==========================================================================
    RESPONSIVENESS & ADAPTIVE BREAKPOINTS
    ========================================================================== */
 @media (max-width: 1200px) {
@@ -1722,8 +2231,21 @@ body {
     padding: 8px 8px 30px;
   }
   .global-topbar {
-    padding: 6px 4px;
+    padding: 6px 8px;
     font-size: 0.75rem;
+  }
+  .topbar-right {
+    display: none;
+  }
+  .brand-logo-badge {
+    padding: 3px 8px;
+  }
+  .brand-svg-logo {
+    height: 22px;
+  }
+  .topbar-course-tag {
+    font-size: 0.65rem;
+    padding: 3px 7px;
   }
   .topbar-label {
     font-size: 0.72rem;
