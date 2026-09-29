@@ -1013,15 +1013,16 @@ body {
 }
 
 .folder-glass-card {
-  width: 80px;
-  height: 70px;
-  border-radius: 14px;
+  width: 96px;
+  height: 64px;
+  border-radius: 12px;
   background: #3b82f6;
   position: relative;
   box-shadow: 0 10px 24px rgba(37, 99, 235, 0.3);
   display: flex;
   align-items: center;
   justify-content: center;
+  padding: 4px;
 }
 
 .folder-tab {
@@ -1035,7 +1036,8 @@ body {
 }
 
 .folder-label {
-  font-size: 0.72rem;
+  font-family: var(--font-mono);
+  font-size: 0.65rem;
   font-weight: 600;
   color: #ffffff;
 }
@@ -1131,19 +1133,19 @@ body {
 
 .floating-icons-pack {
   position: absolute;
-  bottom: -15px;
-  left: 20px;
-  width: 54px;
-  height: 50px;
-  border-radius: 12px;
-  background: #2563eb;
+  bottom: -12px;
+  right: 15px;
+  padding: 4px 10px;
+  border-radius: 8px;
+  background: #10b981;
   color: #ffffff;
   display: flex;
   align-items: center;
   justify-content: center;
+  font-family: var(--font-mono);
   font-size: 0.68rem;
   font-weight: 600;
-  box-shadow: 0 8px 20px rgba(37, 99, 235, 0.4);
+  box-shadow: 0 8px 20px rgba(16, 185, 129, 0.4);
 }
 
 /* Bottom Hierarchy Tree */
