@@ -19,7 +19,7 @@ document.addEventListener('DOMContentLoaded', () => {
   initFloatingNodeParallax();
   initAnimatedCounters();
   initGlobalClickRipple();
-  initWalkthroughEngine();
+  initPortalLoginModal();
 });
 
 /* ==========================================================================
@@ -566,7 +566,9 @@ function initAnimatedCounters() {
    ========================================================================== */
 function initGlobalClickRipple() {
   document.addEventListener('click', (e) => {
-    // Prevent ripple if clicking inside interactive form elements
+    // Prevent ripple if clicking inside modal or dock
+    if (e.target.closest('.portal-window') || e.target.closest('.portal-side-dock')) return;
+
     const ripple = document.createElement('div');
     ripple.className = 'interactive-click-ripple';
     ripple.style.left = `${e.clientX}px`;
@@ -585,5 +587,308 @@ function initGlobalClickRipple() {
       setTimeout(() => ripple.remove(), 600);
     }
   });
+}
+
+/* ==========================================================================
+   11. 3D Student Login Portal with macOS Genie Minimization & Side Dock
+   ========================================================================== */
+function initPortalLoginModal() {
+  const portalStage = document.getElementById('portalStage');
+  const portalWindow = document.getElementById('portalWindow');
+  const portalBackdrop = document.getElementById('portalBackdrop');
+  const portalSideDock = document.getElementById('portalSideDock');
+  const dockRestoreBtn = document.getElementById('dockRestoreBtn');
+  const openPortalBtn = document.getElementById('openPortalBtn');
+  const profileBtn = document.querySelector('.profile-btn');
+  const portalCloseDot = document.getElementById('portalCloseDot');
+  const portalMinDot = document.getElementById('portalMinDot');
+  const portalExpandDot = document.getElementById('portalExpandDot');
+  const pwdToggleBtn = document.getElementById('pwdToggleBtn');
+  const portalPassword = document.getElementById('portalPassword');
+  const tabSignIn = document.getElementById('tabSignIn');
+  const tabEnroll = document.getElementById('tabEnroll');
+  const portalSubmitBtn = document.getElementById('portalSubmitBtn');
+  const trackPills = document.querySelectorAll('.track-pill');
+
+  if (!portalWindow || !portalStage || !portalSideDock) return;
+
+  let isPortalOpen = false;
+  let isAnimating = false;
+
+  // Track Pills Selection
+  trackPills.forEach(pill => {
+    pill.addEventListener('click', () => {
+      trackPills.forEach(p => p.classList.remove('active'));
+      pill.classList.add('active');
+    });
+  });
+
+  // Password Visibility Toggle
+  if (pwdToggleBtn && portalPassword) {
+    pwdToggleBtn.addEventListener('click', (e) => {
+      e.preventDefault();
+      const isPwd = portalPassword.type === 'password';
+      portalPassword.type = isPwd ? 'text' : 'password';
+      pwdToggleBtn.style.color = isPwd ? '#38bdf8' : '#64748b';
+    });
+  }
+
+  // Sign In vs Enroll Tabs
+  if (tabSignIn && tabEnroll) {
+    tabSignIn.addEventListener('click', () => {
+      tabSignIn.classList.add('active');
+      tabSignIn.setAttribute('aria-selected', 'true');
+      tabEnroll.classList.remove('active');
+      tabEnroll.setAttribute('aria-selected', 'false');
+      if (portalSubmitBtn) {
+        portalSubmitBtn.querySelector('.submit-text').textContent = 'Authenticate & Launch Cluster';
+      }
+    });
+
+    tabEnroll.addEventListener('click', () => {
+      tabEnroll.classList.add('active');
+      tabEnroll.setAttribute('aria-selected', 'true');
+      tabSignIn.classList.remove('active');
+      tabSignIn.setAttribute('aria-selected', 'false');
+      if (portalSubmitBtn) {
+        portalSubmitBtn.querySelector('.submit-text').textContent = 'Submit Enrollment & Claim GPU Access';
+      }
+    });
+  }
+
+  // Form Submission Simulation
+  if (portalSubmitBtn) {
+    portalSubmitBtn.addEventListener('click', (e) => {
+      e.preventDefault();
+      const submitText = portalSubmitBtn.querySelector('.submit-text');
+      const prevText = submitText.textContent;
+      submitText.textContent = 'Authenticating Cluster...';
+      portalSubmitBtn.style.pointerEvents = 'none';
+
+      setTimeout(() => {
+        submitText.textContent = '✓ Workstation Ready! Launching...';
+        portalSubmitBtn.style.background = 'linear-gradient(135deg, #059669 0%, #10b981 100%)';
+        setTimeout(() => {
+          minimizePortal(true);
+          setTimeout(() => {
+            submitText.textContent = prevText;
+            portalSubmitBtn.style.background = '';
+            portalSubmitBtn.style.pointerEvents = 'auto';
+          }, 800);
+        }, 1000);
+      }, 900);
+    });
+  }
+
+  // 3D Tilt on Mousemove across the Portal Window
+  portalWindow.addEventListener('mousemove', (e) => {
+    if (!isPortalOpen || isAnimating) return;
+    const rect = portalWindow.getBoundingClientRect();
+    const x = e.clientX - rect.left;
+    const y = e.clientY - rect.top;
+    const centerX = rect.width / 2;
+    const centerY = rect.height / 2;
+
+    const rotateX = ((y - centerY) / centerY) * -10;
+    const rotateY = ((x - centerX) / centerX) * 10;
+
+    portalWindow.style.setProperty('--sheen-x', `${(x / rect.width) * 100}%`);
+    portalWindow.style.setProperty('--sheen-y', `${(y / rect.height) * 100}%`);
+
+    if (typeof gsap !== 'undefined') {
+      gsap.to(portalWindow, {
+        rotateX: rotateX,
+        rotateY: rotateY,
+        duration: 0.3,
+        ease: 'power1.out',
+        overwrite: 'auto'
+      });
+    }
+  });
+
+  portalWindow.addEventListener('mouseleave', () => {
+    if (!isPortalOpen || isAnimating) return;
+    if (typeof gsap !== 'undefined') {
+      gsap.to(portalWindow, {
+        rotateX: 0,
+        rotateY: 0,
+        duration: 0.5,
+        ease: 'power2.out',
+        overwrite: 'auto'
+      });
+    }
+  });
+
+  // Calculate target offset between window center and docked button
+  function getDockOffsets() {
+    const dockRect = dockRestoreBtn.getBoundingClientRect();
+    const winRect = portalWindow.getBoundingClientRect();
+
+    const winCenterX = winRect.left + winRect.width / 2;
+    const winCenterY = winRect.top + winRect.height / 2;
+
+    const dockCenterX = dockRect.left + dockRect.width / 2;
+    const dockCenterY = dockRect.top + dockRect.height / 2;
+
+    return {
+      x: dockCenterX - winCenterX,
+      y: dockCenterY - winCenterY
+    };
+  }
+
+  // MACOS GENIE MINIMIZATION
+  function minimizePortal(skipSound = false) {
+    if (isAnimating) return;
+    isAnimating = true;
+
+    const offset = getDockOffsets();
+
+    if (typeof gsap !== 'undefined') {
+      const tl = gsap.timeline({
+        onComplete: () => {
+          isPortalOpen = false;
+          isAnimating = false;
+          portalStage.classList.remove('active');
+          portalBackdrop.classList.remove('active');
+          portalStage.setAttribute('aria-hidden', 'true');
+          portalBackdrop.setAttribute('aria-hidden', 'true');
+
+          // MacOS Dock arrival bounce / magnification
+          gsap.fromTo(dockRestoreBtn, 
+            { scale: 0.75, x: 25 },
+            { scale: 1, x: 0, duration: 0.55, ease: 'back.out(2)' }
+          );
+        }
+      });
+
+      // Backdrop fades out
+      tl.to(portalBackdrop, {
+        opacity: 0,
+        duration: 0.4,
+        ease: 'power2.out'
+      }, 0);
+
+      // MacOS Genie Curve: Squeezes, tilts and swoops toward the side dock
+      tl.to(portalWindow, {
+        x: offset.x,
+        y: offset.y,
+        scaleX: 0.08,
+        scaleY: 0.05,
+        rotationY: -35,
+        rotationX: 18,
+        rotationZ: -8,
+        opacity: 0.05,
+        filter: 'blur(10px)',
+        transformOrigin: '95% 50%',
+        duration: 0.65,
+        ease: 'power3.inOut'
+      }, 0);
+
+    } else {
+      isPortalOpen = false;
+      isAnimating = false;
+      portalStage.classList.remove('active');
+      portalBackdrop.classList.remove('active');
+    }
+  }
+
+  // MACOS UN-MINIMIZE / RESTORE GENIE EXPANSION
+  function restorePortal() {
+    if (isAnimating || isPortalOpen) return;
+    isAnimating = true;
+
+    portalStage.classList.add('active');
+    portalBackdrop.classList.add('active');
+    portalStage.setAttribute('aria-hidden', 'false');
+    portalBackdrop.setAttribute('aria-hidden', 'false');
+
+    const offset = getDockOffsets();
+
+    if (typeof gsap !== 'undefined') {
+      // Dock click feedback bounce
+      gsap.to(dockRestoreBtn, {
+        scale: 0.88,
+        duration: 0.12,
+        yoyo: true,
+        repeat: 1
+      });
+
+      const tl = gsap.timeline({
+        onComplete: () => {
+          isPortalOpen = true;
+          isAnimating = false;
+          portalWindow.style.transformOrigin = '50% 50%';
+        }
+      });
+
+      tl.set(portalBackdrop, { opacity: 0 });
+      tl.to(portalBackdrop, { opacity: 1, duration: 0.45, ease: 'power2.out' }, 0);
+
+      // Genie Expansion out of dock into center with 3D settle
+      tl.fromTo(portalWindow, {
+        x: offset.x,
+        y: offset.y,
+        scaleX: 0.08,
+        scaleY: 0.05,
+        rotationY: -35,
+        rotationX: 18,
+        rotationZ: -8,
+        opacity: 0.05,
+        filter: 'blur(10px)',
+        transformOrigin: '95% 50%'
+      }, {
+        x: 0,
+        y: 0,
+        scaleX: 1,
+        scaleY: 1,
+        rotationY: 0,
+        rotationX: 0,
+        rotationZ: 0,
+        opacity: 1,
+        filter: 'blur(0px)',
+        duration: 0.72,
+        ease: 'power4.out'
+      }, 0.05);
+
+    } else {
+      isPortalOpen = true;
+      isAnimating = false;
+    }
+  }
+
+  // Event Listeners for Opening/Closing
+  if (openPortalBtn) openPortalBtn.addEventListener('click', restorePortal);
+  if (profileBtn) profileBtn.addEventListener('click', restorePortal);
+  if (dockRestoreBtn) dockRestoreBtn.addEventListener('click', restorePortal);
+  if (portalCloseDot) portalCloseDot.addEventListener('click', () => minimizePortal());
+  if (portalMinDot) portalMinDot.addEventListener('click', () => minimizePortal());
+  if (portalExpandDot) {
+    portalExpandDot.addEventListener('click', () => {
+      gsap.to(portalWindow, { rotateX: 0, rotateY: 0, scale: 1, duration: 0.3 });
+    });
+  }
+
+  // Backdrop click minimizes to side
+  if (portalBackdrop) {
+    portalBackdrop.addEventListener('click', () => {
+      if (isPortalOpen) minimizePortal();
+    });
+  }
+
+  // Keyboard shortcut: Esc to minimize, Cmd+K / Ctrl+K to open
+  window.addEventListener('keydown', (e) => {
+    if (e.key === 'Escape' && isPortalOpen) {
+      minimizePortal();
+    } else if ((e.metaKey || e.ctrlKey) && e.key.toLowerCase() === 'k') {
+      e.preventDefault();
+      if (isPortalOpen) minimizePortal();
+      else restorePortal();
+    }
+  });
+
+  // Smooth appearance on initial load after 700ms
+  setTimeout(() => {
+    restorePortal();
+  }, 700);
 }
 

@@ -47,12 +47,16 @@
       <span class="topbar-course-tag">Data Science &amp; AI</span>
     </div>
     
-    <!-- Walkthrough & Audio Controls -->
+    <!-- Portal Login Trigger -->
     <div class="topbar-controls">
-      <button id="walkthroughToggle" class="walkthrough-btn" aria-label="Play animated showcase walkthrough">
-        <span class="btn-icon">▶</span>
-        <span class="btn-text">Watch Walkthrough</span>
-        <span class="time-badge">15s</span>
+      <button id="openPortalBtn" class="portal-trigger-btn" aria-label="Open ATH Student Login Portal">
+        <svg class="portal-key-icon" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+          <path d="M15 3h4a2 2 0 0 1 2 2v14a2 2 0 0 1-2 2h-4"></path>
+          <polyline points="10 17 15 12 10 7"></polyline>
+          <line x1="15" y1="12" x2="3" y2="12"></line>
+        </svg>
+        <span>Student Portal</span>
+        <span class="portal-status-dot" title="Cluster Ready"></span>
       </button>
     </div>
 
@@ -961,6 +965,210 @@ scheduler.step()</code></pre>
     </div>
 
   </main>
+
+  <!-- ================= 3D USER LOGIN POPUP & MACOS MINIMIZE DOCK ================= -->
+  
+  <!-- Backdrop Overlay -->
+  <div class="portal-modal-backdrop" id="portalBackdrop" aria-hidden="true"></div>
+
+  <!-- 3D Modal Stage (Perspective viewport) -->
+  <div class="portal-modal-stage" id="portalStage" aria-hidden="true">
+    
+    <!-- 3D Modal Window (Mac OS Glass Card with 3D Tilt) -->
+    <div class="portal-window" id="portalWindow" role="dialog" aria-modal="true" aria-labelledby="portalTitle">
+      
+      <!-- Ambient Inner Glass Highlights -->
+      <div class="portal-glass-sheen" id="portalSheen"></div>
+      <div class="portal-mesh-glow"></div>
+
+      <!-- Mac OS Window Titlebar with Traffic Light Controls -->
+      <div class="portal-titlebar">
+        <div class="macos-traffic-lights">
+          <button class="mac-dot mac-close" id="portalCloseDot" title="Close &amp; minimize to side" aria-label="Close portal window">
+            <span class="mac-dot-icon">✕</span>
+          </button>
+          <button class="mac-dot mac-minimize" id="portalMinDot" title="Minimize to dock" aria-label="Minimize to side widget">
+            <span class="mac-dot-icon">−</span>
+          </button>
+          <button class="mac-dot mac-expand" id="portalExpandDot" title="Reset 3D Tilt" aria-label="Reset window view">
+            <span class="mac-dot-icon">+</span>
+          </button>
+        </div>
+        <div class="portal-titlebar-meta">
+          <svg class="portal-tls-lock" width="12" height="12" viewBox="0 0 24 24" fill="currentColor">
+            <path d="M18 8h-1V6c0-2.76-2.24-5-5-5S7 3.24 7 6v2H6c-1.1 0-2 .9-2 2v10c0 1.1.9 2 2 2h12c1.1 0 2-.9 2-2V10c0-1.1-.9-2-2-2zm-6 9c-1.1 0-2-.9-2-2s.9-2 2-2 2 .9 2 2-.9 2-2 2zm3.1-9H8.9V6c0-1.71 1.39-3.1 3.1-3.1 1.71 0 3.1 1.39 3.1 3.1v2z"/>
+          </svg>
+          <span class="portal-titlebar-title">ATH AI Cluster · Student Workstation</span>
+        </div>
+        <div class="portal-titlebar-badge">
+          <span class="cluster-pulse-dot"></span>
+          <span>GPU Ready</span>
+        </div>
+      </div>
+
+      <!-- Modal Body Content -->
+      <div class="portal-window-body">
+
+        <!-- ATH Branding Header -->
+        <div class="portal-brand-header">
+          <div class="portal-logo-wrap">
+            <svg class="portal-ath-emblem" viewBox="0 0 280 320" fill="none" xmlns="http://www.w3.org/2000/svg">
+              <path d="M 259.68 21.29 L 20.95 20.57 L 20.0 154.29 L 22.06 154.71 L 142.54 57.14 L 258.89 155.0 Z" fill="#38BDF8" />
+              <path d="M 259.52 259.29 L 142.06 155.71 L 20.63 258.0 L 20.0 298.43 L 257.94 299.71 L 259.68 298.43 Z M 137.52 241.04 L 149.62 240.96 L 158.83 240.99 L 165.14 241.12 L 168.55 241.34 L 169.07 241.66 L 169.48 242.32 L 169.8 243.32 L 170.02 244.66 L 170.14 246.34 L 170.21 247.78 L 170.23 248.97 L 170.2 249.93 L 170.12 250.64 L 170.01 251.23 L 169.87 251.7 L 169.7 252.04 L 169.5 252.25 L 168.44 252.43 L 166.52 252.57 L 163.73 252.68 L 160.08 252.75 L 157.27 252.86 L 155.31 253.0 L 154.19 253.18 L 153.91 253.39 L 153.71 255.68 L 153.59 260.04 L 153.55 266.46 L 153.59 274.96 L 153.53 281.49 L 153.37 286.04 L 153.12 288.62 L 152.76 289.23 L 151.49 289.7 L 149.31 290.02 L 146.21 290.2 L 142.2 290.23 L 139.11 290.18 L 136.92 290.04 L 135.65 289.8 L 135.3 289.48 L 135.04 287.03 L 134.88 282.44 L 134.82 275.71 L 134.82 266.86 L 134.82 260.17 L 134.7 255.65 L 134.5 253.3 L 134.23 253.12 L 133.09 252.96 L 128.21 252.7 L 124.48 252.59 L 121.64 252.45 L 119.67 252.27 L 118.59 252.05 L 118.39 251.8 L 118.24 251.1 L 118.14 249.94 L 118.1 248.32 L 118.1 246.25 L 118.17 244.57 L 118.33 243.29 L 118.57 242.39 L 118.89 241.89 L 122.15 241.5 L 128.36 241.21 Z M 69.62 271.14 L 76.57 260.0 L 81.92 251.51 L 85.69 245.67 L 87.88 242.48 L 88.47 241.95 L 89.57 241.53 L 91.18 241.22 L 93.29 241.04 L 95.91 240.96 L 98.05 240.94 L 99.69 240.96 L 100.85 241.02 L 101.53 241.12 L 102.15 241.32 L 102.73 241.61 L 103.25 241.98 L 103.73 242.45 L 105.6 245.37 L 108.85 250.74 L 113.49 258.57 L 119.52 268.86 L 124.18 276.86 L 127.45 282.57 L 129.35 286.0 L 129.86 287.14 L 130.16 288.09 L 130.24 288.84 L 130.1 289.39 L 129.74 289.75 L 128.42 290.01 L 126.14 290.17 L 122.9 290.23 L 118.69 290.2 L 115.43 290.1 L 113.11 289.94 L 111.73 289.71 L 111.29 289.43 L 110.81 288.93 L 110.3 288.21 L 109.74 287.29 L 109.15 286.14 L 108.57 285.19 L 108.02 284.42 L 107.48 283.84 L 106.96 283.45 L 105.04 283.15 L 101.71 282.96 L 96.96 282.86 L 90.81 282.86 L 86.08 282.96 L 82.77 283.15 L 80.87 283.45 L 80.4 283.84 L 79.87 284.44 L 79.3 285.24 L 78.67 286.25 L 78.0 287.46 L 77.38 288.44 L 76.83 289.17 L 76.33 289.66 L 75.89 289.91 L 74.65 290.1 L 72.61 290.22 L 69.76 290.29 L 66.11 290.29 L 63.29 290.23 L 61.31 290.12 L 60.16 289.96 L 59.84 289.75 L 59.59 289.49 L 59.41 289.19 L 59.31 288.84 L 59.27 288.45 L 60.97 285.37 L 64.42 279.6 Z M 91.83 264.61 L 90.4 266.82 L 89.32 268.58 L 88.58 269.88 L 88.19 270.73 L 88.15 271.12 L 88.19 271.47 L 88.31 271.78 L 88.51 272.04 L 88.79 272.25 L 89.65 272.4 L 93.13 272.52 L 95.75 272.48 L 97.77 272.35 L 99.18 272.12 L 99.98 271.79 L 100.18 271.36 L 100.04 270.54 L 99.56 269.32 L 98.75 267.71 L 97.6 265.71 L 96.62 264.12 L 95.8 262.95 L 95.16 262.18 L 94.68 261.82 L 93.97 262.11 L 93.02 263.04 Z M 215.85 243.04 L 216.05 243.25 L 216.29 244.15 L 216.57 245.74 L 216.88 248.02 L 217.24 250.98 L 217.45 253.28 L 217.51 254.9 L 217.42 255.86 L 217.18 256.14 L 216.92 256.38 L 216.65 256.55 L 216.35 256.68 L 216.03 256.75 L 215.12 256.56 L 213.61 256.12 L 211.51 255.41 L 208.81 254.45 L 206.3 253.65 L 203.98 253.03 L 201.85 252.57 L 199.9 252.29 L 198.05 252.12 L 196.28 252.06 L 194.6 252.12 L 193.02 252.3 L 191.77 252.49 L 190.85 252.69 L 190.28 252.89 L 190.04 253.11 L 189.86 253.36 L 189.86 253.64 L 189.74 253.64 L 189.68 253.96 L 189.68 254.32 L 189.77 254.67 L 189.95 255.01 L 190.22 255.34 L 190.58 255.66 L 191.21 256.01 L 192.12 256.38 L 193.31 256.79 L 194.78 257.21 L 196.61 257.68 L 198.79 258.18 L 201.33 258.71 L 204.23 259.29 L 206.64 259.81 L 208.56 260.29 L 210.0 260.73 L 210.95 261.12 L 211.93 261.61 L 212.95 262.18 L 213.99 262.84 L 215.06 263.59 L 216.06 264.45 L 216.99 265.41 L 217.86 266.48 L 218.65 267.66 L 219.3 268.79 L 219.79 269.88 L 220.14 270.93 L 220.34 271.93 L 220.46 273.03 L 220.5 274.22 L 220.46 275.52 L 220.34 276.91 L 220.08 278.26 L 219.68 279.56 L 219.15 280.82 L 218.47 282.04 L 217.62 283.21 L 216.59 284.36 L 215.38 285.46 L 213.99 286.54 L 212.4 287.49 L 210.62 288.33 L 208.63 289.05 L 206.45 289.66 L 204.23 290.14 L 201.96 290.5 L 199.66 290.73 L 197.32 290.84 L 195.04 290.88 L 192.82 290.87 L 190.65 290.79 L 188.55 290.64 L 186.36 290.4 L 184.08 290.06 L 181.71 289.62 L 179.25 289.09 L 177.36 288.62 L 176.05 288.23 L 175.32 287.91 L 175.16 287.66 L 174.98 286.68 L 174.78 284.96 L 174.56 282.52 L 174.33 279.34 L 174.22 276.89 L 174.24 275.18 L 174.38 274.2 L 174.66 273.95 L 175.54 273.99 L 177.0 274.33 L 179.07 274.96 L 181.73 275.89 L 184.24 276.7 L 186.6 277.38 L 188.81 277.93 L 190.87 278.36 L 192.86 278.67 L 194.76 278.87 L 196.59 278.95 L 198.33 278.91 L 199.81 278.82 L 201.02 278.68 L 201.96 278.48 L 202.64 278.23 L 203.19 277.97 L 203.63 277.71 L 203.95 277.43 L 204.15 277.14 L 204.28 276.82 L 204.34 276.46 L 204.33 276.07 L 204.25 275.64 L 204.05 275.24 L 203.73 274.87 L 203.29 274.52 L 202.74 274.2 L 201.27 273.71 L 198.89 273.07 L 195.6 272.27 L 191.39 271.3 L 187.99 270.47 L 185.39 269.78 L 183.59 269.21 L 182.6 268.79 L 181.56 268.25 L 180.47 267.61 L 179.33 266.86 L 178.13 266.0 L 177.09 265.1 L 176.2 264.15 L 175.46 263.16 L 174.86 262.12 L 174.38 261.01 L 174.0 259.81 L 173.73 258.54 L 173.57 257.18 L 173.49 255.91 L 173.49 254.73 L 173.57 253.64 L 173.73 252.64 L 174.0 251.62 L 174.38 250.59 L 174.86 249.54 L 175.46 248.46 L 176.21 247.42 L 177.12 246.4 L 178.19 245.41 L 179.42 244.45 L 180.67 243.6 L 181.94 242.87 L 183.23 242.25 L 184.54 241.75 L 185.91 241.32 L 187.34 240.96 L 188.83 240.68 L 190.38 240.46 L 192.34 240.33 L 194.72 240.28 L 197.52 240.3 L 200.73 240.41 L 203.77 240.62 L 206.63 240.95 L 209.31 241.38 L 211.81 241.91 L 213.73 242.37 L 215.08 242.74 Z" fill="#2563EB" fill-rule="evenodd" />
+            </svg>
+          </div>
+          <div class="portal-brand-text">
+            <h3 class="portal-heading" id="portalTitle">Data Science &amp; AI Portal</h3>
+            <p class="portal-subheading">Access GPU Clusters, Notebooks &amp; Real-Time Labs</p>
+          </div>
+        </div>
+
+        <!-- Mode Toggle (Sign In vs Register) -->
+        <div class="portal-mode-toggle" role="tablist">
+          <button class="portal-tab active" id="tabSignIn" role="tab" aria-selected="true">Student Sign In</button>
+          <button class="portal-tab" id="tabEnroll" role="tab" aria-selected="false">Enroll / Register</button>
+        </div>
+
+        <!-- Interactive Form -->
+        <form class="portal-form" id="portalForm" onsubmit="return false;">
+          
+          <!-- Track Selector Pill Group -->
+          <div class="form-group role-selector-group">
+            <label class="form-label">Specialization Track</label>
+            <div class="track-pills">
+              <label class="track-pill active">
+                <input type="radio" name="portalTrack" value="ds" checked>
+                <span>📊 Data Science</span>
+              </label>
+              <label class="track-pill">
+                <input type="radio" name="portalTrack" value="mlops">
+                <span>⚙️ MLOps</span>
+              </label>
+              <label class="track-pill">
+                <input type="radio" name="portalTrack" value="genai">
+                <span>🤖 LLM &amp; GenAI</span>
+              </label>
+            </div>
+          </div>
+
+          <!-- Email / Student ID -->
+          <div class="form-group">
+            <label class="form-label" for="portalEmail">Student ID or Institutional Email</label>
+            <div class="input-with-icon">
+              <svg class="input-icon" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                <path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"></path>
+                <polyline points="22,6 12,13 2,6"></polyline>
+              </svg>
+              <input type="email" id="portalEmail" class="portal-input" placeholder="developer@institution.edu" value="engineer@ath.edu" required autocomplete="email">
+            </div>
+          </div>
+
+          <!-- Password / Security Token -->
+          <div class="form-group">
+            <div class="label-row">
+              <label class="form-label" for="portalPassword">Workstation Passkey</label>
+              <a href="#" class="forgot-link" tabindex="-1">Forgot key?</a>
+            </div>
+            <div class="input-with-icon">
+              <svg class="input-icon" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                <rect x="3" y="11" width="18" height="11" rx="2" ry="2"></rect>
+                <path d="M7 11V7a5 5 0 0 1 10 0v4"></path>
+              </svg>
+              <input type="password" id="portalPassword" class="portal-input" placeholder="••••••••••••" value="H100-CUDA-2026" required autocomplete="current-password">
+              <button type="button" class="pwd-toggle-btn" id="pwdToggleBtn" aria-label="Toggle password visibility">
+                <svg class="eye-icon" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                  <path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z"></path>
+                  <circle cx="12" cy="12" r="3"></circle>
+                </svg>
+              </button>
+            </div>
+          </div>
+
+          <!-- Remember Me & Telemetry Check -->
+          <div class="form-options-row">
+            <label class="remember-check">
+              <input type="checkbox" id="rememberWorkstation" checked>
+              <span>Keep GPU session authenticated</span>
+            </label>
+            <span class="latency-indicator">Ping: <strong>14ms</strong></span>
+          </div>
+
+          <!-- Submit Button with 3D Elevation -->
+          <button type="submit" class="portal-submit-btn" id="portalSubmitBtn">
+            <span class="btn-glow-layer"></span>
+            <span class="btn-content">
+              <svg class="btn-play-icon" width="16" height="16" viewBox="0 0 24 24" fill="currentColor">
+                <polygon points="5 3 19 12 5 21 5 3"></polygon>
+              </svg>
+              <span class="submit-text">Authenticate &amp; Launch Cluster</span>
+            </span>
+          </button>
+
+          <!-- SSO Row -->
+          <div class="sso-divider">
+            <span>or single sign-on</span>
+          </div>
+
+          <div class="sso-buttons">
+            <button type="button" class="sso-btn google-sso">
+              <svg width="16" height="16" viewBox="0 0 24 24">
+                <path fill="#4285F4" d="M23.745 12.27c0-.7-.06-1.4-.19-2.07H12v4.51h6.6c-.29 1.52-1.14 2.8-2.4 3.66v3.05h3.88c2.27-2.09 3.66-5.17 3.66-9.15z"/>
+                <path fill="#34A853" d="M12 24c3.24 0 5.95-1.08 7.93-2.91l-3.88-3.05c-1.08.72-2.45 1.16-4.05 1.16-3.12 0-5.77-2.1-6.72-4.93H1.24v3.15C3.26 21.36 7.33 24 12 24z"/>
+                <path fill="#FBBC05" d="M5.28 14.27c-.25-.72-.38-1.49-.38-2.27s.13-1.55.38-2.27V6.58H1.24C.45 8.15 0 9.91 0 12s.45 3.85 1.24 5.42l4.04-3.15z"/>
+                <path fill="#EA4335" d="M12 4.75c1.77 0 3.35.61 4.6 1.8l3.42-3.42C17.95 1.19 15.24 0 12 0 7.33 0 3.26 2.64 1.24 6.58l4.04 3.15c.95-2.83 3.6-4.98 6.72-4.98z"/>
+              </svg>
+              <span>Google Workspace</span>
+            </button>
+            <button type="button" class="sso-btn github-sso">
+              <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor">
+                <path fill-rule="evenodd" clip-rule="evenodd" d="M12 2C6.477 2 2 6.484 2 12.017c0 4.425 2.865 8.18 6.839 9.504.5.092.682-.217.682-.483 0-.237-.008-.868-.013-1.703-2.782.605-3.369-1.343-3.369-1.343-.454-1.158-1.11-1.466-1.11-1.466-.908-.62.069-.608.069-.608 1.003.07 1.53 1.032 1.53 1.032.892 1.53 2.341 1.088 2.91.832.092-.647.35-1.088.636-1.338-2.22-.253-4.555-1.113-4.555-4.951 0-1.093.39-1.988 1.029-2.688-.103-.253-.446-1.272.098-2.65 0 0 .84-.27 2.75 1.026A9.564 9.564 0 0112 6.844c.85.004 1.705.115 2.504.337 1.909-1.296 2.747-1.027 2.747-1.027.546 1.379.202 2.398.1 2.651.64.7 1.028 1.595 1.028 2.688 0 3.848-2.339 4.695-4.566 4.943.359.309.678.92.678 1.855 0 1.338-.012 2.419-.012 2.747 0 .268.18.58.688.482A10.019 10.019 0 0022 12.017C22 6.484 17.522 2 12 2z"/>
+              </svg>
+              <span>GitHub Student</span>
+            </button>
+          </div>
+
+          <!-- Bottom Security Badge -->
+          <div class="portal-security-badge">
+            <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="#10b981" stroke-width="2.5">
+              <path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"></path>
+            </svg>
+            <span>256-Bit TLS End-to-End Encryption · Asian Technology Hub Verified</span>
+          </div>
+
+        </form>
+
+      </div>
+      <!-- /portal-window-body -->
+
+    </div>
+    <!-- /portal-window -->
+
+  </div>
+  <!-- /portal-modal-stage -->
+
+  <!-- ================= DOCKED SIDE LAUNCHER (MACOS DOCK STYLE) ================= -->
+  <aside class="portal-side-dock" id="portalSideDock" aria-label="Quick launch ATH Student Portal">
+    <button class="dock-pill-btn" id="dockRestoreBtn" title="Restore ATH Student Portal" aria-label="Open student login form">
+      <!-- Glow outline & status beacon -->
+      <div class="dock-beacon-ring"></div>
+      <div class="dock-ath-icon-wrap">
+        <svg class="dock-ath-svg" width="22" height="22" viewBox="0 0 280 320" fill="none">
+          <path d="M 259.68 21.29 L 20.95 20.57 L 20.0 154.29 L 22.06 154.71 L 142.54 57.14 L 258.89 155.0 Z" fill="#38BDF8" />
+          <path d="M 259.52 259.29 L 142.06 155.71 L 20.63 258.0 L 20.0 298.43 L 257.94 299.71 L 259.68 298.43 Z M 137.52 241.04 L 149.62 240.96 L 158.83 240.99 L 165.14 241.12 L 168.55 241.34 L 169.07 241.66 L 169.48 242.32 L 169.8 243.32 L 170.02 244.66 L 170.14 246.34 L 170.21 247.78 L 170.23 248.97 L 170.2 249.93 L 170.12 250.64 L 170.01 251.23 L 169.87 251.7 L 169.7 252.04 L 169.5 252.25 L 168.44 252.43 L 166.52 252.57 L 163.73 252.68 L 160.08 252.75 L 157.27 252.86 L 155.31 253.0 L 154.19 253.18 L 153.91 253.39 L 153.71 255.68 L 153.59 260.04 L 153.55 266.46 L 153.59 274.96 L 153.53 281.49 L 153.37 286.04 L 153.12 288.62 L 152.76 289.23 L 151.49 289.7 L 149.31 290.02 L 146.21 290.2 L 142.2 290.23 L 139.11 290.18 L 136.92 290.04 L 135.65 289.8 L 135.3 289.48 L 135.04 287.03 L 134.88 282.44 L 134.82 275.71 L 134.82 266.86 L 134.82 260.17 L 134.7 255.65 L 134.5 253.3 L 134.23 253.12 L 133.09 252.96 L 128.21 252.7 L 124.48 252.59 L 121.64 252.45 L 119.67 252.27 L 118.59 252.05 L 118.39 251.8 L 118.24 251.1 L 118.14 249.94 L 118.1 248.32 L 118.1 246.25 L 118.17 244.57 L 118.33 243.29 L 118.57 242.39 L 118.89 241.89 L 122.15 241.5 L 128.36 241.21 Z M 69.62 271.14 L 76.57 260.0 L 81.92 251.51 L 85.69 245.67 L 87.88 242.48 L 88.47 241.95 L 89.57 241.53 L 91.18 241.22 L 93.29 241.04 L 95.91 240.96 L 98.05 240.94 L 99.69 240.96 L 100.85 241.02 L 101.53 241.12 L 102.15 241.32 L 102.73 241.61 L 103.25 241.98 L 103.73 242.45 L 105.6 245.37 L 108.85 250.74 L 113.49 258.57 L 119.52 268.86 L 124.18 276.86 L 127.45 282.57 L 129.35 286.0 L 129.86 287.14 L 130.16 288.09 L 130.24 288.84 L 130.1 289.39 L 129.74 289.75 L 128.42 290.01 L 126.14 290.17 L 122.9 290.23 L 118.69 290.2 L 115.43 290.1 L 113.11 289.94 L 111.73 289.71 L 111.29 289.43 L 110.81 288.93 L 110.3 288.21 L 109.74 287.29 L 109.15 286.14 L 108.57 285.19 L 108.02 284.42 L 107.48 283.84 L 106.96 283.45 L 105.04 283.15 L 101.71 282.96 L 96.96 282.86 L 90.81 282.86 L 86.08 282.96 L 82.77 283.15 L 80.87 283.45 L 80.4 283.84 L 79.87 284.44 L 79.3 285.24 L 78.67 286.25 L 78.0 287.46 L 77.38 288.44 L 76.83 289.17 L 76.33 289.66 L 75.89 289.91 L 74.65 290.1 L 72.61 290.22 L 69.76 290.29 L 66.11 290.29 L 63.29 290.23 L 61.31 290.12 L 60.16 289.96 L 59.84 289.75 L 59.59 289.49 L 59.41 289.19 L 59.31 288.84 L 59.27 288.45 L 60.97 285.37 L 64.42 279.6 Z M 91.83 264.61 L 90.4 266.82 L 89.32 268.58 L 88.58 269.88 L 88.19 270.73 L 88.15 271.12 L 88.19 271.47 L 88.31 271.78 L 88.51 272.04 L 88.79 272.25 L 89.65 272.4 L 93.13 272.52 L 95.75 272.48 L 97.77 272.35 L 99.18 272.12 L 99.98 271.79 L 100.18 271.36 L 100.04 270.54 L 99.56 269.32 L 98.75 267.71 L 97.6 265.71 L 96.62 264.12 L 95.8 262.95 L 95.16 262.18 L 94.68 261.82 L 93.97 262.11 L 93.02 263.04 Z M 215.85 243.04 L 216.05 243.25 L 216.29 244.15 L 216.57 245.74 L 216.88 248.02 L 217.24 250.98 L 217.45 253.28 L 217.51 254.9 L 217.42 255.86 L 217.18 256.14 L 216.92 256.38 L 216.65 256.55 L 216.35 256.68 L 216.03 256.75 L 215.12 256.56 L 213.61 256.12 L 211.51 255.41 L 208.81 254.45 L 206.3 253.65 L 203.98 253.03 L 201.85 252.57 L 199.9 252.29 L 198.05 252.12 L 196.28 252.06 L 194.6 252.12 L 193.02 252.3 L 191.77 252.49 L 190.85 252.69 L 190.28 252.89 L 190.04 253.11 L 189.86 253.36 L 189.86 253.64 L 189.74 253.64 L 189.68 253.96 L 189.68 254.32 L 189.77 254.67 L 189.95 255.01 L 190.22 255.34 L 190.58 255.66 L 191.21 256.01 L 192.12 256.38 L 193.31 256.79 L 194.78 257.21 L 196.61 257.68 L 198.79 258.18 L 201.33 258.71 L 204.23 259.29 L 206.64 259.81 L 208.56 260.29 L 210.0 260.73 L 210.95 261.12 L 211.93 261.61 L 212.95 262.18 L 213.99 262.84 L 215.06 263.59 L 216.06 264.45 L 216.99 265.41 L 217.86 266.48 L 218.65 267.66 L 219.3 268.79 L 219.79 269.88 L 220.14 270.93 L 220.34 271.93 L 220.46 273.03 L 220.5 274.22 L 220.46 275.52 L 220.34 276.91 L 220.08 278.26 L 219.68 279.56 L 219.15 280.82 L 218.47 282.04 L 217.62 283.21 L 216.59 284.36 L 215.38 285.46 L 213.99 286.54 L 212.4 287.49 L 210.62 288.33 L 208.63 289.05 L 206.45 289.66 L 204.23 290.14 L 201.96 290.5 L 199.66 290.73 L 197.32 290.84 L 195.04 290.88 L 192.82 290.87 L 190.65 290.79 L 188.55 290.64 L 186.36 290.4 L 184.08 290.06 L 181.71 289.62 L 179.25 289.09 L 177.36 288.62 L 176.05 288.23 L 175.32 287.91 L 175.16 287.66 L 174.98 286.68 L 174.78 284.96 L 174.56 282.52 L 174.33 279.34 L 174.22 276.89 L 174.24 275.18 L 174.38 274.2 L 174.66 273.95 L 175.54 273.99 L 177.0 274.33 L 179.07 274.96 L 181.73 275.89 L 184.24 276.7 L 186.6 277.38 L 188.81 277.93 L 190.87 278.36 L 192.86 278.67 L 194.76 278.87 L 196.59 278.95 L 198.33 278.91 L 199.81 278.82 L 201.02 278.68 L 201.96 278.48 L 202.64 278.23 L 203.19 277.97 L 203.63 277.71 L 203.95 277.43 L 204.15 277.14 L 204.28 276.82 L 204.34 276.46 L 204.33 276.07 L 204.25 275.64 L 204.05 275.24 L 203.73 274.87 L 203.29 274.52 L 202.74 274.2 L 201.27 273.71 L 198.89 273.07 L 195.6 272.27 L 191.39 271.3 L 187.99 270.47 L 185.39 269.78 L 183.59 269.21 L 182.6 268.79 L 181.56 268.25 L 180.47 267.61 L 179.33 266.86 L 178.13 266.0 L 177.09 265.1 L 176.2 264.15 L 175.46 263.16 L 174.86 262.12 L 174.38 261.01 L 174.0 259.81 L 173.73 258.54 L 173.57 257.18 L 173.49 255.91 L 173.49 254.73 L 173.57 253.64 L 173.73 252.64 L 174.0 251.62 L 174.38 250.59 L 174.86 249.54 L 175.46 248.46 L 176.21 247.42 L 177.12 246.4 L 178.19 245.41 L 179.42 244.45 L 180.67 243.6 L 181.94 242.87 L 183.23 242.25 L 184.54 241.75 L 185.91 241.32 L 187.34 240.96 L 188.83 240.68 L 190.38 240.46 L 192.34 240.33 L 194.72 240.28 L 197.52 240.3 L 200.73 240.41 L 203.77 240.62 L 206.63 240.95 L 209.31 241.38 L 211.81 241.91 L 213.73 242.37 L 215.08 242.74 Z" fill="#2563EB" fill-rule="evenodd" />
+        </svg>
+        <span class="dock-online-dot"></span>
+      </div>
+      <div class="dock-label-group">
+        <span class="dock-badge-title">PORTAL</span>
+        <span class="dock-badge-sub">Sign In</span>
+      </div>
+      <div class="dock-expand-arrow">
+        <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5">
+          <polyline points="15 18 9 12 15 6"></polyline>
+        </svg>
+      </div>
+    </button>
+  </aside>
 
   <!-- External Scripts: GSAP + ScrollTrigger + ScrollToPlugin -->
   <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
