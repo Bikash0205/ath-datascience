@@ -999,7 +999,6 @@ function initPortalLoginModal() {
   const portalSideDock = document.getElementById('portalSideDock');
   const dockRestoreBtn = document.getElementById('dockRestoreBtn');
   const openPortalBtn = document.getElementById('openPortalBtn');
-  const profileBtn = document.querySelector('.profile-btn');
   const portalCloseDot = document.getElementById('portalCloseDot');
   const portalMinDot = document.getElementById('portalMinDot');
   const portalExpandDot = document.getElementById('portalExpandDot');
@@ -1258,7 +1257,6 @@ function initPortalLoginModal() {
 
   // Event Listeners for Opening/Closing
   if (openPortalBtn) openPortalBtn.addEventListener('click', restorePortal);
-  if (profileBtn) profileBtn.addEventListener('click', restorePortal);
   if (dockRestoreBtn) dockRestoreBtn.addEventListener('click', restorePortal);
   
   // Footer portal trigger buttons
