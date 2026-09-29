@@ -2235,21 +2235,26 @@ body {
     padding: 8px 8px 30px;
   }
   .global-topbar {
-    padding: 6px 8px;
+    padding: 6px 12px;
     font-size: 0.75rem;
   }
   .topbar-right {
     display: none;
   }
+  .topbar-course-tag {
+    display: none;
+  }
   .brand-logo-badge {
-    padding: 3px 8px;
+    padding: 4px 8px;
   }
   .brand-svg-logo {
     height: 22px;
   }
-  .topbar-course-tag {
-    font-size: 0.65rem;
-    padding: 3px 7px;
+  .ath-wordmark {
+    font-size: 0.72rem;
+  }
+  .ath-tagline {
+    font-size: 0.42rem;
   }
   .topbar-label {
     font-size: 0.72rem;
@@ -2258,8 +2263,8 @@ body {
     font-size: 0.72rem;
   }
   .portal-trigger-btn {
-    padding: 4px 10px;
-    font-size: 0.72rem;
+    padding: 4px 9px;
+    font-size: 0.7rem;
   }
   .inner-header {
     top: 14px;
@@ -2313,8 +2318,36 @@ body {
 @media (max-width: 480px) {
   body {
     padding: 4px 4px 20px;
+    overflow-x: hidden;
   }
   .global-topbar {
+    gap: 4px;
+    padding: 6px 8px;
+    max-width: 100%;
+    box-sizing: border-box;
+  }
+  .brand-logo-badge {
+    padding: 3px 6px;
+  }
+  .ath-emblem-frame {
+    width: 22px;
+    height: 22px;
+  }
+  .brand-svg-emblem {
+    width: 20px;
+    height: 20px;
+  }
+  .ath-wordmark {
+    font-size: 0.65rem;
+    gap: 2px;
+  }
+  .ath-tagline {
+    font-size: 0.38rem;
+    letter-spacing: 0.08em;
+  }
+  .portal-trigger-btn {
+    padding: 4px 7px;
+    font-size: 0.65rem;
     gap: 4px;
   }
   .canvas-window {
@@ -3008,4 +3041,509 @@ body {
     display: none;
   }
 }
+
+/* ==========================================================================
+   ATH INSTITUTIONAL BRANDING & TYPOGRAPHIC SYSTEM
+   ========================================================================== */
+
+/* Topbar Brand Badge & Crest */
+.topbar-brand.brand-logo-badge {
+  background: #ffffff;
+  padding: 5px 12px;
+  border-radius: 10px;
+  border: 1px solid rgba(0, 114, 255, 0.3);
+  box-shadow: 0 2px 12px rgba(0, 0, 0, 0.25), 0 0 10px rgba(56, 189, 248, 0.2);
+  display: inline-flex;
+  align-items: center;
+  text-decoration: none;
+  transition: transform 0.25s ease, box-shadow 0.25s ease;
+  flex-shrink: 0;
+}
+
+.topbar-brand.brand-logo-badge:hover {
+  transform: translateY(-1px) scale(1.02);
+  box-shadow: 0 4px 18px rgba(0, 114, 255, 0.35), 0 0 20px rgba(56, 189, 248, 0.4);
+}
+
+.ath-emblem-frame {
+  width: 28px;
+  height: 28px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+}
+
+.brand-svg-emblem {
+  width: 26px;
+  height: 26px;
+  display: block;
+}
+
+.ath-brand-typography {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  margin-left: 8px;
+  line-height: 1;
+}
+
+.ath-wordmark {
+  display: flex;
+  align-items: center;
+  gap: 3.5px;
+  font-family: var(--font-main);
+  font-size: 0.78rem;
+  font-weight: 800;
+  letter-spacing: 0.05em;
+  color: #0b205d;
+  white-space: nowrap;
+}
+
+.ath-title-asian {
+  color: #0b205d;
+}
+
+.ath-title-tech {
+  color: #0072ff;
+}
+
+.ath-title-hub {
+  color: #0b205d;
+}
+
+.ath-tagline {
+  font-family: var(--font-main);
+  font-size: 0.46rem;
+  font-weight: 700;
+  letter-spacing: 0.14em;
+  color: #64748b;
+  text-transform: uppercase;
+  margin-top: 2px;
+  white-space: nowrap;
+}
+
+/* Topbar Right Accreditation Badge */
+.ath-topbar-accreditation {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  padding: 4px 12px;
+  background: rgba(15, 23, 42, 0.6);
+  border: 1px solid rgba(56, 189, 248, 0.25);
+  border-radius: var(--radius-pill);
+  font-size: 0.68rem;
+  font-weight: 600;
+  letter-spacing: 0.06em;
+  color: #94a3b8;
+  backdrop-filter: blur(10px);
+}
+
+.ath-accreditation-dot {
+  width: 6px;
+  height: 6px;
+  border-radius: 50%;
+  background: #10b981;
+  box-shadow: 0 0 8px #10b981;
+  flex-shrink: 0;
+  animation: pulseAccred 2s ease-in-out infinite;
+}
+
+@keyframes pulseAccred {
+  0%, 100% { opacity: 1; transform: scale(1); }
+  50% { opacity: 0.45; transform: scale(0.85); }
+}
+
+/* Hero Section Institutional Brand Crest */
+.hero-brand-presenter {
+  display: flex;
+  align-items: center;
+  justify-content: flex-start;
+  margin-bottom: 16px;
+  width: 100%;
+}
+
+.ath-institution-crest {
+  display: inline-flex;
+  align-items: center;
+  gap: 12px;
+  padding: 8px 16px 8px 10px;
+  background: rgba(15, 23, 42, 0.7);
+  border: 1px solid rgba(56, 189, 248, 0.3);
+  border-radius: 14px;
+  backdrop-filter: blur(16px);
+  -webkit-backdrop-filter: blur(16px);
+  box-shadow: 0 8px 30px rgba(0, 0, 0, 0.35), 0 0 20px rgba(56, 189, 248, 0.15);
+  max-width: 100%;
+  box-sizing: border-box;
+}
+
+.ath-crest-icon-box {
+  width: 36px;
+  height: 36px;
+  background: #ffffff;
+  border-radius: 9px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 4px;
+  flex-shrink: 0;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.2);
+}
+
+.ath-crest-svg {
+  width: 100%;
+  height: 100%;
+}
+
+.ath-crest-details {
+  display: flex;
+  flex-direction: column;
+  text-align: left;
+}
+
+.ath-crest-org {
+  font-family: var(--font-main);
+  font-size: 0.84rem;
+  font-weight: 800;
+  letter-spacing: 0.08em;
+  color: #ffffff;
+  text-shadow: 0 0 12px rgba(56, 189, 248, 0.5);
+  line-height: 1.2;
+}
+
+.ath-crest-dept {
+  font-size: 0.68rem;
+  font-weight: 500;
+  color: #94a3b8;
+  letter-spacing: 0.02em;
+  line-height: 1.2;
+}
+
+.ath-verified-tag {
+  display: inline-flex;
+  align-items: center;
+  gap: 4px;
+  padding: 3px 8px;
+  background: rgba(16, 185, 129, 0.12);
+  border: 1px solid rgba(16, 185, 129, 0.35);
+  border-radius: var(--radius-pill);
+  color: #10b981;
+  font-size: 0.65rem;
+  font-weight: 700;
+  letter-spacing: 0.04em;
+  margin-left: 6px;
+  white-space: nowrap;
+}
+
+/* Modal ATH Corporate Badge */
+.portal-ath-corp {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  margin-bottom: 4px;
+  flex-wrap: wrap;
+}
+
+.corp-name {
+  font-family: var(--font-main);
+  font-size: 0.72rem;
+  font-weight: 800;
+  letter-spacing: 0.08em;
+  color: #38bdf8;
+  text-shadow: 0 0 10px rgba(56, 189, 248, 0.4);
+}
+
+.corp-slogan {
+  font-size: 0.58rem;
+  font-weight: 700;
+  letter-spacing: 0.1em;
+  color: #94a3b8;
+  background: rgba(255, 255, 255, 0.06);
+  padding: 1px 6px;
+  border-radius: 4px;
+  border: 1px solid rgba(255, 255, 255, 0.08);
+}
+
+/* ==========================================================================
+   ATH EXECUTIVE INSTITUTIONAL FOOTER
+   ========================================================================== */
+.section-ath-footer {
+  position: relative;
+  width: 100%;
+  background: linear-gradient(180deg, #070d1d 0%, #030712 100%);
+  border-top: 1px solid rgba(56, 189, 248, 0.15);
+  padding: 64px 40px 32px;
+  box-sizing: border-box;
+  color: #94a3b8;
+  font-family: var(--font-main);
+  overflow: hidden;
+  z-index: 20;
+}
+
+.ath-footer-inner {
+  display: grid;
+  grid-template-columns: 2.2fr 1fr 1fr 1.2fr;
+  gap: 36px;
+  max-width: 1200px;
+  margin: 0 auto;
+  box-sizing: border-box;
+}
+
+.footer-brand-col {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+}
+
+.footer-ath-lockup {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  margin-bottom: 16px;
+}
+
+.footer-ath-crest-wrap {
+  width: 40px;
+  height: 40px;
+  background: #ffffff;
+  border-radius: 10px;
+  padding: 5px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  box-shadow: 0 4px 14px rgba(0, 0, 0, 0.35);
+  flex-shrink: 0;
+}
+
+.footer-ath-crest {
+  width: 100%;
+  height: 100%;
+}
+
+.footer-ath-typography {
+  display: flex;
+  flex-direction: column;
+}
+
+.footer-ath-name {
+  font-family: var(--font-main);
+  font-size: 0.95rem;
+  font-weight: 800;
+  letter-spacing: 0.08em;
+  color: #ffffff;
+}
+
+.footer-ath-slogan {
+  font-size: 0.55rem;
+  font-weight: 700;
+  letter-spacing: 0.14em;
+  color: #38bdf8;
+  margin-top: 2px;
+}
+
+.footer-mission-text {
+  font-size: 0.82rem;
+  line-height: 1.6;
+  color: #94a3b8;
+  margin-bottom: 20px;
+  max-width: 440px;
+}
+
+.footer-alliances-row {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+}
+
+.alliance-tag {
+  font-size: 0.65rem;
+  font-weight: 600;
+  letter-spacing: 0.03em;
+  color: #cbd5e1;
+  background: rgba(255, 255, 255, 0.05);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  padding: 4px 10px;
+  border-radius: var(--radius-pill);
+  transition: border-color 0.2s ease, background 0.2s ease, color 0.2s ease;
+}
+
+.alliance-tag:hover {
+  background: rgba(56, 189, 248, 0.1);
+  border-color: rgba(56, 189, 248, 0.3);
+  color: #38bdf8;
+}
+
+.footer-links-col {
+  display: flex;
+  flex-direction: column;
+}
+
+.footer-col-title {
+  font-size: 0.78rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+  color: #f8fafc;
+  margin-bottom: 16px;
+}
+
+.footer-list {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.footer-list li span,
+.footer-list li a {
+  font-size: 0.8rem;
+  color: #94a3b8;
+  text-decoration: none;
+  transition: color 0.2s ease, transform 0.2s ease;
+  display: inline-block;
+  cursor: pointer;
+}
+
+.footer-list li a:hover,
+.footer-list li span:hover {
+  color: #38bdf8;
+  transform: translateX(2px);
+}
+
+.footer-accreditation-box {
+  background: rgba(15, 23, 42, 0.8);
+  border: 1px solid rgba(56, 189, 248, 0.2);
+  border-radius: 12px;
+  padding: 14px;
+  display: flex;
+  gap: 10px;
+  align-items: flex-start;
+  backdrop-filter: blur(12px);
+}
+
+.seal-icon {
+  font-size: 1.4rem;
+  line-height: 1;
+}
+
+.seal-text {
+  display: flex;
+  flex-direction: column;
+  gap: 3px;
+}
+
+.seal-text strong {
+  font-size: 0.76rem;
+  color: #ffffff;
+  font-weight: 700;
+}
+
+.seal-text span {
+  font-size: 0.65rem;
+  color: #94a3b8;
+}
+
+.verified-code {
+  font-family: monospace;
+  font-size: 0.6rem !important;
+  color: #10b981 !important;
+  background: rgba(16, 185, 129, 0.1);
+  padding: 2px 6px;
+  border-radius: 4px;
+  align-self: flex-start;
+  margin-top: 4px;
+  border: 1px solid rgba(16, 185, 129, 0.25);
+}
+
+.ath-footer-bottom {
+  max-width: 1200px;
+  margin: 40px auto 0;
+  padding-top: 24px;
+  border-top: 1px solid rgba(255, 255, 255, 0.06);
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  flex-wrap: wrap;
+  gap: 16px;
+  font-size: 0.72rem;
+  color: #64748b;
+}
+
+.footer-bottom-copy strong {
+  color: #cbd5e1;
+}
+
+.footer-bottom-links {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.dot-sep {
+  opacity: 0.4;
+}
+
+/* Responsive Footer */
+@media (max-width: 900px) {
+  .ath-footer-inner {
+    grid-template-columns: 1fr 1fr;
+    gap: 30px;
+  }
+  .footer-brand-col {
+    grid-column: span 2;
+  }
+}
+
+@media (max-width: 600px) {
+  .section-ath-footer {
+    padding: 40px 20px 24px;
+  }
+  .ath-footer-inner {
+    grid-template-columns: 1fr;
+    gap: 24px;
+  }
+  .footer-brand-col {
+    grid-column: span 1;
+  }
+  .ath-footer-bottom {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 10px;
+  }
+  .hero-brand-presenter {
+    justify-content: flex-start;
+  }
+  .ath-institution-crest {
+    padding: 6px 10px;
+    gap: 8px;
+    max-width: 100%;
+  }
+  .ath-crest-icon-box {
+    width: 30px;
+    height: 30px;
+  }
+  .ath-crest-org {
+    font-size: 0.74rem;
+  }
+  .ath-crest-dept {
+    font-size: 0.6rem;
+  }
+  .ath-verified-tag {
+    display: none;
+  }
+  .ath-wordmark {
+    font-size: 0.7rem;
+    gap: 2px;
+  }
+  .ath-tagline {
+    font-size: 0.42rem;
+  }
+  .ath-topbar-accreditation {
+    display: none;
+  }
+}
+
 

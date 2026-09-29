@@ -860,6 +860,16 @@ function initPortalLoginModal() {
   if (openPortalBtn) openPortalBtn.addEventListener('click', restorePortal);
   if (profileBtn) profileBtn.addEventListener('click', restorePortal);
   if (dockRestoreBtn) dockRestoreBtn.addEventListener('click', restorePortal);
+  
+  // Footer portal trigger buttons
+  const footerPortalBtns = document.querySelectorAll('.open-portal-footer');
+  footerPortalBtns.forEach(btn => {
+    btn.addEventListener('click', (e) => {
+      e.preventDefault();
+      restorePortal();
+    });
+  });
+
   if (portalCloseDot) portalCloseDot.addEventListener('click', () => minimizePortal());
   if (portalMinDot) portalMinDot.addEventListener('click', () => minimizePortal());
   if (portalExpandDot) {
