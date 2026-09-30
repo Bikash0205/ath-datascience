@@ -1809,6 +1809,457 @@ body.minimal-cyber-body {
 }
 
 /* ==========================================================================
+   10. EDUCATIONAL DOODLE SYSTEM & LOTTIE VECTOR ACCENTS (GSAP INTEGRATION)
+   ========================================================================== */
+.educational-doodles-layer {
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  overflow: hidden;
+  z-index: 1;
+}
+
+.doodle-item {
+  position: absolute;
+  pointer-events: auto;
+  cursor: pointer;
+  opacity: 0.65;
+  transition: opacity 0.3s ease, transform 0.4s cubic-bezier(0.34, 1.56, 0.64, 1);
+  filter: drop-shadow(0 2px 8px rgba(37, 99, 235, 0.08));
+}
+
+.doodle-item:hover {
+  opacity: 1;
+  transform: scale(1.18) rotate(4deg) !important;
+}
+
+.doodle-svg {
+  display: block;
+  width: 100%;
+  height: auto;
+}
+
+.doodle-path {
+  stroke: var(--accent-blue-royal, #2563eb);
+  stroke-linecap: round;
+  stroke-linejoin: round;
+}
+
+/* Individual Hero Doodle Positions */
+.doodle-grad-cap {
+  top: 8%;
+  left: 6%;
+  width: 58px;
+  animation: doodleFloat 6s ease-in-out infinite alternate;
+}
+
+.doodle-sigma,
+.doodle-math-sigma {
+  top: 30%;
+  left: 5%;
+  width: 48px;
+  animation: doodleFloat 7s ease-in-out 1s infinite alternate;
+}
+
+.doodle-lightbulb {
+  top: 10%;
+  right: 7%;
+  width: 46px;
+  animation: doodleFloat 5.5s ease-in-out 0.5s infinite alternate;
+}
+
+.doodle-integral {
+  top: 52%;
+  left: 6%;
+  width: 42px;
+  animation: doodleFloat 6.5s ease-in-out 1.5s infinite alternate;
+}
+
+.doodle-neural {
+  top: 40%;
+  right: 6%;
+  width: 68px;
+  animation: doodleFloat 8s ease-in-out 0.8s infinite alternate;
+}
+
+.doodle-brackets {
+  top: 68%;
+  right: 8%;
+  width: 60px;
+  animation: doodleFloat 6.2s ease-in-out 2s infinite alternate;
+}
+
+.doodle-gaussian {
+  top: 78%;
+  left: 8%;
+  width: 72px;
+  animation: doodleFloat 7.5s ease-in-out 1.2s infinite alternate;
+}
+
+.doodle-flask {
+  top: 22%;
+  right: 16%;
+  width: 42px;
+  animation: doodleFloat 6.8s ease-in-out 1.8s infinite alternate;
+}
+
+.doodle-sparkle-1 {
+  top: 6%;
+  right: 24%;
+  width: 24px;
+  animation: doodlePulse 4s ease-in-out infinite;
+}
+
+.doodle-sparkle-2 {
+  top: 66%;
+  left: 20%;
+  width: 20px;
+  animation: doodlePulse 4s ease-in-out 2s infinite;
+}
+
+@keyframes doodleFloat {
+  0% {
+    transform: translateY(0px) rotate(0deg);
+  }
+  50% {
+    transform: translateY(-8px) rotate(2deg);
+  }
+  100% {
+    transform: translateY(4px) rotate(-1.5deg);
+  }
+}
+
+@keyframes doodlePulse {
+  0%, 100% {
+    transform: scale(0.9) rotate(0deg);
+    opacity: 0.5;
+  }
+  50% {
+    transform: scale(1.15) rotate(15deg);
+    opacity: 0.95;
+  }
+}
+
+/* Badge Sparkle */
+.badge-doodle-spark {
+  width: 14px;
+  height: 14px;
+  margin-left: 4px;
+  display: inline-block;
+  vertical-align: middle;
+}
+
+/* Dynamic Squiggly Underline */
+.doodle-highlight {
+  position: relative;
+  display: inline-block;
+  white-space: nowrap;
+}
+
+.doodle-underline-svg {
+  position: absolute;
+  bottom: -10px;
+  left: 0;
+  width: 100%;
+  height: 18px;
+  pointer-events: none;
+  overflow: visible;
+  z-index: 1;
+}
+
+/* CTA Pointer */
+.hero-actions-container {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  width: 100%;
+}
+
+.doodle-cta-pointer {
+  position: absolute;
+  left: calc(50% - 430px);
+  top: 10px;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  pointer-events: none;
+}
+
+.doodle-arrow-svg {
+  width: 52px;
+  height: 24px;
+  filter: drop-shadow(0 2px 4px rgba(37, 99, 235, 0.15));
+}
+
+.doodle-note {
+  font-family: var(--font-heading);
+  font-size: 0.82rem;
+  font-weight: 700;
+  color: var(--accent-blue-royal);
+  transform: rotate(-3deg);
+  white-space: nowrap;
+  background: #eff6ff;
+  border: 1px dashed #93c5fd;
+  padding: 3px 9px;
+  border-radius: 9999px;
+}
+
+/* Hero Lottie Badge */
+.hero-lottie-badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 12px;
+  margin-top: 26px;
+  padding: 8px 18px 8px 10px;
+  background: rgba(255, 255, 255, 0.95);
+  border: 1.5px solid #dbeafe;
+  border-radius: 9999px;
+  box-shadow: 0 4px 18px -2px rgba(37, 99, 235, 0.08);
+  backdrop-filter: blur(8px);
+  transition: transform 0.25s ease, box-shadow 0.25s ease;
+}
+
+.hero-lottie-badge:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 8px 24px -2px rgba(37, 99, 235, 0.14);
+}
+
+.lottie-micro-box {
+  width: 44px;
+  height: 44px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 50%;
+  background: #eff6ff;
+  border: 1px solid #bfdbfe;
+  overflow: hidden;
+  flex-shrink: 0;
+}
+
+.lottie-micro-box svg {
+  width: 100% !important;
+  height: 100% !important;
+}
+
+.lottie-badge-text {
+  display: flex;
+  flex-direction: column;
+  text-align: left;
+}
+
+.lottie-badge-title {
+  font-family: var(--font-heading);
+  font-size: 0.76rem;
+  font-weight: 700;
+  color: var(--accent-blue-royal);
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+}
+
+.lottie-badge-desc {
+  font-size: 0.72rem;
+  color: var(--text-muted);
+}
+
+/* Relative Doodle Wrappers (Oval / Loops) */
+.relative-doodle-wrap {
+  position: relative;
+  display: inline-block;
+}
+
+.doodle-loop-circle {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: 130%;
+  height: 150%;
+  pointer-events: none;
+  overflow: visible;
+  z-index: 1;
+}
+
+/* Hand Notes & Arrows */
+.roadmap-badge-row,
+.section-tag-row {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 12px;
+  flex-wrap: wrap;
+  margin-bottom: 4px;
+}
+
+.doodle-hand-note {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+}
+
+.doodle-curved-arrow {
+  width: 38px;
+  height: 20px;
+}
+
+.doodle-star-mini {
+  width: 16px;
+  height: 16px;
+}
+
+.doodle-note-text {
+  font-family: var(--font-heading);
+  font-size: 0.76rem;
+  font-weight: 700;
+  color: var(--accent-blue-royal);
+  background: #eff6ff;
+  padding: 3px 8px;
+  border-radius: 6px;
+  border: 1px solid #bfdbfe;
+  letter-spacing: 0.02em;
+}
+
+/* Education Lottie Telemetry Bar */
+.education-lottie-bar {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 18px;
+  margin: 32px 0;
+  padding: 14px 22px;
+  background: #f8fafc;
+  border: 1.5px dashed #bfdbfe;
+  border-radius: 14px;
+  box-shadow: 0 2px 8px rgba(37, 99, 235, 0.04);
+}
+
+.lottie-stream-icon {
+  width: 60px;
+  height: 44px;
+  flex-shrink: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.lottie-stream-icon svg {
+  width: 100% !important;
+  height: 100% !important;
+}
+
+.stream-info {
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+  text-align: left;
+  flex-grow: 1;
+}
+
+.stream-tag {
+  font-family: var(--font-heading);
+  font-size: 0.72rem;
+  font-weight: 700;
+  color: var(--accent-blue-royal);
+  letter-spacing: 0.06em;
+}
+
+.stream-desc {
+  font-size: 0.82rem;
+  color: var(--text-muted);
+}
+
+.doodle-live-pulse {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-end;
+  gap: 2px;
+  flex-shrink: 0;
+}
+
+.doodle-pulse-svg {
+  width: 74px;
+  height: 26px;
+}
+
+.doodle-pulse-label {
+  font-family: var(--font-mono);
+  font-size: 0.68rem;
+  font-weight: 600;
+  color: var(--accent-blue-royal);
+}
+
+/* Outcome CTA Doodle note */
+.outcome-doodle-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 12px;
+  position: relative;
+}
+
+.doodle-note-pill {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  padding: 6px 16px;
+  background: #eff6ff;
+  border: 1px solid #bfdbfe;
+  border-radius: 9999px;
+  font-size: 0.78rem;
+  font-weight: 600;
+  color: var(--accent-blue-royal);
+  box-shadow: 0 2px 6px rgba(37, 99, 235, 0.06);
+}
+
+.doodle-sparkle-mini {
+  width: 16px;
+  height: 16px;
+  flex-shrink: 0;
+}
+
+/* Responsive adjustments for Doodles */
+@media (max-width: 1024px) {
+  .doodle-item {
+    opacity: 0.45;
+  }
+  .doodle-cta-pointer {
+    display: none;
+  }
+}
+
+@media (max-width: 768px) {
+  .educational-doodles-layer {
+    opacity: 0.35;
+  }
+  .doodle-math-sigma,
+  .doodle-brackets,
+  .doodle-flask {
+    display: none;
+  }
+  .education-lottie-bar {
+    flex-direction: column;
+    text-align: center;
+    gap: 12px;
+  }
+  .stream-info {
+    text-align: center;
+  }
+  .doodle-live-pulse {
+    align-items: center;
+  }
+  .hero-lottie-badge {
+    flex-direction: column;
+    border-radius: 16px;
+    text-align: center;
+    padding: 12px 16px;
+  }
+  .lottie-badge-text {
+    text-align: center;
+  }
+}
+
+/* ==========================================================================
    11. ACCESSIBILITY: REDUCED MOTION SUPPORT (WCAG 2.3.3 & 2.2.2)
    ========================================================================== */
 @media (prefers-reduced-motion: reduce) {

@@ -6,6 +6,8 @@
 document.addEventListener('DOMContentLoaded', () => {
   initAmbientStars();
   initLottieAnimations();
+  initEducationalDoodles();
+  initGsapScrollAnimations();
   initMobileDrawer();
   initRegistrationModal();
   initFaqAccordion();
@@ -282,19 +284,19 @@ let lottieNeuralAnim = null;
 let lottieAnalyticsAnim = null;
 
 /* ==========================================================================
-   3. LOTTIE ANIMATIONS (NEURAL CORE & ANALYTICS WAVE)
+   3. LOTTIE ANIMATIONS (HERO AI CORE & DISTRIBUTED TELEMETRY STREAM)
    ========================================================================== */
 function initLottieAnimations() {
   if (typeof lottie === 'undefined') return;
 
-  // Lottie 1: Neural Core Animation in Showcase
-  const neuralCoreContainer = document.getElementById('lottieNeuralCore');
-  if (neuralCoreContainer) {
+  // Lottie 1: Interactive AI Neural Core (Hero micro-sandbox or showcase)
+  const heroCoreContainer = document.getElementById('lottieHeroCore') || document.getElementById('lottieNeuralCore');
+  if (heroCoreContainer) {
     fetch('lottie_neural_core.json')
       .then(res => res.json())
       .then(data => {
         lottieNeuralAnim = lottie.loadAnimation({
-          container: neuralCoreContainer,
+          container: heroCoreContainer,
           renderer: 'svg',
           loop: true,
           autoplay: true,
@@ -304,22 +306,304 @@ function initLottieAnimations() {
       .catch(e => console.warn('Lottie neural core load error:', e));
   }
 
-  // Lottie 2: Analytics Data Wave in Projects
-  const analyticsWaveContainer = document.getElementById('lottieAnalyticsWave');
-  if (analyticsWaveContainer) {
+  // Lottie 2: Distributed GPU Loss Telemetry Stream (Curriculum or projects)
+  const analyticsStreamContainer = document.getElementById('lottieAnalyticsStream') || document.getElementById('lottieAnalyticsWave');
+  if (analyticsStreamContainer) {
     fetch('lottie_analytics_wave.json')
       .then(res => res.json())
       .then(data => {
         lottieAnalyticsAnim = lottie.loadAnimation({
-          container: analyticsWaveContainer,
+          container: analyticsStreamContainer,
           renderer: 'svg',
           loop: true,
           autoplay: true,
           animationData: data
         });
       })
-      .catch(e => console.warn('Lottie analytics wave load error:', e));
+      .catch(e => console.warn('Lottie analytics stream load error:', e));
   }
+}
+
+/* ==========================================================================
+   3.1. GSAP EDUCATIONAL DOODLING ENGINE & INTERACTIVE SKETCH PHYSICS
+   ========================================================================== */
+function initEducationalDoodles() {
+  const prefersReducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+
+  // 1. Prepare SVG Doodle Paths for Live Pen Drawing
+  const doodlePaths = document.querySelectorAll('.doodle-path');
+  doodlePaths.forEach(path => {
+    try {
+      const length = path.getTotalLength();
+      if (length && length > 0) {
+        path.style.strokeDasharray = length;
+        if (!prefersReducedMotion) {
+          path.style.strokeDashoffset = length;
+        } else {
+          path.style.strokeDashoffset = '0';
+        }
+      }
+    } catch (e) {
+      // In case path geometry isn't rendered yet
+    }
+  });
+
+  if (prefersReducedMotion) return;
+
+  // 2. Animate Hero Doodles on Load with GSAP
+  if (typeof gsap !== 'undefined') {
+    if (typeof ScrollTrigger !== 'undefined') {
+      gsap.registerPlugin(ScrollTrigger);
+    }
+
+    // Hero title squiggly underline drawing
+    const heroUnderline = document.querySelector('.doodle-underline-svg .doodle-path');
+    if (heroUnderline) {
+      gsap.to(heroUnderline, {
+        strokeDashoffset: 0,
+        duration: 1.4,
+        ease: 'power2.out',
+        delay: 0.5
+      });
+    }
+
+    // Hero CTA arrow pointer drawing
+    const ctaArrowPaths = document.querySelectorAll('.doodle-cta-pointer .doodle-path');
+    if (ctaArrowPaths.length > 0) {
+      gsap.to(ctaArrowPaths, {
+        strokeDashoffset: 0,
+        duration: 1.2,
+        stagger: 0.25,
+        ease: 'power2.out',
+        delay: 0.8
+      });
+    }
+
+    // Ambient floating doodles stroke reveal sequence
+    const ambientDoodlePaths = document.querySelectorAll('.educational-doodles-layer .doodle-path');
+    if (ambientDoodlePaths.length > 0) {
+      gsap.to(ambientDoodlePaths, {
+        strokeDashoffset: 0,
+        duration: 1.6,
+        stagger: 0.12,
+        ease: 'power1.inOut',
+        delay: 0.3
+      });
+    }
+
+    // 3. ScrollTrigger-driven Stroke Drawing for subsequent sections
+    if (typeof ScrollTrigger !== 'undefined') {
+      // Metric card 100% loop circle
+      const loopCircle = document.querySelector('.doodle-loop-circle .doodle-path');
+      if (loopCircle) {
+        gsap.to(loopCircle, {
+          strokeDashoffset: 0,
+          duration: 1.2,
+          ease: 'power2.out',
+          scrollTrigger: {
+            trigger: loopCircle,
+            start: 'top 85%',
+            toggleActions: 'play none none none'
+          }
+        });
+      }
+
+      // Roadmap curved arrow
+      const roadmapArrow = document.querySelector('.doodle-curved-arrow .doodle-path');
+      if (roadmapArrow) {
+        gsap.to(roadmapArrow, {
+          strokeDashoffset: 0,
+          duration: 1.1,
+          ease: 'power2.out',
+          scrollTrigger: {
+            trigger: roadmapArrow,
+            start: 'top 85%',
+            toggleActions: 'play none none none'
+          }
+        });
+      }
+
+      // Projects mini star doodle
+      const projStar = document.querySelector('.doodle-star-mini .doodle-path');
+      if (projStar) {
+        gsap.to(projStar, {
+          strokeDashoffset: 0,
+          duration: 1.2,
+          ease: 'power2.out',
+          scrollTrigger: {
+            trigger: projStar,
+            start: 'top 85%',
+            toggleActions: 'play none none none'
+          }
+        });
+      }
+
+      // Live Telemetry Pulse Path (continuous electrocardiogram/loss heartbeat)
+      const pulsePath = document.querySelector('.doodle-pulse-path');
+      if (pulsePath) {
+        const pulseLen = pulsePath.getTotalLength() || 100;
+        gsap.set(pulsePath, { strokeDasharray: pulseLen, strokeDashoffset: 0 });
+        gsap.to(pulsePath, {
+          strokeDashoffset: -pulseLen * 2,
+          duration: 3,
+          repeat: -1,
+          ease: 'linear'
+        });
+      }
+
+      // Outcome CTA mini sparkle
+      const ctaSparkle = document.querySelector('.doodle-sparkle-mini .doodle-path');
+      if (ctaSparkle) {
+        gsap.to(ctaSparkle, {
+          strokeDashoffset: 0,
+          duration: 1.2,
+          ease: 'power2.out',
+          scrollTrigger: {
+            trigger: ctaSparkle,
+            start: 'top 85%',
+            toggleActions: 'play none none none'
+          }
+        });
+      }
+    }
+
+    // 4. Hero Mouse Parallax Physics for Educational Doodles
+    const heroSection = document.getElementById('hero');
+    const doodleItems = document.querySelectorAll('.doodle-item');
+    if (heroSection && doodleItems.length > 0) {
+      const depthFactors = [14, -18, 22, -15, 26, -20, 16, -24, 18, -16];
+
+      heroSection.addEventListener('mousemove', (e) => {
+        const rect = heroSection.getBoundingClientRect();
+        const normX = (e.clientX - rect.left) / rect.width - 0.5;
+        const normY = (e.clientY - rect.top) / rect.height - 0.5;
+
+        doodleItems.forEach((doodle, idx) => {
+          const depth = depthFactors[idx % depthFactors.length];
+          gsap.to(doodle, {
+            x: normX * depth,
+            y: normY * depth,
+            duration: 0.9,
+            ease: 'power1.out',
+            overwrite: 'auto'
+          });
+        });
+      });
+
+      heroSection.addEventListener('mouseleave', () => {
+        doodleItems.forEach((doodle) => {
+          gsap.to(doodle, {
+            x: 0,
+            y: 0,
+            duration: 1.2,
+            ease: 'power2.out',
+            overwrite: 'auto'
+          });
+        });
+      });
+    }
+
+    // 5. Interactive Card Doodle Wiggles
+    const interactiveCards = document.querySelectorAll('.curriculum-card, .project-card, .why-card');
+    interactiveCards.forEach(card => {
+      card.addEventListener('mouseenter', () => {
+        const icon = card.querySelector('.module-svg-icon, .proj-icon-svg, .why-card-icon');
+        if (icon) {
+          gsap.to(icon, {
+            rotation: (Math.random() > 0.5 ? 8 : -8),
+            scale: 1.12,
+            duration: 0.25,
+            yoyo: true,
+            repeat: 1,
+            ease: 'back.out(2)'
+          });
+        }
+      });
+    });
+  }
+}
+
+/* ==========================================================================
+   3.2. GSAP SCROLLTRIGGER REVEAL ANIMATIONS FOR CARDS & ROADMAP
+   ========================================================================== */
+function initGsapScrollAnimations() {
+  if (typeof gsap === 'undefined' || typeof ScrollTrigger === 'undefined') return;
+  if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) return;
+
+  // Reveal Section Headers smoothly when scrolled into view
+  ScrollTrigger.batch('.section-header', {
+    start: 'top 92%',
+    onEnter: batch => gsap.from(batch, {
+      opacity: 0,
+      y: 24,
+      duration: 0.65,
+      stagger: 0.1,
+      ease: 'power2.out',
+      overwrite: true
+    }),
+    once: true
+  });
+
+  // Stagger Why ATH Cards
+  ScrollTrigger.batch('.why-card', {
+    start: 'top 90%',
+    onEnter: batch => gsap.from(batch, {
+      opacity: 0,
+      y: 28,
+      duration: 0.6,
+      stagger: 0.08,
+      ease: 'power2.out',
+      overwrite: true
+    }),
+    once: true
+  });
+
+  // Stagger Roadmap Steps
+  ScrollTrigger.batch('.roadmap-step', {
+    start: 'top 90%',
+    onEnter: batch => gsap.from(batch, {
+      opacity: 0,
+      y: 24,
+      duration: 0.6,
+      stagger: 0.08,
+      ease: 'back.out(1.2)',
+      overwrite: true
+    }),
+    once: true
+  });
+
+  // Stagger Curriculum Cards
+  ScrollTrigger.batch('.curriculum-card', {
+    start: 'top 90%',
+    onEnter: batch => gsap.from(batch, {
+      opacity: 0,
+      y: 30,
+      duration: 0.65,
+      stagger: 0.08,
+      ease: 'power2.out',
+      overwrite: true
+    }),
+    once: true
+  });
+
+  // Stagger Project Cards
+  ScrollTrigger.batch('.project-card', {
+    start: 'top 90%',
+    onEnter: batch => gsap.from(batch, {
+      opacity: 0,
+      y: 30,
+      duration: 0.65,
+      stagger: 0.08,
+      ease: 'power2.out',
+      overwrite: true
+    }),
+    once: true
+  });
+
+  // Refresh ScrollTrigger after dynamic resources load
+  window.addEventListener('load', () => {
+    ScrollTrigger.refresh();
+  });
 }
 
 /* ==========================================================================
