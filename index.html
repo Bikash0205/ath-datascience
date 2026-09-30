@@ -3,453 +3,480 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
-  <title>Data Science with AI &amp; ML | Asian Technology Hub (ATS)</title>
-  <meta name="description" content="Cinematic data-analytics workspace for Data Science with AI &amp; ML by Asian Technology Hub (ATS). Assured Excellent Service.">
+  <title>Data Science with AI &amp; ML | Asian Technology Hub</title>
+  <meta name="description" content="Master Data Science with AI &amp; ML at Asian Technology Hub. 400+ Hours Live Mentorship, 12+ Production Projects, 100% Placement Assurance.">
   <link rel="icon" type="image/svg+xml" href="favicon.svg">
 
-  <!-- Google Fonts -->
+  <!-- Premium Typography -->
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;600;700&family=Plus+Jakarta+Sans:wght@400;500;600;700;800&family=Space+Grotesk:wght@500;700;900&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=Plus+Jakarta+Sans:wght@500;600;700;800;900&family=JetBrains+Mono:wght@500;700&display=swap" rel="stylesheet">
 
   <link rel="stylesheet" href="style.css">
 </head>
-<body class="cyber-body">
+<body class="minimal-cyber-body">
 
-  <!-- Ambient Zero-Gravity Particles Canvas -->
-  <canvas id="ambientParticlesCanvas" class="ambient-canvas" aria-hidden="true"></canvas>
+  <!-- Ambient Background Star Canvas -->
+  <canvas id="ambientCanvas" class="ambient-stars-canvas" aria-hidden="true"></canvas>
 
-  <!-- Golden Digital Data Streams Canvas -->
-  <canvas id="goldenStreamsCanvas" class="streams-canvas" aria-hidden="true"></canvas>
-
-  <!-- ================= TOPBAR ================= -->
-  <header class="cyber-topbar">
-    <div class="topbar-inner">
+  <!-- ================= SLEEK MINIMAL HEADER ================= -->
+  <header class="site-header">
+    <div class="header-inner">
       
-      <!-- ATS Asian Technology Hub Official Logo -->
-      <a href="#" class="brand-link" aria-label="Asian Technology Hub Home">
-        <div class="brand-logo-frame">
+      <!-- Brand Logo -->
+      <a href="#" class="brand-link" aria-label="Asian Technology Hub">
+        <div class="brand-frame">
           <img src="ath_brand_logo.png" alt="Asian Technology Hub - Assured Excellent Service" class="brand-img">
         </div>
       </a>
 
-      <!-- Telemetry Status & Cohort Info -->
-      <div class="topbar-telemetry">
-        <div class="telemetry-chip live-chip">
-          <span class="live-dot"></span>
-          <span>GPU CLUSTERS ONLINE</span>
-        </div>
-        <div class="telemetry-chip admissions-chip">
-          <span class="admissions-dot"></span>
-          <span>ADMISSIONS OPEN · 2026 BATCH</span>
-        </div>
-        <button class="audio-toggle-btn" id="audioToggleBtn" title="Toggle Sci-Fi SFX" type="button">
-          <span id="audioIcon">🔊</span>
-          <span id="audioText">SFX</span>
-        </button>
-      </div>
+      <!-- Clean Navigation Links -->
+      <nav class="nav-menu" aria-label="Primary Navigation">
+        <a href="#overview" class="nav-item active">Overview</a>
+        <a href="#curriculum" class="nav-item">Curriculum</a>
+        <a href="#projects" class="nav-item">Projects</a>
+        <a href="#outcomes" class="nav-item">Career &amp; Placement</a>
+      </nav>
 
-      <!-- Action Button -->
-      <div class="topbar-cta">
-        <button class="btn-register-popup" id="navRegisterBtn" type="button">
-          <span class="btn-glow-pulse"></span>
+      <!-- Header Action -->
+      <div class="header-cta">
+        <button class="btn-enroll-nav" id="navEnrollBtn" type="button">
           <span>Enroll Now</span>
+          <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5">
+            <path d="M5 12h14M12 5l7 7-7 7"/>
+          </svg>
         </button>
       </div>
 
     </div>
   </header>
 
-  <!-- ================= CINEMATIC WORKSPACE STAGE ================= -->
-  <main class="workspace-stage" id="workspaceStage">
+  <!-- ================= HERO SECTION (CINEMATIC & MINIMALISTIC) ================= -->
+  <main>
+    <section class="hero-section" id="overview">
+      <div class="hero-glow-orb orb-left"></div>
+      <div class="hero-glow-orb orb-right"></div>
 
-    <!-- Parallax Universe (Responds to Mouse & Gyro Parallax) -->
-    <div class="universe-container" id="universeContainer">
-
-      <!-- Panoramic Space & Cockpit Layer -->
-      <div class="space-panoramic-bg" id="spacePanoramicBg" style="background-image: url('cinematic_bg.jpg');"></div>
-      <div class="space-vignette"></div>
-
-      <!-- ================= SURROUNDING FLOATING HOLOGRAPHIC PANELS ================= -->
-      
-      <!-- Panel 1: Complex Data Visualizations (Left Top) -->
-      <div class="holo-widget holo-data-viz" id="holoDataViz">
-        <div class="widget-header">
-          <div class="widget-icon-box">📊</div>
-          <div>
-            <h4 class="widget-title">Loss Landscape</h4>
-            <span class="widget-sub">Gradient Geometry</span>
-          </div>
-          <span class="widget-badge badge-cyan">3D t-SNE</span>
+      <div class="hero-content">
+        
+        <!-- Cohort Badge -->
+        <div class="cohort-badge">
+          <span class="pulse-dot"></span>
+          <span>ADMISSIONS OPEN · 2026 BATCH</span>
         </div>
-        <div class="widget-body">
-          <div class="svg-wave-box">
-            <svg viewBox="0 0 240 90" class="wave-svg">
+
+        <!-- Main Title -->
+        <h1 class="hero-title">
+          Data Science with <span class="gradient-text">AI &amp; ML</span>
+        </h1>
+
+        <!-- Subtitle -->
+        <p class="hero-subtitle">
+          Master Deep Neural Networks, Large Language Models (LLMs), Computer Vision, and Autonomous AI Agents with 1-on-1 industry mentorship and dedicated GPU cluster access.
+        </p>
+
+        <!-- Core Student Metrics -->
+        <div class="metrics-grid">
+          <div class="metric-card">
+            <span class="metric-val">400+ <small>Hrs</small></span>
+            <span class="metric-lbl">Live Mentorship &amp; Labs</span>
+          </div>
+          <div class="metric-card">
+            <span class="metric-val">12+ <small>Projects</small></span>
+            <span class="metric-lbl">Production AI Capstones</span>
+          </div>
+          <div class="metric-card">
+            <span class="metric-val">₹18.5 <small>LPA</small></span>
+            <span class="metric-lbl">Average Placement CTC</span>
+          </div>
+          <div class="metric-card">
+            <span class="metric-val">100%</span>
+            <span class="metric-lbl">Placement Assurance</span>
+          </div>
+        </div>
+
+        <!-- Hero Actions -->
+        <div class="hero-buttons">
+          <button class="btn-primary-hero" id="heroEnrollBtn" type="button">
+            <span class="shimmer-effect"></span>
+            <span>Enroll in Cohort 2026</span>
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4">
+              <path d="M5 12h14M12 5l7 7-7 7"/>
+            </svg>
+          </button>
+
+          <a href="#curriculum" class="btn-secondary-hero">
+            <span>View Full Curriculum</span>
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+              <path d="M6 9l6 6 6-6"/>
+            </svg>
+          </a>
+        </div>
+
+      </div>
+
+      <!-- ================= CINEMATIC 3D HOLOGRAPHIC SHOWCASE ================= -->
+      <div class="showcase-container">
+        
+        <!-- Peripheral Floating Holographic Cards (GSAP Animated) -->
+        <div class="holo-card holo-loss-landscape" id="holoLoss">
+          <div class="holo-card-head">
+            <div class="holo-card-icon">📊</div>
+            <div>
+              <div class="holo-card-title">Loss Landscape</div>
+              <div class="holo-card-sub">Gradient Convergence</div>
+            </div>
+            <span class="badge-mini badge-cyan">99.8%</span>
+          </div>
+          <div class="holo-svg-chart">
+            <svg viewBox="0 0 220 70" class="smooth-wave">
               <defs>
-                <linearGradient id="waveGrad" x1="0" y1="0" x2="1" y2="0">
+                <linearGradient id="waveG" x1="0" y1="0" x2="1" y2="0">
                   <stop offset="0%" stop-color="#38bdf8"/>
-                  <stop offset="50%" stop-color="#a855f7"/>
-                  <stop offset="100%" stop-color="#fbbf24"/>
+                  <stop offset="50%" stop-color="#818cf8"/>
+                  <stop offset="100%" stop-color="#34d399"/>
                 </linearGradient>
               </defs>
-              <path d="M0 65 Q 35 15, 70 45 T 140 25 T 200 60 T 240 10 L 240 90 L 0 90 Z" fill="rgba(56, 189, 248, 0.12)"/>
-              <path d="M0 65 Q 35 15, 70 45 T 140 25 T 200 60 T 240 10" fill="none" stroke="url(#waveGrad)" stroke-width="2.5"/>
-              <circle cx="70" cy="45" r="4" fill="#38bdf8"/>
-              <circle cx="140" cy="25" r="4" fill="#a855f7"/>
-              <circle cx="240" cy="10" r="5" fill="#fbbf24"/>
+              <path d="M0,50 Q40,10 80,35 T150,20 T220,10" fill="none" stroke="url(#waveG)" stroke-width="2.5"/>
+              <circle cx="80" cy="35" r="4" fill="#38bdf8"/>
+              <circle cx="150" cy="20" r="4" fill="#818cf8"/>
+              <circle cx="220" cy="10" r="4" fill="#34d399"/>
             </svg>
           </div>
-          <div class="widget-stat-line">
-            <span>Convergence: <strong class="text-cyan">99.8%</strong></span>
+          <div class="holo-footer-stat">
+            <span>Optimizer: <strong>AdamW</strong></span>
             <span>Minima: <strong class="text-green">Global</strong></span>
           </div>
         </div>
-      </div>
 
-      <!-- Panel 2: Video Lecture Thumbnail (Left Bottom) -->
-      <div class="holo-widget holo-video" id="holoVideo">
-        <div class="widget-header">
-          <div class="widget-icon-box">🎥</div>
-          <div>
-            <h4 class="widget-title">Video Masterclass</h4>
-            <span class="widget-sub">Transformer Attention</span>
-          </div>
-          <span class="widget-badge badge-gold">4K HD</span>
-        </div>
-        <div class="widget-body">
-          <div class="video-preview-box">
-            <div class="play-trigger-circle" id="playDemoVideoBtn">▶</div>
-            <div class="video-audio-bars">
-              <span></span><span></span><span></span><span></span><span></span>
+        <div class="holo-card holo-quant-graph" id="holoQuant">
+          <div class="holo-card-head">
+            <div class="holo-card-icon">📈</div>
+            <div>
+              <div class="holo-card-title">Financial Alpha AI</div>
+              <div class="holo-card-sub">High-Frequency Quant</div>
             </div>
-            <span class="video-tag">Stanford AI Faculty</span>
+            <span class="badge-mini badge-green">+342% ROI</span>
           </div>
-          <p class="video-caption">Scaled Dot-Product Attention from Raw PyTorch Tensors</p>
-        </div>
-      </div>
-
-      <!-- Panel 3: Financial Graphs (Right Top) -->
-      <div class="holo-widget holo-finance" id="holoFinance">
-        <div class="widget-header">
-          <div class="widget-icon-box">📈</div>
-          <div>
-            <h4 class="widget-title">Financial Alpha AI</h4>
-            <span class="widget-sub">High-Frequency Quant</span>
+          <div class="mini-candles">
+            <div class="c-bar bar-up" style="height: 60%"></div>
+            <div class="c-bar bar-up" style="height: 85%"></div>
+            <div class="c-bar bar-down" style="height: 40%"></div>
+            <div class="c-bar bar-up" style="height: 95%"></div>
+            <div class="c-bar bar-up" style="height: 70%"></div>
+            <div class="c-bar bar-down" style="height: 50%"></div>
+            <div class="c-bar bar-up" style="height: 88%"></div>
           </div>
-          <span class="widget-badge badge-green">+342% ROI</span>
-        </div>
-        <div class="widget-body">
-          <div class="mini-candles-box">
-            <div class="mini-candle up" style="height: 60%"></div>
-            <div class="mini-candle up" style="height: 80%"></div>
-            <div class="mini-candle down" style="height: 45%"></div>
-            <div class="mini-candle up" style="height: 95%"></div>
-            <div class="mini-candle up" style="height: 70%"></div>
-            <div class="mini-candle down" style="height: 55%"></div>
-            <div class="mini-candle up" style="height: 90%"></div>
-          </div>
-          <div class="widget-stat-line">
-            <span>Sharpe: <strong class="text-green">3.84</strong></span>
+          <div class="holo-footer-stat">
+            <span>Sharpe Ratio: <strong class="text-green">3.84</strong></span>
             <span>Latency: <strong>420μs</strong></span>
           </div>
         </div>
-      </div>
 
-      <!-- Panel 4: Key Topics Floating List (Right Bottom) -->
-      <div class="holo-widget holo-topics" id="holoTopics">
-        <div class="widget-header">
-          <div class="widget-icon-box">⚡</div>
-          <div>
-            <h4 class="widget-title">Key Core Topics</h4>
-            <span class="widget-sub">Enterprise Competencies</span>
+        <!-- Center Glass Panel with Luminous 3D Brain Hologram -->
+        <div class="center-glass-showcase">
+          <div class="glass-bar">
+            <div class="window-dots">
+              <span></span><span></span><span></span>
+            </div>
+            <span class="glass-label">ASIAN TECHNOLOGY HUB · NEURAL ARCHITECTURE</span>
+            <span class="badge-mini badge-live">LIVE COHORT</span>
           </div>
-          <span class="widget-badge badge-purple">MASTERED</span>
+
+          <div class="brain-canvas-container" id="brainViewport">
+            <canvas id="brain3DCanvas"></canvas>
+            
+            <div class="brain-hud-chip chip-left">
+              <span class="hud-dot"></span>
+              <span>100T Synaptic Pathways</span>
+            </div>
+            <div class="brain-hud-chip chip-right">
+              <span class="hud-dot dot-purple"></span>
+              <span>128 Attention Heads</span>
+            </div>
+          </div>
+
+          <div class="showcase-bottom-caption">
+            <span>✦ Interactive 3D Neural Matrix — Drag to rotate or explore architectural nodes</span>
+          </div>
         </div>
-        <div class="widget-body">
-          <ul class="key-topics-list">
+
+        <div class="holo-card holo-video-lecture" id="holoVideo">
+          <div class="holo-card-head">
+            <div class="holo-card-icon">🎥</div>
+            <div>
+              <div class="holo-card-title">Video Masterclass</div>
+              <div class="holo-card-sub">Scaled Dot-Product Attention</div>
+            </div>
+            <span class="badge-mini badge-gold">4K HD</span>
+          </div>
+          <div class="video-preview-thumb">
+            <div class="play-pulse-btn">▶</div>
+            <span class="video-source">Stanford AI Faculty</span>
+          </div>
+          <div class="holo-footer-stat">
+            <span>Format: <strong>Live Interactive</strong></span>
+            <span>Duration: <strong>90 Mins</strong></span>
+          </div>
+        </div>
+
+        <div class="holo-card holo-key-topics" id="holoTopics">
+          <div class="holo-card-head">
+            <div class="holo-card-icon">⚡</div>
+            <div>
+              <div class="holo-card-title">Core Competencies</div>
+              <div class="holo-card-sub">Enterprise Curriculum</div>
+            </div>
+            <span class="badge-mini badge-purple">MASTERED</span>
+          </div>
+          <ul class="mini-topics-list">
             <li><span class="check-icon">✓</span> Deep Transformer Networks</li>
             <li><span class="check-icon">✓</span> LLM Fine-Tuning (LoRA, DPO)</li>
             <li><span class="check-icon">✓</span> Autonomous Multi-Agent Swarms</li>
             <li><span class="check-icon">✓</span> Vector DBs &amp; Hybrid Graph RAG</li>
-            <li><span class="check-icon">✓</span> Production Triton &amp; MLOps</li>
+            <li><span class="check-icon">✓</span> Enterprise Triton &amp; MLOps</li>
           </ul>
         </div>
-      </div>
-
-      <!-- ================= CENTER BEZEL-LESS TRANSPARENT GLASS PANEL ================= -->
-      <div class="center-glass-panel" id="centerGlassPanel">
-        <div class="panel-sheen-line"></div>
-
-        <!-- Glass Panel Header -->
-        <div class="glass-header">
-          <div class="glass-dots">
-            <span class="g-dot dot-red"></span>
-            <span class="g-dot dot-yellow"></span>
-            <span class="g-dot dot-green"></span>
-          </div>
-          <div class="glass-file-meta">
-            <span class="ats-cluster-badge">ASIAN TECHNOLOGY HUB</span>
-            <span class="ats-code-file">data_science_ai_ml.py</span>
-          </div>
-          <div class="glass-ready-badge">
-            <span class="pulse-beacon"></span>
-            <span>H100 READY</span>
-          </div>
-        </div>
-
-        <!-- Glass Panel Body Content -->
-        <div class="glass-content">
-          
-          <div class="promo-badge">
-            <span>✦ COHORT 2026 REGISTRATION OPEN</span>
-          </div>
-
-          <h1 class="main-course-title">
-            Data Science with <span class="neon-gradient-text">AI &amp; ML</span>
-          </h1>
-
-          <p class="main-course-desc">
-            Master Deep Neural Networks, Large Language Models (LLMs), Computer Vision, and Autonomous AI Agents with 1-on-1 access to Dedicated GPU Clusters.
-          </p>
-
-          <!-- Core Stat Highlights -->
-          <div class="course-highlights-bar">
-            <div class="highlight-item">
-              <span class="hl-num">400+ <small>Hrs</small></span>
-              <span class="hl-lbl">Live Hands-on Labs</span>
-            </div>
-            <div class="highlight-item">
-              <span class="hl-num">12+ <small>Projects</small></span>
-              <span class="hl-lbl">Production AI Capstones</span>
-            </div>
-            <div class="highlight-item">
-              <span class="hl-num">₹18.5 <small>LPA</small></span>
-              <span class="hl-lbl">Average Placement CTC</span>
-            </div>
-            <div class="highlight-item">
-              <span class="hl-num">100%</span>
-              <span class="hl-lbl">Placement Assurance</span>
-            </div>
-          </div>
-
-          <!-- Direct Action Buttons -->
-          <div class="glass-actions">
-            <button class="btn-primary-action" id="heroRegisterBtn" type="button">
-              <span class="btn-shimmer"></span>
-              <span class="btn-text">
-                <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2">
-                  <path d="M12 2L2 7l10 5 10-5-10-5zM2 17l10 5 10-5M2 12l10 5 10-5"/>
-                </svg>
-                <span>Enroll Now</span>
-              </span>
-            </button>
-
-            <button class="btn-secondary-action" id="spikeNeuralBtn" type="button">
-              <span class="action-icon">⚡</span>
-              <span>Trigger Synaptic Spike</span>
-            </button>
-          </div>
-
-          <!-- Student Cohort Telemetry Footer -->
-          <div class="glass-telemetry">
-            <span>CURRICULUM: <strong>Generative AI &amp; MLOps</strong></span>
-            <span>BATCH: <strong>Limited to 30 Seats</strong></span>
-            <span>OUTCOME: <strong class="text-green">100% Placement Assurance</strong></span>
-          </div>
-
-        </div>
 
       </div>
+    </section>
 
-      <!-- ================= 3D LUMINOUS BLUE WIREFRAME BRAIN HOLOGRAM ================= -->
-      <div class="hologram-station" id="hologramStation">
+    <!-- ================= CURRICULUM SECTION (WHAT STUDENTS NEED TO SEE) ================= -->
+    <section class="section-curriculum" id="curriculum">
+      <div class="container">
         
-        <!-- Three.js 3D Brain Viewport Canvas -->
-        <div class="brain-viewport" id="brainViewport">
-          <canvas id="brain3DCanvas"></canvas>
-          <div class="brain-hologram-glow"></div>
-          
-          <div class="brain-hud-tag tag-left">
-            <span class="hud-blink-dot"></span>
-            <span>100T Synaptic Pathways</span>
-          </div>
-          <div class="brain-hud-tag tag-right">
-            <span class="hud-blink-dot beacon-gold"></span>
-            <span>128 Attention Heads</span>
-          </div>
+        <div class="section-header">
+          <span class="section-tag">COMPREHENSIVE SYLLABUS</span>
+          <h2 class="section-title">What You Will <span class="gradient-text">Learn &amp; Master</span></h2>
+          <p class="section-sub">A production-ready curriculum built in partnership with leading AI engineers and quant researchers.</p>
         </div>
 
-        <!-- Technologic Emitter Base on Desk -->
-        <div class="techno-emitter-base">
-          <div class="emitter-volumetric-beam"></div>
-          <div class="emitter-outer-ring"></div>
-          <div class="emitter-mid-ring"></div>
-          <div class="emitter-core-bulb"></div>
-          <div class="emitter-label">
-            <span class="label-dot"></span>
-            <span>HOLOGRAPHIC NEURAL MATRIX EMITTER ACTIVE</span>
+        <div class="curriculum-grid">
+          
+          <!-- Module 1 -->
+          <div class="curriculum-card">
+            <div class="card-num">01</div>
+            <h3 class="card-title">Python, Linear Algebra &amp; Statistics</h3>
+            <p class="card-desc">Advanced vector calculus, probability distributions, matrix factorizations, and high-performance NumPy/Pandas pipelines.</p>
+            <div class="card-tools">
+              <span>Python 3.12</span>
+              <span>NumPy</span>
+              <span>SciPy</span>
+            </div>
+          </div>
+
+          <!-- Module 2 -->
+          <div class="curriculum-card">
+            <div class="card-num">02</div>
+            <h3 class="card-title">Machine Learning &amp; Predictive AI</h3>
+            <p class="card-desc">Gradient Boosted Trees (XGBoost, LightGBM), Bayesian optimization, unsupervised clustering, feature engineering, and cross-validation.</p>
+            <div class="card-tools">
+              <span>Scikit-Learn</span>
+              <span>XGBoost</span>
+              <span>Optuna</span>
+            </div>
+          </div>
+
+          <!-- Module 3 -->
+          <div class="curriculum-card">
+            <div class="card-num">03</div>
+            <h3 class="card-title">Deep Learning &amp; Neural Networks</h3>
+            <p class="card-desc">Backpropagation from scratch, CNNs for computer vision, RNNs/LSTMs, and modern PyTorch multi-GPU training loops.</p>
+            <div class="card-tools">
+              <span>PyTorch</span>
+              <span>TorchVision</span>
+              <span>CUDA</span>
+            </div>
+          </div>
+
+          <!-- Module 4 -->
+          <div class="curriculum-card">
+            <div class="card-num">04</div>
+            <h3 class="card-title">Transformers &amp; Large Language Models</h3>
+            <p class="card-desc">Scaled dot-product attention, multi-head projection, RoPE embeddings, parameter-efficient fine-tuning (LoRA, QLoRA, DPO).</p>
+            <div class="card-tools">
+              <span>HuggingFace</span>
+              <span>vLLM</span>
+              <span>PEFT</span>
+            </div>
+          </div>
+
+          <!-- Module 5 -->
+          <div class="curriculum-card">
+            <div class="card-num">05</div>
+            <h3 class="card-title">Generative AI, Graph RAG &amp; Agents</h3>
+            <p class="card-desc">Hybrid vector retrieval, Knowledge Graphs, ReAct prompting frameworks, autonomous multi-agent swarms, and tool calling.</p>
+            <div class="card-tools">
+              <span>LangChain</span>
+              <span>LlamaIndex</span>
+              <span>Neo4j</span>
+            </div>
+          </div>
+
+          <!-- Module 6 -->
+          <div class="curriculum-card">
+            <div class="card-num">06</div>
+            <h3 class="card-title">Enterprise MLOps &amp; Production Scaling</h3>
+            <p class="card-desc">Containerization with Docker, Kubernetes orchestration, NVIDIA Triton Inference Server, continuous model monitoring, and CI/CD pipelines.</p>
+            <div class="card-tools">
+              <span>Triton</span>
+              <span>Kubernetes</span>
+              <span>Docker</span>
+            </div>
+          </div>
+
+        </div>
+
+      </div>
+    </section>
+
+    <!-- ================= REAL PRODUCTION PROJECTS ================= -->
+    <section class="section-projects" id="projects">
+      <div class="container">
+        
+        <div class="section-header">
+          <span class="section-tag">HANDS-ON PORTFOLIO</span>
+          <h2 class="section-title">12+ Real-World <span class="gradient-text">AI Capstones</span></h2>
+          <p class="section-sub">Build industry-grade projects that prove your capabilities to top-tier engineering hiring teams.</p>
+        </div>
+
+        <div class="projects-grid">
+          
+          <div class="project-card">
+            <div class="proj-badge">FINTECH &amp; QUANT</div>
+            <h3 class="proj-title">Algorithmic High-Frequency Trading Bot</h3>
+            <p class="proj-desc">Sub-millisecond trade execution engine leveraging Transformer-based price prediction, order book imbalance, and risk management.</p>
+            <div class="proj-meta">
+              <span>PyTorch</span>
+              <span>Backtrader</span>
+              <span>FastAPI</span>
+            </div>
+          </div>
+
+          <div class="project-card">
+            <div class="proj-badge">HEALTHCARE AI</div>
+            <h3 class="proj-title">Multimodal Clinical Diagnostic Assistant</h3>
+            <p class="proj-desc">Diagnostic vision-language model analyzing chest X-rays and patient medical histories with 99.2% precision and confidence scoring.</p>
+            <div class="proj-meta">
+              <span>TorchVision</span>
+              <span>BioGPT</span>
+              <span>OpenCV</span>
+            </div>
+          </div>
+
+          <div class="project-card">
+            <div class="proj-badge">ENTERPRISE AGENTS</div>
+            <h3 class="proj-title">Autonomous Code Generation Swarm</h3>
+            <p class="proj-desc">Multi-agent software engineering team coordinating architecture design, unit test writing, implementation, and code reviews autonomously.</p>
+            <div class="proj-meta">
+              <span>LangGraph</span>
+              <span>Claude API</span>
+              <span>Docker Sandbox</span>
+            </div>
+          </div>
+
+        </div>
+
+      </div>
+    </section>
+
+    <!-- ================= CAREER & PLACEMENT OUTCOMES ================= -->
+    <section class="section-outcomes" id="outcomes">
+      <div class="container">
+        
+        <div class="outcome-banner">
+          <div class="outcome-content">
+            <span class="section-tag tag-light">CAREER ACCELERATION</span>
+            <h2 class="outcome-title">Guaranteed Placement Support &amp; 1-on-1 Mentorship</h2>
+            <p class="outcome-desc">
+              Every student is assigned a dedicated industry mentor from Day 1. We provide rigorous technical mock interviews, portfolio optimization, salary negotiation guidance, and direct referrals to our network of 150+ hiring partners.
+            </p>
+            
+            <div class="outcome-stats">
+              <div class="o-stat">
+                <span class="o-num">₹18.5 LPA</span>
+                <span class="o-lbl">Average CTC</span>
+              </div>
+              <div class="o-stat">
+                <span class="o-num">₹42.0 LPA</span>
+                <span class="o-lbl">Highest CTC</span>
+              </div>
+              <div class="o-stat">
+                <span class="o-num">150+</span>
+                <span class="o-lbl">Hiring Partners</span>
+              </div>
+              <div class="o-stat">
+                <span class="o-num">100%</span>
+                <span class="o-lbl">Placement Assurance</span>
+              </div>
+            </div>
+
+            <div class="outcome-cta">
+              <button class="btn-enroll-large" id="outcomeEnrollBtn" type="button">
+                <span>Enroll Now &amp; Reserve Your Seat</span>
+                <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5">
+                  <path d="M5 12h14M12 5l7 7-7 7"/>
+                </svg>
+              </button>
+            </div>
           </div>
         </div>
 
       </div>
-
-      <!-- ================= REFLECTIVE DESK & ILLUMINATED CYBER KEYBOARD ================= -->
-      <div class="reflective-desk" id="reflectiveDesk">
-        <div class="desk-reflection-sheen"></div>
-
-        <!-- Cybernetic Keyboard Chassis -->
-        <div class="cyber-keyboard" id="cyberKeyboard">
-          <div class="kb-glow-bar"></div>
-          
-          <div class="kb-matrix">
-            <div class="kb-row">
-              <span class="k k-fn" data-k="esc">ESC</span>
-              <span class="k k-fn" data-k="f1">F1·PY</span>
-              <span class="k k-fn" data-k="f2">F2·TORCH</span>
-              <span class="k k-fn" data-k="f3">F3·CUDA</span>
-              <span class="k k-fn" data-k="f4">F4·LLM</span>
-              <span class="k k-fn" data-k="f5">F5·RAG</span>
-              <span class="k k-fn" data-k="f6">F6·MLOPS</span>
-              <span class="k k-fn" data-k="f7">F7·K8S</span>
-              <span class="k k-fn" data-k="f8">F8·TRITON</span>
-              <span class="k k-fn" data-k="f9">F9·H100</span>
-              <span class="k k-fn k-del" data-k="del">DEL</span>
-            </div>
-
-            <div class="kb-row">
-              <span class="k" data-k="1">1</span>
-              <span class="k" data-k="2">2</span>
-              <span class="k" data-k="3">3</span>
-              <span class="k" data-k="4">4</span>
-              <span class="k" data-k="5">5</span>
-              <span class="k" data-k="6">6</span>
-              <span class="k" data-k="7">7</span>
-              <span class="k" data-k="8">8</span>
-              <span class="k" data-k="9">9</span>
-              <span class="k" data-k="0">0</span>
-              <span class="k k-bksp" data-k="backspace">BKSP</span>
-            </div>
-
-            <div class="kb-row">
-              <span class="k k-tab" data-k="tab">TAB</span>
-              <span class="k" data-k="q">Q</span>
-              <span class="k" data-k="w">W</span>
-              <span class="k" data-k="e">E</span>
-              <span class="k" data-k="r">R</span>
-              <span class="k" data-k="t">T</span>
-              <span class="k" data-k="y">Y</span>
-              <span class="k" data-k="u">U</span>
-              <span class="k" data-k="i">I</span>
-              <span class="k" data-k="o">O</span>
-              <span class="k" data-k="p">P</span>
-            </div>
-
-            <div class="kb-row">
-              <span class="k k-caps" data-k="caps">CAPS</span>
-              <span class="k" data-k="a">A</span>
-              <span class="k" data-k="s">S</span>
-              <span class="k" data-k="d">D</span>
-              <span class="k" data-k="f">F</span>
-              <span class="k" data-k="g">G</span>
-              <span class="k" data-k="h">H</span>
-              <span class="k" data-k="j">J</span>
-              <span class="k" data-k="k">K</span>
-              <span class="k" data-k="l">L</span>
-              <span class="k k-enter" data-k="enter">ENTER ↵</span>
-            </div>
-
-            <div class="kb-row">
-              <span class="k k-shift" data-k="shift">SHIFT</span>
-              <span class="k" data-k="z">Z</span>
-              <span class="k" data-k="x">X</span>
-              <span class="k" data-k="c">C</span>
-              <span class="k" data-k="v">V</span>
-              <span class="k" data-k="b">B</span>
-              <span class="k" data-k="n">N</span>
-              <span class="k" data-k="m">M</span>
-              <span class="k k-shift" data-k="shift">SHIFT</span>
-            </div>
-
-            <div class="kb-row">
-              <span class="k k-mod" data-k="ctrl">CTRL</span>
-              <span class="k k-mod" data-k="cmd">CMD ⌘</span>
-              <span class="k k-space" data-k="space">SPACE · NEURAL SYNAPSE</span>
-              <span class="k k-mod" data-k="opt">OPT</span>
-              <span class="k k-mod" data-k="ctrl">CTRL</span>
-            </div>
-          </div>
-
-          <div class="keyboard-tip">
-            <span>⌨️ Press any key to synthesize audio harmonics and fire neural pathways</span>
-          </div>
-        </div>
-
-      </div>
-
-    </div>
-    <!-- /universe-container -->
-
+    </section>
   </main>
 
-  <!-- ================= STUDENT REGISTRATION MODAL ================= -->
-  <div class="popup-backdrop" id="registrationModalBackdrop" aria-hidden="true"></div>
-  <div class="popup-stage" id="registrationModalStage" aria-hidden="true">
+  <!-- ================= CLEAN STUDENT REGISTRATION MODAL ================= -->
+  <div class="modal-backdrop" id="modalBackdrop" aria-hidden="true"></div>
+  <div class="modal-stage" id="modalStage" aria-hidden="true">
     
-    <div class="registration-modal-window" role="dialog" aria-modal="true" aria-labelledby="modalHeading">
-      
-      <!-- Top Neon Sheen Line -->
-      <div class="modal-neon-sheen"></div>
+    <div class="modal-dialog" role="dialog" aria-modal="true" aria-labelledby="dialogTitle">
+      <div class="modal-accent-bar"></div>
 
-      <!-- Modal Titlebar -->
-      <div class="reg-modal-titlebar">
-        <div class="reg-traffic-dots">
-          <button class="reg-mac-dot reg-mac-close" id="closeRegModalBtn" aria-label="Close modal">✕</button>
+      <!-- Modal Header -->
+      <div class="modal-header">
+        <div class="mac-buttons">
+          <button class="mac-close-btn" id="closeModalBtn" aria-label="Close modal">✕</button>
         </div>
-        <div class="reg-titlebar-meta">
-          <span class="shield-icon">🎓</span>
+        <div class="modal-meta-title">
           <span>ASIAN TECHNOLOGY HUB · STUDENT ADMISSIONS</span>
         </div>
-        <div class="reg-status-badge">
-          <span class="live-dot"></span>
-          <span>COHORT 2026</span>
-        </div>
+        <div class="badge-mini badge-live">COHORT 2026</div>
       </div>
 
       <!-- Modal Body -->
-      <div class="reg-modal-body">
-
-        <!-- Logo & Header -->
-        <div class="reg-brand-header">
-          <img src="ath_brand_logo.png" alt="Asian Technology Hub Logo" class="reg-logo-img">
+      <div class="modal-body">
+        
+        <div class="modal-intro">
+          <img src="ath_brand_logo.png" alt="Asian Technology Hub Logo" class="modal-intro-logo">
           <div>
-            <h3 class="reg-heading" id="modalHeading">Data Science with AI &amp; ML</h3>
-            <p class="reg-subheading">Reserve Your Batch Seat &amp; Scholarship Grant</p>
+            <h3 class="modal-course-name" id="dialogTitle">Data Science with AI &amp; ML</h3>
+            <p class="modal-course-sub">Reserve Your Batch Seat &amp; Scholarship Grant</p>
           </div>
         </div>
 
-        <!-- Quick Registration Form -->
-        <form class="reg-form" id="quickRegisterForm" onsubmit="return false;">
+        <form class="student-registration-form" id="studentForm" onsubmit="return false;">
           
-          <div class="form-row">
+          <div class="form-row-2">
             <div class="form-field">
-              <label for="regName">Full Name</label>
-              <input type="text" id="regName" placeholder="e.g. Alex Morgan" required autocomplete="name">
+              <label for="formName">Full Name</label>
+              <input type="text" id="formName" placeholder="e.g. Rahul Sharma" required autocomplete="name">
             </div>
 
             <div class="form-field">
-              <label for="regPhone">WhatsApp / Mobile</label>
-              <input type="tel" id="regPhone" placeholder="+91 98765 43210" required autocomplete="tel">
+              <label for="formPhone">WhatsApp / Mobile Number</label>
+              <input type="tel" id="formPhone" placeholder="+91 98765 43210" required autocomplete="tel">
             </div>
           </div>
 
           <div class="form-field">
-            <label for="regEmail">Email Address</label>
-            <input type="email" id="regEmail" placeholder="alex@techcompany.com" required autocomplete="email">
+            <label for="formEmail">Email Address</label>
+            <input type="email" id="formEmail" placeholder="rahul@domain.com" required autocomplete="email">
           </div>
 
           <div class="form-field">
-            <label for="regTrack">Focus Area</label>
-            <select id="regTrack">
+            <label for="formTrack">Preferred Focus Specialization</label>
+            <select id="formTrack">
               <option value="ds_ai_ml">Full Stack Data Science, AI &amp; ML Masterclass</option>
               <option value="llm_genai">Large Language Models (LLMs) &amp; Agentic AI</option>
               <option value="mlops">Enterprise MLOps &amp; Multi-GPU Scaling</option>
@@ -457,43 +484,36 @@
             </select>
           </div>
 
-          <!-- Submit Button -->
-          <button type="submit" class="btn-submit-registration" id="submitRegBtn">
-            <span class="btn-submit-shimmer"></span>
-            <span class="btn-submit-content">
-              <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5">
-                <path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"></path>
-                <polyline points="22 4 12 14.01 9 11.01"></polyline>
-              </svg>
-              <span>Submit Enrollment Application</span>
-            </span>
+          <button type="submit" class="btn-submit-form" id="submitFormBtn">
+            <span>Submit Enrollment Application</span>
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5">
+              <path d="M5 12h14M12 5l7 7-7 7"/>
+            </svg>
           </button>
 
-          <!-- Security Footnote -->
-          <div class="reg-security-note">
+          <div class="form-trust-note">
             <span>🔒 Official Admissions Portal · Assured Excellent Service · Asian Technology Hub</span>
           </div>
 
         </form>
 
       </div>
-
     </div>
 
   </div>
 
-  <!-- ================= CLEAN FOOTER ================= -->
-  <footer class="cyber-footer">
-    <div class="footer-inner">
+  <!-- ================= CLEAN BRAND FOOTER ================= -->
+  <footer class="site-footer">
+    <div class="container footer-container">
       <div class="footer-left">
         <img src="ath_brand_logo.png" alt="Asian Technology Hub" class="footer-logo">
-        <span class="footer-slogan">ASSURED EXCELLENT SERVICE</span>
+        <span class="footer-badge">ASSURED EXCELLENT SERVICE</span>
       </div>
-      <div class="footer-center">
+      <div class="footer-mid">
         <span>© 2026 Asian Technology Hub (ATS). All rights reserved.</span>
       </div>
       <div class="footer-right">
-        <a href="#workspaceStage" class="back-to-top">Back to Top ↑</a>
+        <a href="#overview" class="back-top-link">Back to Top ↑</a>
       </div>
     </div>
   </footer>

@@ -19,18 +19,24 @@ def test_page():
         overflow = page.evaluate("() => document.documentElement.scrollWidth > window.innerWidth")
         print(f"Desktop 1440px Horizontal Overflow: {overflow}")
         
-        page.screenshot(path="desktop_workspace_hero.png", full_page=False)
-        print("Saved desktop_workspace_hero.png")
-        
-        # Open 30-Second Registration Popup
-        print("Opening 30-Second Registration Popup...")
-        page.click("#navRegisterBtn")
+        page.screenshot(path="desktop_hero_clean.png", full_page=False)
+        print("Saved desktop_hero_clean.png")
+
+        # Scroll to curriculum
+        page.evaluate("() => window.scrollTo(0, 1000)")
         page.wait_for_timeout(800)
-        page.screenshot(path="registration_popup_30s.png", full_page=False)
-        print("Saved registration_popup_30s.png")
+        page.screenshot(path="desktop_curriculum_clean.png", full_page=False)
+        print("Saved desktop_curriculum_clean.png")
+        
+        # Open Registration Popup
+        print("Opening Registration Popup...")
+        page.click("#navEnrollBtn")
+        page.wait_for_timeout(800)
+        page.screenshot(path="registration_popup_clean.png", full_page=False)
+        print("Saved registration_popup_clean.png")
         
         # Close popup
-        page.click("#closeRegModalBtn")
+        page.click("#closeModalBtn")
         page.wait_for_timeout(500)
         
         # Test Mobile 390x844
@@ -41,8 +47,8 @@ def test_page():
         mobile_overflow = mobile_page.evaluate("() => document.documentElement.scrollWidth > window.innerWidth")
         print(f"Mobile 390px Horizontal Overflow: {mobile_overflow}")
         
-        mobile_page.screenshot(path="mobile_workspace_hero.png", full_page=False)
-        print("Saved mobile_workspace_hero.png")
+        mobile_page.screenshot(path="mobile_hero_clean.png", full_page=False)
+        print("Saved mobile_hero_clean.png")
         
         print(f"Total Console/Page Errors: {len(errors)}")
         for err in errors:
