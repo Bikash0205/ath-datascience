@@ -4,7 +4,6 @@
  */
 
 document.addEventListener('DOMContentLoaded', () => {
-  initLenisSmoothScroll();
   initTopProgressBar();
   initCustomDoodleCursor();
   initHeroEntrance();
@@ -1262,47 +1261,24 @@ function initGsapScrollAnimations() {
 }
 
 /* ==========================================================================
-   3.3. LENIS MOMENTUM SMOOTH SCROLL INTEGRATION WITH GSAP
-   ========================================================================== */
-function initLenisSmoothScroll() {
-  if (typeof Lenis === 'undefined' || window.matchMedia('(prefers-reduced-motion: reduce)').matches) return;
-  try {
-    const lenis = new Lenis({
-      duration: 1.15,
-      easing: (t) => Math.min(1, 1.001 - Math.pow(2, -10 * t)),
-      smoothWheel: true,
-      touchMultiplier: 1.2
-    });
-    if (typeof ScrollTrigger !== 'undefined') {
-      lenis.on('scroll', ScrollTrigger.update);
-      gsap.ticker.add((time) => {
-        lenis.raf(time * 1000);
-      });
-      gsap.ticker.lagSmoothing(0);
-    }
-  } catch (e) {
-    console.warn('Lenis initialization deferred:', e);
-  }
-}
-
-/* ==========================================================================
-   3.4. TOP READING PROGRESS BAR HUD & TRAVELING PENCIL
+   3.3. TOP READING PROGRESS BAR HUD & TRAVELING PENCIL
    ========================================================================== */
 function initTopProgressBar() {
   const bar = document.getElementById('topProgressBar');
   const percent = document.getElementById('topProgressPercent');
-  if (!bar || typeof ScrollTrigger === 'undefined') return;
+  if (!bar) return;
 
-  ScrollTrigger.create({
-    trigger: document.body,
-    start: 'top top',
-    end: 'bottom bottom',
-    onUpdate: (self) => {
-      const p = Math.round(self.progress * 100);
-      bar.style.width = `${p}%`;
-      if (percent) percent.textContent = `${p}%`;
-    }
-  });
+  function updateProgress() {
+    const scrollH = document.documentElement.scrollHeight - window.innerHeight;
+    if (scrollH <= 0) return;
+    const p = Math.min(100, Math.max(0, Math.round((window.scrollY / scrollH) * 100)));
+    bar.style.width = `${p}%`;
+    if (percent) percent.textContent = `${p}%`;
+  }
+
+  window.addEventListener('scroll', updateProgress, { passive: true });
+  window.addEventListener('resize', updateProgress, { passive: true });
+  updateProgress();
 }
 
 /* ==========================================================================
@@ -1677,6 +1653,9 @@ function initRegistrationModal() {
       stage.setAttribute('aria-hidden', 'false');
     }
 
+    // Prevent background scroll while modal is actively open
+    document.body.style.overflow = 'hidden';
+
     // Set focus to the first interactive field for keyboard/screen reader users
     setTimeout(() => {
       const nameInput = document.getElementById('formName');
@@ -1695,6 +1674,9 @@ function initRegistrationModal() {
     if (!isOpen) return;
     isOpen = false;
 
+    // Restore background scroll
+    document.body.style.overflow = '';
+
     if (backdrop) {
       backdrop.classList.remove('active');
       backdrop.setAttribute('aria-hidden', 'true');
@@ -1709,13 +1691,6 @@ function initRegistrationModal() {
       lastActiveElement.focus();
     }
   }
-
-  // Automatic popup trigger in 5 seconds
-  setTimeout(() => {
-    if (!isOpen) {
-      openModal();
-    }
-  }, 5000);
 
   [navEnrollBtn, heroEnrollBtn, drawerEnrollBtn, outcomeEnrollBtn].forEach(btn => {
     if (btn) {
