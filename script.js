@@ -1268,31 +1268,7 @@ function initScrollColorShifts() {
   if (typeof gsap === 'undefined' || typeof ScrollTrigger === 'undefined') return;
   if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) return;
 
-  // 1. Morph background radial glow coordinates and angles on scroll for blue sections
-  const blueSections = [
-    { el: document.querySelector('.section-why-ath'), varPrefix: 'why' },
-    { el: document.querySelector('.section-projects'), varPrefix: 'proj' },
-    { el: document.querySelector('.section-faq'), varPrefix: 'faq' }
-  ];
-
-  blueSections.forEach(({ el, varPrefix }) => {
-    if (!el) return;
-
-    gsap.to(el, {
-      scrollTrigger: {
-        trigger: el,
-        start: 'top bottom',
-        end: 'bottom top',
-        scrub: 1.2
-      },
-      [`--mesh-x-${varPrefix}`]: '30%',
-      [`--mesh-y-${varPrefix}`]: '70%',
-      [`--mesh-x2-${varPrefix}`]: '80%',
-      [`--mesh-y2-${varPrefix}`]: '30%',
-      [`--grad-angle-${varPrefix}`]: '180deg',
-      ease: 'none'
-    });
-  });
+  // Adaptive theme trigger and lightweight animations only (avoids CPU layout/repaint thrashing)
 
   // 2. Toggle in-blue-section class on body for adaptive navbar, progress HUD, and cursor
   const blueSectionElements = document.querySelectorAll('.section-why-ath, .section-projects, .section-faq, .site-footer');
@@ -1426,25 +1402,31 @@ function initHeroEntrance() {
    ========================================================================== */
 function init3DCardTilt() {
   if (typeof gsap === 'undefined' || window.matchMedia('(prefers-reduced-motion: reduce)').matches || window.matchMedia('(pointer: coarse)').matches) return;
-  const tiltCards = document.querySelectorAll('.curriculum-card, .project-card, .why-card');
+  const tiltCards = document.querySelectorAll('.curriculum-card, .project-card, .why-card, .hero-3d-card, .why-3d-visual, .projects-3d-card, .career-3d-visual, .faq-counselor-visual');
 
   tiltCards.forEach((card) => {
+    let rect = null;
+
+    card.addEventListener('mouseenter', () => {
+      rect = card.getBoundingClientRect();
+    });
+
     card.addEventListener('mousemove', (e) => {
-      const rect = card.getBoundingClientRect();
+      if (!rect) rect = card.getBoundingClientRect();
       const x = e.clientX - rect.left;
       const y = e.clientY - rect.top;
       const cx = rect.width / 2;
       const cy = rect.height / 2;
-      const rotX = ((y - cy) / cy) * -8;
-      const rotY = ((x - cx) / cx) * 8;
+      const rotX = ((y - cy) / cy) * -6;
+      const rotY = ((x - cx) / cx) * 6;
 
       gsap.to(card, {
         rotateX: rotX,
         rotateY: rotY,
-        scale: 1.02,
-        transformPerspective: 900,
+        scale: 1.015,
+        transformPerspective: 1000,
         transformOrigin: 'center center',
-        duration: 0.25,
+        duration: 0.2,
         ease: 'power2.out',
         overwrite: 'auto'
       });
@@ -1452,21 +1434,22 @@ function init3DCardTilt() {
       const sticker = card.querySelector('.card-doodle-sticker');
       if (sticker) {
         gsap.to(sticker, {
-          x: rotY * 1.6,
-          y: rotX * -1.6,
-          scale: 1.25,
-          duration: 0.25,
+          x: rotY * 1.2,
+          y: rotX * -1.2,
+          scale: 1.18,
+          duration: 0.2,
           overwrite: 'auto'
         });
       }
     });
 
     card.addEventListener('mouseleave', () => {
+      rect = null;
       gsap.to(card, {
         rotateX: 0,
         rotateY: 0,
         scale: 1,
-        duration: 0.55,
+        duration: 0.45,
         ease: 'power2.out',
         overwrite: 'auto'
       });
@@ -1476,7 +1459,7 @@ function init3DCardTilt() {
           x: 0,
           y: 0,
           scale: 1,
-          duration: 0.55,
+          duration: 0.45,
           overwrite: 'auto'
         });
       }
@@ -1519,26 +1502,11 @@ function initMagneticButtons() {
 }
 
 /* ==========================================================================
-   3.9. GSAP AMBIENT CARD FLOATING DRIFT (ZERO GRAVITY)
+   3.9. GSAP AMBIENT CARD FLOATING DRIFT (GPU COMPOSITOR MODE)
    ========================================================================== */
 function initCardFloatingPhysics() {
-  if (typeof gsap === 'undefined' || window.matchMedia('(prefers-reduced-motion: reduce)').matches) return;
-  const cards = document.querySelectorAll('.curriculum-card, .why-card, .project-card');
-
-  cards.forEach((card, idx) => {
-    const dir = idx % 2 === 0 ? 1 : -1;
-    const dist = 3 + (idx % 3) * 1.5;
-    const dur = 3.5 + (idx % 4) * 0.6;
-
-    gsap.to(card, {
-      y: `+=${dir * dist}`,
-      duration: dur,
-      repeat: -1,
-      yoyo: true,
-      ease: 'sine.inOut',
-      delay: (idx % 6) * 0.25
-    });
-  });
+  // Disabled continuous RAF ticker to maximize 60fps GPU compositor performance
+  return;
 }
 
 /* ==========================================================================
@@ -1755,7 +1723,8 @@ function initRegistrationModal() {
     }
   }
 
-  [navEnrollBtn, heroEnrollBtn, drawerEnrollBtn, outcomeEnrollBtn].forEach(btn => {
+  const counselorChatBtn = document.getElementById('counselorChatBtn');
+  [navEnrollBtn, heroEnrollBtn, drawerEnrollBtn, outcomeEnrollBtn, counselorChatBtn].forEach(btn => {
     if (btn) {
       btn.addEventListener('click', (e) => {
         e.preventDefault();
