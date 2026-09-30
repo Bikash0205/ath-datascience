@@ -1,12 +1,14 @@
 /**
  * Asian Technology Hub (ATS) - Data Science with AI & ML
- * Minimalistic & High-Performance Script
- * Built Completely From Scratch
+ * High-Performance Engine: Three.js 3D Brain, Lottie Vector Animations, Mobile Drawer & 5s Popup
  */
 
 document.addEventListener('DOMContentLoaded', () => {
   initAmbientStars();
   initThreeJSBrain();
+  initLottieAnimations();
+  initShowcaseViewSwitcher();
+  initMobileDrawer();
   initGSAPShowcase();
   initRegistrationModal();
 });
@@ -271,8 +273,109 @@ function initThreeJSBrain() {
   });
 }
 
+let lottieNeuralAnim = null;
+let lottieAnalyticsAnim = null;
+
 /* ==========================================================================
-   3. GSAP ENTRANCE & FLOATING SINE OSCILLATION
+   3. LOTTIE ANIMATIONS (NEURAL CORE & ANALYTICS WAVE)
+   ========================================================================== */
+function initLottieAnimations() {
+  if (typeof lottie === 'undefined') return;
+
+  // Lottie 1: Neural Core Animation in Showcase
+  const neuralCoreContainer = document.getElementById('lottieNeuralCore');
+  if (neuralCoreContainer) {
+    fetch('lottie_neural_core.json')
+      .then(res => res.json())
+      .then(data => {
+        lottieNeuralAnim = lottie.loadAnimation({
+          container: neuralCoreContainer,
+          renderer: 'svg',
+          loop: true,
+          autoplay: true,
+          animationData: data
+        });
+      })
+      .catch(e => console.warn('Lottie neural core load error:', e));
+  }
+
+  // Lottie 2: Analytics Data Wave in Projects
+  const analyticsWaveContainer = document.getElementById('lottieAnalyticsWave');
+  if (analyticsWaveContainer) {
+    fetch('lottie_analytics_wave.json')
+      .then(res => res.json())
+      .then(data => {
+        lottieAnalyticsAnim = lottie.loadAnimation({
+          container: analyticsWaveContainer,
+          renderer: 'svg',
+          loop: true,
+          autoplay: true,
+          animationData: data
+        });
+      })
+      .catch(e => console.warn('Lottie analytics wave load error:', e));
+  }
+}
+
+/* ==========================================================================
+   4. SHOWCASE VIEW SWITCHER (3D BRAIN <-> LOTTIE MATRIX)
+   ========================================================================== */
+function initShowcaseViewSwitcher() {
+  const tab3D = document.getElementById('tab3DBrain');
+  const tabLottie = document.getElementById('tabLottieCore');
+  const view3D = document.getElementById('brainViewport');
+  const viewLottie = document.getElementById('lottieViewport');
+
+  if (!tab3D || !tabLottie || !view3D || !viewLottie) return;
+
+  tab3D.addEventListener('click', () => {
+    tab3D.classList.add('active');
+    tabLottie.classList.remove('active');
+    view3D.style.display = 'flex';
+    viewLottie.style.display = 'none';
+  });
+
+  tabLottie.addEventListener('click', () => {
+    tabLottie.classList.add('active');
+    tab3D.classList.remove('active');
+    view3D.style.display = 'none';
+    viewLottie.style.display = 'flex';
+    if (lottieNeuralAnim) {
+      lottieNeuralAnim.resize();
+      lottieNeuralAnim.play();
+    }
+  });
+}
+
+/* ==========================================================================
+   5. MOBILE & TABLET DRAWER NAVIGATION
+   ========================================================================== */
+function initMobileDrawer() {
+  const toggleBtn = document.getElementById('mobileMenuToggle');
+  const drawer = document.getElementById('mobileDrawer');
+  const links = document.querySelectorAll('.drawer-link');
+  const drawerEnrollBtn = document.getElementById('drawerEnrollBtn');
+
+  if (!toggleBtn || !drawer) return;
+
+  function toggleMenu() {
+    toggleBtn.classList.toggle('open');
+    drawer.classList.toggle('open');
+  }
+
+  function closeMenu() {
+    toggleBtn.classList.remove('open');
+    drawer.classList.remove('open');
+  }
+
+  toggleBtn.addEventListener('click', toggleMenu);
+
+  links.forEach(l => l.addEventListener('click', closeMenu));
+  if (drawerEnrollBtn) drawerEnrollBtn.addEventListener('click', closeMenu);
+}
+
+/* ==========================================================================
+   6. GSAP SHOWCASE FLOATING OSCILLATION
    ========================================================================== */
 function initGSAPShowcase() {
   if (typeof gsap === 'undefined') return;
@@ -282,23 +385,10 @@ function initGSAPShowcase() {
   gsap.to('#holoQuant', { y: -12, duration: 4.1, yoyo: true, repeat: -1, ease: 'sine.inOut', delay: 0.3 });
   gsap.to('#holoVideo', { y: 10, duration: 4.4, yoyo: true, repeat: -1, ease: 'sine.inOut', delay: 0.6 });
   gsap.to('#holoTopics', { y: 12, duration: 3.8, yoyo: true, repeat: -1, ease: 'sine.inOut', delay: 0.2 });
-
-  // Smooth appearance of sections on scroll
-  gsap.from('.curriculum-card', {
-    scrollTrigger: {
-      trigger: '#curriculum',
-      start: 'top 80%'
-    },
-    opacity: 0,
-    y: 25,
-    stagger: 0.1,
-    duration: 0.8,
-    ease: 'power2.out'
-  });
 }
 
 /* ==========================================================================
-   4. CLEAN STUDENT REGISTRATION MODAL
+   7. STUDENT REGISTRATION MODAL (WITH 5-SECOND AUTO-POPUP)
    ========================================================================== */
 function initRegistrationModal() {
   const backdrop = document.getElementById('modalBackdrop');
@@ -306,6 +396,7 @@ function initRegistrationModal() {
   const closeBtn = document.getElementById('closeModalBtn');
   const navEnrollBtn = document.getElementById('navEnrollBtn');
   const heroEnrollBtn = document.getElementById('heroEnrollBtn');
+  const drawerEnrollBtn = document.getElementById('drawerEnrollBtn');
   const outcomeEnrollBtn = document.getElementById('outcomeEnrollBtn');
   const form = document.getElementById('studentForm');
   const submitBtn = document.getElementById('submitFormBtn');
@@ -339,7 +430,7 @@ function initRegistrationModal() {
     }
   }, 5000);
 
-  [navEnrollBtn, heroEnrollBtn, outcomeEnrollBtn].forEach(btn => {
+  [navEnrollBtn, heroEnrollBtn, drawerEnrollBtn, outcomeEnrollBtn].forEach(btn => {
     if (btn) {
       btn.addEventListener('click', (e) => {
         e.preventDefault();

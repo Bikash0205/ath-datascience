@@ -30,15 +30,15 @@
         </div>
       </a>
 
-      <!-- Clean Navigation Links -->
-      <nav class="nav-menu" aria-label="Primary Navigation">
+      <!-- Clean Desktop Navigation Links -->
+      <nav class="nav-menu" id="desktopNav" aria-label="Primary Navigation">
         <a href="#overview" class="nav-item active">Overview</a>
         <a href="#curriculum" class="nav-item">Curriculum</a>
         <a href="#projects" class="nav-item">Projects</a>
         <a href="#outcomes" class="nav-item">Career &amp; Placement</a>
       </nav>
 
-      <!-- Header Action -->
+      <!-- Header Action & Mobile Menu Toggle -->
       <div class="header-cta">
         <button class="btn-enroll-nav" id="navEnrollBtn" type="button">
           <span>Enroll Now</span>
@@ -46,8 +46,30 @@
             <path d="M5 12h14M12 5l7 7-7 7"/>
           </svg>
         </button>
+
+        <button class="mobile-menu-btn" id="mobileMenuToggle" type="button" aria-label="Toggle navigation menu">
+          <span class="bar"></span>
+          <span class="bar"></span>
+          <span class="bar"></span>
+        </button>
       </div>
 
+    </div>
+
+    <!-- Mobile & Tablet Drawer Menu -->
+    <div class="mobile-drawer" id="mobileDrawer">
+      <nav class="drawer-nav">
+        <a href="#overview" class="drawer-link">Overview</a>
+        <a href="#curriculum" class="drawer-link">Curriculum</a>
+        <a href="#projects" class="drawer-link">Projects</a>
+        <a href="#outcomes" class="drawer-link">Career &amp; Placement</a>
+        <button class="btn-drawer-enroll" id="drawerEnrollBtn" type="button">
+          <span>Enroll in Batch 2026</span>
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4">
+            <path d="M5 12h14M12 5l7 7-7 7"/>
+          </svg>
+        </button>
+      </nav>
     </div>
   </header>
 
@@ -59,9 +81,11 @@
 
       <div class="hero-content">
         
-        <!-- Cohort Badge -->
+        <!-- Cohort Badge (Clean vector sparkle, no cheap green blinking dots) -->
         <div class="cohort-badge">
-          <span class="pulse-dot"></span>
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" class="badge-sparkle">
+            <polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/>
+          </svg>
           <span>ADMISSIONS OPEN · 2026 BATCH</span>
         </div>
 
@@ -75,24 +99,55 @@
           Master Deep Neural Networks, Large Language Models (LLMs), Computer Vision, and Autonomous AI Agents with 1-on-1 industry mentorship and dedicated GPU cluster access.
         </p>
 
-        <!-- Core Student Metrics -->
+        <!-- Core Student Metrics (With Custom Designer SVG Icons) -->
         <div class="metrics-grid">
+          
           <div class="metric-card">
+            <div class="metric-icon-wrap">
+              <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                <circle cx="12" cy="12" r="10"/>
+                <polyline points="12 6 12 12 16 14"/>
+              </svg>
+            </div>
             <span class="metric-val">400+ <small>Hrs</small></span>
             <span class="metric-lbl">Live Mentorship &amp; Labs</span>
           </div>
+
           <div class="metric-card">
+            <div class="metric-icon-wrap">
+              <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                <path d="M4.5 16.5c-1.5 1.26-2 5-2 5s3.74-.5 5-2c.71-.84.7-2.13-.09-2.91a2.18 2.18 0 0 0-2.91-.09z"/>
+                <path d="M12 15l-3-3a22 22 0 0 1 2-3.95A12.88 12.88 0 0 1 22 2c0 2.72-.78 7.5-6 11a22.35 22.35 0 0 1-4 2z"/>
+                <path d="M9 12H4s.55-3.03 2-4c1.62-1.08 5 0 5 0"/>
+                <path d="M12 15v5s3.03-.55 4-2c1.08-1.62 0-5 0-5"/>
+              </svg>
+            </div>
             <span class="metric-val">12+ <small>Projects</small></span>
             <span class="metric-lbl">Production AI Capstones</span>
           </div>
+
           <div class="metric-card">
+            <div class="metric-icon-wrap">
+              <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                <line x1="12" y1="1" x2="12" y2="23"/>
+                <path d="M17 5H9.5a3.5 3.5 0 0 0 0 7h5a3.5 3.5 0 0 1 0 7H6"/>
+              </svg>
+            </div>
             <span class="metric-val">₹18.5 <small>LPA</small></span>
             <span class="metric-lbl">Average Placement CTC</span>
           </div>
+
           <div class="metric-card">
+            <div class="metric-icon-wrap">
+              <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                <path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/>
+                <polyline points="9 12 11 14 15 10"/>
+              </svg>
+            </div>
             <span class="metric-val">100%</span>
             <span class="metric-lbl">Placement Assurance</span>
           </div>
+
         </div>
 
         <!-- Hero Actions -->
@@ -115,13 +170,19 @@
 
       </div>
 
-      <!-- ================= CINEMATIC 3D HOLOGRAPHIC SHOWCASE ================= -->
+      <!-- ================= CINEMATIC 3D HOLOGRAPHIC & LOTTIE SHOWCASE ================= -->
       <div class="showcase-container">
         
-        <!-- Peripheral Floating Holographic Cards (GSAP Animated) -->
+        <!-- Peripheral Floating Holographic Card 1: Loss Landscape (SVG vector icon) -->
         <div class="holo-card holo-loss-landscape" id="holoLoss">
           <div class="holo-card-head">
-            <div class="holo-card-icon">📊</div>
+            <div class="holo-card-icon-svg">
+              <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                <line x1="18" y1="20" x2="18" y2="10"/>
+                <line x1="12" y1="20" x2="12" y2="4"/>
+                <line x1="6" y1="20" x2="6" y2="14"/>
+              </svg>
+            </div>
             <div>
               <div class="holo-card-title">Loss Landscape</div>
               <div class="holo-card-sub">Gradient Convergence</div>
@@ -149,9 +210,15 @@
           </div>
         </div>
 
+        <!-- Peripheral Floating Holographic Card 2: Financial Alpha AI (SVG vector icon) -->
         <div class="holo-card holo-quant-graph" id="holoQuant">
           <div class="holo-card-head">
-            <div class="holo-card-icon">📈</div>
+            <div class="holo-card-icon-svg">
+              <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                <polyline points="23 6 13.5 15.5 8.5 10.5 1 18"/>
+                <polyline points="17 6 23 6 23 12"/>
+              </svg>
+            </div>
             <div>
               <div class="holo-card-title">Financial Alpha AI</div>
               <div class="holo-card-sub">High-Frequency Quant</div>
@@ -173,37 +240,55 @@
           </div>
         </div>
 
-        <!-- Center Glass Panel with Luminous 3D Brain Hologram -->
+        <!-- Center Glass Panel with Luminous 3D Brain Hologram & Lottie Neural Switcher -->
         <div class="center-glass-showcase">
           <div class="glass-bar">
             <div class="window-dots">
               <span></span><span></span><span></span>
             </div>
             <span class="glass-label">ASIAN TECHNOLOGY HUB · NEURAL ARCHITECTURE</span>
-            <span class="badge-mini badge-live">LIVE COHORT</span>
+            <div class="view-mode-tabs">
+              <button class="view-tab active" id="tab3DBrain" type="button">3D Brain</button>
+              <button class="view-tab" id="tabLottieCore" type="button">Lottie Matrix</button>
+            </div>
           </div>
 
-          <div class="brain-canvas-container" id="brainViewport">
-            <canvas id="brain3DCanvas"></canvas>
+          <div class="showcase-viewport">
             
-            <div class="brain-hud-chip chip-left">
-              <span class="hud-dot"></span>
-              <span>100T Synaptic Pathways</span>
+            <!-- 3D Canvas Viewport -->
+            <div class="brain-canvas-container" id="brainViewport">
+              <canvas id="brain3DCanvas"></canvas>
+              <div class="brain-hud-chip chip-left">
+                <span>100T Synaptic Pathways</span>
+              </div>
+              <div class="brain-hud-chip chip-right">
+                <span>128 Attention Heads</span>
+              </div>
             </div>
-            <div class="brain-hud-chip chip-right">
-              <span class="hud-dot dot-purple"></span>
-              <span>128 Attention Heads</span>
+
+            <!-- Lottie Animation Viewport (Clean animated neural vector core) -->
+            <div class="lottie-viewport-container" id="lottieViewport" style="display: none;">
+              <div id="lottieNeuralCore" class="lottie-anim-box"></div>
+              <div class="lottie-hud-caption">
+                <span>VECTOR LOTTIE ENGINE · 60 FPS PROCEDURAL ORBITS</span>
+              </div>
             </div>
+
           </div>
 
           <div class="showcase-bottom-caption">
-            <span>✦ Interactive 3D Neural Matrix — Drag to rotate or explore architectural nodes</span>
+            <span>✦ Neural Matrix — Drag to rotate in 3D or toggle Lottie vector view</span>
           </div>
         </div>
 
+        <!-- Peripheral Floating Holographic Card 3: Video Masterclass (SVG vector icon) -->
         <div class="holo-card holo-video-lecture" id="holoVideo">
           <div class="holo-card-head">
-            <div class="holo-card-icon">🎥</div>
+            <div class="holo-card-icon-svg">
+              <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                <polygon points="5 3 19 12 5 21 5 3"/>
+              </svg>
+            </div>
             <div>
               <div class="holo-card-title">Video Masterclass</div>
               <div class="holo-card-sub">Scaled Dot-Product Attention</div>
@@ -211,7 +296,11 @@
             <span class="badge-mini badge-gold">4K HD</span>
           </div>
           <div class="video-preview-thumb">
-            <div class="play-pulse-btn">▶</div>
+            <div class="play-pulse-btn">
+              <svg width="12" height="12" viewBox="0 0 24 24" fill="currentColor">
+                <polygon points="5 3 19 12 5 21 5 3"/>
+              </svg>
+            </div>
             <span class="video-source">Stanford AI Faculty</span>
           </div>
           <div class="holo-footer-stat">
@@ -220,9 +309,19 @@
           </div>
         </div>
 
+        <!-- Peripheral Floating Holographic Card 4: Key Competencies (SVG vector icon) -->
         <div class="holo-card holo-key-topics" id="holoTopics">
           <div class="holo-card-head">
-            <div class="holo-card-icon">⚡</div>
+            <div class="holo-card-icon-svg">
+              <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                <rect x="4" y="4" width="16" height="16" rx="2" ry="2"/>
+                <rect x="9" y="9" width="6" height="6"/>
+                <line x1="9" y1="1" x2="9" y2="4"/>
+                <line x1="15" y1="1" x2="15" y2="4"/>
+                <line x1="9" y1="20" x2="9" y2="23"/>
+                <line x1="15" y1="20" x2="15" y2="23"/>
+              </svg>
+            </div>
             <div>
               <div class="holo-card-title">Core Competencies</div>
               <div class="holo-card-sub">Enterprise Curriculum</div>
@@ -255,7 +354,17 @@
           
           <!-- Module 1 -->
           <div class="curriculum-card">
-            <div class="card-num">01</div>
+            <div class="card-icon-header">
+              <div class="module-svg-icon">
+                <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                  <path d="M4 19.5A2.5 2.5 0 0 1 6.5 17H20"/>
+                  <path d="M6.5 2H20v20H6.5A2.5 2.5 0 0 1 4 19.5v-15A2.5 2.5 0 0 1 6.5 2z"/>
+                  <line x1="9" y1="8" x2="15" y2="8"/>
+                  <line x1="9" y1="12" x2="13" y2="12"/>
+                </svg>
+              </div>
+              <div class="card-num">01</div>
+            </div>
             <h3 class="card-title">Python, Linear Algebra &amp; Statistics</h3>
             <p class="card-desc">Advanced vector calculus, probability distributions, matrix factorizations, and high-performance NumPy/Pandas pipelines.</p>
             <div class="card-tools">
@@ -267,7 +376,14 @@
 
           <!-- Module 2 -->
           <div class="curriculum-card">
-            <div class="card-num">02</div>
+            <div class="card-icon-header">
+              <div class="module-svg-icon">
+                <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                  <polyline points="22 12 18 12 15 21 9 3 6 12 2 12"/>
+                </svg>
+              </div>
+              <div class="card-num">02</div>
+            </div>
             <h3 class="card-title">Machine Learning &amp; Predictive AI</h3>
             <p class="card-desc">Gradient Boosted Trees (XGBoost, LightGBM), Bayesian optimization, unsupervised clustering, feature engineering, and cross-validation.</p>
             <div class="card-tools">
@@ -279,7 +395,18 @@
 
           <!-- Module 3 -->
           <div class="curriculum-card">
-            <div class="card-num">03</div>
+            <div class="card-icon-header">
+              <div class="module-svg-icon">
+                <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                  <circle cx="6" cy="6" r="3"/>
+                  <circle cx="6" cy="18" r="3"/>
+                  <circle cx="18" cy="12" r="3"/>
+                  <line x1="8.5" y1="7.5" x2="15.5" y2="10.5"/>
+                  <line x1="8.5" y1="16.5" x2="15.5" y2="13.5"/>
+                </svg>
+              </div>
+              <div class="card-num">03</div>
+            </div>
             <h3 class="card-title">Deep Learning &amp; Neural Networks</h3>
             <p class="card-desc">Backpropagation from scratch, CNNs for computer vision, RNNs/LSTMs, and modern PyTorch multi-GPU training loops.</p>
             <div class="card-tools">
@@ -291,7 +418,16 @@
 
           <!-- Module 4 -->
           <div class="curriculum-card">
-            <div class="card-num">04</div>
+            <div class="card-icon-header">
+              <div class="module-svg-icon">
+                <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                  <polygon points="12 2 2 7 12 12 22 7 12 2"/>
+                  <polyline points="2 17 12 22 22 17"/>
+                  <polyline points="2 12 12 17 22 12"/>
+                </svg>
+              </div>
+              <div class="card-num">04</div>
+            </div>
             <h3 class="card-title">Transformers &amp; Large Language Models</h3>
             <p class="card-desc">Scaled dot-product attention, multi-head projection, RoPE embeddings, parameter-efficient fine-tuning (LoRA, QLoRA, DPO).</p>
             <div class="card-tools">
@@ -303,7 +439,16 @@
 
           <!-- Module 5 -->
           <div class="curriculum-card">
-            <div class="card-num">05</div>
+            <div class="card-icon-header">
+              <div class="module-svg-icon">
+                <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                  <path d="M21 16V8a2 2 0 0 0-1-1.73l-7-4a2 2 0 0 0-2 0l-7 4A2 2 0 0 0 3 8v8a2 2 0 0 0 1 1.73l7 4a2 2 0 0 0 2 0l7-4A2 2 0 0 0 21 16z"/>
+                  <polyline points="3.27 6.96 12 12.01 20.73 6.96"/>
+                  <line x1="12" y1="22.08" x2="12" y2="12"/>
+                </svg>
+              </div>
+              <div class="card-num">05</div>
+            </div>
             <h3 class="card-title">Generative AI, Graph RAG &amp; Agents</h3>
             <p class="card-desc">Hybrid vector retrieval, Knowledge Graphs, ReAct prompting frameworks, autonomous multi-agent swarms, and tool calling.</p>
             <div class="card-tools">
@@ -315,7 +460,17 @@
 
           <!-- Module 6 -->
           <div class="curriculum-card">
-            <div class="card-num">06</div>
+            <div class="card-icon-header">
+              <div class="module-svg-icon">
+                <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                  <rect x="2" y="2" width="20" height="8" rx="2" ry="2"/>
+                  <rect x="2" y="14" width="20" height="8" rx="2" ry="2"/>
+                  <line x1="6" y1="6" x2="6.01" y2="6"/>
+                  <line x1="6" y1="18" x2="6.01" y2="18"/>
+                </svg>
+              </div>
+              <div class="card-num">06</div>
+            </div>
             <h3 class="card-title">Enterprise MLOps &amp; Production Scaling</h3>
             <p class="card-desc">Containerization with Docker, Kubernetes orchestration, NVIDIA Triton Inference Server, continuous model monitoring, and CI/CD pipelines.</p>
             <div class="card-tools">
@@ -343,7 +498,15 @@
         <div class="projects-grid">
           
           <div class="project-card">
-            <div class="proj-badge">FINTECH &amp; QUANT</div>
+            <div class="project-card-top">
+              <div class="proj-badge">FINTECH &amp; QUANT</div>
+              <div class="proj-icon-svg">
+                <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                  <polyline points="23 6 13.5 15.5 8.5 10.5 1 18"/>
+                  <polyline points="17 6 23 6 23 12"/>
+                </svg>
+              </div>
+            </div>
             <h3 class="proj-title">Algorithmic High-Frequency Trading Bot</h3>
             <p class="proj-desc">Sub-millisecond trade execution engine leveraging Transformer-based price prediction, order book imbalance, and risk management.</p>
             <div class="proj-meta">
@@ -354,7 +517,14 @@
           </div>
 
           <div class="project-card">
-            <div class="proj-badge">HEALTHCARE AI</div>
+            <div class="project-card-top">
+              <div class="proj-badge">HEALTHCARE AI</div>
+              <div class="proj-icon-svg">
+                <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                  <path d="M22 12h-4l-3 9L9 3l-3 9H2"/>
+                </svg>
+              </div>
+            </div>
             <h3 class="proj-title">Multimodal Clinical Diagnostic Assistant</h3>
             <p class="proj-desc">Diagnostic vision-language model analyzing chest X-rays and patient medical histories with 99.2% precision and confidence scoring.</p>
             <div class="proj-meta">
@@ -365,7 +535,15 @@
           </div>
 
           <div class="project-card">
-            <div class="proj-badge">ENTERPRISE AGENTS</div>
+            <div class="project-card-top">
+              <div class="proj-badge">ENTERPRISE AGENTS</div>
+              <div class="proj-icon-svg">
+                <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                  <circle cx="12" cy="12" r="4"/>
+                  <path d="M16 8v5a3 3 0 0 0 6 0v-1a10 10 0 1 0-3.92 7.94"/>
+                </svg>
+              </div>
+            </div>
             <h3 class="proj-title">Autonomous Code Generation Swarm</h3>
             <p class="proj-desc">Multi-agent software engineering team coordinating architecture design, unit test writing, implementation, and code reviews autonomously.</p>
             <div class="proj-meta">
@@ -375,6 +553,15 @@
             </div>
           </div>
 
+        </div>
+
+        <!-- Integrated Lottie Analytics Demonstration -->
+        <div class="project-lottie-banner">
+          <div class="lottie-wave-box" id="lottieAnalyticsWave"></div>
+          <div class="lottie-banner-info">
+            <div class="lottie-banner-title">Real-Time Model Inference &amp; Telemetry</div>
+            <p class="lottie-banner-desc">Live performance benchmarks on 12 production capstones deployed on NVIDIA TensorRT &amp; Triton clusters.</p>
+          </div>
         </div>
 
       </div>
@@ -492,7 +679,11 @@
           </button>
 
           <div class="form-trust-note">
-            <span>🔒 Official Admissions Portal · Assured Excellent Service · Asian Technology Hub</span>
+            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+              <rect x="3" y="11" width="18" height="11" rx="2" ry="2"/>
+              <path d="M7 11V7a5 5 0 0 1 10 0v4"/>
+            </svg>
+            <span>Official Admissions Portal · Assured Excellent Service · Asian Technology Hub</span>
           </div>
 
         </form>
@@ -518,9 +709,10 @@
     </div>
   </footer>
 
-  <!-- Scripts: Three.js + GSAP -->
+  <!-- Scripts: Three.js + GSAP + Lottie -->
   <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/lottie-web/5.12.2/lottie.min.js"></script>
   <script src="script.js"></script>
 </body>
 </html>

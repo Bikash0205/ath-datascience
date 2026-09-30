@@ -1,7 +1,7 @@
 /* ==========================================================================
    ASIAN TECHNOLOGY HUB (ATS) - DATA SCIENCE WITH AI & ML
    Minimalistic, High-End Dark Mode Architecture
-   Written Completely From Scratch
+   Designer-Grade SVG Icons, Lottie Engine, Mobile/Tablet Optimization
    ========================================================================== */
 
 :root {
@@ -10,8 +10,8 @@
   --bg-surface: rgba(15, 23, 42, 0.65);
   --bg-surface-hover: rgba(30, 41, 59, 0.7);
   --border-subtle: rgba(255, 255, 255, 0.08);
-  --border-cyan: rgba(56, 189, 248, 0.25);
-  --border-cyan-bright: rgba(56, 189, 248, 0.6);
+  --border-cyan: rgba(56, 189, 248, 0.22);
+  --border-cyan-bright: rgba(56, 189, 248, 0.55);
   
   --accent-cyan: #38bdf8;
   --accent-blue: #2563eb;
@@ -78,7 +78,7 @@ body.minimal-cyber-body {
 .text-cyan { color: var(--accent-cyan) !important; }
 
 /* ==========================================================================
-   1. SITE HEADER & NAVIGATION
+   1. SITE HEADER & NAVIGATION (DESKTOP, TABLET & MOBILE)
    ========================================================================== */
 .site-header {
   position: fixed;
@@ -86,7 +86,7 @@ body.minimal-cyber-body {
   left: 0;
   right: 0;
   height: 74px;
-  background: rgba(6, 9, 19, 0.82);
+  background: rgba(6, 9, 19, 0.85);
   backdrop-filter: blur(20px);
   -webkit-backdrop-filter: blur(20px);
   border-bottom: 1px solid var(--border-subtle);
@@ -167,6 +167,12 @@ body.minimal-cyber-body {
   border-radius: 2px;
 }
 
+.header-cta {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+
 .btn-enroll-nav {
   display: inline-flex;
   align-items: center;
@@ -189,13 +195,104 @@ body.minimal-cyber-body {
   background: linear-gradient(135deg, #38bdf8 0%, #1d4ed8 100%);
 }
 
+/* Mobile & Tablet Hamburger Toggle */
+.mobile-menu-btn {
+  display: none;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  width: 40px;
+  height: 40px;
+  border-radius: 8px;
+  background: rgba(255, 255, 255, 0.05);
+  border: 1px solid var(--border-subtle);
+  cursor: pointer;
+  padding: 8px;
+  gap: 5px;
+}
+
+.mobile-menu-btn .bar {
+  width: 20px;
+  height: 2px;
+  background: #ffffff;
+  border-radius: 2px;
+  transition: all 0.25s ease;
+}
+
+.mobile-menu-btn.open .bar:nth-child(1) {
+  transform: translateY(7px) rotate(45deg);
+}
+.mobile-menu-btn.open .bar:nth-child(2) {
+  opacity: 0;
+}
+.mobile-menu-btn.open .bar:nth-child(3) {
+  transform: translateY(-7px) rotate(-45deg);
+}
+
+/* Mobile Drawer */
+.mobile-drawer {
+  display: none;
+  position: absolute;
+  top: 74px;
+  left: 0;
+  right: 0;
+  background: rgba(6, 9, 19, 0.98);
+  backdrop-filter: blur(24px);
+  -webkit-backdrop-filter: blur(24px);
+  border-bottom: 1px solid var(--border-cyan);
+  padding: 20px 24px;
+  box-shadow: 0 20px 40px rgba(0, 0, 0, 0.8);
+}
+
+.mobile-drawer.open {
+  display: block;
+  animation: slideDown 0.25s ease forwards;
+}
+
+@keyframes slideDown {
+  from { opacity: 0; transform: translateY(-10px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+.drawer-nav {
+  display: flex;
+  flex-direction: column;
+  gap: 14px;
+}
+
+.drawer-link {
+  color: #e2e8f0;
+  text-decoration: none;
+  font-size: 1rem;
+  font-weight: 600;
+  padding: 8px 0;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.06);
+}
+
+.btn-drawer-enroll {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  width: 100%;
+  padding: 12px;
+  border-radius: 10px;
+  background: linear-gradient(135deg, #0284c7 0%, #2563eb 100%);
+  border: 1px solid var(--border-cyan-bright);
+  color: #ffffff;
+  font-weight: 700;
+  font-size: 0.92rem;
+  cursor: pointer;
+  margin-top: 8px;
+}
+
 /* ==========================================================================
-   2. HERO SECTION (MINIMALISTIC & CINEMATIC)
+   2. HERO SECTION
    ========================================================================== */
 .hero-section {
   position: relative;
-  padding-top: 130px;
-  padding-bottom: 70px;
+  padding-top: 125px;
+  padding-bottom: 60px;
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -210,7 +307,7 @@ body.minimal-cyber-body {
   border-radius: 50%;
   filter: blur(120px);
   pointer-events: none;
-  opacity: 0.18;
+  opacity: 0.16;
   z-index: -1;
 }
 
@@ -233,6 +330,7 @@ body.minimal-cyber-body {
   padding: 0 24px;
 }
 
+/* Authentic Designer Cohort Badge (No AI blinking green dot) */
 .cohort-badge {
   display: inline-flex;
   align-items: center;
@@ -249,18 +347,8 @@ body.minimal-cyber-body {
   letter-spacing: 0.5px;
 }
 
-.pulse-dot {
-  width: 7px;
-  height: 7px;
-  border-radius: 50%;
-  background: var(--accent-green);
-  box-shadow: 0 0 8px var(--accent-green);
-  animation: pulseDot 2s infinite ease-in-out;
-}
-
-@keyframes pulseDot {
-  0%, 100% { transform: scale(1); opacity: 1; }
-  50% { transform: scale(0.65); opacity: 0.4; }
+.badge-sparkle {
+  color: var(--accent-gold);
 }
 
 .hero-title {
@@ -281,7 +369,7 @@ body.minimal-cyber-body {
   margin: 0 auto 34px;
 }
 
-/* Core Student Metrics */
+/* Core Student Metrics (Designer SVG Icons) */
 .metrics-grid {
   display: grid;
   grid-template-columns: repeat(4, 1fr);
@@ -290,15 +378,15 @@ body.minimal-cyber-body {
 }
 
 .metric-card {
-  background: rgba(15, 23, 42, 0.6);
+  background: rgba(15, 23, 42, 0.65);
   backdrop-filter: blur(14px);
   border: 1px solid var(--border-subtle);
   border-radius: 14px;
-  padding: 16px 10px;
+  padding: 16px 12px;
   display: flex;
   flex-direction: column;
   align-items: center;
-  gap: 4px;
+  gap: 6px;
   transition: all 0.25s ease;
 }
 
@@ -308,9 +396,22 @@ body.minimal-cyber-body {
   transform: translateY(-2px);
 }
 
+.metric-icon-wrap {
+  width: 36px;
+  height: 36px;
+  border-radius: 10px;
+  background: rgba(56, 189, 248, 0.1);
+  border: 1px solid rgba(56, 189, 248, 0.25);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: var(--accent-cyan);
+  margin-bottom: 2px;
+}
+
 .metric-val {
   font-family: var(--font-heading);
-  font-size: 1.6rem;
+  font-size: 1.55rem;
   font-weight: 800;
   color: #ffffff;
 }
@@ -398,12 +499,12 @@ body.minimal-cyber-body {
 }
 
 /* ==========================================================================
-   3. CINEMATIC 3D HOLOGRAPHIC SHOWCASE
+   3. CINEMATIC 3D HOLOGRAPHIC & LOTTIE SHOWCASE
    ========================================================================== */
 .showcase-container {
   max-width: 1280px;
   width: 100%;
-  margin-top: 50px;
+  margin-top: 45px;
   position: relative;
   display: flex;
   align-items: center;
@@ -440,6 +541,7 @@ body.minimal-cyber-body {
   padding: 12px 18px;
   background: rgba(3, 7, 18, 0.6);
   border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+  gap: 10px;
 }
 
 .window-dots {
@@ -463,29 +565,47 @@ body.minimal-cyber-body {
   color: var(--accent-cyan);
 }
 
-.badge-mini {
+/* 3D / Lottie Switcher Tabs */
+.view-mode-tabs {
+  display: flex;
+  align-items: center;
+  background: rgba(255, 255, 255, 0.06);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  border-radius: 999px;
+  padding: 2px;
+}
+
+.view-tab {
+  background: none;
+  border: none;
+  color: var(--text-muted);
   font-family: var(--font-mono);
   font-size: 0.64rem;
   font-weight: 700;
-  padding: 2px 8px;
-  border-radius: 6px;
+  padding: 3px 9px;
+  border-radius: 999px;
+  cursor: pointer;
+  transition: all 0.2s ease;
 }
 
-.badge-live {
-  background: rgba(16, 185, 129, 0.15);
-  color: var(--accent-green);
-  border: 1px solid rgba(16, 185, 129, 0.35);
+.view-tab.active {
+  background: var(--accent-cyan);
+  color: #030712;
+  box-shadow: 0 0 10px rgba(56, 189, 248, 0.5);
 }
 
-.badge-cyan { background: rgba(56, 189, 248, 0.15); color: var(--accent-cyan); }
-.badge-green { background: rgba(16, 185, 129, 0.15); color: var(--accent-green); }
-.badge-gold { background: rgba(251, 191, 36, 0.15); color: var(--accent-gold); }
-.badge-purple { background: rgba(129, 140, 248, 0.15); color: var(--accent-purple); }
-
-.brain-canvas-container {
+.showcase-viewport {
   position: relative;
   width: 100%;
   height: 300px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.brain-canvas-container {
+  position: absolute;
+  inset: 0;
   display: flex;
   align-items: center;
   justify-content: center;
@@ -504,9 +624,6 @@ body.minimal-cyber-body {
 .brain-hud-chip {
   position: absolute;
   top: 18px;
-  display: flex;
-  align-items: center;
-  gap: 6px;
   background: rgba(6, 9, 19, 0.85);
   border: 1px solid var(--border-cyan);
   padding: 4px 12px;
@@ -520,17 +637,40 @@ body.minimal-cyber-body {
 .chip-left { left: 16px; }
 .chip-right { right: 16px; color: var(--accent-purple); border-color: rgba(129, 140, 248, 0.35); }
 
-.hud-dot {
-  width: 6px;
-  height: 6px;
-  border-radius: 50%;
-  background: var(--accent-cyan);
-  box-shadow: 0 0 6px var(--accent-cyan);
+/* Lottie Viewport */
+.lottie-viewport-container {
+  position: absolute;
+  inset: 0;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
 }
 
-.dot-purple {
-  background: var(--accent-purple);
-  box-shadow: 0 0 6px var(--accent-purple);
+.lottie-anim-box {
+  width: 220px;
+  height: 220px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.lottie-anim-box svg,
+.lottie-wave-box svg {
+  width: 100% !important;
+  height: 100% !important;
+  display: block;
+}
+
+.lottie-hud-caption {
+  font-family: var(--font-mono);
+  font-size: 0.64rem;
+  color: var(--accent-cyan);
+  background: rgba(6, 9, 19, 0.8);
+  padding: 3px 10px;
+  border-radius: 999px;
+  border: 1px solid rgba(56, 189, 248, 0.25);
+  margin-top: -10px;
 }
 
 .showcase-bottom-caption {
@@ -591,8 +731,16 @@ body.minimal-cyber-body {
   gap: 8px;
 }
 
-.holo-card-icon {
-  font-size: 1.1rem;
+.holo-card-icon-svg {
+  width: 32px;
+  height: 32px;
+  border-radius: 8px;
+  background: rgba(56, 189, 248, 0.1);
+  border: 1px solid rgba(56, 189, 248, 0.25);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: var(--accent-cyan);
 }
 
 .holo-card-title {
@@ -606,6 +754,25 @@ body.minimal-cyber-body {
   font-family: var(--font-mono);
   color: var(--text-muted);
 }
+
+.badge-mini {
+  font-family: var(--font-mono);
+  font-size: 0.64rem;
+  font-weight: 700;
+  padding: 2px 8px;
+  border-radius: 6px;
+}
+
+.badge-live {
+  background: rgba(16, 185, 129, 0.12);
+  color: var(--accent-green);
+  border: 1px solid rgba(16, 185, 129, 0.3);
+}
+
+.badge-cyan { background: rgba(56, 189, 248, 0.15); color: var(--accent-cyan); }
+.badge-green { background: rgba(16, 185, 129, 0.15); color: var(--accent-green); }
+.badge-gold { background: rgba(251, 191, 36, 0.15); color: var(--accent-gold); }
+.badge-purple { background: rgba(129, 140, 248, 0.15); color: var(--accent-purple); }
 
 .holo-svg-chart {
   width: 100%;
@@ -662,8 +829,6 @@ body.minimal-cyber-body {
   align-items: center;
   justify-content: center;
   font-size: 11px;
-  font-weight: 900;
-  padding-left: 2px;
   box-shadow: 0 0 14px rgba(251, 191, 36, 0.6);
 }
 
@@ -708,7 +873,7 @@ body.minimal-cyber-body {
 }
 
 /* ==========================================================================
-   4. CURRICULUM SECTION
+   4. CURRICULUM SECTION (SVG MODULE ICONS)
    ========================================================================== */
 .section-curriculum {
   padding: 100px 0 80px;
@@ -772,12 +937,30 @@ body.minimal-cyber-body {
   box-shadow: 0 12px 30px rgba(0, 0, 0, 0.5);
 }
 
+.card-icon-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 16px;
+}
+
+.module-svg-icon {
+  width: 42px;
+  height: 42px;
+  border-radius: 10px;
+  background: rgba(56, 189, 248, 0.08);
+  border: 1px solid rgba(56, 189, 248, 0.25);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: var(--accent-cyan);
+}
+
 .card-num {
   font-family: var(--font-mono);
   font-size: 0.85rem;
   font-weight: 800;
-  color: var(--accent-cyan);
-  margin-bottom: 14px;
+  color: var(--accent-purple);
 }
 
 .card-title {
@@ -813,7 +996,7 @@ body.minimal-cyber-body {
 }
 
 /* ==========================================================================
-   5. REAL PRODUCTION PROJECTS SECTION
+   5. REAL PRODUCTION PROJECTS SECTION & LOTTIE BANNER
    ========================================================================== */
 .section-projects {
   padding: 90px 0;
@@ -840,12 +1023,30 @@ body.minimal-cyber-body {
   box-shadow: 0 12px 30px rgba(0, 0, 0, 0.5);
 }
 
+.project-card-top {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 14px;
+}
+
 .proj-badge {
   font-family: var(--font-mono);
   font-size: 0.68rem;
   font-weight: 700;
   color: var(--accent-purple);
-  margin-bottom: 12px;
+}
+
+.proj-icon-svg {
+  width: 34px;
+  height: 34px;
+  border-radius: 8px;
+  background: rgba(129, 140, 248, 0.1);
+  border: 1px solid rgba(129, 140, 248, 0.25);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: var(--accent-purple);
 }
 
 .proj-title {
@@ -877,6 +1078,42 @@ body.minimal-cyber-body {
   color: #c7d2fe;
   padding: 3px 9px;
   border-radius: 6px;
+}
+
+/* Lottie Analytics Showcase Banner */
+.project-lottie-banner {
+  margin-top: 36px;
+  background: linear-gradient(135deg, rgba(15, 23, 42, 0.8) 0%, rgba(20, 32, 60, 0.7) 100%);
+  border: 1px solid var(--border-cyan);
+  border-radius: 18px;
+  padding: 20px 28px;
+  display: flex;
+  align-items: center;
+  gap: 24px;
+}
+
+.lottie-wave-box {
+  width: 140px;
+  height: 90px;
+  flex-shrink: 0;
+}
+
+.lottie-banner-info {
+  flex: 1;
+}
+
+.lottie-banner-title {
+  font-family: var(--font-heading);
+  font-size: 1.1rem;
+  font-weight: 700;
+  color: #ffffff;
+  margin-bottom: 4px;
+}
+
+.lottie-banner-desc {
+  font-size: 0.86rem;
+  color: var(--text-muted);
+  line-height: 1.5;
 }
 
 /* ==========================================================================
@@ -1011,13 +1248,14 @@ body.minimal-cyber-body {
   position: relative;
   max-width: 520px;
   width: 100%;
+  max-height: 90vh;
+  overflow-y: auto;
   background: rgba(10, 16, 31, 0.96);
   backdrop-filter: blur(30px);
   -webkit-backdrop-filter: blur(30px);
   border: 1px solid var(--border-cyan);
   border-radius: 20px;
   box-shadow: 0 25px 70px rgba(0, 0, 0, 0.8), 0 0 40px rgba(56, 189, 248, 0.3);
-  overflow: hidden;
 }
 
 .modal-accent-bar {
@@ -1173,7 +1411,10 @@ body.minimal-cyber-body {
 }
 
 .form-trust-note {
-  text-align: center;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 6px;
   font-size: 0.68rem;
   color: var(--text-dim);
   margin-top: 8px;
@@ -1232,9 +1473,9 @@ body.minimal-cyber-body {
 }
 
 /* ==========================================================================
-   9. RESPONSIVE BREAKPOINTS (ZERO HORIZONTAL OVERFLOW)
+   9. TABLET & MOBILE RESPONSIVENESS (1024px, 768px, 480px, 390px)
    ========================================================================== */
-@media (max-width: 1200px) {
+@media (max-width: 1240px) {
   .holo-card {
     position: static;
     width: 100%;
@@ -1253,18 +1494,52 @@ body.minimal-cyber-body {
   }
 }
 
-@media (max-width: 768px) {
+/* Tablet Breakpoint (768px - 1024px) */
+@media (max-width: 1024px) {
   .nav-menu {
     display: none;
   }
   
-  .hero-title {
-    font-size: 2.3rem;
+  .mobile-menu-btn {
+    display: flex;
   }
   
-  .metrics-grid,
+  .hero-title {
+    font-size: 2.8rem;
+  }
+  
   .outcome-stats {
     grid-template-columns: repeat(2, 1fr);
+    gap: 12px;
+  }
+
+  .project-lottie-banner {
+    flex-direction: column;
+    text-align: center;
+  }
+}
+
+/* Mobile Breakpoint (<= 768px) */
+@media (max-width: 768px) {
+  .hero-section {
+    padding-top: 105px;
+  }
+
+  .hero-title {
+    font-size: 2.2rem;
+  }
+  
+  .metrics-grid {
+    grid-template-columns: repeat(2, 1fr);
+    gap: 10px;
+  }
+
+  .metric-card {
+    padding: 14px 8px;
+  }
+
+  .metric-val {
+    font-size: 1.35rem;
   }
 
   .curriculum-grid,
@@ -1281,10 +1556,20 @@ body.minimal-cyber-body {
   }
   
   .outcome-title {
-    font-size: 1.8rem;
+    font-size: 1.75rem;
+  }
+
+  .modal-dialog {
+    padding: 0;
+    max-height: 85vh;
+  }
+
+  .modal-body {
+    padding: 20px 18px 24px;
   }
 }
 
+/* Small Smartphone Breakpoint (<= 480px / 390px) */
 @media (max-width: 480px) {
   .brand-frame {
     height: 40px;
@@ -1293,8 +1578,17 @@ body.minimal-cyber-body {
   .brand-img {
     height: 30px;
   }
+  .btn-enroll-nav span {
+    display: none;
+  }
+  .btn-enroll-nav {
+    padding: 8px 12px;
+  }
   .hero-title {
     font-size: 1.85rem;
+  }
+  .hero-subtitle {
+    font-size: 0.95rem;
   }
   .hero-buttons {
     flex-direction: column;
@@ -1304,5 +1598,11 @@ body.minimal-cyber-body {
   .btn-secondary-hero {
     width: 100%;
     justify-content: center;
+  }
+  .center-glass-showcase {
+    border-radius: 16px;
+  }
+  .showcase-viewport {
+    height: 260px;
   }
 }
