@@ -5,11 +5,8 @@
 
 document.addEventListener('DOMContentLoaded', () => {
   initAmbientStars();
-  initThreeJSBrain();
   initLottieAnimations();
-  initShowcaseViewSwitcher();
   initMobileDrawer();
-  initGSAPShowcase();
   initRegistrationModal();
   initFaqAccordion();
 });
