@@ -19,9 +19,6 @@
   <!-- Accessible Skip to Content Link -->
   <a href="#overview" class="skip-link">Skip to main content</a>
 
-  <!-- Ambient Background Star Canvas -->
-  <canvas id="ambientCanvas" class="ambient-stars-canvas" aria-hidden="true"></canvas>
-
   <!-- ================= SLEEK MINIMAL HEADER ================= -->
   <header class="site-header">
     <div class="header-inner">
@@ -80,19 +77,14 @@
     </div>
   </header>
 
-  <!-- ================= HERO SECTION (CINEMATIC & MINIMALISTIC) ================= -->
+  <!-- ================= HERO SECTION (CLEAN & MINIMALISTIC) ================= -->
   <main id="main">
     <section class="hero-section" id="overview">
-      <div class="hero-glow-orb orb-left" aria-hidden="true"></div>
-      <div class="hero-glow-orb orb-right" aria-hidden="true"></div>
-
       <div class="hero-content">
         
-        <!-- Cohort Badge (Clean vector sparkle, no emojis) -->
+        <!-- Cohort Badge -->
         <div class="cohort-badge">
-          <svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor" class="badge-sparkle" aria-hidden="true">
-            <path d="M12 2L14.4 9.6L22 12L14.4 14.4L12 22L9.6 14.4L2 12L9.6 9.6L12 2Z"/>
-          </svg>
+          <span class="badge-dot" aria-hidden="true"></span>
           <span>ADMISSIONS OPEN &bull; 2026 BATCH</span>
         </div>
 
@@ -106,51 +98,25 @@
           Master Deep Neural Networks, Large Language Models (LLMs), Computer Vision, and Autonomous AI Agents with 1-on-1 industry mentorship and dedicated GPU cluster access.
         </p>
 
-        <!-- Core Student Metrics (With Custom Designer SVG Icons) -->
+        <!-- Core Student Metrics (Minimalist Stat Bar) -->
         <div class="metrics-grid">
           
           <div class="metric-card">
-            <div class="metric-icon-wrap">
-              <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                <circle cx="12" cy="12" r="10"/>
-                <polyline points="12 6 12 12 16 14"/>
-              </svg>
-            </div>
             <span class="metric-val">400+ <small>Hrs</small></span>
             <span class="metric-lbl">Live Mentorship &amp; Labs</span>
           </div>
 
           <div class="metric-card">
-            <div class="metric-icon-wrap">
-              <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                <path d="M4.5 16.5c-1.5 1.26-2 5-2 5s3.74-.5 5-2c.71-.84.7-2.13-.09-2.91a2.18 2.18 0 0 0-2.91-.09z"/>
-                <path d="M12 15l-3-3a22 22 0 0 1 2-3.95A12.88 12.88 0 0 1 22 2c0 2.72-.78 7.5-6 11a22.35 22.35 0 0 1-4 2z"/>
-                <path d="M9 12H4s.55-3.03 2-4c1.62-1.08 5 0 5 0"/>
-                <path d="M12 15v5s3.03-.55 4-2c1.08-1.62 0-5 0-5"/>
-              </svg>
-            </div>
             <span class="metric-val">12+ <small>Projects</small></span>
             <span class="metric-lbl">Production AI Capstones</span>
           </div>
 
           <div class="metric-card">
-            <div class="metric-icon-wrap">
-              <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                <line x1="12" y1="1" x2="12" y2="23"/>
-                <path d="M17 5H9.5a3.5 3.5 0 0 0 0 7h5a3.5 3.5 0 0 1 0 7H6"/>
-              </svg>
-            </div>
-            <span class="metric-val">₹18.5 <small>LPA</small></span>
+            <span class="metric-val">&#8377;18.5 <small>LPA</small></span>
             <span class="metric-lbl">Average Placement CTC</span>
           </div>
 
           <div class="metric-card">
-            <div class="metric-icon-wrap">
-              <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                <path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/>
-                <polyline points="9 12 11 14 15 10"/>
-              </svg>
-            </div>
             <span class="metric-val">100%</span>
             <span class="metric-lbl">Placement Assurance</span>
           </div>
@@ -160,7 +126,6 @@
         <!-- Hero Actions -->
         <div class="hero-buttons">
           <button class="btn-primary-hero" id="heroEnrollBtn" type="button">
-            <span class="shimmer-effect"></span>
             <span>Enroll in Cohort 2026</span>
             <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4">
               <path d="M5 12h14M12 5l7 7-7 7"/>
@@ -192,7 +157,7 @@
           
           <div class="why-card">
             <div class="why-card-icon">
-              <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true">
+              <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true">
                 <path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/>
                 <circle cx="9" cy="7" r="4"/>
                 <path d="M23 21v-2a4 4 0 0 0-3-3.87"/>
@@ -201,35 +166,32 @@
             </div>
             <h3 class="why-title">15+ Years Expert Industry Faculty</h3>
             <p class="why-desc">Learn directly from senior AI researchers, principal data scientists, and quant specialists with 15+ years of live industry experience at Fortune 500 corporations.</p>
-            <div class="why-pill">Veteran Mentorship</div>
           </div>
 
           <div class="why-card">
             <div class="why-card-icon">
-              <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true">
+              <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true">
                 <path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/>
               </svg>
             </div>
             <h3 class="why-title">1-on-1 Dedicated Mentorship</h3>
             <p class="why-desc">Personalized weekly code reviews, direct architecture guidance, and private doubt-clearing sessions from Day 1 to your final corporate placement.</p>
-            <div class="why-pill">Individual Attention</div>
           </div>
 
           <div class="why-card">
             <div class="why-card-icon">
-              <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true">
+              <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true">
                 <rect x="2" y="7" width="20" height="14" rx="2" ry="2"/>
                 <path d="M16 21V5a2 2 0 0 0-2-2h-4a2 2 0 0 0-2 2v16"/>
               </svg>
             </div>
             <h3 class="why-title">Corporate Training Heritage</h3>
             <p class="why-desc">Asian Technology Hub delivers enterprise workforce AI training for Fortune 500 tech teams, bringing genuine industrial engineering standards to students.</p>
-            <div class="why-pill">Enterprise Proven</div>
           </div>
 
           <div class="why-card">
             <div class="why-card-icon">
-              <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true">
+              <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true">
                 <rect x="2" y="3" width="20" height="14" rx="2" ry="2"/>
                 <line x1="8" y1="21" x2="16" y2="21"/>
                 <line x1="12" y1="17" x2="12" y2="21"/>
@@ -237,7 +199,6 @@
             </div>
             <h3 class="why-title">3 Flexible Delivery Modes</h3>
             <p class="why-desc">Select your preferred learning format: 100% Live Interactive Online, In-Person in our air-conditioned campus tech labs, or Flexible Hybrid scheduling.</p>
-            <div class="why-pill">Online &bull; Offline &bull; Hybrid</div>
           </div>
 
         </div>
@@ -288,75 +249,39 @@
           <div class="roadmap-timeline">
             
             <div class="roadmap-step">
-              <div class="step-marker">
-                <span class="step-num">01</span>
-                <span class="step-dot"></span>
-              </div>
-              <div class="step-body">
-                <span class="step-label">PHASE 01</span>
-                <h4 class="step-title">Python Core</h4>
-                <p class="step-text">Data structures, algorithms, NumPy, Pandas, vectorization &amp; clean OOP patterns.</p>
-              </div>
+              <span class="step-num">01</span>
+              <h4 class="step-title">Python Core</h4>
+              <p class="step-text">Data structures, algorithms, NumPy, Pandas, vectorization &amp; clean OOP patterns.</p>
             </div>
 
             <div class="roadmap-step">
-              <div class="step-marker">
-                <span class="step-num">02</span>
-                <span class="step-dot"></span>
-              </div>
-              <div class="step-body">
-                <span class="step-label">PHASE 02</span>
-                <h4 class="step-title">Enterprise SQL</h4>
-                <p class="step-text">Relational schemas, complex joins, window functions, and analytics warehousing.</p>
-              </div>
+              <span class="step-num">02</span>
+              <h4 class="step-title">Enterprise SQL</h4>
+              <p class="step-text">Relational schemas, complex joins, window functions, and analytics warehousing.</p>
             </div>
 
             <div class="roadmap-step">
-              <div class="step-marker">
-                <span class="step-num">03</span>
-                <span class="step-dot"></span>
-              </div>
-              <div class="step-body">
-                <span class="step-label">PHASE 03</span>
-                <h4 class="step-title">Math &amp; Statistics</h4>
-                <p class="step-text">Linear algebra, multivariable calculus, probability theory, and hypothesis testing.</p>
-              </div>
+              <span class="step-num">03</span>
+              <h4 class="step-title">Math &amp; Statistics</h4>
+              <p class="step-text">Linear algebra, multivariable calculus, probability theory, and hypothesis testing.</p>
             </div>
 
             <div class="roadmap-step">
-              <div class="step-marker">
-                <span class="step-num">04</span>
-                <span class="step-dot"></span>
-              </div>
-              <div class="step-body">
-                <span class="step-label">PHASE 04</span>
-                <h4 class="step-title">Machine Learning</h4>
-                <p class="step-text">Regression, trees, XGBoost, LightGBM, clustering, and Bayesian optimization.</p>
-              </div>
+              <span class="step-num">04</span>
+              <h4 class="step-title">Machine Learning</h4>
+              <p class="step-text">Regression, trees, XGBoost, LightGBM, clustering, and Bayesian optimization.</p>
             </div>
 
             <div class="roadmap-step">
-              <div class="step-marker">
-                <span class="step-num">05</span>
-                <span class="step-dot"></span>
-              </div>
-              <div class="step-body">
-                <span class="step-label">PHASE 05</span>
-                <h4 class="step-title">Deep Learning &amp; AI</h4>
-                <p class="step-text">PyTorch, CNNs, Transformers, LLMs, Graph RAG, and ReAct agent swarms.</p>
-              </div>
+              <span class="step-num">05</span>
+              <h4 class="step-title">Deep Learning &amp; AI</h4>
+              <p class="step-text">PyTorch, CNNs, Transformers, LLMs, Graph RAG, and ReAct agent swarms.</p>
             </div>
 
             <div class="roadmap-step">
-              <div class="step-marker">
-                <span class="step-num">06</span>
-                <span class="step-dot"></span>
-              </div>
-              <div class="step-body">
-                <span class="step-label">PHASE 06</span>
-                <h4 class="step-title">Production MLOps</h4>
-                <p class="step-text">Docker containers, Kubernetes orchestration, NVIDIA Triton, and model CI/CD.</p>
-              </div>
+              <span class="step-num">06</span>
+              <h4 class="step-title">Production MLOps</h4>
+              <p class="step-text">Docker containers, Kubernetes orchestration, NVIDIA Triton, and model CI/CD.</p>
             </div>
 
           </div>
@@ -532,7 +457,6 @@
               <span>Backtrader</span>
               <span>FastAPI</span>
             </div>
-            <div class="proj-metric-badge">✦ Live Benchmark &bull; 420&mu;s Execution</div>
           </div>
 
           <div class="project-card">
@@ -551,7 +475,6 @@
               <span>BioGPT</span>
               <span>OpenCV</span>
             </div>
-            <div class="proj-metric-badge">✦ Diagnostic Score &bull; 99.2% ROC-AUC</div>
           </div>
 
           <div class="project-card">
@@ -571,7 +494,6 @@
               <span>Claude API</span>
               <span>Docker Sandbox</span>
             </div>
-            <div class="proj-metric-badge">✦ Swarm Architecture &bull; 4-Agent Cluster</div>
           </div>
 
         </div>
@@ -642,15 +564,6 @@
           </div>
         </div>
 
-        <!-- Integrated Lottie Analytics Demonstration -->
-        <div class="project-lottie-banner">
-          <div class="lottie-wave-box" id="lottieAnalyticsWave" role="img" aria-label="Real-time model inference and telemetry wave animation"></div>
-          <div class="lottie-banner-info">
-            <div class="lottie-banner-title">Real-Time Model Inference &amp; Telemetry</div>
-            <p class="lottie-banner-desc">Live performance benchmarks on 12 production capstones deployed on NVIDIA TensorRT &amp; Triton clusters.</p>
-          </div>
-        </div>
-
       </div>
     </section>
 
@@ -658,139 +571,136 @@
     <section class="section-outcomes" id="career">
       <div class="container">
         
-        <div class="outcome-banner">
-          <div class="outcome-content">
-            <span class="section-tag tag-light">CAREER ACCELERATION</span>
-            <h2 class="outcome-title">Guaranteed Placement Support &amp; 1-on-1 Mentorship</h2>
-            <p class="outcome-desc">
-              Every student is assigned a dedicated industry mentor from Day 1. We provide rigorous technical mock interviews, portfolio optimization, salary negotiation guidance, and direct referrals to our network of 150+ hiring partners.
-            </p>
-            
-            <div class="outcome-stats">
-              <div class="o-stat">
-                <span class="o-num">₹18.5 LPA</span>
-                <span class="o-lbl">Average CTC</span>
-              </div>
-              <div class="o-stat">
-                <span class="o-num">₹42.0 LPA</span>
-                <span class="o-lbl">Highest CTC</span>
-              </div>
-              <div class="o-stat">
-                <span class="o-num">150+</span>
-                <span class="o-lbl">Hiring Partners</span>
-              </div>
-              <div class="o-stat">
-                <span class="o-num">100%</span>
-                <span class="o-lbl">Placement Assurance</span>
-              </div>
+        <div class="section-header">
+          <span class="section-tag">CAREER ACCELERATION</span>
+          <h2 class="section-title">Guaranteed Placement Support &amp; 1-on-1 Mentorship</h2>
+          <p class="section-sub">
+            Every student is assigned a dedicated industry mentor from Day 1. We provide rigorous technical mock interviews, portfolio optimization, salary negotiation guidance, and direct referrals to our network of 150+ hiring partners.
+          </p>
+        </div>
+        
+        <div class="outcome-stats">
+          <div class="o-stat">
+            <span class="o-num">&#8377;18.5 LPA</span>
+            <span class="o-lbl">Average CTC</span>
+          </div>
+          <div class="o-stat">
+            <span class="o-num">&#8377;42.0 LPA</span>
+            <span class="o-lbl">Highest CTC</span>
+          </div>
+          <div class="o-stat">
+            <span class="o-num">150+</span>
+            <span class="o-lbl">Hiring Partners</span>
+          </div>
+          <div class="o-stat">
+            <span class="o-num">100%</span>
+            <span class="o-lbl">Placement Assurance</span>
+          </div>
+        </div>
+
+        <!-- ATH Institutional Pillars (As detailed in audio) -->
+        <div class="ath-pillars-header">
+          <span class="pillars-sub-tag">THE ATH STUDENT ADVANTAGE</span>
+          <h3 class="pillars-sub-title">What Asian Technology Hub Delivers For You</h3>
+        </div>
+
+        <div class="ath-pillars-grid">
+          
+          <div class="pillar-card">
+            <div class="pillar-icon">
+              <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true">
+                <circle cx="12" cy="12" r="10"/>
+                <path d="M12 8v4"/>
+                <path d="M12 16h.01"/>
+              </svg>
             </div>
+            <h3 class="pillar-title">Technical Mock Interviews</h3>
+            <p class="pillar-desc">Comprehensive 1-on-1 technical mock interviews simulating FAANG, Tier-1 hedge fund, and top startup algorithmic and ML rounds.</p>
+          </div>
 
-            <!-- ATH Institutional Pillars (As detailed in audio) -->
-            <div class="ath-pillars-header">
-              <span class="pillars-sub-tag">THE ATH STUDENT ADVANTAGE</span>
-              <h3 class="pillars-sub-title">What Asian Technology Hub Delivers For You</h3>
+          <div class="pillar-card">
+            <div class="pillar-icon">
+              <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true">
+                <path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/>
+                <polyline points="14 2 14 8 20 8"/>
+                <line x1="16" y1="13" x2="8" y2="13"/>
+                <line x1="16" y1="17" x2="8" y2="17"/>
+              </svg>
             </div>
+            <h3 class="pillar-title">Weekly Assignments &amp; Tests</h3>
+            <p class="pillar-desc">Hands-on problem sets and graded assessments with automated benchmarking test suites and direct mentor feedback.</p>
+          </div>
 
-            <div class="ath-pillars-grid">
-              
-              <div class="pillar-card">
-                <div class="pillar-icon">
-                  <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true">
-                    <circle cx="12" cy="12" r="10"/>
-                    <path d="M12 8v4"/>
-                    <path d="M12 16h.01"/>
-                  </svg>
-                </div>
-                <h4 class="pillar-title">Technical Mock Interviews</h4>
-                <p class="pillar-desc">Comprehensive 1-on-1 technical mock interviews simulating FAANG, Tier-1 hedge fund, and top startup algorithmic and ML rounds.</p>
-              </div>
-
-              <div class="pillar-card">
-                <div class="pillar-icon">
-                  <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true">
-                    <path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/>
-                    <polyline points="14 2 14 8 20 8"/>
-                    <line x1="16" y1="13" x2="8" y2="13"/>
-                    <line x1="16" y1="17" x2="8" y2="17"/>
-                  </svg>
-                </div>
-                <h4 class="pillar-title">Weekly Assignments &amp; Tests</h4>
-                <p class="pillar-desc">Hands-on problem sets and graded assessments with automated benchmarking test suites and direct mentor feedback.</p>
-              </div>
-
-              <div class="pillar-card">
-                <div class="pillar-icon">
-                  <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true">
-                    <path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/>
-                    <circle cx="9" cy="7" r="4"/>
-                    <path d="M23 21v-2a4 4 0 0 0-3-3.87"/>
-                    <path d="M16 3.13a4 4 0 0 1 0 7.75"/>
-                  </svg>
-                </div>
-                <h4 class="pillar-title">15+ Years Expert Trainers</h4>
-                <p class="pillar-desc">Guided directly by veteran faculty and corporate instructors with 15+ years of live software and AI engineering leadership.</p>
-              </div>
-
-              <div class="pillar-card">
-                <div class="pillar-icon">
-                  <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true">
-                    <rect x="3" y="11" width="18" height="11" rx="2" ry="2"/>
-                    <path d="M7 11V7a5 5 0 0 1 10 0v4"/>
-                  </svg>
-                </div>
-                <h4 class="pillar-title">Strictly Limited Seats</h4>
-                <p class="pillar-desc">Cohort sizes are deliberately capped to maintain low mentor-to-student ratios and guarantee dedicated high-compute GPU allocations.</p>
-              </div>
-
-              <div class="pillar-card">
-                <div class="pillar-icon">
-                  <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true">
-                    <rect x="2" y="3" width="20" height="14" rx="2" ry="2"/>
-                    <line x1="8" y1="21" x2="16" y2="21"/>
-                    <line x1="12" y1="17" x2="12" y2="21"/>
-                  </svg>
-                </div>
-                <h4 class="pillar-title">AC Campus Labs &amp; Workstations</h4>
-                <p class="pillar-desc">Physical modern, air-conditioned campus tech labs equipped with high-performance multi-GPU compute terminals and high-speed fiber.</p>
-              </div>
-
-              <div class="pillar-card">
-                <div class="pillar-icon">
-                  <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true">
-                    <circle cx="12" cy="12" r="10"/>
-                    <polygon points="10 8 16 12 10 16 10 8"/>
-                  </svg>
-                </div>
-                <h4 class="pillar-title">3 Class Formats (Online, Offline &amp; Hybrid)</h4>
-                <p class="pillar-desc">We accommodate all student schedules with 100% Live Interactive Online, In-Person Offline Classroom, and Flexible Hybrid models.</p>
-              </div>
-
+          <div class="pillar-card">
+            <div class="pillar-icon">
+              <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true">
+                <path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/>
+                <circle cx="9" cy="7" r="4"/>
+                <path d="M23 21v-2a4 4 0 0 0-3-3.87"/>
+                <path d="M16 3.13a4 4 0 0 1 0 7.75"/>
+              </svg>
             </div>
+            <h3 class="pillar-title">15+ Years Expert Trainers</h3>
+            <p class="pillar-desc">Guided directly by veteran faculty and corporate instructors with 15+ years of live software and AI engineering leadership.</p>
+          </div>
 
-            <div class="outcome-cta">
-              <button class="btn-enroll-large" id="outcomeEnrollBtn" type="button">
-                <span>Enroll Now &amp; Reserve Your Seat</span>
-                <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" aria-hidden="true">
-                  <path d="M5 12h14M12 5l7 7-7 7"/>
-                </svg>
-              </button>
+          <div class="pillar-card">
+            <div class="pillar-icon">
+              <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true">
+                <rect x="3" y="11" width="18" height="11" rx="2" ry="2"/>
+                <path d="M7 11V7a5 5 0 0 1 10 0v4"/>
+              </svg>
             </div>
+            <h3 class="pillar-title">Strictly Limited Seats</h3>
+            <p class="pillar-desc">Cohort sizes are deliberately capped to maintain low mentor-to-student ratios and guarantee dedicated high-compute GPU allocations.</p>
+          </div>
 
-            <!-- Verified Global Hiring Network -->
-            <div class="hiring-partners-wrap">
-              <span class="hiring-partners-label">FELLOWS RECRUITED ACROSS GLOBAL AI TEAMS</span>
-              <div class="hiring-badges-row">
-                <span class="partner-badge">Google DeepMind</span>
-                <span class="partner-badge">Microsoft AI</span>
-                <span class="partner-badge">NVIDIA</span>
-                <span class="partner-badge">Amazon AWS</span>
-                <span class="partner-badge">Goldman Sachs</span>
-                <span class="partner-badge">J.P. Morgan</span>
-                <span class="partner-badge">Morgan Stanley</span>
-                <span class="partner-badge">Meta AI</span>
-              </div>
+          <div class="pillar-card">
+            <div class="pillar-icon">
+              <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true">
+                <rect x="2" y="3" width="20" height="14" rx="2" ry="2"/>
+                <line x1="8" y1="21" x2="16" y2="21"/>
+                <line x1="12" y1="17" x2="12" y2="21"/>
+              </svg>
             </div>
+            <h3 class="pillar-title">AC Campus Labs &amp; Workstations</h3>
+            <p class="pillar-desc">Physical modern, air-conditioned campus tech labs equipped with high-performance multi-GPU compute terminals and high-speed fiber.</p>
+          </div>
 
+          <div class="pillar-card">
+            <div class="pillar-icon">
+              <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true">
+                <circle cx="12" cy="12" r="10"/>
+                <polygon points="10 8 16 12 10 16 10 8"/>
+              </svg>
+            </div>
+            <h3 class="pillar-title">3 Class Formats (Online, Offline &amp; Hybrid)</h3>
+            <p class="pillar-desc">We accommodate all student schedules with 100% Live Interactive Online, In-Person Offline Classroom, and Flexible Hybrid models.</p>
+          </div>
+
+        </div>
+
+        <div class="outcome-cta">
+          <button class="btn-enroll-large" id="outcomeEnrollBtn" type="button">
+            <span>Enroll Now &amp; Reserve Your Seat</span>
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" aria-hidden="true">
+              <path d="M5 12h14M12 5l7 7-7 7"/>
+            </svg>
+          </button>
+        </div>
+
+        <!-- Verified Global Hiring Network -->
+        <div class="hiring-partners-wrap">
+          <span class="hiring-partners-label">FELLOWS RECRUITED ACROSS GLOBAL AI TEAMS</span>
+          <div class="hiring-badges-row">
+            <span class="partner-badge">Google DeepMind</span>
+            <span class="partner-badge">Microsoft AI</span>
+            <span class="partner-badge">NVIDIA</span>
+            <span class="partner-badge">Amazon AWS</span>
+            <span class="partner-badge">Goldman Sachs</span>
+            <span class="partner-badge">J.P. Morgan</span>
+            <span class="partner-badge">Morgan Stanley</span>
+            <span class="partner-badge">Meta AI</span>
           </div>
         </div>
 
