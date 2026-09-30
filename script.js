@@ -4,10 +4,18 @@
  */
 
 document.addEventListener('DOMContentLoaded', () => {
+  initLenisSmoothScroll();
+  initTopProgressBar();
+  initCustomDoodleCursor();
+  initHeroEntrance();
   initAmbientStars();
   initLottieAnimations();
   initEducationalDoodles();
   initGsapScrollAnimations();
+  init3DCardTilt();
+  initMagneticButtons();
+  initCardFloatingPhysics();
+  initRoadmapStepHighlights();
   initMobileDrawer();
   initRegistrationModal();
   initFaqAccordion();
@@ -1250,6 +1258,270 @@ function initGsapScrollAnimations() {
   // Refresh ScrollTrigger after dynamic resources load
   window.addEventListener('load', () => {
     ScrollTrigger.refresh();
+  });
+}
+
+/* ==========================================================================
+   3.3. LENIS MOMENTUM SMOOTH SCROLL INTEGRATION WITH GSAP
+   ========================================================================== */
+function initLenisSmoothScroll() {
+  if (typeof Lenis === 'undefined' || window.matchMedia('(prefers-reduced-motion: reduce)').matches) return;
+  try {
+    const lenis = new Lenis({
+      duration: 1.15,
+      easing: (t) => Math.min(1, 1.001 - Math.pow(2, -10 * t)),
+      smoothWheel: true,
+      touchMultiplier: 1.2
+    });
+    if (typeof ScrollTrigger !== 'undefined') {
+      lenis.on('scroll', ScrollTrigger.update);
+      gsap.ticker.add((time) => {
+        lenis.raf(time * 1000);
+      });
+      gsap.ticker.lagSmoothing(0);
+    }
+  } catch (e) {
+    console.warn('Lenis initialization deferred:', e);
+  }
+}
+
+/* ==========================================================================
+   3.4. TOP READING PROGRESS BAR HUD & TRAVELING PENCIL
+   ========================================================================== */
+function initTopProgressBar() {
+  const bar = document.getElementById('topProgressBar');
+  const percent = document.getElementById('topProgressPercent');
+  if (!bar || typeof ScrollTrigger === 'undefined') return;
+
+  ScrollTrigger.create({
+    trigger: document.body,
+    start: 'top top',
+    end: 'bottom bottom',
+    onUpdate: (self) => {
+      const p = Math.round(self.progress * 100);
+      bar.style.width = `${p}%`;
+      if (percent) percent.textContent = `${p}%`;
+    }
+  });
+}
+
+/* ==========================================================================
+   3.5. CUSTOM EDUCATIONAL DOODLE CURSOR FOLLOWER
+   ========================================================================== */
+function initCustomDoodleCursor() {
+  const cursor = document.getElementById('doodleCursor');
+  if (!cursor || window.matchMedia('(max-width: 1024px)').matches || window.matchMedia('(pointer: coarse)').matches) return;
+  const dot = cursor.querySelector('.cursor-dot');
+  const ring = cursor.querySelector('.cursor-ring');
+  if (!dot || !ring || typeof gsap === 'undefined') return;
+
+  const setDotX = gsap.quickTo(dot, 'x', { duration: 0.05, ease: 'power3' });
+  const setDotY = gsap.quickTo(dot, 'y', { duration: 0.05, ease: 'power3' });
+  const setRingX = gsap.quickTo(ring, 'x', { duration: 0.2, ease: 'power2.out' });
+  const setRingY = gsap.quickTo(ring, 'y', { duration: 0.2, ease: 'power2.out' });
+
+  window.addEventListener('mousemove', (e) => {
+    setDotX(e.clientX);
+    setDotY(e.clientY);
+    setRingX(e.clientX);
+    setRingY(e.clientY);
+  });
+
+  const hoverTargets = document.querySelectorAll('a, button, .curriculum-card, .project-card, .why-card, .metric-card, .doodle-item, .doodle-ambient');
+  hoverTargets.forEach((target) => {
+    target.addEventListener('mouseenter', () => cursor.classList.add('hovering'));
+    target.addEventListener('mouseleave', () => cursor.classList.remove('hovering'));
+  });
+}
+
+/* ==========================================================================
+   3.6. GSAP STAGGERED 3D HERO ENTRANCE
+   ========================================================================== */
+function initHeroEntrance() {
+  if (typeof gsap === 'undefined' || window.matchMedia('(prefers-reduced-motion: reduce)').matches) return;
+  const tl = gsap.timeline({ delay: 0.15 });
+
+  tl.from('.cohort-badge', {
+    opacity: 0,
+    y: -18,
+    scale: 0.9,
+    duration: 0.55,
+    ease: 'back.out(1.8)'
+  })
+  .from('.hero-title', {
+    opacity: 0,
+    y: 30,
+    duration: 0.75,
+    ease: 'power3.out'
+  }, '-=0.25')
+  .from('.hero-subtitle', {
+    opacity: 0,
+    y: 18,
+    duration: 0.65,
+    ease: 'power2.out'
+  }, '-=0.35')
+  .from('.metric-card', {
+    opacity: 0,
+    y: 22,
+    stagger: 0.08,
+    duration: 0.55,
+    ease: 'back.out(1.4)'
+  }, '-=0.3')
+  .from('.btn-primary-hero, .btn-secondary-hero', {
+    opacity: 0,
+    scale: 0.92,
+    stagger: 0.1,
+    duration: 0.5,
+    ease: 'back.out(2)'
+  }, '-=0.2')
+  .from('.hero-lottie-badge', {
+    opacity: 0,
+    y: 20,
+    duration: 0.6,
+    ease: 'power2.out'
+  }, '-=0.2');
+}
+
+/* ==========================================================================
+   3.7. GSAP 3D INTERACTIVE CARD TILT WITH STICKER PARALLAX
+   ========================================================================== */
+function init3DCardTilt() {
+  if (typeof gsap === 'undefined' || window.matchMedia('(prefers-reduced-motion: reduce)').matches || window.matchMedia('(pointer: coarse)').matches) return;
+  const tiltCards = document.querySelectorAll('.curriculum-card, .project-card, .why-card');
+
+  tiltCards.forEach((card) => {
+    card.addEventListener('mousemove', (e) => {
+      const rect = card.getBoundingClientRect();
+      const x = e.clientX - rect.left;
+      const y = e.clientY - rect.top;
+      const cx = rect.width / 2;
+      const cy = rect.height / 2;
+      const rotX = ((y - cy) / cy) * -8;
+      const rotY = ((x - cx) / cx) * 8;
+
+      gsap.to(card, {
+        rotateX: rotX,
+        rotateY: rotY,
+        scale: 1.02,
+        transformPerspective: 900,
+        transformOrigin: 'center center',
+        duration: 0.25,
+        ease: 'power2.out',
+        overwrite: 'auto'
+      });
+
+      const sticker = card.querySelector('.card-doodle-sticker');
+      if (sticker) {
+        gsap.to(sticker, {
+          x: rotY * 1.6,
+          y: rotX * -1.6,
+          scale: 1.25,
+          duration: 0.25,
+          overwrite: 'auto'
+        });
+      }
+    });
+
+    card.addEventListener('mouseleave', () => {
+      gsap.to(card, {
+        rotateX: 0,
+        rotateY: 0,
+        scale: 1,
+        duration: 0.55,
+        ease: 'power2.out',
+        overwrite: 'auto'
+      });
+      const sticker = card.querySelector('.card-doodle-sticker');
+      if (sticker) {
+        gsap.to(sticker, {
+          x: 0,
+          y: 0,
+          scale: 1,
+          duration: 0.55,
+          overwrite: 'auto'
+        });
+      }
+    });
+  });
+}
+
+/* ==========================================================================
+   3.8. GSAP MAGNETIC BUTTON ATTRACTION
+   ========================================================================== */
+function initMagneticButtons() {
+  if (typeof gsap === 'undefined' || window.matchMedia('(prefers-reduced-motion: reduce)').matches || window.matchMedia('(pointer: coarse)').matches) return;
+  const buttons = document.querySelectorAll('.btn-primary-hero, .btn-enroll-nav, .btn-enroll-large, .btn-secondary-hero');
+
+  buttons.forEach((btn) => {
+    btn.addEventListener('mousemove', (e) => {
+      const rect = btn.getBoundingClientRect();
+      const pullX = (e.clientX - rect.left - rect.width / 2) * 0.35;
+      const pullY = (e.clientY - rect.top - rect.height / 2) * 0.35;
+
+      gsap.to(btn, {
+        x: pullX,
+        y: pullY,
+        duration: 0.25,
+        ease: 'power1.out',
+        overwrite: 'auto'
+      });
+    });
+
+    btn.addEventListener('mouseleave', () => {
+      gsap.to(btn, {
+        x: 0,
+        y: 0,
+        duration: 0.7,
+        ease: 'elastic.out(1.2, 0.4)',
+        overwrite: 'auto'
+      });
+    });
+  });
+}
+
+/* ==========================================================================
+   3.9. GSAP AMBIENT CARD FLOATING DRIFT (ZERO GRAVITY)
+   ========================================================================== */
+function initCardFloatingPhysics() {
+  if (typeof gsap === 'undefined' || window.matchMedia('(prefers-reduced-motion: reduce)').matches) return;
+  const cards = document.querySelectorAll('.curriculum-card, .why-card, .project-card');
+
+  cards.forEach((card, idx) => {
+    const dir = idx % 2 === 0 ? 1 : -1;
+    const dist = 3 + (idx % 3) * 1.5;
+    const dur = 3.5 + (idx % 4) * 0.6;
+
+    gsap.to(card, {
+      y: `+=${dir * dist}`,
+      duration: dur,
+      repeat: -1,
+      yoyo: true,
+      ease: 'sine.inOut',
+      delay: (idx % 6) * 0.25
+    });
+  });
+}
+
+/* ==========================================================================
+   3.10. ROADMAP STEP HIGHLIGHT HALO & SEQUENTIAL SCROLL REVEAL
+   ========================================================================== */
+function initRoadmapStepHighlights() {
+  if (typeof gsap === 'undefined' || typeof ScrollTrigger === 'undefined' || window.matchMedia('(prefers-reduced-motion: reduce)').matches) return;
+  const steps = document.querySelectorAll('.roadmap-step');
+
+  steps.forEach((step, idx) => {
+    ScrollTrigger.create({
+      trigger: step,
+      start: 'top 85%',
+      onEnter: () => {
+        const num = step.querySelector('.step-num');
+        if (num) {
+          gsap.timeline()
+            .to(num, { scale: 1.25, color: '#1d4ed8', duration: 0.25, ease: 'back.out(2)' })
+            .to(num, { scale: 1, color: '#2563eb', duration: 0.3 });
+        }
+      }
+    });
   });
 }
 
