@@ -38,6 +38,16 @@ def test_page():
         # Close popup
         page.click("#closeModalBtn")
         page.wait_for_timeout(500)
+
+        # Test Automatic Popup after 5 seconds on a fresh page
+        print("Testing Automatic 5-Second Popup on fresh tab...")
+        test_tab = browser.new_page(viewport={"width": 1440, "height": 900})
+        test_tab.goto("http://localhost:8080/index.html", wait_until="networkidle")
+        test_tab.wait_for_timeout(5500)
+        auto_opened = test_tab.evaluate("() => document.getElementById('modalStage').classList.contains('active')")
+        print(f"Auto-popup opened after 5s: {auto_opened}")
+        test_tab.screenshot(path="auto_popup_5s.png", full_page=False)
+        test_tab.close()
         
         # Test Mobile 390x844
         mobile_page = browser.new_page(viewport={"width": 390, "height": 844})

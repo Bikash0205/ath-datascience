@@ -332,6 +332,13 @@ function initRegistrationModal() {
     if (stage) stage.classList.remove('active');
   }
 
+  // Automatic popup trigger in 5 seconds
+  setTimeout(() => {
+    if (!isOpen) {
+      openModal();
+    }
+  }, 5000);
+
   [navEnrollBtn, heroEnrollBtn, outcomeEnrollBtn].forEach(btn => {
     if (btn) {
       btn.addEventListener('click', (e) => {
