@@ -53,18 +53,34 @@ function initAmbientStars() {
     });
   }
 
-  // Interactive mouse chalk doodle trail particles
-  const trailParticles = [];
-  const maxTrail = 35;
+  // Interactive continuous mouse chalk ribbon
+  const mouseRibbon = [];
+  const maxRibbonPoints = 28;
 
   window.addEventListener('mousemove', (e) => {
     if (prefersReducedMotion) return;
-    if (trailParticles.length < maxTrail && Math.random() > 0.4) {
+    mouseRibbon.push({
+      x: e.clientX,
+      y: e.clientY,
+      life: 1.0
+    });
+    if (mouseRibbon.length > maxRibbonPoints) {
+      mouseRibbon.shift();
+    }
+  }, { passive: true });
+
+  // Interactive mouse chalk doodle trail particles
+  const trailParticles = [];
+  const maxTrail = 40;
+
+  window.addEventListener('mousemove', (e) => {
+    if (prefersReducedMotion) return;
+    if (trailParticles.length < maxTrail && Math.random() > 0.45) {
       trailParticles.push({
         x: e.clientX,
         y: e.clientY + window.scrollY,
-        vx: (Math.random() - 0.5) * 1.2,
-        vy: (Math.random() - 0.5) * 1.2 - 0.4,
+        vx: (Math.random() - 0.5) * 1.4,
+        vy: (Math.random() - 0.5) * 1.4 - 0.4,
         size: Math.random() * 10 + 8,
         symbol: mathSymbols[Math.floor(Math.random() * mathSymbols.length)],
         life: 1.0,
@@ -77,10 +93,10 @@ function initAmbientStars() {
   // Click burst doodle chalk particles
   window.addEventListener('click', (e) => {
     if (prefersReducedMotion) return;
-    const burstCount = 6;
+    const burstCount = 8;
     for (let b = 0; b < burstCount; b++) {
       const angle = (b / burstCount) * Math.PI * 2 + (Math.random() - 0.5);
-      const speed = Math.random() * 2.5 + 1.5;
+      const speed = Math.random() * 2.8 + 1.8;
       trailParticles.push({
         x: e.clientX,
         y: e.clientY + window.scrollY,
@@ -94,6 +110,30 @@ function initAmbientStars() {
       });
     }
   }, { passive: true });
+
+  // Live Automated Whiteboard Ghost Sketcher (Constantly sketching AI & Math formulas!)
+  const activeSketches = [];
+  const sketchTypes = ['sineWave', 'neuralNet', 'normalDist', 'eulerSpiral', 'softmaxAttn'];
+  let lastSketchTime = Date.now();
+
+  function spawnGhostSketch() {
+    if (activeSketches.length >= 3) return;
+    const type = sketchTypes[Math.floor(Math.random() * sketchTypes.length)];
+    const margin = 110;
+    const cx = Math.random() * (width - margin * 2) + margin;
+    const cy = Math.random() * (height - margin * 2) + margin;
+    activeSketches.push({
+      type,
+      cx,
+      cy,
+      progress: 0,
+      phase: 'drawing',
+      holdTime: 0,
+      alpha: 0,
+      maxAlpha: Math.random() * 0.24 + 0.28,
+      scale: Math.random() * 0.35 + 0.85
+    });
+  }
 
   // Scroll reaction drift boost
   let scrollBoostY = 0;
@@ -113,6 +153,254 @@ function initAmbientStars() {
     scrollBoostY *= 0.92;
 
     // 1. Render ambient stars & floating math doodles
+    for (let i = 0; i < stars.length; i++) {
+      const s = stars[i];
+      if (!prefersReducedMotion) {
+        s.x += s.vx;
+        s.y += s.vy + scrollBoostY;
+        s.pulse += 0.02;
+        s.rot += s.rotSpeed;
+
+        if (s.x < 0) s.x = width;
+        if (s.x > width) s.x = 0;
+        if (s.y < 0) s.y = height;
+        if (s.y > height) s.y = 0;
+      }
+
+      const currentAlpha = s.alpha * (0.6 + 0.4 * Math.sin(s.pulse));
+
+      if (s.symbol) {
+        ctx.save();
+        ctx.translate(s.x, s.y);
+        ctx.rotate(s.rot);
+        ctx.font = `${s.symbolSize}px 'JetBrains Mono', monospace, sans-serif`;
+        ctx.fillStyle = `rgba(37, 99, 235, ${currentAlpha * 0.28})`;
+        ctx.textAlign = 'center';
+        ctx.textBaseline = 'middle';
+        ctx.fillText(s.symbol, 0, 0);
+        ctx.restore();
+      } else {
+        ctx.beginPath();
+        ctx.arc(s.x, s.y, s.radius, 0, Math.PI * 2);
+        ctx.fillStyle = `rgba(37, 99, 235, ${currentAlpha * 0.32})`;
+        ctx.fill();
+      }
+
+      // Constellation links between nearby stars
+      for (let j = i + 1; j < stars.length; j++) {
+        const s2 = stars[j];
+        const dx = s.x - s2.x;
+        const dy = s.y - s2.y;
+        const dist = Math.sqrt(dx * dx + dy * dy);
+
+        if (dist < 80) {
+          ctx.beginPath();
+          ctx.moveTo(s.x, s.y);
+          ctx.lineTo(s2.x, s2.y);
+          ctx.strokeStyle = `rgba(37, 99, 235, ${(1 - dist / 80) * 0.045})`;
+          ctx.lineWidth = 0.6;
+          ctx.stroke();
+        }
+      }
+    }
+
+    // 2. Render live Ghost Whiteboard Sketches
+    const now = Date.now();
+    if (now - lastSketchTime > 2200 && !prefersReducedMotion) {
+      lastSketchTime = now;
+      spawnGhostSketch();
+    }
+
+    for (let sIdx = activeSketches.length - 1; sIdx >= 0; sIdx--) {
+      const gs = activeSketches[sIdx];
+      if (gs.phase === 'drawing') {
+        gs.progress += 0.016;
+        gs.alpha = Math.min(gs.maxAlpha, gs.alpha + 0.02);
+        if (gs.progress >= 1.0) {
+          gs.progress = 1.0;
+          gs.phase = 'holding';
+          gs.holdTime = now;
+        }
+      } else if (gs.phase === 'holding') {
+        if (now - gs.holdTime > 2500) {
+          gs.phase = 'fading';
+        }
+      } else if (gs.phase === 'fading') {
+        gs.alpha -= 0.008;
+        if (gs.alpha <= 0) {
+          activeSketches.splice(sIdx, 1);
+          continue;
+        }
+      }
+
+      ctx.save();
+      ctx.translate(gs.cx, gs.cy);
+      ctx.scale(gs.scale, gs.scale);
+      ctx.strokeStyle = `rgba(37, 99, 235, ${gs.alpha})`;
+      ctx.fillStyle = `rgba(37, 99, 235, ${gs.alpha})`;
+      ctx.lineWidth = 1.8;
+      ctx.lineCap = 'round';
+      ctx.lineJoin = 'round';
+
+      let penTip = null;
+
+      if (gs.type === 'sineWave') {
+        ctx.beginPath();
+        ctx.moveTo(-60, 0); ctx.lineTo(60, 0);
+        ctx.moveTo(0, -35); ctx.lineTo(0, 35);
+        ctx.stroke();
+
+        const totalPoints = 60;
+        const drawCount = Math.floor(totalPoints * gs.progress);
+        if (drawCount > 1) {
+          ctx.beginPath();
+          for (let p = 0; p < drawCount; p++) {
+            const px = -55 + (p / totalPoints) * 110;
+            const py = -Math.sin((p / totalPoints) * Math.PI * 4) * 24;
+            if (p === 0) ctx.moveTo(px, py);
+            else ctx.lineTo(px, py);
+            if (p === drawCount - 1) penTip = { x: px, y: py };
+          }
+          ctx.stroke();
+        }
+        if (gs.progress > 0.6) {
+          ctx.font = "11px 'JetBrains Mono', monospace";
+          ctx.fillText("sin(ωt)", 15, -20);
+        }
+      } else if (gs.type === 'normalDist') {
+        ctx.beginPath();
+        ctx.moveTo(-65, 25); ctx.lineTo(65, 25);
+        ctx.moveTo(0, 25); ctx.lineTo(0, -35);
+        ctx.stroke();
+
+        const totalPoints = 50;
+        const drawCount = Math.floor(totalPoints * gs.progress);
+        if (drawCount > 1) {
+          ctx.beginPath();
+          for (let p = 0; p < drawCount; p++) {
+            const normX = -2.5 + (p / totalPoints) * 5.0;
+            const px = normX * 24;
+            const py = 25 - Math.exp(-(normX * normX) / 2) * 55;
+            if (p === 0) ctx.moveTo(px, py);
+            else ctx.lineTo(px, py);
+            if (p === drawCount - 1) penTip = { x: px, y: py };
+          }
+          ctx.stroke();
+        }
+        if (gs.progress > 0.7) {
+          ctx.font = "11px 'JetBrains Mono', monospace";
+          ctx.fillText("N(μ, σ²)", 12, -22);
+        }
+      } else if (gs.type === 'neuralNet') {
+        const inNodes = [-18, 18];
+        const hidNodes = [-26, 0, 26];
+        const outNode = 0;
+
+        const connProgress = Math.min(1, gs.progress * 1.5);
+        ctx.beginPath();
+        inNodes.forEach(iy => {
+          hidNodes.forEach(hy => {
+            ctx.moveTo(-45, iy);
+            ctx.lineTo(-45 + 45 * connProgress, iy + (hy - iy) * connProgress);
+          });
+        });
+        hidNodes.forEach(hy => {
+          ctx.moveTo(0, hy);
+          ctx.lineTo(45 * connProgress, hy + (outNode - hy) * connProgress);
+        });
+        ctx.stroke();
+
+        if (gs.progress > 0.2) {
+          inNodes.forEach(iy => {
+            ctx.beginPath(); ctx.arc(-45, iy, 4, 0, Math.PI * 2); ctx.stroke();
+          });
+        }
+        if (gs.progress > 0.5) {
+          hidNodes.forEach(hy => {
+            ctx.beginPath(); ctx.arc(0, hy, 4, 0, Math.PI * 2); ctx.stroke();
+          });
+        }
+        if (gs.progress > 0.8) {
+          ctx.beginPath(); ctx.arc(45, outNode, 4, 0, Math.PI * 2); ctx.stroke();
+          ctx.font = "10px 'JetBrains Mono', monospace";
+          ctx.fillText("σ(Wx+b)", 18, 22);
+        }
+      } else if (gs.type === 'eulerSpiral') {
+        const totalSteps = 45;
+        const drawSteps = Math.floor(totalSteps * gs.progress);
+        if (drawSteps > 1) {
+          ctx.beginPath();
+          for (let s = 0; s < drawSteps; s++) {
+            const rad = s * 0.18;
+            const r = s * 0.9;
+            const px = Math.cos(rad) * r;
+            const py = Math.sin(rad) * r;
+            if (s === 0) ctx.moveTo(px, py);
+            else ctx.lineTo(px, py);
+            if (s === drawSteps - 1) penTip = { x: px, y: py };
+          }
+          ctx.stroke();
+        }
+        if (gs.progress > 0.7) {
+          ctx.font = "11px 'JetBrains Mono', monospace";
+          ctx.fillText("∇f(θ)", 15, -15);
+        }
+      } else if (gs.type === 'softmaxAttn') {
+        ctx.strokeRect(-35, -25, 70, 50);
+        ctx.beginPath();
+        ctx.moveTo(-35, 0); ctx.lineTo(35, 0);
+        ctx.moveTo(0, -25); ctx.lineTo(0, 25);
+        ctx.stroke();
+
+        if (gs.progress > 0.5) {
+          ctx.beginPath();
+          ctx.arc(0, 0, 15 * gs.progress, 0, Math.PI * 2);
+          ctx.stroke();
+        }
+        if (gs.progress > 0.7) {
+          ctx.font = "10px 'JetBrains Mono', monospace";
+          ctx.fillText("QKᵀ/√d", -20, -30);
+        }
+      }
+
+      if (penTip && gs.phase === 'drawing') {
+        ctx.fillStyle = '#2563eb';
+        ctx.beginPath();
+        ctx.arc(penTip.x, penTip.y, 2.5, 0, Math.PI * 2);
+        ctx.fill();
+        ctx.font = "12px sans-serif";
+        ctx.fillText("✦", penTip.x + 4, penTip.y - 4);
+      }
+
+      ctx.restore();
+    }
+
+    // 3. Render continuous chalk ribbon following mouse
+    for (let r = 0; r < mouseRibbon.length; r++) {
+      mouseRibbon[r].life -= 0.035;
+    }
+    while (mouseRibbon.length > 0 && mouseRibbon[0].life <= 0) {
+      mouseRibbon.shift();
+    }
+    if (mouseRibbon.length > 1) {
+      ctx.save();
+      ctx.lineCap = 'round';
+      ctx.lineJoin = 'round';
+      for (let r = 1; r < mouseRibbon.length; r++) {
+        const p1 = mouseRibbon[r - 1];
+        const p2 = mouseRibbon[r];
+        const alpha = p2.life * 0.35;
+        ctx.beginPath();
+        ctx.moveTo(p1.x, p1.y);
+        ctx.lineTo(p2.x, p2.y);
+        ctx.strokeStyle = `rgba(37, 99, 235, ${alpha})`;
+        ctx.lineWidth = p2.life * 4.5 + 0.5;
+        ctx.stroke();
+      }
+      ctx.restore();
+    }
+
+    // 4. Render active mouse chalk doodle trail
     for (let i = 0; i < stars.length; i++) {
       const s = stars[i];
       if (!prefersReducedMotion) {
@@ -709,9 +997,46 @@ function initEducationalDoodles() {
           }
         });
       });
+
+      // 5.1. Wavy Section Divider Stroke Drawing on Scroll
+      const dividers = document.querySelectorAll('.doodle-section-divider');
+      dividers.forEach((divider) => {
+        const path = divider.querySelector('.doodle-divider-path');
+        if (path) {
+          const len = 1200;
+          path.style.strokeDasharray = len;
+          path.style.strokeDashoffset = len;
+          ScrollTrigger.create({
+            trigger: divider,
+            start: 'top 88%',
+            end: 'top 35%',
+            scrub: 1.2,
+            onUpdate: (self) => {
+              path.style.strokeDashoffset = len * (1 - self.progress);
+            }
+          });
+        }
+      });
+
+      // 5.2. Floating Math & AI Formula Chips Parallax Scrub
+      const formulaChips = document.querySelectorAll('.formula-chip');
+      formulaChips.forEach((chip) => {
+        const speed = parseFloat(chip.getAttribute('data-speed')) || 0.3;
+        gsap.to(chip, {
+          y: speed * 160,
+          rotation: (speed > 0 ? 8 : -8),
+          ease: 'none',
+          scrollTrigger: {
+            trigger: '#mainContent',
+            start: 'top top',
+            end: 'bottom bottom',
+            scrub: 1.2
+          }
+        });
+      });
     }
 
-    // 6. Dynamic Scroll-Velocity Doodle Reaction (Constantly active as user scrolls!)
+    // 6. Dynamic Scroll-Velocity Doodle Reaction & Pencil Sparks
     let lastScrollPos = window.scrollY;
     let velocityTimer = null;
     window.addEventListener('scroll', () => {
@@ -719,18 +1044,37 @@ function initEducationalDoodles() {
       const speed = Math.abs(currentScroll - lastScrollPos);
       lastScrollPos = currentScroll;
 
-      if (speed > 6) {
-        const energy = Math.min(speed / 25, 1.4);
-        gsap.to('.doodle-item, .doodle-ambient', {
-          scale: 1 + energy * 0.07,
+      if (speed > 5) {
+        const energy = Math.min(speed / 20, 1.5);
+        gsap.to('.doodle-item, .doodle-ambient, .card-doodle-sticker', {
+          scale: 1 + energy * 0.08,
+          rotation: (Math.random() > 0.5 ? 4 : -4) * energy,
           duration: 0.15,
           overwrite: 'auto'
         });
 
+        // Spawn spark from traveling pencil when scrolling fast
+        const pencil = document.getElementById('globalTravelingPencil');
+        if (pencil && Math.random() > 0.45 && typeof trailParticles !== 'undefined') {
+          const pRect = pencil.getBoundingClientRect();
+          trailParticles.push({
+            x: pRect.left + 16,
+            y: pRect.top + window.scrollY + 16,
+            vx: (Math.random() - 0.5) * 2.2,
+            vy: (Math.random() - 0.5) * 2.2 - 0.5,
+            size: 13,
+            symbol: '✦',
+            life: 0.9,
+            decay: 0.03,
+            rot: Math.random() * Math.PI * 2
+          });
+        }
+
         clearTimeout(velocityTimer);
         velocityTimer = setTimeout(() => {
-          gsap.to('.doodle-item, .doodle-ambient', {
+          gsap.to('.doodle-item, .doodle-ambient, .card-doodle-sticker', {
             scale: 1,
+            rotation: 0,
             duration: 0.6,
             ease: 'power2.out'
           });
@@ -788,6 +1132,38 @@ function initEducationalDoodles() {
             repeat: 1,
             ease: 'back.out(2)'
           });
+        }
+      });
+    });
+
+    // 9. Interactive Card & Doodle Click Shockwave + Chalk Explosions
+    const clickTargets = document.querySelectorAll('.curriculum-card, .project-card, .why-card, .pillar-card, .doodle-item, .doodle-ambient, .card-doodle-sticker, .metric-card, .btn-primary-hero, .btn-enroll-nav');
+    clickTargets.forEach((target) => {
+      target.addEventListener('click', (e) => {
+        gsap.timeline()
+          .to(target, { scale: 0.93, duration: 0.08, ease: 'power1.in' })
+          .to(target, { scale: 1.05, duration: 0.15, ease: 'back.out(2)' })
+          .to(target, { scale: 1, duration: 0.12 });
+
+        if (typeof trailParticles !== 'undefined') {
+          const clickX = e.clientX;
+          const clickY = e.clientY + window.scrollY;
+          const sparks = ['✦', '∑', '√', 'π', '0', '1', 'λ', '∆', '×', '+'];
+          for (let i = 0; i < 10; i++) {
+            const ang = (i / 10) * Math.PI * 2 + (Math.random() - 0.5);
+            const spd = Math.random() * 3 + 2;
+            trailParticles.push({
+              x: clickX,
+              y: clickY,
+              vx: Math.cos(ang) * spd,
+              vy: Math.sin(ang) * spd - 0.8,
+              size: Math.random() * 8 + 12,
+              symbol: sparks[i % sparks.length],
+              life: 1.0,
+              decay: 0.022,
+              rot: Math.random() * Math.PI * 2
+            });
+          }
         }
       });
     });

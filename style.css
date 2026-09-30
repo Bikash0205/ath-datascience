@@ -2554,7 +2554,8 @@ body.minimal-cyber-body {
 }
 
 .curriculum-card:hover .card-doodle-sticker,
-.project-card:hover .card-doodle-sticker {
+.project-card:hover .card-doodle-sticker,
+.why-card:hover .card-doodle-sticker {
   opacity: 1;
   transform: scale(1.22) rotate(8deg);
   animation: doodleHandJitter 0.35s steps(2, jump-none) infinite alternate;
@@ -2564,6 +2565,125 @@ body.minimal-cyber-body {
   0% { transform: scale(1.22) rotate(6deg) translate(0, 0); }
   50% { transform: scale(1.24) rotate(9deg) translate(1px, -1px); }
   100% { transform: scale(1.2) rotate(7deg) translate(-1px, 1px); }
+}
+
+/* Wavy Hand-Drawn Section Dividers */
+.doodle-section-divider {
+  position: relative;
+  width: 100%;
+  max-width: 1100px;
+  margin: 36px auto;
+  padding: 0 20px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  pointer-events: none;
+  overflow: visible;
+}
+
+.doodle-divider-svg {
+  width: 100%;
+  height: 32px;
+  display: block;
+  overflow: visible;
+}
+
+.doodle-divider-path {
+  stroke-dasharray: 10 10;
+  stroke-dashoffset: 0;
+  animation: snakeDashMove 24s linear infinite;
+  opacity: 0.52;
+}
+
+.doodle-divider-badge {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  padding: 5px 16px;
+  background: #ffffff;
+  border: 1.5px dashed #93c5fd;
+  border-radius: 9999px;
+  box-shadow: 0 2px 10px rgba(37, 99, 235, 0.08);
+  font-family: var(--font-heading);
+  font-size: 0.72rem;
+  font-weight: 700;
+  letter-spacing: 0.05em;
+  color: var(--accent-blue-royal);
+  white-space: nowrap;
+}
+
+.doodle-divider-spark {
+  color: var(--accent-blue-royal);
+  animation: sparkTwinkle 1.8s ease-in-out infinite alternate;
+}
+
+.doodle-divider-arrow {
+  font-weight: 800;
+  animation: arrowBounce 1.5s ease-in-out infinite;
+}
+
+@keyframes arrowBounce {
+  0%, 100% { transform: translateY(0); }
+  50% { transform: translateY(3px); }
+}
+
+/* Floating Educational Math & AI Formulas Layer */
+.floating-formulas-layer {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  pointer-events: none;
+  z-index: 1;
+  overflow: hidden;
+}
+
+.formula-chip {
+  position: absolute;
+  font-family: var(--font-mono);
+  font-size: 0.74rem;
+  font-weight: 600;
+  color: var(--accent-blue-royal);
+  background: rgba(239, 246, 255, 0.75);
+  border: 1px dashed rgba(147, 197, 253, 0.6);
+  padding: 4px 10px;
+  border-radius: 6px;
+  backdrop-filter: blur(4px);
+  box-shadow: 0 2px 6px rgba(37, 99, 235, 0.04);
+  opacity: 0.72;
+  transition: opacity 0.3s ease, transform 0.3s ease;
+}
+
+.formula-chip:hover {
+  opacity: 1;
+  border-style: solid;
+  transform: scale(1.1) !important;
+}
+
+.formula-chip.chip-1 { top: 9%; right: 4%; animation: floatFormula1 7s ease-in-out infinite alternate; }
+.formula-chip.chip-2 { top: 28%; left: 3%; animation: floatFormula2 8s ease-in-out 1s infinite alternate; }
+.formula-chip.chip-3 { top: 46%; right: 4%; animation: floatFormula1 7.5s ease-in-out 0.5s infinite alternate; }
+.formula-chip.chip-4 { top: 62%; left: 2.5%; animation: floatFormula2 8.5s ease-in-out 1.5s infinite alternate; }
+.formula-chip.chip-5 { top: 76%; right: 3.5%; animation: floatFormula1 6.8s ease-in-out 0.8s infinite alternate; }
+.formula-chip.chip-6 { top: 86%; left: 3%; animation: floatFormula2 7.2s ease-in-out 2s infinite alternate; }
+.formula-chip.chip-7 { top: 93%; right: 4.5%; animation: floatFormula1 8.2s ease-in-out 1.2s infinite alternate; }
+.formula-chip.chip-8 { top: 38%; left: 2.5%; animation: floatFormula2 7.8s ease-in-out 0.3s infinite alternate; }
+
+@keyframes floatFormula1 {
+  0% { transform: translateY(0px) rotate(-1.5deg); }
+  50% { transform: translateY(-10px) rotate(1.5deg); }
+  100% { transform: translateY(6px) rotate(-2deg); }
+}
+
+@keyframes floatFormula2 {
+  0% { transform: translateY(0px) rotate(2deg); }
+  50% { transform: translateY(10px) rotate(-1deg); }
+  100% { transform: translateY(-7px) rotate(2.5deg); }
 }
 
 /* Metric Card Mini Animated Accents */
@@ -2583,6 +2703,12 @@ body.minimal-cyber-body {
     display: none;
   }
   .card-doodle-sticker {
+    display: none;
+  }
+  .doodle-section-divider {
+    display: none;
+  }
+  .floating-formulas-layer {
     display: none;
   }
   .doodle-item {
