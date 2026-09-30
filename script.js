@@ -65,7 +65,7 @@ function initAmbientStars() {
 
       ctx.beginPath();
       ctx.arc(s.x, s.y, s.radius, 0, Math.PI * 2);
-      ctx.fillStyle = `rgba(56, 189, 248, ${currentAlpha})`;
+      ctx.fillStyle = `rgba(37, 99, 235, ${currentAlpha * 0.35})`;
       ctx.fill();
 
       // Delicate constellation links
@@ -79,7 +79,7 @@ function initAmbientStars() {
           ctx.beginPath();
           ctx.moveTo(s.x, s.y);
           ctx.lineTo(s2.x, s2.y);
-          ctx.strokeStyle = `rgba(56, 189, 248, ${(1 - dist / 85) * 0.08})`;
+          ctx.strokeStyle = `rgba(37, 99, 235, ${(1 - dist / 85) * 0.05})`;
           ctx.lineWidth = 0.6;
           ctx.stroke();
         }
