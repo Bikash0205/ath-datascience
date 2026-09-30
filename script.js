@@ -14,7 +14,7 @@ document.addEventListener('DOMContentLoaded', () => {
 });
 
 /* ==========================================================================
-   1. AMBIENT DRIFTING STAR PARTICLES
+   1. AMBIENT DRIFTING STAR PARTICLES & INTERACTIVE DOODLE CHALK TRAIL
    ========================================================================== */
 function initAmbientStars() {
   const canvas = document.getElementById('ambientCanvas');
@@ -30,7 +30,11 @@ function initAmbientStars() {
     height = canvas.height = window.innerHeight;
   });
 
-  const starCount = Math.min(80, Math.floor(width / 18));
+  const prefersReducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+
+  // Star & Math doodle particle pool
+  const mathSymbols = ['+', '×', '∑', '√', '∫', 'π', 'λ', '0', '1', '✦', '∆'];
+  const starCount = Math.min(50, Math.floor(width / 24));
   const stars = [];
 
   for (let i = 0; i < starCount; i++) {
@@ -39,23 +43,62 @@ function initAmbientStars() {
       y: Math.random() * height,
       vx: (Math.random() - 0.5) * 0.35,
       vy: (Math.random() - 0.5) * 0.35,
-      radius: Math.random() * 1.5 + 0.5,
+      radius: Math.random() * 1.5 + 0.6,
       alpha: Math.random() * 0.6 + 0.2,
-      pulse: Math.random() * Math.PI * 2
+      pulse: Math.random() * Math.PI * 2,
+      symbol: Math.random() > 0.6 ? mathSymbols[Math.floor(Math.random() * mathSymbols.length)] : null,
+      symbolSize: Math.floor(Math.random() * 4) + 10,
+      rot: Math.random() * Math.PI * 2,
+      rotSpeed: (Math.random() - 0.5) * 0.015
     });
   }
 
-  function renderStars() {
+  // Interactive mouse chalk doodle trail particles
+  const trailParticles = [];
+  const maxTrail = 35;
+
+  window.addEventListener('mousemove', (e) => {
+    if (prefersReducedMotion) return;
+    if (trailParticles.length < maxTrail && Math.random() > 0.4) {
+      trailParticles.push({
+        x: e.clientX,
+        y: e.clientY + window.scrollY,
+        vx: (Math.random() - 0.5) * 1.2,
+        vy: (Math.random() - 0.5) * 1.2 - 0.4,
+        size: Math.random() * 10 + 8,
+        symbol: mathSymbols[Math.floor(Math.random() * mathSymbols.length)],
+        life: 1.0,
+        decay: 0.025 + Math.random() * 0.02,
+        rot: Math.random() * Math.PI * 2
+      });
+    }
+  }, { passive: true });
+
+  // Scroll reaction drift boost
+  let scrollBoostY = 0;
+  let lastScrollPos = window.scrollY;
+  window.addEventListener('scroll', () => {
+    if (prefersReducedMotion) return;
+    const currentScroll = window.scrollY;
+    const scrollDelta = currentScroll - lastScrollPos;
+    lastScrollPos = currentScroll;
+    scrollBoostY = Math.max(-4, Math.min(4, -scrollDelta * 0.1));
+  }, { passive: true });
+
+  function renderParticles() {
     ctx.clearRect(0, 0, width, height);
 
-    const prefersReducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+    // Fade scroll boost back to 0 smoothly
+    scrollBoostY *= 0.92;
 
+    // 1. Render ambient stars & floating math doodles
     for (let i = 0; i < stars.length; i++) {
       const s = stars[i];
       if (!prefersReducedMotion) {
         s.x += s.vx;
-        s.y += s.vy;
+        s.y += s.vy + scrollBoostY;
         s.pulse += 0.02;
+        s.rot += s.rotSpeed;
 
         if (s.x < 0) s.x = width;
         if (s.x > width) s.x = 0;
@@ -65,33 +108,75 @@ function initAmbientStars() {
 
       const currentAlpha = s.alpha * (0.6 + 0.4 * Math.sin(s.pulse));
 
-      ctx.beginPath();
-      ctx.arc(s.x, s.y, s.radius, 0, Math.PI * 2);
-      ctx.fillStyle = `rgba(37, 99, 235, ${currentAlpha * 0.35})`;
-      ctx.fill();
+      if (s.symbol) {
+        // Draw tiny subtle chalk doodle symbol
+        ctx.save();
+        ctx.translate(s.x, s.y);
+        ctx.rotate(s.rot);
+        ctx.font = `${s.symbolSize}px 'JetBrains Mono', monospace, sans-serif`;
+        ctx.fillStyle = `rgba(37, 99, 235, ${currentAlpha * 0.28})`;
+        ctx.textAlign = 'center';
+        ctx.textBaseline = 'middle';
+        ctx.fillText(s.symbol, 0, 0);
+        ctx.restore();
+      } else {
+        // Draw star particle
+        ctx.beginPath();
+        ctx.arc(s.x, s.y, s.radius, 0, Math.PI * 2);
+        ctx.fillStyle = `rgba(37, 99, 235, ${currentAlpha * 0.32})`;
+        ctx.fill();
+      }
 
-      // Delicate constellation links
+      // Constellation links between nearby stars
       for (let j = i + 1; j < stars.length; j++) {
         const s2 = stars[j];
         const dx = s.x - s2.x;
         const dy = s.y - s2.y;
         const dist = Math.sqrt(dx * dx + dy * dy);
 
-        if (dist < 85) {
+        if (dist < 80) {
           ctx.beginPath();
           ctx.moveTo(s.x, s.y);
           ctx.lineTo(s2.x, s2.y);
-          ctx.strokeStyle = `rgba(37, 99, 235, ${(1 - dist / 85) * 0.05})`;
+          ctx.strokeStyle = `rgba(37, 99, 235, ${(1 - dist / 80) * 0.045})`;
           ctx.lineWidth = 0.6;
           ctx.stroke();
         }
       }
     }
 
-    requestAnimationFrame(renderStars);
+    // 2. Render active mouse chalk doodle trail
+    const scrollY = window.scrollY;
+    for (let k = trailParticles.length - 1; k >= 0; k--) {
+      const p = trailParticles[k];
+      p.x += p.vx;
+      p.y += p.vy;
+      p.life -= p.decay;
+      p.rot += 0.02;
+
+      if (p.life <= 0) {
+        trailParticles.splice(k, 1);
+        continue;
+      }
+
+      const screenY = p.y - scrollY;
+      if (screenY >= -50 && screenY <= height + 50) {
+        ctx.save();
+        ctx.translate(p.x, screenY);
+        ctx.rotate(p.rot);
+        ctx.font = `bold ${p.size}px 'JetBrains Mono', monospace, sans-serif`;
+        ctx.fillStyle = `rgba(37, 99, 235, ${p.life * 0.38})`;
+        ctx.textAlign = 'center';
+        ctx.textBaseline = 'middle';
+        ctx.fillText(p.symbol, 0, 0);
+        ctx.restore();
+      }
+    }
+
+    requestAnimationFrame(renderParticles);
   }
 
-  renderStars();
+  renderParticles();
 }
 
 /* ==========================================================================
@@ -343,20 +428,17 @@ function initEducationalDoodles() {
           path.style.strokeDashoffset = '0';
         }
       }
-    } catch (e) {
-      // In case path geometry isn't rendered yet
-    }
+    } catch (e) {}
   });
 
   if (prefersReducedMotion) return;
 
-  // 2. Animate Hero Doodles on Load with GSAP
   if (typeof gsap !== 'undefined') {
     if (typeof ScrollTrigger !== 'undefined') {
       gsap.registerPlugin(ScrollTrigger);
     }
 
-    // Hero title squiggly underline drawing
+    // 2. Hero title squiggly underline drawing
     const heroUnderline = document.querySelector('.doodle-underline-svg .doodle-path');
     if (heroUnderline) {
       gsap.to(heroUnderline, {
@@ -379,10 +461,10 @@ function initEducationalDoodles() {
       });
     }
 
-    // Ambient floating doodles stroke reveal sequence
-    const ambientDoodlePaths = document.querySelectorAll('.educational-doodles-layer .doodle-path');
-    if (ambientDoodlePaths.length > 0) {
-      gsap.to(ambientDoodlePaths, {
+    // Ambient floating hero doodles stroke reveal sequence
+    const ambientHeroDoodlePaths = document.querySelectorAll('.educational-doodles-layer .doodle-path');
+    if (ambientHeroDoodlePaths.length > 0) {
+      gsap.to(ambientHeroDoodlePaths, {
         strokeDashoffset: 0,
         duration: 1.6,
         stagger: 0.12,
@@ -407,6 +489,21 @@ function initEducationalDoodles() {
           }
         });
       }
+
+      // Section Ambient Doodles Stroke Reveal on Scroll
+      ScrollTrigger.batch('.doodle-ambient .doodle-path', {
+        start: 'top 88%',
+        onEnter: batch => {
+          gsap.to(batch, {
+            strokeDashoffset: 0,
+            duration: 1.2,
+            stagger: 0.1,
+            ease: 'power2.out',
+            overwrite: true
+          });
+        },
+        once: true
+      });
 
       // Roadmap curved arrow
       const roadmapArrow = document.querySelector('.doodle-curved-arrow .doodle-path');
@@ -438,19 +535,6 @@ function initEducationalDoodles() {
         });
       }
 
-      // Live Telemetry Pulse Path (continuous electrocardiogram/loss heartbeat)
-      const pulsePath = document.querySelector('.doodle-pulse-path');
-      if (pulsePath) {
-        const pulseLen = pulsePath.getTotalLength() || 100;
-        gsap.set(pulsePath, { strokeDasharray: pulseLen, strokeDashoffset: 0 });
-        gsap.to(pulsePath, {
-          strokeDashoffset: -pulseLen * 2,
-          duration: 3,
-          repeat: -1,
-          ease: 'linear'
-        });
-      }
-
       // Outcome CTA mini sparkle
       const ctaSparkle = document.querySelector('.doodle-sparkle-mini .doodle-path');
       if (ctaSparkle) {
@@ -465,11 +549,118 @@ function initEducationalDoodles() {
           }
         });
       }
+
+      // Live Telemetry Pulse Path (continuous electrocardiogram/loss heartbeat)
+      const pulsePath = document.querySelector('.doodle-pulse-path');
+      if (pulsePath) {
+        const pulseLen = pulsePath.getTotalLength() || 100;
+        gsap.set(pulsePath, { strokeDasharray: pulseLen, strokeDashoffset: 0 });
+        gsap.to(pulsePath, {
+          strokeDashoffset: -pulseLen * 2,
+          duration: 3,
+          repeat: -1,
+          ease: 'linear'
+        });
+      }
+
+      // 4. Interactive Roadmap Scrub Track: Snake line draws as user scrolls down!
+      const roadmapTrack = document.querySelector('.roadmap-scrub-path');
+      const travelingDot = document.querySelector('.roadmap-traveling-dot');
+      if (roadmapTrack) {
+        const pathLen = roadmapTrack.getTotalLength() || 1000;
+        roadmapTrack.style.strokeDasharray = pathLen;
+        roadmapTrack.style.strokeDashoffset = pathLen;
+
+        ScrollTrigger.create({
+          trigger: '.curriculum-roadmap-wrap',
+          start: 'top 75%',
+          end: 'bottom 50%',
+          scrub: 1,
+          onUpdate: (self) => {
+            const progress = self.progress;
+            const currentOffset = pathLen * (1 - progress);
+            roadmapTrack.style.strokeDashoffset = currentOffset;
+            if (travelingDot) {
+              travelingDot.style.opacity = progress > 0.02 && progress < 0.98 ? '1' : '0';
+              try {
+                const point = roadmapTrack.getPointAtLength(pathLen * progress);
+                travelingDot.style.left = `${point.x - 5}px`;
+                travelingDot.style.top = `${point.y - 5}px`;
+              } catch (e) {}
+            }
+          }
+        });
+      }
+
+      // 5. Continuous Scroll Scrub Parallax on Hero Doodles
+      const heroDoodles = document.querySelectorAll('.educational-doodles-layer .doodle-item');
+      heroDoodles.forEach((doodle, idx) => {
+        const yDrift = (idx % 2 === 0 ? -1 : 1) * (30 + (idx % 3) * 20);
+        const rotDrift = (idx % 2 === 0 ? 18 : -18);
+        gsap.to(doodle, {
+          y: yDrift,
+          rotation: rotDrift,
+          ease: 'none',
+          scrollTrigger: {
+            trigger: '#overview',
+            start: 'top top',
+            end: 'bottom top',
+            scrub: 1.2
+          }
+        });
+      });
+
+      // Continuous Scroll Scrub Parallax on Section Ambient Doodles
+      const sectionDoodles = document.querySelectorAll('.doodle-ambient');
+      sectionDoodles.forEach((doodle, idx) => {
+        const parentSec = doodle.closest('section');
+        if (!parentSec) return;
+        const yDrift = (idx % 2 === 0 ? -40 : 40);
+        const rotDrift = (idx % 2 === 0 ? 15 : -15);
+        gsap.to(doodle, {
+          y: yDrift,
+          rotation: rotDrift,
+          ease: 'none',
+          scrollTrigger: {
+            trigger: parentSec,
+            start: 'top bottom',
+            end: 'bottom top',
+            scrub: 1.4
+          }
+        });
+      });
     }
 
-    // 4. Hero Mouse Parallax Physics for Educational Doodles
-    const heroSection = document.getElementById('hero');
-    const doodleItems = document.querySelectorAll('.doodle-item');
+    // 6. Dynamic Scroll-Velocity Doodle Reaction (Constantly active as user scrolls!)
+    let lastScrollPos = window.scrollY;
+    let velocityTimer = null;
+    window.addEventListener('scroll', () => {
+      const currentScroll = window.scrollY;
+      const speed = Math.abs(currentScroll - lastScrollPos);
+      lastScrollPos = currentScroll;
+
+      if (speed > 6) {
+        const energy = Math.min(speed / 25, 1.4);
+        gsap.to('.doodle-item, .doodle-ambient', {
+          scale: 1 + energy * 0.07,
+          duration: 0.15,
+          overwrite: 'auto'
+        });
+
+        clearTimeout(velocityTimer);
+        velocityTimer = setTimeout(() => {
+          gsap.to('.doodle-item, .doodle-ambient', {
+            scale: 1,
+            duration: 0.6,
+            ease: 'power2.out'
+          });
+        }, 120);
+      }
+    }, { passive: true });
+
+    // 7. Hero Mouse Parallax Physics for Educational Doodles
+    const heroSection = document.getElementById('overview');
+    const doodleItems = document.querySelectorAll('.educational-doodles-layer .doodle-item');
     if (heroSection && doodleItems.length > 0) {
       const depthFactors = [14, -18, 22, -15, 26, -20, 16, -24, 18, -16];
 
@@ -503,15 +694,15 @@ function initEducationalDoodles() {
       });
     }
 
-    // 5. Interactive Card Doodle Wiggles
-    const interactiveCards = document.querySelectorAll('.curriculum-card, .project-card, .why-card');
+    // 8. Interactive Card Doodle Wiggles
+    const interactiveCards = document.querySelectorAll('.curriculum-card, .project-card, .why-card, .pillar-card');
     interactiveCards.forEach(card => {
       card.addEventListener('mouseenter', () => {
-        const icon = card.querySelector('.module-svg-icon, .proj-icon-svg, .why-card-icon');
+        const icon = card.querySelector('.module-svg-icon, .proj-icon-svg, .why-card-icon, .pillar-icon');
         if (icon) {
           gsap.to(icon, {
-            rotation: (Math.random() > 0.5 ? 8 : -8),
-            scale: 1.12,
+            rotation: (Math.random() > 0.5 ? 10 : -10),
+            scale: 1.15,
             duration: 0.25,
             yoyo: true,
             repeat: 1,
