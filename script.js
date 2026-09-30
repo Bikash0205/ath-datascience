@@ -103,11 +103,11 @@ function initThreeJSBrain() {
   if (!container || !canvas || typeof THREE === 'undefined') return;
 
   const width = container.clientWidth || 600;
-  const height = container.clientHeight || 300;
+  const height = container.clientHeight || 350;
 
   const scene = new THREE.Scene();
   const camera = new THREE.PerspectiveCamera(45, width / height, 0.1, 1000);
-  camera.position.set(0, 0, 8.2);
+  camera.position.set(0, 0, 7.2);
 
   const renderer = new THREE.WebGLRenderer({ canvas, alpha: true, antialias: true });
   renderer.setSize(width, height);
@@ -273,7 +273,7 @@ function initThreeJSBrain() {
   window.addEventListener('resize', () => {
     if (!container) return;
     const w = container.clientWidth || 600;
-    const h = container.clientHeight || 300;
+    const h = container.clientHeight || 350;
     camera.aspect = w / h;
     camera.updateProjectionMatrix();
     renderer.setSize(w, h);
