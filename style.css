@@ -21,7 +21,7 @@
   
   --text-main: #f8fafc;
   --text-muted: #94a3b8;
-  --text-dim: #64748b;
+  --text-dim: #94a3b8;
   
   --font-main: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
   --font-heading: 'Plus Jakarta Sans', sans-serif;
@@ -40,6 +40,42 @@ html {
   font-size: 16px;
   scroll-behavior: smooth;
   background-color: var(--bg-primary);
+}
+
+/* Universal Accessible Focus Indicator (WCAG 2.4.7) */
+:focus-visible {
+  outline: 2px solid var(--accent-cyan) !important;
+  outline-offset: 3px !important;
+  box-shadow: 0 0 14px rgba(56, 189, 248, 0.6) !important;
+}
+
+:focus:not(:focus-visible) {
+  outline: none;
+}
+
+/* Accessible Skip to Main Content Link (WCAG 2.4.1) */
+.skip-link {
+  position: fixed;
+  top: -120px;
+  left: 20px;
+  background: var(--accent-cyan);
+  color: #030712;
+  font-family: var(--font-mono);
+  font-size: 0.88rem;
+  font-weight: 800;
+  padding: 12px 22px;
+  border-radius: 8px;
+  z-index: 100000;
+  text-decoration: none;
+  box-shadow: 0 6px 24px rgba(56, 189, 248, 0.7);
+  transition: top 0.2s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.skip-link:focus,
+.skip-link:focus-visible {
+  top: 20px;
+  outline: 3px solid #ffffff !important;
+  outline-offset: 2px !important;
 }
 
 body.minimal-cyber-body {
@@ -195,19 +231,21 @@ body.minimal-cyber-body {
   background: linear-gradient(135deg, #38bdf8 0%, #1d4ed8 100%);
 }
 
-/* Mobile & Tablet Hamburger Toggle */
+/* Mobile & Tablet Hamburger Toggle (WCAG 2.5.5 Touch Target 44x44px) */
 .mobile-menu-btn {
   display: none;
   flex-direction: column;
   justify-content: center;
   align-items: center;
-  width: 40px;
-  height: 40px;
-  border-radius: 8px;
+  width: 44px;
+  height: 44px;
+  min-width: 44px;
+  min-height: 44px;
+  border-radius: 10px;
   background: rgba(255, 255, 255, 0.05);
   border: 1px solid var(--border-subtle);
   cursor: pointer;
-  padding: 8px;
+  padding: 10px;
   gap: 5px;
 }
 
@@ -580,18 +618,26 @@ body.minimal-cyber-body {
   border: none;
   color: var(--text-muted);
   font-family: var(--font-mono);
-  font-size: 0.64rem;
+  font-size: 0.72rem;
   font-weight: 700;
-  padding: 3px 9px;
+  padding: 6px 14px;
+  min-height: 36px;
   border-radius: 999px;
   cursor: pointer;
   transition: all 0.2s ease;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.view-tab:hover {
+  color: #ffffff;
 }
 
 .view-tab.active {
   background: var(--accent-cyan);
   color: #030712;
-  box-shadow: 0 0 10px rgba(56, 189, 248, 0.5);
+  box-shadow: 0 0 14px rgba(56, 189, 248, 0.6);
 }
 
 .showcase-viewport {
@@ -856,9 +902,28 @@ body.minimal-cyber-body {
   gap: 6px;
 }
 
-.check-icon {
+.check-icon-svg {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
   color: var(--accent-cyan);
-  font-weight: 800;
+  flex-shrink: 0;
+  width: 14px;
+  height: 14px;
+}
+
+.caption-sparkle {
+  color: var(--accent-cyan);
+  margin-right: 6px;
+  display: inline-block;
+  vertical-align: middle;
+}
+
+.guarantee-sparkle {
+  color: var(--accent-gold);
+  margin-right: 6px;
+  display: inline-block;
+  vertical-align: middle;
 }
 
 .holo-footer-stat {
@@ -1281,24 +1346,30 @@ body.minimal-cyber-body {
   align-items: center;
 }
 
+/* Accessible Modal Close Button (WCAG 2.5.5 Touch Target 44x44px) */
 .mac-close-btn {
-  width: 14px;
-  height: 14px;
+  width: 44px;
+  height: 44px;
+  min-width: 44px;
+  min-height: 44px;
   border-radius: 50%;
-  border: none;
-  background: #ef4444;
-  color: #000;
-  font-size: 8px;
-  font-weight: 900;
-  display: flex;
+  border: 1px solid rgba(239, 68, 68, 0.35);
+  background: rgba(239, 68, 68, 0.12);
+  color: #f87171;
+  display: inline-flex;
   align-items: center;
   justify-content: center;
   cursor: pointer;
-  transition: transform 0.15s ease;
+  transition: all 0.2s ease;
+  padding: 0;
 }
 
 .mac-close-btn:hover {
-  transform: scale(1.15);
+  background: #ef4444;
+  color: #ffffff;
+  border-color: #ef4444;
+  transform: scale(1.05);
+  box-shadow: 0 0 14px rgba(239, 68, 68, 0.6);
 }
 
 .modal-meta-title {
@@ -1465,11 +1536,27 @@ body.minimal-cyber-body {
 }
 
 .back-top-link {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
   color: var(--accent-cyan);
   text-decoration: none;
+  font-family: var(--font-mono);
+  font-size: 0.8rem;
+  font-weight: 600;
+  padding: 8px 14px;
+  min-height: 44px;
+  border-radius: 8px;
+  border: 1px solid rgba(56, 189, 248, 0.2);
+  background: rgba(56, 189, 248, 0.05);
+  transition: all 0.2s ease;
 }
+
 .back-top-link:hover {
-  text-decoration: underline;
+  background: rgba(56, 189, 248, 0.15);
+  border-color: var(--accent-cyan);
+  color: #ffffff;
+  transform: translateY(-2px);
 }
 
 /* ==========================================================================
@@ -1604,5 +1691,41 @@ body.minimal-cyber-body {
   }
   .showcase-viewport {
     height: 260px;
+  }
+}
+
+/* ==========================================================================
+   10. ACCESSIBILITY: REDUCED MOTION SUPPORT (WCAG 2.3.3 & 2.2.2)
+   ========================================================================== */
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.001ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.001ms !important;
+    scroll-behavior: auto !important;
+  }
+
+  .shimmer-effect {
+    display: none !important;
+  }
+
+  .ambient-stars-canvas {
+    opacity: 0.25 !important;
+  }
+
+  .holo-card {
+    transform: none !important;
+    animation: none !important;
+  }
+
+  .btn-primary-hero:hover,
+  .btn-secondary-hero:hover,
+  .btn-enroll-nav:hover,
+  .metric-card:hover,
+  .curriculum-card:hover,
+  .project-card:hover {
+    transform: none !important;
   }
 }

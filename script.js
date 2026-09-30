@@ -48,16 +48,20 @@ function initAmbientStars() {
   function renderStars() {
     ctx.clearRect(0, 0, width, height);
 
+    const prefersReducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+
     for (let i = 0; i < stars.length; i++) {
       const s = stars[i];
-      s.x += s.vx;
-      s.y += s.vy;
-      s.pulse += 0.02;
+      if (!prefersReducedMotion) {
+        s.x += s.vx;
+        s.y += s.vy;
+        s.pulse += 0.02;
 
-      if (s.x < 0) s.x = width;
-      if (s.x > width) s.x = 0;
-      if (s.y < 0) s.y = height;
-      if (s.y > height) s.y = 0;
+        if (s.x < 0) s.x = width;
+        if (s.x > width) s.x = 0;
+        if (s.y < 0) s.y = height;
+        if (s.y > height) s.y = 0;
+      }
 
       const currentAlpha = s.alpha * (0.6 + 0.4 * Math.sin(s.pulse));
 
@@ -243,20 +247,23 @@ function initThreeJSBrain() {
 
   // Animation Loop
   let clock = new THREE.Clock();
+  const prefersReducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
 
   function animate() {
     requestAnimationFrame(animate);
     const elapsedTime = clock.getElapsedTime();
 
-    brainPoints.rotation.y += 0.003;
+    if (!prefersReducedMotion) {
+      brainPoints.rotation.y += 0.003;
+      brainPoints.position.y = Math.sin(elapsedTime * 1.4) * 0.1;
+      neuralLines.position.y = brainPoints.position.y;
+    }
+
     brainPoints.rotation.y += (targetRotY - brainPoints.rotation.y) * 0.05;
     brainPoints.rotation.x += (targetRotX - brainPoints.rotation.x) * 0.05;
 
     neuralLines.rotation.y = brainPoints.rotation.y;
     neuralLines.rotation.x = brainPoints.rotation.x;
-
-    brainPoints.position.y = Math.sin(elapsedTime * 1.4) * 0.1;
-    neuralLines.position.y = brainPoints.position.y;
 
     renderer.render(scene, camera);
   }
@@ -318,7 +325,7 @@ function initLottieAnimations() {
 }
 
 /* ==========================================================================
-   4. SHOWCASE VIEW SWITCHER (3D BRAIN <-> LOTTIE MATRIX)
+   4. SHOWCASE VIEW SWITCHER (3D BRAIN <-> LOTTIE MATRIX) - WCAG TABS
    ========================================================================== */
 function initShowcaseViewSwitcher() {
   const tab3D = document.getElementById('tab3DBrain');
@@ -328,27 +335,65 @@ function initShowcaseViewSwitcher() {
 
   if (!tab3D || !tabLottie || !view3D || !viewLottie) return;
 
-  tab3D.addEventListener('click', () => {
+  function switchTo3D() {
     tab3D.classList.add('active');
-    tabLottie.classList.remove('active');
-    view3D.style.display = 'flex';
-    viewLottie.style.display = 'none';
-  });
+    tab3D.setAttribute('aria-selected', 'true');
+    tab3D.setAttribute('tabindex', '0');
 
-  tabLottie.addEventListener('click', () => {
+    tabLottie.classList.remove('active');
+    tabLottie.setAttribute('aria-selected', 'false');
+    tabLottie.setAttribute('tabindex', '-1');
+
+    view3D.style.display = 'flex';
+    view3D.removeAttribute('hidden');
+
+    viewLottie.style.display = 'none';
+    viewLottie.setAttribute('hidden', '');
+  }
+
+  function switchToLottie() {
     tabLottie.classList.add('active');
+    tabLottie.setAttribute('aria-selected', 'true');
+    tabLottie.setAttribute('tabindex', '0');
+
     tab3D.classList.remove('active');
+    tab3D.setAttribute('aria-selected', 'false');
+    tab3D.setAttribute('tabindex', '-1');
+
     view3D.style.display = 'none';
+    view3D.setAttribute('hidden', '');
+
     viewLottie.style.display = 'flex';
+    viewLottie.removeAttribute('hidden');
+
     if (lottieNeuralAnim) {
       lottieNeuralAnim.resize();
       lottieNeuralAnim.play();
     }
+  }
+
+  tab3D.addEventListener('click', switchTo3D);
+  tabLottie.addEventListener('click', switchToLottie);
+
+  // Keyboard navigation for tablist (WCAG 2.1 Tab Pattern)
+  [tab3D, tabLottie].forEach(tab => {
+    tab.addEventListener('keydown', (e) => {
+      if (e.key === 'ArrowRight' || e.key === 'ArrowLeft') {
+        e.preventDefault();
+        if (tab === tab3D) {
+          switchToLottie();
+          tabLottie.focus();
+        } else {
+          switchTo3D();
+          tab3D.focus();
+        }
+      }
+    });
   });
 }
 
 /* ==========================================================================
-   5. MOBILE & TABLET DRAWER NAVIGATION
+   5. MOBILE & TABLET DRAWER NAVIGATION (ACCESSIBLE ARIA)
    ========================================================================== */
 function initMobileDrawer() {
   const toggleBtn = document.getElementById('mobileMenuToggle');
@@ -359,26 +404,39 @@ function initMobileDrawer() {
   if (!toggleBtn || !drawer) return;
 
   function toggleMenu() {
-    toggleBtn.classList.toggle('open');
-    drawer.classList.toggle('open');
+    const isOpening = !drawer.classList.contains('open');
+    toggleBtn.classList.toggle('open', isOpening);
+    drawer.classList.toggle('open', isOpening);
+    toggleBtn.setAttribute('aria-expanded', isOpening ? 'true' : 'false');
+    drawer.setAttribute('aria-hidden', isOpening ? 'false' : 'true');
   }
 
   function closeMenu() {
     toggleBtn.classList.remove('open');
     drawer.classList.remove('open');
+    toggleBtn.setAttribute('aria-expanded', 'false');
+    drawer.setAttribute('aria-hidden', 'true');
   }
 
   toggleBtn.addEventListener('click', toggleMenu);
 
   links.forEach(l => l.addEventListener('click', closeMenu));
   if (drawerEnrollBtn) drawerEnrollBtn.addEventListener('click', closeMenu);
+
+  // Close drawer on Escape
+  window.addEventListener('keydown', (e) => {
+    if (e.key === 'Escape' && drawer.classList.contains('open')) {
+      closeMenu();
+      toggleBtn.focus();
+    }
+  });
 }
 
 /* ==========================================================================
    6. GSAP SHOWCASE FLOATING OSCILLATION
    ========================================================================== */
 function initGSAPShowcase() {
-  if (typeof gsap === 'undefined') return;
+  if (typeof gsap === 'undefined' || window.matchMedia('(prefers-reduced-motion: reduce)').matches) return;
 
   // Gentle float for holographic panels
   gsap.to('#holoLoss', { y: -10, duration: 3.6, yoyo: true, repeat: -1, ease: 'sine.inOut' });
@@ -388,7 +446,7 @@ function initGSAPShowcase() {
 }
 
 /* ==========================================================================
-   7. STUDENT REGISTRATION MODAL (WITH 5-SECOND AUTO-POPUP)
+   7. STUDENT REGISTRATION MODAL (ACCESSIBLE FOCUS TRAP & 5S AUTO-POPUP)
    ========================================================================== */
 function initRegistrationModal() {
   const backdrop = document.getElementById('modalBackdrop');
@@ -402,14 +460,29 @@ function initRegistrationModal() {
   const submitBtn = document.getElementById('submitFormBtn');
 
   let isOpen = false;
+  let lastActiveElement = null;
 
-  function openModal() {
+  function openModal(trigger = null) {
     if (isOpen) return;
     isOpen = true;
-    if (backdrop) backdrop.classList.add('active');
-    if (stage) stage.classList.add('active');
+    lastActiveElement = trigger || document.activeElement;
 
-    if (typeof gsap !== 'undefined') {
+    if (backdrop) {
+      backdrop.classList.add('active');
+      backdrop.setAttribute('aria-hidden', 'false');
+    }
+    if (stage) {
+      stage.classList.add('active');
+      stage.setAttribute('aria-hidden', 'false');
+    }
+
+    // Set focus to the first interactive field for keyboard/screen reader users
+    setTimeout(() => {
+      const nameInput = document.getElementById('formName');
+      if (nameInput) nameInput.focus();
+    }, 120);
+
+    if (typeof gsap !== 'undefined' && !window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
       gsap.fromTo('.modal-dialog',
         { scale: 0.9, opacity: 0, y: 20 },
         { scale: 1, opacity: 1, y: 0, duration: 0.3, ease: 'power2.out' }
@@ -418,9 +491,22 @@ function initRegistrationModal() {
   }
 
   function closeModal() {
+    if (!isOpen) return;
     isOpen = false;
-    if (backdrop) backdrop.classList.remove('active');
-    if (stage) stage.classList.remove('active');
+
+    if (backdrop) {
+      backdrop.classList.remove('active');
+      backdrop.setAttribute('aria-hidden', 'true');
+    }
+    if (stage) {
+      stage.classList.remove('active');
+      stage.setAttribute('aria-hidden', 'true');
+    }
+
+    // Restore focus to original trigger element (WCAG 2.4.3)
+    if (lastActiveElement && typeof lastActiveElement.focus === 'function') {
+      lastActiveElement.focus();
+    }
   }
 
   // Automatic popup trigger in 5 seconds
@@ -434,7 +520,7 @@ function initRegistrationModal() {
     if (btn) {
       btn.addEventListener('click', (e) => {
         e.preventDefault();
-        openModal();
+        openModal(btn);
       });
     }
   });
@@ -442,11 +528,39 @@ function initRegistrationModal() {
   if (closeBtn) closeBtn.addEventListener('click', closeModal);
   if (backdrop) backdrop.addEventListener('click', closeModal);
 
+  // Keyboard accessibility: Escape to close + Focus Trap inside modal (WCAG 2.1.2)
   window.addEventListener('keydown', (e) => {
-    if (e.key === 'Escape' && isOpen) closeModal();
+    if (!isOpen) return;
+
+    if (e.key === 'Escape') {
+      closeModal();
+      return;
+    }
+
+    if (e.key === 'Tab' && stage) {
+      const focusable = stage.querySelectorAll(
+        'button, [href], input, select, textarea, [tabindex]:not([tabindex="-1"])'
+      );
+      if (!focusable.length) return;
+
+      const firstElement = focusable[0];
+      const lastElement = focusable[focusable.length - 1];
+
+      if (e.shiftKey) {
+        if (document.activeElement === firstElement) {
+          e.preventDefault();
+          lastElement.focus();
+        }
+      } else {
+        if (document.activeElement === lastElement) {
+          e.preventDefault();
+          firstElement.focus();
+        }
+      }
+    }
   });
 
-  // Form submission
+  // Form submission with high-quality SVG checkmark
   if (form && submitBtn) {
     submitBtn.addEventListener('click', (e) => {
       e.preventDefault();
@@ -464,7 +578,12 @@ function initRegistrationModal() {
       submitBtn.style.pointerEvents = 'none';
 
       setTimeout(() => {
-        submitBtn.innerHTML = '<span>✓ Application Received!</span>';
+        submitBtn.innerHTML = `
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+            <polyline points="20 6 9 17 4 12"/>
+          </svg>
+          <span>Application Received!</span>
+        `;
         submitBtn.style.background = 'linear-gradient(135deg, #059669 0%, #10b981 100%)';
 
         setTimeout(() => {
