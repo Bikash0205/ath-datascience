@@ -74,6 +74,27 @@ function initAmbientStars() {
     }
   }, { passive: true });
 
+  // Click burst doodle chalk particles
+  window.addEventListener('click', (e) => {
+    if (prefersReducedMotion) return;
+    const burstCount = 6;
+    for (let b = 0; b < burstCount; b++) {
+      const angle = (b / burstCount) * Math.PI * 2 + (Math.random() - 0.5);
+      const speed = Math.random() * 2.5 + 1.5;
+      trailParticles.push({
+        x: e.clientX,
+        y: e.clientY + window.scrollY,
+        vx: Math.cos(angle) * speed,
+        vy: Math.sin(angle) * speed - 0.5,
+        size: Math.random() * 8 + 10,
+        symbol: mathSymbols[Math.floor(Math.random() * mathSymbols.length)],
+        life: 1.0,
+        decay: 0.02 + Math.random() * 0.015,
+        rot: Math.random() * Math.PI * 2
+      });
+    }
+  }, { passive: true });
+
   // Scroll reaction drift boost
   let scrollBoostY = 0;
   let lastScrollPos = window.scrollY;
@@ -591,6 +612,65 @@ function initEducationalDoodles() {
           }
         });
       }
+
+      // 4.1. Vertical Full-Page Educational Doodle Snake Trail & Traveling Pencil
+      const globalSnakePath = document.querySelector('.global-snake-path');
+      const globalPencil = document.getElementById('globalTravelingPencil');
+      const mainContent = document.getElementById('mainContent');
+
+      if (globalSnakePath && mainContent) {
+        ScrollTrigger.create({
+          trigger: mainContent,
+          start: 'top top',
+          end: 'bottom bottom',
+          scrub: 0.2,
+          onUpdate: (self) => {
+            const p = self.progress;
+            if (globalPencil) {
+              const contentHeight = mainContent.offsetHeight;
+              const currentY = p * (contentHeight - 60);
+              const oscX = Math.sin(p * Math.PI * 16) * 20;
+              globalPencil.style.transform = `translate3d(${oscX}px, ${currentY}px, 0)`;
+            }
+          }
+        });
+      }
+
+      // 4.2. Title Doodle Scribble Underlines Revealed on Scroll
+      ScrollTrigger.batch('.doodle-title-scribble', {
+        start: 'top 88%',
+        onEnter: (batch) => {
+          batch.forEach((svg) => {
+            svg.classList.add('in-view');
+          });
+        },
+        once: true
+      });
+
+      // 4.3. Animated Metric & Outcome Number Counters on Scroll
+      const counters = document.querySelectorAll('.counter-val');
+      counters.forEach((counter) => {
+        const target = parseFloat(counter.getAttribute('data-target'));
+        const isDecimal = counter.getAttribute('data-decimal') !== null;
+        if (isNaN(target)) return;
+
+        ScrollTrigger.create({
+          trigger: counter,
+          start: 'top 92%',
+          once: true,
+          onEnter: () => {
+            const obj = { val: 0 };
+            gsap.to(obj, {
+              val: target,
+              duration: 1.6,
+              ease: 'power2.out',
+              onUpdate: () => {
+                counter.textContent = isDecimal ? obj.val.toFixed(1) : Math.floor(obj.val);
+              }
+            });
+          }
+        });
+      });
 
       // 5. Continuous Scroll Scrub Parallax on Hero Doodles
       const heroDoodles = document.querySelectorAll('.educational-doodles-layer .doodle-item');

@@ -1661,7 +1661,7 @@ body.minimal-cyber-body {
 /* Mobile Breakpoint (<= 768px) */
 @media (max-width: 768px) {
   .hero-section {
-    padding-top: 100px;
+    padding-top: 116px;
   }
 
   .hero-title {
@@ -2437,8 +2437,154 @@ body.minimal-cyber-body {
   flex-shrink: 0;
 }
 
+/* ==========================================================================
+   VERTICAL FULL-PAGE DOODLE SNAKE TRAIL & TRAVELING PENCIL
+   ========================================================================== */
+.global-doodle-trail-layer {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  pointer-events: none;
+  z-index: 2;
+  overflow: visible;
+}
+
+.global-snake-svg {
+  position: absolute;
+  top: 0;
+  left: 24px;
+  width: 72px;
+  height: 100%;
+  opacity: 0.38;
+  overflow: visible;
+}
+
+.global-snake-path {
+  stroke-dasharray: 12 10;
+  stroke-dashoffset: 0;
+  animation: snakeDashMove 25s linear infinite;
+}
+
+@keyframes snakeDashMove {
+  to {
+    stroke-dashoffset: -400;
+  }
+}
+
+.global-traveling-pencil {
+  position: absolute;
+  top: 0;
+  left: 36px;
+  width: 34px;
+  height: 34px;
+  transform: translate(-50%, -50%);
+  pointer-events: none;
+  z-index: 3;
+  transition: transform 0.08s linear;
+}
+
+.pencil-icon-svg {
+  width: 100%;
+  height: 100%;
+  filter: drop-shadow(0 2px 8px rgba(37, 99, 235, 0.28));
+  animation: pencilWiggle 3.5s ease-in-out infinite alternate;
+}
+
+.pencil-trail-spark {
+  position: absolute;
+  top: -6px;
+  right: -6px;
+  font-size: 13px;
+  color: var(--accent-blue-royal);
+  animation: sparkTwinkle 1.6s ease-in-out infinite alternate;
+}
+
+@keyframes pencilWiggle {
+  0% { transform: rotate(-8deg); }
+  100% { transform: rotate(14deg); }
+}
+
+@keyframes sparkTwinkle {
+  0% { transform: scale(0.7) rotate(0deg); opacity: 0.4; }
+  100% { transform: scale(1.3) rotate(45deg); opacity: 1; }
+}
+
+/* Dynamic Section Title Doodle Scribbles */
+.doodle-highlight-title {
+  position: relative;
+  display: inline-block;
+}
+
+.doodle-title-scribble {
+  position: absolute;
+  bottom: -6px;
+  left: -3%;
+  width: 106%;
+  height: 12px;
+  pointer-events: none;
+  overflow: visible;
+}
+
+.doodle-title-scribble path {
+  stroke: var(--accent-blue-royal);
+  stroke-width: 3.2;
+  stroke-linecap: round;
+  stroke-dasharray: 300;
+  stroke-dashoffset: 300;
+  transition: stroke-dashoffset 0.8s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.doodle-title-scribble.in-view path {
+  stroke-dashoffset: 0;
+}
+
+/* Card Doodle Hand-Drawn Corner Stickers */
+.card-doodle-sticker {
+  position: absolute;
+  top: 14px;
+  right: 14px;
+  width: 30px;
+  height: 30px;
+  pointer-events: none;
+  opacity: 0.65;
+  transition: opacity 0.25s ease, transform 0.3s cubic-bezier(0.34, 1.56, 0.64, 1);
+  filter: drop-shadow(0 1px 4px rgba(37, 99, 235, 0.12));
+}
+
+.curriculum-card:hover .card-doodle-sticker,
+.project-card:hover .card-doodle-sticker {
+  opacity: 1;
+  transform: scale(1.22) rotate(8deg);
+  animation: doodleHandJitter 0.35s steps(2, jump-none) infinite alternate;
+}
+
+@keyframes doodleHandJitter {
+  0% { transform: scale(1.22) rotate(6deg) translate(0, 0); }
+  50% { transform: scale(1.24) rotate(9deg) translate(1px, -1px); }
+  100% { transform: scale(1.2) rotate(7deg) translate(-1px, 1px); }
+}
+
+/* Metric Card Mini Animated Accents */
+.metric-mini-doodle {
+  display: inline-block;
+  vertical-align: middle;
+  margin-left: 4px;
+  width: 18px;
+  height: 18px;
+  opacity: 0.75;
+  animation: doodlePulse 3.5s ease-in-out infinite;
+}
+
 /* Responsive adjustments for Doodles */
 @media (max-width: 1024px) {
+  .global-doodle-trail-layer {
+    display: none;
+  }
+  .card-doodle-sticker {
+    display: none;
+  }
   .doodle-item {
     opacity: 0.45;
   }
@@ -2455,12 +2601,7 @@ body.minimal-cyber-body {
 
 @media (max-width: 768px) {
   .educational-doodles-layer {
-    opacity: 0.35;
-  }
-  .doodle-math-sigma,
-  .doodle-brackets,
-  .doodle-flask {
-    display: none;
+    display: none !important;
   }
   .education-lottie-bar {
     flex-direction: column;
