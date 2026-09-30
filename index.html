@@ -2,1364 +2,505 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Data Science, AI & ML Intensive — Master Production AI from Scratch</title>
-  <meta name="description" content="A practical intensive for engineers and analysts who want to master modern Data Science, Deep Learning, and LLMs without getting lost in abstract theory.">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+  <title>Data Science with AI &amp; ML | Asian Technology Hub (ATS)</title>
+  <meta name="description" content="Cinematic data-analytics workspace for Data Science with AI &amp; ML by Asian Technology Hub (ATS). Assured Excellent Service.">
+  <link rel="icon" type="image/svg+xml" href="favicon.svg">
+
+  <!-- Google Fonts -->
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;600;700&family=Plus+Jakarta+Sans:wght@400;500;600;700;800&family=Space+Grotesk:wght@500;700;900&display=swap" rel="stylesheet">
+
   <link rel="stylesheet" href="style.css">
 </head>
-<body class="theme-dark">
+<body class="cyber-body">
 
-  <!-- Top Global Bar (Mockup Shell Frame) -->
-  <header class="global-topbar" role="banner">
-    <div class="topbar-left">
-      <!-- Official Asian Technology Hub Logo Badge & Brand Lockup -->
-      <a href="https://asiantechnologyhub.com/" class="brand-logo-badge" title="Asian Technology Hub — Assured Service Excellence" target="_blank" rel="noopener">
-        <div class="ath-emblem-frame">
-          <svg class="ath-emblem-svg" viewBox="0 0 280 320" fill="none" xmlns="http://www.w3.org/2000/svg">
-            <defs>
-              <linearGradient id="topBlueGradNav" x1="0%" y1="0%" x2="100%" y2="100%">
-                <stop offset="0%" stop-color="#00A4E4" />
-                <stop offset="35%" stop-color="#1265B5" />
-                <stop offset="100%" stop-color="#0F2B6C" />
-              </linearGradient>
-              <linearGradient id="bottomBlueGradNav" x1="0%" y1="0%" x2="100%" y2="100%">
-                <stop offset="0%" stop-color="#1651B3" />
-                <stop offset="60%" stop-color="#10368B" />
-                <stop offset="100%" stop-color="#0B205D" />
-              </linearGradient>
-            </defs>
-            <path d="M 259.68 21.29 L 20.95 20.57 L 20.0 154.29 L 22.06 154.71 L 142.54 57.14 L 258.89 155.0 Z" fill="url(#topBlueGradNav)" />
-            <path d="M 259.52 259.29 L 142.06 155.71 L 20.63 258.0 L 20.0 298.43 L 257.94 299.71 L 259.68 298.43 Z M 137.52 241.04 L 149.62 240.96 L 158.83 240.99 L 165.14 241.12 L 168.55 241.34 L 169.07 241.66 L 169.48 242.32 L 169.8 243.32 L 170.02 244.66 L 170.14 246.34 L 170.21 247.78 L 170.23 248.97 L 170.2 249.93 L 170.12 250.64 L 170.01 251.23 L 169.87 251.7 L 169.7 252.04 L 169.5 252.25 L 168.44 252.43 L 166.52 252.57 L 163.73 252.68 L 160.08 252.75 L 157.27 252.86 L 155.31 253.0 L 154.19 253.18 L 153.91 253.39 L 153.71 255.68 L 153.59 260.04 L 153.55 266.46 L 153.59 274.96 L 153.53 281.49 L 153.37 286.04 L 153.12 288.62 L 152.76 289.23 L 151.49 289.7 L 149.31 290.02 L 146.21 290.2 L 142.2 290.23 L 139.11 290.18 L 136.92 290.04 L 135.65 289.8 L 135.3 289.48 L 135.04 287.03 L 134.88 282.44 L 134.82 275.71 L 134.82 266.86 L 134.82 260.17 L 134.7 255.65 L 134.5 253.3 L 134.23 253.12 L 133.09 252.96 L 128.21 252.7 L 124.48 252.59 L 121.64 252.45 L 119.67 252.27 L 118.59 252.05 L 118.39 251.8 L 118.24 251.1 L 118.14 249.94 L 118.1 248.32 L 118.1 246.25 L 118.17 244.57 L 118.33 243.29 L 118.57 242.39 L 118.89 241.89 L 122.15 241.5 L 128.36 241.21 Z M 69.62 271.14 L 76.57 260.0 L 81.92 251.51 L 85.69 245.67 L 87.88 242.48 L 88.47 241.95 L 89.57 241.53 L 91.18 241.22 L 93.29 241.04 L 95.91 240.96 L 98.05 240.94 L 99.69 240.96 L 100.85 241.02 L 101.53 241.12 L 102.15 241.32 L 102.73 241.61 L 103.25 241.98 L 103.73 242.45 L 105.6 245.37 L 108.85 250.74 L 113.49 258.57 L 119.52 268.86 L 124.18 276.86 L 127.45 282.57 L 129.35 286.0 L 129.86 287.14 L 130.16 288.09 L 130.24 288.84 L 130.1 289.39 L 129.74 289.75 L 128.42 290.01 L 126.14 290.17 L 122.9 290.23 L 118.69 290.2 L 115.43 290.1 L 113.11 289.94 L 111.73 289.71 L 111.29 289.43 L 110.81 288.93 L 110.3 288.21 L 109.74 287.29 L 109.15 286.14 L 108.57 285.19 L 108.02 284.42 L 107.48 283.84 L 106.96 283.45 L 105.04 283.15 L 101.71 282.96 L 96.96 282.86 L 90.81 282.86 L 86.08 282.96 L 82.77 283.15 L 80.87 283.45 L 80.4 283.84 L 79.87 284.44 L 79.3 285.24 L 78.67 286.25 L 78.0 287.46 L 77.38 288.44 L 76.83 289.17 L 76.33 289.66 L 75.89 289.91 L 74.65 290.1 L 72.61 290.22 L 69.76 290.29 L 66.11 290.29 L 63.29 290.23 L 61.31 290.12 L 60.16 289.96 L 59.84 289.75 L 59.59 289.49 L 59.41 289.19 L 59.31 288.84 L 59.27 288.45 L 60.97 285.37 L 64.42 279.6 Z M 91.83 264.61 L 90.4 266.82 L 89.32 268.58 L 88.58 269.88 L 88.19 270.73 L 88.15 271.12 L 88.19 271.47 L 88.31 271.78 L 88.51 272.04 L 88.79 272.25 L 89.65 272.4 L 93.13 272.52 L 95.75 272.48 L 97.77 272.35 L 99.18 272.12 L 99.98 271.79 L 100.18 271.36 L 100.04 270.54 L 99.56 269.32 L 98.75 267.71 L 97.6 265.71 L 96.62 264.12 L 95.8 262.95 L 95.16 262.18 L 94.68 261.82 L 93.97 262.11 L 93.02 263.04 Z M 215.85 243.04 L 216.05 243.25 L 216.29 244.15 L 216.57 245.74 L 216.88 248.02 L 217.24 250.98 L 217.45 253.28 L 217.51 254.9 L 217.42 255.86 L 217.18 256.14 L 216.92 256.38 L 216.65 256.55 L 216.35 256.68 L 216.03 256.75 L 215.12 256.56 L 213.61 256.12 L 211.51 255.41 L 208.81 254.45 L 206.3 253.65 L 203.98 253.03 L 201.85 252.57 L 199.9 252.29 L 198.05 252.12 L 196.28 252.06 L 194.6 252.12 L 193.02 252.3 L 191.77 252.49 L 190.85 252.69 L 190.28 252.89 L 190.04 253.11 L 189.86 253.36 L 189.86 253.64 L 189.74 253.64 L 189.68 253.96 L 189.68 254.32 L 189.77 254.67 L 189.95 255.01 L 190.22 255.34 L 190.58 255.66 L 191.21 256.01 L 192.12 256.38 L 193.31 256.79 L 194.78 257.21 L 196.61 257.68 L 198.79 258.18 L 201.33 258.71 L 204.23 259.29 L 206.64 259.81 L 208.56 260.29 L 210.0 260.73 L 210.95 261.12 L 211.93 261.61 L 212.95 262.18 L 213.99 262.84 L 215.06 263.59 L 216.06 264.45 L 216.99 265.41 L 217.86 266.48 L 218.65 267.66 L 219.3 268.79 L 219.79 269.88 L 220.14 270.93 L 220.34 271.93 L 220.46 273.03 L 220.5 274.22 L 220.46 275.52 L 220.34 276.91 L 220.08 278.26 L 219.68 279.56 L 219.15 280.82 L 218.47 282.04 L 217.62 283.21 L 216.59 284.36 L 215.38 285.46 L 213.99 286.54 L 212.4 287.49 L 210.62 288.33 L 208.63 289.05 L 206.45 289.66 L 204.23 290.14 L 201.96 290.5 L 199.66 290.73 L 197.32 290.84 L 195.04 290.88 L 192.82 290.87 L 190.65 290.79 L 188.55 290.64 L 186.36 290.4 L 184.08 290.06 L 181.71 289.62 L 179.25 289.09 L 177.36 288.62 L 176.05 288.23 L 175.32 287.91 L 175.16 287.66 L 174.98 286.68 L 174.78 284.96 L 174.56 282.52 L 174.33 279.34 L 174.22 276.89 L 174.24 275.18 L 174.38 274.2 L 174.66 273.95 L 175.54 273.99 L 177.0 274.33 L 179.07 274.96 L 181.73 275.89 L 184.24 276.7 L 186.6 277.38 L 188.81 277.93 L 190.87 278.36 L 192.86 278.67 L 194.76 278.87 L 196.59 278.95 L 198.33 278.91 L 199.81 278.82 L 201.02 278.68 L 201.96 278.48 L 202.64 278.23 L 203.19 277.97 L 203.63 277.71 L 203.95 277.43 L 204.15 277.14 L 204.28 276.82 L 204.34 276.46 L 204.33 276.07 L 204.25 275.64 L 204.05 275.24 L 203.73 274.87 L 203.29 274.52 L 202.74 274.2 L 201.27 273.71 L 198.89 273.07 L 195.6 272.27 L 191.39 271.3 L 187.99 270.47 L 185.39 269.78 L 183.59 269.21 L 182.6 268.79 L 181.56 268.25 L 180.47 267.61 L 179.33 266.86 L 178.13 266.0 L 177.09 265.1 L 176.2 264.15 L 175.46 263.16 L 174.86 262.12 L 174.38 261.01 L 174.0 259.81 L 173.73 258.54 L 173.57 257.18 L 173.49 255.91 L 173.49 254.73 L 173.57 253.64 L 173.73 252.64 L 174.0 251.62 L 174.38 250.59 L 174.86 249.54 L 175.46 248.46 L 176.21 247.42 L 177.12 246.4 L 178.19 245.41 L 179.42 244.45 L 180.67 243.6 L 181.94 242.87 L 183.23 242.25 L 184.54 241.75 L 185.91 241.32 L 187.34 240.96 L 188.83 240.68 L 190.38 240.46 L 192.34 240.33 L 194.72 240.28 L 197.52 240.3 L 200.73 240.41 L 203.77 240.62 L 206.63 240.95 L 209.31 241.38 L 211.81 241.91 L 213.73 242.37 L 215.08 242.74 Z" fill="url(#bottomBlueGradNav)" fill-rule="evenodd" />
-          </svg>
-        </div>
-        <div class="ath-brand-typography">
-          <div class="ath-wordmark">
-            <span class="ath-title-asian">ASIAN</span>
-            <span class="ath-title-tech">TECHNOLOGY</span>
-            <span class="ath-title-hub">HUB</span>
-          </div>
-          <div class="ath-tagline">
-            <span>ASSURED SERVICE EXCELLENCE</span>
-          </div>
+  <!-- Ambient Zero-Gravity Particles Canvas -->
+  <canvas id="ambientParticlesCanvas" class="ambient-canvas" aria-hidden="true"></canvas>
+
+  <!-- Golden Digital Data Streams Canvas -->
+  <canvas id="goldenStreamsCanvas" class="streams-canvas" aria-hidden="true"></canvas>
+
+  <!-- ================= TOPBAR ================= -->
+  <header class="cyber-topbar">
+    <div class="topbar-inner">
+      
+      <!-- ATS Asian Technology Hub Official Logo -->
+      <a href="#" class="brand-link" aria-label="Asian Technology Hub Home">
+        <div class="brand-logo-frame">
+          <img src="ath_brand_logo.png" alt="Asian Technology Hub - Assured Excellent Service" class="brand-img">
         </div>
       </a>
-      <span class="topbar-course-tag">Data Science &amp; AI</span>
-    </div>
-    
-    <!-- Portal Login Trigger -->
-    <div class="topbar-controls">
-      <button id="openPortalBtn" class="portal-trigger-btn" aria-label="Open ATH Student Login Portal">
-        <svg class="portal-key-icon" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-          <path d="M15 3h4a2 2 0 0 1 2 2v14a2 2 0 0 1-2 2h-4"></path>
-          <polyline points="10 17 15 12 10 7"></polyline>
-          <line x1="15" y1="12" x2="3" y2="12"></line>
-        </svg>
-        <span>Student Portal</span>
-        <span class="portal-status-dot" title="Cluster Ready"></span>
-      </button>
-    </div>
 
-    <div class="topbar-right">
-      <div class="ath-topbar-accreditation">
-        <span class="ath-accreditation-dot"></span>
-        <span class="ath-accreditation-text">ASIAN TECHNOLOGY HUB · ACCREDITED</span>
+      <!-- Telemetry Status & Cohort Info -->
+      <div class="topbar-telemetry">
+        <div class="telemetry-chip live-chip">
+          <span class="live-dot"></span>
+          <span>GPU CLUSTERS ONLINE</span>
+        </div>
+        <div class="telemetry-chip admissions-chip">
+          <span class="admissions-dot"></span>
+          <span>ADMISSIONS OPEN · 2026 BATCH</span>
+        </div>
+        <button class="audio-toggle-btn" id="audioToggleBtn" title="Toggle Sci-Fi SFX" type="button">
+          <span id="audioIcon">🔊</span>
+          <span id="audioText">SFX</span>
+        </button>
       </div>
+
+      <!-- Action Button -->
+      <div class="topbar-cta">
+        <button class="btn-register-popup" id="navRegisterBtn" type="button">
+          <span class="btn-glow-pulse"></span>
+          <span>Enroll Now</span>
+        </button>
+      </div>
+
     </div>
   </header>
 
-  <!-- Main Canvas Frame Container -->
-  <main class="canvas-viewport" id="canvasViewport">
-    
-    <!-- Canvas Inner Window -->
-    <div class="canvas-window" id="canvasWindow">
+  <!-- ================= CINEMATIC WORKSPACE STAGE ================= -->
+  <main class="workspace-stage" id="workspaceStage">
 
-      <!-- Navigation Header Inside Canvas -->
-      <nav class="inner-header" aria-label="Canvas navigation">
-        <button class="header-icon-btn ath-header-btn" aria-label="Asian Technology Hub Home">
-          <svg width="24" height="24" viewBox="0 0 280 320" fill="none">
-            <path d="M 259.68 21.29 L 20.95 20.57 L 20.0 154.29 L 22.06 154.71 L 142.54 57.14 L 258.89 155.0 Z" fill="#38BDF8" />
-            <path d="M 259.52 259.29 L 142.06 155.71 L 20.63 258.0 L 20.0 298.43 L 257.94 299.71 L 259.68 298.43 Z M 137.52 241.04 L 149.62 240.96 L 158.83 240.99 L 165.14 241.12 L 168.55 241.34 L 169.07 241.66 L 169.48 242.32 L 169.8 243.32 L 170.02 244.66 L 170.14 246.34 L 170.21 247.78 L 170.23 248.97 L 170.2 249.93 L 170.12 250.64 L 170.01 251.23 L 169.87 251.7 L 169.7 252.04 L 169.5 252.25 L 168.44 252.43 L 166.52 252.57 L 163.73 252.68 L 160.08 252.75 L 157.27 252.86 L 155.31 253.0 L 154.19 253.18 L 153.91 253.39 L 153.71 255.68 L 153.59 260.04 L 153.55 266.46 L 153.59 274.96 L 153.53 281.49 L 153.37 286.04 L 153.12 288.62 L 152.76 289.23 L 151.49 289.7 L 149.31 290.02 L 146.21 290.2 L 142.2 290.23 L 139.11 290.18 L 136.92 290.04 L 135.65 289.8 L 135.3 289.48 L 135.04 287.03 L 134.88 282.44 L 134.82 275.71 L 134.82 266.86 L 134.82 260.17 L 134.7 255.65 L 134.5 253.3 L 134.23 253.12 L 133.09 252.96 L 128.21 252.7 L 124.48 252.59 L 121.64 252.45 L 119.67 252.27 L 118.59 252.05 L 118.39 251.8 L 118.24 251.1 L 118.14 249.94 L 118.1 248.32 L 118.1 246.25 L 118.17 244.57 L 118.33 243.29 L 118.57 242.39 L 118.89 241.89 L 122.15 241.5 L 128.36 241.21 Z M 69.62 271.14 L 76.57 260.0 L 81.92 251.51 L 85.69 245.67 L 87.88 242.48 L 88.47 241.95 L 89.57 241.53 L 91.18 241.22 L 93.29 241.04 L 95.91 240.96 L 98.05 240.94 L 99.69 240.96 L 100.85 241.02 L 101.53 241.12 L 102.15 241.32 L 102.73 241.61 L 103.25 241.98 L 103.73 242.45 L 105.6 245.37 L 108.85 250.74 L 113.49 258.57 L 119.52 268.86 L 124.18 276.86 L 127.45 282.57 L 129.35 286.0 L 129.86 287.14 L 130.16 288.09 L 130.24 288.84 L 130.1 289.39 L 129.74 289.75 L 128.42 290.01 L 126.14 290.17 L 122.9 290.23 L 118.69 290.2 L 115.43 290.1 L 113.11 289.94 L 111.73 289.71 L 111.29 289.43 L 110.81 288.93 L 110.3 288.21 L 109.74 287.29 L 109.15 286.14 L 108.57 285.19 L 108.02 284.42 L 107.48 283.84 L 106.96 283.45 L 105.04 283.15 L 101.71 282.96 L 96.96 282.86 L 90.81 282.86 L 86.08 282.96 L 82.77 283.15 L 80.87 283.45 L 80.4 283.84 L 79.87 284.44 L 79.3 285.24 L 78.67 286.25 L 78.0 287.46 L 77.38 288.44 L 76.83 289.17 L 76.33 289.66 L 75.89 289.91 L 74.65 290.1 L 72.61 290.22 L 69.76 290.29 L 66.11 290.29 L 63.29 290.23 L 61.31 290.12 L 60.16 289.96 L 59.84 289.75 L 59.59 289.49 L 59.41 289.19 L 59.31 288.84 L 59.27 288.45 L 60.97 285.37 L 64.42 279.6 Z M 91.83 264.61 L 90.4 266.82 L 89.32 268.58 L 88.58 269.88 L 88.19 270.73 L 88.15 271.12 L 88.19 271.47 L 88.31 271.78 L 88.51 272.04 L 88.79 272.25 L 89.65 272.4 L 93.13 272.52 L 95.75 272.48 L 97.77 272.35 L 99.18 272.12 L 99.98 271.79 L 100.18 271.36 L 100.04 270.54 L 99.56 269.32 L 98.75 267.71 L 97.6 265.71 L 96.62 264.12 L 95.8 262.95 L 95.16 262.18 L 94.68 261.82 L 93.97 262.11 L 93.02 263.04 Z M 215.85 243.04 L 216.05 243.25 L 216.29 244.15 L 216.57 245.74 L 216.88 248.02 L 217.24 250.98 L 217.45 253.28 L 217.51 254.9 L 217.42 255.86 L 217.18 256.14 L 216.92 256.38 L 216.65 256.55 L 216.35 256.68 L 216.03 256.75 L 215.12 256.56 L 213.61 256.12 L 211.51 255.41 L 208.81 254.45 L 206.3 253.65 L 203.98 253.03 L 201.85 252.57 L 199.9 252.29 L 198.05 252.12 L 196.28 252.06 L 194.6 252.12 L 193.02 252.3 L 191.77 252.49 L 190.85 252.69 L 190.28 252.89 L 190.04 253.11 L 189.86 253.36 L 189.86 253.64 L 189.74 253.64 L 189.68 253.96 L 189.68 254.32 L 189.77 254.67 L 189.95 255.01 L 190.22 255.34 L 190.58 255.66 L 191.21 256.01 L 192.12 256.38 L 193.31 256.79 L 194.78 257.21 L 196.61 257.68 L 198.79 258.18 L 201.33 258.71 L 204.23 259.29 L 206.64 259.81 L 208.56 260.29 L 210.0 260.73 L 210.95 261.12 L 211.93 261.61 L 212.95 262.18 L 213.99 262.84 L 215.06 263.59 L 216.06 264.45 L 216.99 265.41 L 217.86 266.48 L 218.65 267.66 L 219.3 268.79 L 219.79 269.88 L 220.14 270.93 L 220.34 271.93 L 220.46 273.03 L 220.5 274.22 L 220.46 275.52 L 220.34 276.91 L 220.08 278.26 L 219.68 279.56 L 219.15 280.82 L 218.47 282.04 L 217.62 283.21 L 216.59 284.36 L 215.38 285.46 L 213.99 286.54 L 212.4 287.49 L 210.62 288.33 L 208.63 289.05 L 206.45 289.66 L 204.23 290.14 L 201.96 290.5 L 199.66 290.73 L 197.32 290.84 L 195.04 290.88 L 192.82 290.87 L 190.65 290.79 L 188.55 290.64 L 186.36 290.4 L 184.08 290.06 L 181.71 289.62 L 179.25 289.09 L 177.36 288.62 L 176.05 288.23 L 175.32 287.91 L 175.16 287.66 L 174.98 286.68 L 174.78 284.96 L 174.56 282.52 L 174.33 279.34 L 174.22 276.89 L 174.24 275.18 L 174.38 274.2 L 174.66 273.95 L 175.54 273.99 L 177.0 274.33 L 179.07 274.96 L 181.73 275.89 L 184.24 276.7 L 186.6 277.38 L 188.81 277.93 L 190.87 278.36 L 192.86 278.67 L 194.76 278.87 L 196.59 278.95 L 198.33 278.91 L 199.81 278.82 L 201.02 278.68 L 201.96 278.48 L 202.64 278.23 L 203.19 277.97 L 203.63 277.71 L 203.95 277.43 L 204.15 277.14 L 204.28 276.82 L 204.34 276.46 L 204.33 276.07 L 204.25 275.64 L 204.05 275.24 L 203.73 274.87 L 203.29 274.52 L 202.74 274.2 L 201.27 273.71 L 198.89 273.07 L 195.6 272.27 L 191.39 271.3 L 187.99 270.47 L 185.39 269.78 L 183.59 269.21 L 182.6 268.79 L 181.56 268.25 L 180.47 267.61 L 179.33 266.86 L 178.13 266.0 L 177.09 265.1 L 176.2 264.15 L 175.46 263.16 L 174.86 262.12 L 174.38 261.01 L 174.0 259.81 L 173.73 258.54 L 173.57 257.18 L 173.49 255.91 L 173.49 254.73 L 173.57 253.64 L 173.73 252.64 L 174.0 251.62 L 174.38 250.59 L 174.86 249.54 L 175.46 248.46 L 176.21 247.42 L 177.12 246.4 L 178.19 245.41 L 179.42 244.45 L 180.67 243.6 L 181.94 242.87 L 183.23 242.25 L 184.54 241.75 L 185.91 241.32 L 187.34 240.96 L 188.83 240.68 L 190.38 240.46 L 192.34 240.33 L 194.72 240.28 L 197.52 240.3 L 200.73 240.41 L 203.77 240.62 L 206.63 240.95 L 209.31 241.38 L 211.81 241.91 L 213.73 242.37 L 215.08 242.74 Z" fill="#2563EB" fill-rule="evenodd" />
-          </svg>
-        </button>
+    <!-- Parallax Universe (Responds to Mouse & Gyro Parallax) -->
+    <div class="universe-container" id="universeContainer">
 
-        <div class="segmented-pill-toggle" role="tablist" id="segmentedPillToggle">
-          <div class="pill-slider-glider" id="pillGlider"></div>
-          <button class="pill-tab active" role="tab" aria-selected="true" id="tabCurriculum" data-target="curriculum">
-            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round">
-              <line x1="3" y1="6" x2="21" y2="6"/>
-              <line x1="3" y1="12" x2="21" y2="12"/>
-              <line x1="3" y1="18" x2="21" y2="18"/>
-            </svg>
-            <span>Full Curriculum</span>
-          </button>
-          <button class="pill-tab" role="tab" aria-selected="false" id="tabDatasets" data-target="datasets">
-            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-              <ellipse cx="12" cy="5" rx="9" ry="3"></ellipse>
-              <path d="M21 12c0 1.66-4 3-9 3s-9-1.34-9-3"></path>
-              <path d="M3 5v14c0 1.66 4 3 9 3s9-1.34 9-3V5"></path>
-            </svg>
-            <span>Free Datasets</span>
-            <span class="pill-badge-count">500GB</span>
-          </button>
+      <!-- Panoramic Space & Cockpit Layer -->
+      <div class="space-panoramic-bg" id="spacePanoramicBg" style="background-image: url('cinematic_bg.jpg');"></div>
+      <div class="space-vignette"></div>
+
+      <!-- ================= SURROUNDING FLOATING HOLOGRAPHIC PANELS ================= -->
+      
+      <!-- Panel 1: Complex Data Visualizations (Left Top) -->
+      <div class="holo-widget holo-data-viz" id="holoDataViz">
+        <div class="widget-header">
+          <div class="widget-icon-box">📊</div>
+          <div>
+            <h4 class="widget-title">Loss Landscape</h4>
+            <span class="widget-sub">Gradient Geometry</span>
+          </div>
+          <span class="widget-badge badge-cyan">3D t-SNE</span>
         </div>
-      </nav>
-
-      <!-- Scrollable Track / Content Container -->
-      <div class="canvas-scroll-track" id="scrollTrack">
-
-        <!-- ================= SECTION 1: HERO (DATA SCIENCE & AI) ================= -->
-        <section class="section section-hero" id="heroSection">
-          <div class="hero-ambient-glow"></div>
-          <div class="hero-grid-pattern"></div>
-
-          <!-- Hero Headline Block -->
-          <div class="hero-content">
-            <!-- Executive Asian Technology Hub Institutional Crest -->
-            <div class="hero-brand-presenter">
-              <div class="ath-institution-crest">
-                <div class="ath-crest-icon-box">
-                  <svg class="ath-crest-svg" viewBox="0 0 280 320" fill="none">
-                    <path d="M 259.68 21.29 L 20.95 20.57 L 20.0 154.29 L 22.06 154.71 L 142.54 57.14 L 258.89 155.0 Z" fill="#38BDF8" />
-                    <path d="M 259.52 259.29 L 142.06 155.71 L 20.63 258.0 L 20.0 298.43 L 257.94 299.71 L 259.68 298.43 Z M 137.52 241.04 L 149.62 240.96 L 158.83 240.99 L 165.14 241.12 L 168.55 241.34 L 169.07 241.66 L 169.48 242.32 L 169.8 243.32 L 170.02 244.66 L 170.14 246.34 L 170.21 247.78 L 170.23 248.97 L 170.2 249.93 L 170.12 250.64 L 170.01 251.23 L 169.87 251.7 L 169.7 252.04 L 169.5 252.25 L 168.44 252.43 L 166.52 252.57 L 163.73 252.68 L 160.08 252.75 L 157.27 252.86 L 155.31 253.0 L 154.19 253.18 L 153.91 253.39 L 153.71 255.68 L 153.59 260.04 L 153.55 266.46 L 153.59 274.96 L 153.53 281.49 L 153.37 286.04 L 153.12 288.62 L 152.76 289.23 L 151.49 289.7 L 149.31 290.02 L 146.21 290.2 L 142.2 290.23 L 139.11 290.18 L 136.92 290.04 L 135.65 289.8 L 135.3 289.48 L 135.04 287.03 L 134.88 282.44 L 134.82 275.71 L 134.82 266.86 L 134.82 260.17 L 134.7 255.65 L 134.5 253.3 L 134.23 253.12 L 133.09 252.96 L 128.21 252.7 L 124.48 252.59 L 121.64 252.45 L 119.67 252.27 L 118.59 252.05 L 118.39 251.8 L 118.24 251.1 L 118.14 249.94 L 118.1 248.32 L 118.1 246.25 L 118.17 244.57 L 118.33 243.29 L 118.57 242.39 L 118.89 241.89 L 122.15 241.5 L 128.36 241.21 Z M 69.62 271.14 L 76.57 260.0 L 81.92 251.51 L 85.69 245.67 L 87.88 242.48 L 88.47 241.95 L 89.57 241.53 L 91.18 241.22 L 93.29 241.04 L 95.91 240.96 L 98.05 240.94 L 99.69 240.96 L 100.85 241.02 L 101.53 241.12 L 102.15 241.32 L 102.73 241.61 L 103.25 241.98 L 103.73 242.45 L 105.6 245.37 L 108.85 250.74 L 113.49 258.57 L 119.52 268.86 L 124.18 276.86 L 127.45 282.57 L 129.35 286.0 L 129.86 287.14 L 130.16 288.09 L 130.24 288.84 L 130.1 289.39 L 129.74 289.75 L 128.42 290.01 L 126.14 290.17 L 122.9 290.23 L 118.69 290.2 L 115.43 290.1 L 113.11 289.94 L 111.73 289.71 L 111.29 289.43 L 110.81 288.93 L 110.3 288.21 L 109.74 287.29 L 109.15 286.14 L 108.57 285.19 L 108.02 284.42 L 107.48 283.84 L 106.96 283.45 L 105.04 283.15 L 101.71 282.96 L 96.96 282.86 L 90.81 282.86 L 86.08 282.96 L 82.77 283.15 L 80.87 283.45 L 80.4 283.84 L 79.87 284.44 L 79.3 285.24 L 78.67 286.25 L 78.0 287.46 L 77.38 288.44 L 76.83 289.17 L 76.33 289.66 L 75.89 289.91 L 74.65 290.1 L 72.61 290.22 L 69.76 290.29 L 66.11 290.29 L 63.29 290.23 L 61.31 290.12 L 60.16 289.96 L 59.84 289.75 L 59.59 289.49 L 59.41 289.19 L 59.31 288.84 L 59.27 288.45 L 60.97 285.37 L 64.42 279.6 Z M 91.83 264.61 L 90.4 266.82 L 89.32 268.58 L 88.58 269.88 L 88.19 270.73 L 88.15 271.12 L 88.19 271.47 L 88.31 271.78 L 88.51 272.04 L 88.79 272.25 L 89.65 272.4 L 93.13 272.52 L 95.75 272.48 L 97.77 272.35 L 99.18 272.12 L 99.98 271.79 L 100.18 271.36 L 100.04 270.54 L 99.56 269.32 L 98.75 267.71 L 97.6 265.71 L 96.62 264.12 L 95.8 262.95 L 95.16 262.18 L 94.68 261.82 L 93.97 262.11 L 93.02 263.04 Z M 215.85 243.04 L 216.05 243.25 L 216.29 244.15 L 216.57 245.74 L 216.88 248.02 L 217.24 250.98 L 217.45 253.28 L 217.51 254.9 L 217.42 255.86 L 217.18 256.14 L 216.92 256.38 L 216.65 256.55 L 216.35 256.68 L 216.03 256.75 L 215.12 256.56 L 213.61 256.12 L 211.51 255.41 L 208.81 254.45 L 206.3 253.65 L 203.98 253.03 L 201.85 252.57 L 199.9 252.29 L 198.05 252.12 L 196.28 252.06 L 194.6 252.12 L 193.02 252.3 L 191.77 252.49 L 190.85 252.69 L 190.28 252.89 L 190.04 253.11 L 189.86 253.36 L 189.86 253.64 L 189.74 253.64 L 189.68 253.96 L 189.68 254.32 L 189.77 254.67 L 189.95 255.01 L 190.22 255.34 L 190.58 255.66 L 191.21 256.01 L 192.12 256.38 L 193.31 256.79 L 194.78 257.21 L 196.61 257.68 L 198.79 258.18 L 201.33 258.71 L 204.23 259.29 L 206.64 259.81 L 208.56 260.29 L 210.0 260.73 L 210.95 261.12 L 211.93 261.61 L 212.95 262.18 L 213.99 262.84 L 215.06 263.59 L 216.06 264.45 L 216.99 265.41 L 217.86 266.48 L 218.65 267.66 L 219.3 268.79 L 219.79 269.88 L 220.14 270.93 L 220.34 271.93 L 220.46 273.03 L 220.5 274.22 L 220.46 275.52 L 220.34 276.91 L 220.08 278.26 L 219.68 279.56 L 219.15 280.82 L 218.47 282.04 L 217.62 283.21 L 216.59 284.36 L 215.38 285.46 L 213.99 286.54 L 212.4 287.49 L 210.62 288.33 L 208.63 289.05 L 206.45 289.66 L 204.23 290.14 L 201.96 290.5 L 199.66 290.73 L 197.32 290.84 L 195.04 290.88 L 192.82 290.87 L 190.65 290.79 L 188.55 290.64 L 186.36 290.4 L 184.08 290.06 L 181.71 289.62 L 179.25 289.09 L 177.36 288.62 L 176.05 288.23 L 175.32 287.91 L 175.16 287.66 L 174.98 286.68 L 174.78 284.96 L 174.56 282.52 L 174.33 279.34 L 174.22 276.89 L 174.24 275.18 L 174.38 274.2 L 174.66 273.95 L 175.54 273.99 L 177.0 274.33 L 179.07 274.96 L 181.73 275.89 L 184.24 276.7 L 186.6 277.38 L 188.81 277.93 L 190.87 278.36 L 192.86 278.67 L 194.76 278.87 L 196.59 278.95 L 198.33 278.91 L 199.81 278.82 L 201.02 278.68 L 201.96 278.48 L 202.64 278.23 L 203.19 277.97 L 203.63 277.71 L 203.95 277.43 L 204.15 277.14 L 204.28 276.82 L 204.34 276.46 L 204.33 276.07 L 204.25 275.64 L 204.05 275.24 L 203.73 274.87 L 203.29 274.52 L 202.74 274.2 L 201.27 273.71 L 198.89 273.07 L 195.6 272.27 L 191.39 271.3 L 187.99 270.47 L 185.39 269.78 L 183.59 269.21 L 182.6 268.79 L 181.56 268.25 L 180.47 267.61 L 179.33 266.86 L 178.13 266.0 L 177.09 265.1 L 176.2 264.15 L 175.46 263.16 L 174.86 262.12 L 174.38 261.01 L 174.0 259.81 L 173.73 258.54 L 173.57 257.18 L 173.49 255.91 L 173.49 254.73 L 173.57 253.64 L 173.73 252.64 L 174.0 251.62 L 174.38 250.59 L 174.86 249.54 L 175.46 248.46 L 176.21 247.42 L 177.12 246.4 L 178.19 245.41 L 179.42 244.45 L 180.67 243.6 L 181.94 242.87 L 183.23 242.25 L 184.54 241.75 L 185.91 241.32 L 187.34 240.96 L 188.83 240.68 L 190.38 240.46 L 192.34 240.33 L 194.72 240.28 L 197.52 240.3 L 200.73 240.41 L 203.77 240.62 L 206.63 240.95 L 209.31 241.38 L 211.81 241.91 L 213.73 242.37 L 215.08 242.74 Z" fill="#2563EB" fill-rule="evenodd" />
-                  </svg>
-                </div>
-                <div class="ath-crest-details">
-                  <span class="ath-crest-org">ASIAN TECHNOLOGY HUB</span>
-                  <span class="ath-crest-dept">Division of Applied Artificial Intelligence &amp; Data Sciences</span>
-                </div>
-                <span class="ath-verified-tag">
-                  <svg width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3">
-                    <polyline points="20 6 9 17 4 12"></polyline>
-                  </svg>
-                  <span>ISO 9001:2015</span>
-                </span>
-              </div>
-            </div>
-
-            <div class="badge-chip hero-badge">
-              <span class="badge-dot"></span>
-              <span>Intensive Bootcamp 2026</span>
-            </div>
-
-            <h1 class="hero-title">
-              Learn to build<br>
-              production AI &amp; ML models<br>
-              right from scratch
-            </h1>
-
-            <p class="hero-subtitle">
-              A practical intensive for engineers and analysts who want to master modern Data Science, Deep Learning, and LLMs without getting lost in abstract theory.
-            </p>
+        <div class="widget-body">
+          <div class="svg-wave-box">
+            <svg viewBox="0 0 240 90" class="wave-svg">
+              <defs>
+                <linearGradient id="waveGrad" x1="0" y1="0" x2="1" y2="0">
+                  <stop offset="0%" stop-color="#38bdf8"/>
+                  <stop offset="50%" stop-color="#a855f7"/>
+                  <stop offset="100%" stop-color="#fbbf24"/>
+                </linearGradient>
+              </defs>
+              <path d="M0 65 Q 35 15, 70 45 T 140 25 T 200 60 T 240 10 L 240 90 L 0 90 Z" fill="rgba(56, 189, 248, 0.12)"/>
+              <path d="M0 65 Q 35 15, 70 45 T 140 25 T 200 60 T 240 10" fill="none" stroke="url(#waveGrad)" stroke-width="2.5"/>
+              <circle cx="70" cy="45" r="4" fill="#38bdf8"/>
+              <circle cx="140" cy="25" r="4" fill="#a855f7"/>
+              <circle cx="240" cy="10" r="5" fill="#fbbf24"/>
+            </svg>
           </div>
-
-          <!-- Hero Interactive Node Graph & Central Architecture Card -->
-          <div class="hero-graph-viewport">
-            <div class="hero-graph-container" id="heroGraph">
-              
-              <!-- SVG Orthogonal Connector Lines -->
-              <svg class="graph-wires" viewBox="0 0 1200 600" fill="none" preserveAspectRatio="none">
-                <defs>
-                  <linearGradient id="wireGlow" x1="0%" y1="0%" x2="100%" y2="0%">
-                    <stop offset="0%" stop-color="#38bdf8" stop-opacity="0.2"/>
-                    <stop offset="50%" stop-color="#818cf8" stop-opacity="0.8"/>
-                    <stop offset="100%" stop-color="#c084fc" stop-opacity="0.2"/>
-                  </linearGradient>
-                </defs>
-
-                <!-- Left Branch Wires -->
-                <path class="wire-path" d="M 600 300 H 260 V 430 H 180" stroke="rgba(255,255,255,0.2)" stroke-width="1.5"/>
-                <path class="wire-path" d="M 380 300 V 410 H 370" stroke="rgba(255,255,255,0.2)" stroke-width="1.5"/>
-                <path class="wire-path" d="M 600 240 H 420 V 170 H 400" stroke="rgba(255,255,255,0.2)" stroke-width="1.5"/>
-                <path class="wire-path" d="M 260 430 V 490 H 280" stroke="rgba(255,255,255,0.2)" stroke-width="1.5"/>
-
-                <!-- Top Wire to Starburst -->
-                <path class="wire-path" d="M 600 240 V 140" stroke="rgba(255,255,255,0.25)" stroke-width="1.5"/>
-
-                <!-- Right Branch Wires -->
-                <path class="wire-path" d="M 600 280 H 780 V 210 H 820" stroke="rgba(255,255,255,0.2)" stroke-width="1.5"/>
-                <path class="wire-path" d="M 720 300 H 940 V 440 H 830" stroke="rgba(255,255,255,0.2)" stroke-width="1.5"/>
-                <path class="wire-path" d="M 940 440 H 960" stroke="rgba(255,255,255,0.2)" stroke-width="1.5"/>
-                <path class="wire-path" d="M 830 440 V 470 H 810" stroke="rgba(255,255,255,0.2)" stroke-width="1.5"/>
-              </svg>
-
-              <!-- Node 1: Top Benchmark Accuracy Pin -->
-              <div class="graph-node node-starburst" style="left: 600px; top: 125px;">
-                <div class="node-circle-glow">
-                  <svg width="22" height="22" viewBox="0 0 24 24" fill="#ffffff">
-                    <path d="M12 0L14.59 9.41L24 12L14.59 14.59L12 24L9.41 14.59L0 12L9.41 9.41L12 0Z"/>
-                  </svg>
-                </div>
-              </div>
-
-              <!-- Node 2: Top-Left Learning Rate / Loss Scheduler Slider -->
-              <div class="graph-node node-gradient-slider" style="left: 420px; top: 140px;">
-                <div class="slider-bar">
-                  <span class="swatch stop-1" title="Cosine Annealing"></span>
-                  <span class="swatch stop-2" title="AdamW Optimizer"></span>
-                  <span class="swatch stop-3" title="Learning Rate 0.001"></span>
-                </div>
-              </div>
-
-              <!-- Node 3: Left Sparkle Node -->
-              <div class="graph-node node-left-sparkle" style="left: 360px; top: 380px;">
-                <div class="node-circle-glow">
-                  <svg width="18" height="18" viewBox="0 0 24 24" fill="#ffffff">
-                    <path d="M12 0L14.59 9.41L24 12L14.59 14.59L12 24L9.41 14.59L0 12L9.41 9.41L12 0Z"/>
-                  </svg>
-                </div>
-              </div>
-
-              <!-- Node 4: Left Model Safety & Alignment Card -->
-              <div class="graph-node node-card-shield" style="left: 230px; top: 400px;">
-                <div class="glass-icon-box" title="Model Alignment & Safety">
-                  <svg width="22" height="22" viewBox="0 0 24 24" fill="#38bdf8">
-                    <path d="M12 1L3 5v6c0 5.55 3.84 10.74 9 12 5.16-1.26 9-6.45 9-12V5l-9-4zm-1 16l-4-4 1.41-1.41L11 14.17l6.59-6.59L19 9l-8 8z"/>
-                  </svg>
-                </div>
-              </div>
-
-              <!-- Node 5: Bottom Left Python / ML Badge -->
-              <div class="graph-node node-card-aa" style="left: 360px; top: 470px;">
-                <div class="pill-aa-box">
-                  <span class="aa-text">Py</span>
-                  <span class="aa-dot"></span>
-                </div>
-              </div>
-
-              <!-- Node 6: Central Frosted Master ML Core Card -->
-              <div class="graph-node node-central-card" style="left: 600px; top: 340px;">
-                
-                <!-- Floating Elevated ATH & Neural Tensor Emblem -->
-                <div class="elevated-figma-badge ath-elevated-badge" title="ATH AI & Deep Learning Core">
-                  <svg width="44" height="50" viewBox="0 0 280 320" fill="none">
-                    <path d="M 259.68 21.29 L 20.95 20.57 L 20.0 154.29 L 22.06 154.71 L 142.54 57.14 L 258.89 155.0 Z" fill="url(#athTopGrad)" />
-                    <path d="M 259.52 259.29 L 142.06 155.71 L 20.63 258.0 L 20.0 298.43 L 257.94 299.71 L 259.68 298.43 Z M 137.52 241.04 L 149.62 240.96 L 158.83 240.99 L 165.14 241.12 L 168.55 241.34 L 169.07 241.66 L 169.48 242.32 L 169.8 243.32 L 170.02 244.66 L 170.14 246.34 L 170.21 247.78 L 170.23 248.97 L 170.2 249.93 L 170.12 250.64 L 170.01 251.23 L 169.87 251.7 L 169.7 252.04 L 169.5 252.25 L 168.44 252.43 L 166.52 252.57 L 163.73 252.68 L 160.08 252.75 L 157.27 252.86 L 155.31 253.0 L 154.19 253.18 L 153.91 253.39 L 153.71 255.68 L 153.59 260.04 L 153.55 266.46 L 153.59 274.96 L 153.53 281.49 L 153.37 286.04 L 153.12 288.62 L 152.76 289.23 L 151.49 289.7 L 149.31 290.02 L 146.21 290.2 L 142.2 290.23 L 139.11 290.18 L 136.92 290.04 L 135.65 289.8 L 135.3 289.48 L 135.04 287.03 L 134.88 282.44 L 134.82 275.71 L 134.82 266.86 L 134.82 260.17 L 134.7 255.65 L 134.5 253.3 L 134.23 253.12 L 133.09 252.96 L 128.21 252.7 L 124.48 252.59 L 121.64 252.45 L 119.67 252.27 L 118.59 252.05 L 118.39 251.8 L 118.24 251.1 L 118.14 249.94 L 118.1 248.32 L 118.1 246.25 L 118.17 244.57 L 118.33 243.29 L 118.57 242.39 L 118.89 241.89 L 122.15 241.5 L 128.36 241.21 Z M 69.62 271.14 L 76.57 260.0 L 81.92 251.51 L 85.69 245.67 L 87.88 242.48 L 88.47 241.95 L 89.57 241.53 L 91.18 241.22 L 93.29 241.04 L 95.91 240.96 L 98.05 240.94 L 99.69 240.96 L 100.85 241.02 L 101.53 241.12 L 102.15 241.32 L 102.73 241.61 L 103.25 241.98 L 103.73 242.45 L 105.6 245.37 L 108.85 250.74 L 113.49 258.57 L 119.52 268.86 L 124.18 276.86 L 127.45 282.57 L 129.35 286.0 L 129.86 287.14 L 130.16 288.09 L 130.24 288.84 L 130.1 289.39 L 129.74 289.75 L 128.42 290.01 L 126.14 290.17 L 122.9 290.23 L 118.69 290.2 L 115.43 290.1 L 113.11 289.94 L 111.73 289.71 L 111.29 289.43 L 110.81 288.93 L 110.3 288.21 L 109.74 287.29 L 109.15 286.14 L 108.57 285.19 L 108.02 284.42 L 107.48 283.84 L 106.96 283.45 L 105.04 283.15 L 101.71 282.96 L 96.96 282.86 L 90.81 282.86 L 86.08 282.96 L 82.77 283.15 L 80.87 283.45 L 80.4 283.84 L 79.87 284.44 L 79.3 285.24 L 78.67 286.25 L 78.0 287.46 L 77.38 288.44 L 76.83 289.17 L 76.33 289.66 L 75.89 289.91 L 74.65 290.1 L 72.61 290.22 L 69.76 290.29 L 66.11 290.29 L 63.29 290.23 L 61.31 290.12 L 60.16 289.96 L 59.84 289.75 L 59.59 289.49 L 59.41 289.19 L 59.31 288.84 L 59.27 288.45 L 60.97 285.37 L 64.42 279.6 Z M 91.83 264.61 L 90.4 266.82 L 89.32 268.58 L 88.58 269.88 L 88.19 270.73 L 88.15 271.12 L 88.19 271.47 L 88.31 271.78 L 88.51 272.04 L 88.79 272.25 L 89.65 272.4 L 93.13 272.52 L 95.75 272.48 L 97.77 272.35 L 99.18 272.12 L 99.98 271.79 L 100.18 271.36 L 100.04 270.54 L 99.56 269.32 L 98.75 267.71 L 97.6 265.71 L 96.62 264.12 L 95.8 262.95 L 95.16 262.18 L 94.68 261.82 L 93.97 262.11 L 93.02 263.04 Z M 215.85 243.04 L 216.05 243.25 L 216.29 244.15 L 216.57 245.74 L 216.88 248.02 L 217.24 250.98 L 217.45 253.28 L 217.51 254.9 L 217.42 255.86 L 217.18 256.14 L 216.92 256.38 L 216.65 256.55 L 216.35 256.68 L 216.03 256.75 L 215.12 256.56 L 213.61 256.12 L 211.51 255.41 L 208.81 254.45 L 206.3 253.65 L 203.98 253.03 L 201.85 252.57 L 199.9 252.29 L 198.05 252.12 L 196.28 252.06 L 194.6 252.12 L 193.02 252.3 L 191.77 252.49 L 190.85 252.69 L 190.28 252.89 L 190.04 253.11 L 189.86 253.36 L 189.86 253.64 L 189.74 253.64 L 189.68 253.96 L 189.68 254.32 L 189.77 254.67 L 189.95 255.01 L 190.22 255.34 L 190.58 255.66 L 191.21 256.01 L 192.12 256.38 L 193.31 256.79 L 194.78 257.21 L 196.61 257.68 L 198.79 258.18 L 201.33 258.71 L 204.23 259.29 L 206.64 259.81 L 208.56 260.29 L 210.0 260.73 L 210.95 261.12 L 211.93 261.61 L 212.95 262.18 L 213.99 262.84 L 215.06 263.59 L 216.06 264.45 L 216.99 265.41 L 217.86 266.48 L 218.65 267.66 L 219.3 268.79 L 219.79 269.88 L 220.14 270.93 L 220.34 271.93 L 220.46 273.03 L 220.5 274.22 L 220.46 275.52 L 220.34 276.91 L 220.08 278.26 L 219.68 279.56 L 219.15 280.82 L 218.47 282.04 L 217.62 283.21 L 216.59 284.36 L 215.38 285.46 L 213.99 286.54 L 212.4 287.49 L 210.62 288.33 L 208.63 289.05 L 206.45 289.66 L 204.23 290.14 L 201.96 290.5 L 199.66 290.73 L 197.32 290.84 L 195.04 290.88 L 192.82 290.87 L 190.65 290.79 L 188.55 290.64 L 186.36 290.4 L 184.08 290.06 L 181.71 289.62 L 179.25 289.09 L 177.36 288.62 L 176.05 288.23 L 175.32 287.91 L 175.16 287.66 L 174.98 286.68 L 174.78 284.96 L 174.56 282.52 L 174.33 279.34 L 174.22 276.89 L 174.24 275.18 L 174.38 274.2 L 174.66 273.95 L 175.54 273.99 L 177.0 274.33 L 179.07 274.96 L 181.73 275.89 L 184.24 276.7 L 186.6 277.38 L 188.81 277.93 L 190.87 278.36 L 192.86 278.67 L 194.76 278.87 L 196.59 278.95 L 198.33 278.91 L 199.81 278.82 L 201.02 278.68 L 201.96 278.48 L 202.64 278.23 L 203.19 277.97 L 203.63 277.71 L 203.95 277.43 L 204.15 277.14 L 204.28 276.82 L 204.34 276.46 L 204.33 276.07 L 204.25 275.64 L 204.05 275.24 L 203.73 274.87 L 203.29 274.52 L 202.74 274.2 L 201.27 273.71 L 198.89 273.07 L 195.6 272.27 L 191.39 271.3 L 187.99 270.47 L 185.39 269.78 L 183.59 269.21 L 182.6 268.79 L 181.56 268.25 L 180.47 267.61 L 179.33 266.86 L 178.13 266.0 L 177.09 265.1 L 176.2 264.15 L 175.46 263.16 L 174.86 262.12 L 174.38 261.01 L 174.0 259.81 L 173.73 258.54 L 173.57 257.18 L 173.49 255.91 L 173.49 254.73 L 173.57 253.64 L 173.73 252.64 L 174.0 251.62 L 174.38 250.59 L 174.86 249.54 L 175.46 248.46 L 176.21 247.42 L 177.12 246.4 L 178.19 245.41 L 179.42 244.45 L 180.67 243.6 L 181.94 242.87 L 183.23 242.25 L 184.54 241.75 L 185.91 241.32 L 187.34 240.96 L 188.83 240.68 L 190.38 240.46 L 192.34 240.33 L 194.72 240.28 L 197.52 240.3 L 200.73 240.41 L 203.77 240.62 L 206.63 240.95 L 209.31 241.38 L 211.81 241.91 L 213.73 242.37 L 215.08 242.74 Z" fill="url(#athBottomGrad)" fill-rule="evenodd" />
-                  </svg>
-                </div>
-
-                <div class="glass-sheet-content">
-                  <!-- Skill Progress Bar -->
-                  <div class="skill-meter-header">
-                    <span class="meter-label">ML engineering skills</span>
-                    <span class="meter-val">100%</span>
-                  </div>
-                  <div class="skill-meter-bar">
-                    <div class="skill-meter-fill"></div>
-                  </div>
-
-                  <!-- 5 Data Science & AI Tool Icons -->
-                  <div class="tool-icons-row">
-                    <button class="tool-icon-btn active" title="Python & Jupyter">
-                      <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                        <polyline points="4 17 10 11 4 5"/>
-                        <line x1="12" y1="19" x2="20" y2="19"/>
-                      </svg>
-                    </button>
-                    <button class="tool-icon-btn" title="Deep Learning & Neural Layers">
-                      <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                        <circle cx="5" cy="6" r="3"/>
-                        <circle cx="19" cy="6" r="3"/>
-                        <circle cx="5" cy="18" r="3"/>
-                        <circle cx="19" cy="18" r="3"/>
-                        <line x1="8" y1="6" x2="16" y2="6"/>
-                        <line x1="8" y1="18" x2="16" y2="18"/>
-                        <line x1="7.5" y1="8" x2="16.5" y2="16"/>
-                        <line x1="7.5" y1="16" x2="16.5" y2="8"/>
-                      </svg>
-                    </button>
-                    <button class="tool-icon-btn" title="Matrices & Tensors">
-                      <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                        <rect x="3" y="3" width="7" height="7"/>
-                        <rect x="14" y="3" width="7" height="7"/>
-                        <rect x="14" y="14" width="7" height="7"/>
-                        <rect x="3" y="14" width="7" height="7"/>
-                      </svg>
-                    </button>
-                    <button class="tool-icon-btn" title="SQL & Feature Stores">
-                      <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                        <ellipse cx="12" cy="5" rx="9" ry="3"/>
-                        <path d="M21 12c0 1.66-4 3-9 3s-9-1.34-9-3"/>
-                        <path d="M3 5v14c0 1.66 4 3 9 3s9-1.34 9-3V5"/>
-                      </svg>
-                    </button>
-                    <button class="tool-icon-btn" title="Production API & MLOps">
-                      <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                        <rect x="2" y="2" width="20" height="8" rx="2"/>
-                        <rect x="2" y="14" width="20" height="8" rx="2"/>
-                        <line x1="6" y1="6" x2="6.01" y2="6"/>
-                        <line x1="6" y1="18" x2="6.01" y2="18"/>
-                      </svg>
-                    </button>
-                  </div>
-                </div>
-              </div>
-
-              <!-- Node 7: Top Right GPU & TPU Compute Cluster Card -->
-              <div class="graph-node node-card-bulb" style="left: 820px; top: 180px;">
-                <div class="glass-icon-box" title="GPU Cluster & CUDA Acceleration">
-                  <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="#60a5fa" stroke-width="2">
-                    <rect x="4" y="4" width="16" height="16" rx="2"/>
-                    <rect x="9" y="9" width="6" height="6"/>
-                    <line x1="9" y1="1" x2="9" y2="4"/>
-                    <line x1="15" y1="1" x2="15" y2="4"/>
-                    <line x1="9" y1="20" x2="9" y2="23"/>
-                    <line x1="15" y1="20" x2="15" y2="23"/>
-                    <line x1="20" y1="9" x2="23" y2="9"/>
-                    <line x1="20" y1="14" x2="23" y2="14"/>
-                    <line x1="1" y1="9" x2="4" y2="9"/>
-                    <line x1="1" y1="14" x2="4" y2="14"/>
-                  </svg>
-                </div>
-              </div>
-
-              <!-- Node 8: Right Cyan Model Weights Node + Weights & Biases Tooltip -->
-              <div class="graph-node node-appearance-anchor" id="nodeAppearance" style="left: 810px; top: 430px;">
-                <div class="layers-concentric-circle" title="Trained Model Weights">
-                  <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#38bdf8" stroke-width="2.5">
-                    <circle cx="12" cy="12" r="8"/>
-                    <circle cx="12" cy="12" r="3" fill="#38bdf8"/>
-                  </svg>
-                </div>
-                <div class="appearance-tooltip-chip" id="appearanceChip">
-                  <span>Weights &amp; Biases</span>
-                </div>
-              </div>
-
-              <!-- Node 9: Far Right Donut Chart Card (ROC-AUC 98.4%) -->
-              <div class="graph-node node-donut-card" style="left: 920px; top: 410px;">
-                <div class="donut-card-box">
-                  <div class="donut-badge">+98%</div>
-                  <div class="donut-visual">
-                    <svg width="48" height="48" viewBox="0 0 36 36">
-                      <circle cx="18" cy="18" r="14" fill="none" stroke="rgba(255,255,255,0.1)" stroke-width="5"/>
-                      <circle cx="18" cy="18" r="14" fill="none" stroke="url(#donutGrad)" stroke-width="5"
-                              stroke-dasharray="88 100" stroke-linecap="round" transform="rotate(-90 18 18)"/>
-                      <defs>
-                        <linearGradient id="donutGrad" x1="0%" y1="0%" x2="100%" y2="100%">
-                          <stop offset="0%" stop-color="#38bdf8"/>
-                          <stop offset="100%" stop-color="#10b981"/>
-                        </linearGradient>
-                      </defs>
-                    </svg>
-                  </div>
-                </div>
-              </div>
-
-              <!-- Bottom Sub-Inspector Panel (Precision & Latency) -->
-              <div class="graph-node node-bottom-inspector" style="left: 600px; top: 490px;">
-                <div class="sub-inspector-box">
-                  <div class="sub-row">
-                    <span class="sub-icon">⚡</span>
-                    <div class="sub-line sub-line-long" title="Inference Latency: 4.2ms"></div>
-                  </div>
-                  <div class="sub-row">
-                    <div class="sub-line sub-line-short" title="F1-Score: 0.96"></div>
-                  </div>
-                </div>
-              </div>
-
-            </div>
+          <div class="widget-stat-line">
+            <span>Convergence: <strong class="text-cyan">99.8%</strong></span>
+            <span>Minima: <strong class="text-green">Global</strong></span>
           </div>
-        </section>
+        </div>
+      </div>
 
-
-        <!-- ================= SECTION 2: WHAT YOU WILL MASTER ================= -->
-        <section class="section section-skills" id="skillsSection">
-          <div class="skills-card-sheet" id="skillsSheet">
-            
-            <div class="section-header-center">
-              <div class="badge-chip badge-light">
-                <span>Core Competencies</span>
-              </div>
-              <h2 class="section-title text-dark">
-                What you will master<br>
-                during the intensive
-              </h2>
-            </div>
-
-            <!-- 4 Bento Feature Cards -->
-            <div class="skills-grid">
-              
-              <!-- Card 1: Exploratory Data Analysis & Feature Engineering -->
-              <div class="skill-bento-card" data-tilt>
-                <div class="card-visual visual-vectors">
-                  <div class="mockup-slider-card">
-                    <div class="slider-indicator-bar">
-                      <div class="vertical-laser-guide"></div>
-                      <div class="mockup-row">
-                        <span class="mock-pill"></span>
-                        <span class="mock-tag">Feature Pipeline</span>
-                      </div>
-                      <div class="mockup-bottom-meta">
-                        <span class="meta-digit">PCA / t-SNE</span>
-                        <span class="meta-code">&sigma; = 0.99</span>
-                      </div>
-                    </div>
-                  </div>
-                  <!-- Mini Correlation Heatmap & Preprocessing Tags -->
-                  <div class="feature-matrix-overlay">
-                    <div class="matrix-mini-grid">
-                      <span class="m-cell heat-3" title="Corr(X1, Y): 0.94">0.94</span>
-                      <span class="m-cell heat-2" title="Corr(X2, Y): 0.88">0.88</span>
-                      <span class="m-cell heat-neg" title="Corr(X3, Y): -0.42">-0.42</span>
-                      <span class="m-cell heat-1" title="Corr(X4, Y): 0.76">0.76</span>
-                    </div>
-                    <div class="feature-tag-list">
-                      <span class="f-tag">StandardScaler</span>
-                      <span class="f-tag">IsolationForest</span>
-                      <span class="f-tag">TargetEncoding</span>
-                    </div>
-                  </div>
-                </div>
-                <div class="card-caption">
-                  Clean messy datasets, engineer high-signal features, and automate data pipelines
-                </div>
-              </div>
-
-              <!-- Card 2: Deep Learning Architectures & Transformers -->
-              <div class="skill-bento-card" data-tilt>
-                <div class="card-visual visual-sphere">
-                  <div class="orbital-sphere-wrapper">
-                    <div class="glowing-3d-sphere">
-                      <!-- Central PyTorch / Tensor Emblem on Sphere -->
-                      <svg class="sphere-figma-icon" width="34" height="48" viewBox="0 0 24 24" fill="none">
-                        <path d="M12 2L3 7v10l9 5 9-5V7l-9-5z" stroke="#ffffff" stroke-width="2" stroke-linejoin="round"/>
-                        <circle cx="12" cy="12" r="3" fill="#ffffff"/>
-                      </svg>
-                    </div>
-                    <!-- Orbiting Nodes (Attention Heads) -->
-                    <span class="orbit-particle p1" title="Query Matrix"></span>
-                    <span class="orbit-particle p2" title="Key Matrix"></span>
-                    <span class="orbit-particle p3" title="Value Matrix"></span>
-                  </div>
-                  <!-- Floating Attention & Architecture Badges -->
-                  <div class="attention-heads-rack">
-                    <span class="att-head-chip head-q">Q · K<sup>T</sup> / &radic;d</span>
-                    <span class="att-head-chip head-flash">FlashAttention-2</span>
-                    <span class="att-head-chip head-rope">RoPE Embeddings</span>
-                  </div>
-                </div>
-                <div class="card-caption">
-                  Train transformer models, convolutional networks, and custom neural architectures
-                </div>
-              </div>
-
-              <!-- Card 3: Large Language Models & GenAI Fine-Tuning -->
-              <div class="skill-bento-card" data-tilt>
-                <div class="card-visual visual-layers">
-                  <div class="stacked-window-cards">
-                    <div class="win-card win-back"></div>
-                    <div class="win-card win-front">
-                      <span class="win-chip">+98% RAG</span>
-                    </div>
-                    <div class="win-sparkle-badge">
-                      <svg width="18" height="18" viewBox="0 0 24 24" fill="#38bdf8">
-                        <path d="M12 0L14.59 9.41L24 12L14.59 14.59L12 24L9.41 14.59L0 12L9.41 9.41L12 0Z"/>
-                      </svg>
-                    </div>
-                  </div>
-                  <!-- LoRA Fine-Tuning Telemetry Board -->
-                  <div class="lora-telemetry-box">
-                    <div class="telemetry-item">
-                      <span class="tel-label">LoRA Target</span>
-                      <span class="tel-val">q_proj, v_proj (r=16)</span>
-                    </div>
-                    <div class="telemetry-item">
-                      <span class="tel-label">Quantization</span>
-                      <span class="tel-val green">4-Bit NF4 (BitsAndBytes)</span>
-                    </div>
-                    <div class="telemetry-item">
-                      <span class="tel-label">VRAM Saved</span>
-                      <span class="tel-val blue">78.4% (5.8 GB active)</span>
-                    </div>
-                  </div>
-                </div>
-                <div class="card-caption">
-                  Fine-tune LLMs with LoRA/QLoRA, build RAG pipelines, and orchestrate AI agents
-                </div>
-              </div>
-
-              <!-- Card 4: Production MLOps & Real-World Deployment -->
-              <div class="skill-bento-card" data-tilt>
-                <div class="card-visual visual-target">
-                  <div class="project-viewport-frame">
-                    <span class="hash-tag">&lambda;</span>
-                    <div class="play-circle-btn" title="Live Inference">
-                      <svg width="14" height="14" viewBox="0 0 24 24" fill="#38bdf8">
-                        <polygon points="5 3 19 12 5 21 5 3"/>
-                      </svg>
-                    </div>
-                    <span class="gauge-tag">4ms</span>
-                    <div class="target-bottom-point">
-                      <span class="point-dot"></span>
-                    </div>
-                  </div>
-                  <!-- Live Production Telemetry Rack -->
-                  <div class="mlops-telemetry-rack">
-                    <div class="mlops-stat-row">
-                      <span class="mlops-dot live"></span>
-                      <span class="mlops-name">FastAPI + uvloop</span>
-                      <span class="mlops-val">8 Pods K8s</span>
-                    </div>
-                    <div class="mlops-stat-row">
-                      <span class="mlops-dot blue"></span>
-                      <span class="mlops-name">Triton Inference</span>
-                      <span class="mlops-val">12.8k QPS</span>
-                    </div>
-                    <div class="mlops-stat-row">
-                      <span class="mlops-dot purple"></span>
-                      <span class="mlops-name">SLA Uptime</span>
-                      <span class="mlops-val">99.99%</span>
-                    </div>
-                  </div>
-                </div>
-                <div class="card-caption">
-                  Deploy scalable REST/gRPC APIs, monitor data drift, and build production inference engines
-                </div>
-              </div>
-
-            </div>
+      <!-- Panel 2: Video Lecture Thumbnail (Left Bottom) -->
+      <div class="holo-widget holo-video" id="holoVideo">
+        <div class="widget-header">
+          <div class="widget-icon-box">🎥</div>
+          <div>
+            <h4 class="widget-title">Video Masterclass</h4>
+            <span class="widget-sub">Transformer Attention</span>
           </div>
-        </section>
-
-
-        <!-- ================= SECTION 3: AUTOMATION VS REAL DATA SCIENCE ================= -->
-        <section class="section section-ai" id="aiSection">
-          <div class="ai-content-wrapper">
-            
-            <div class="section-header-center">
-              <div class="badge-chip badge-light">
-                <span>The Engineering Edge</span>
-              </div>
-              <h2 class="section-title text-dark">
-                AutoML and simple AI tools<br>
-                won't do this for you
-              </h2>
-              <p class="section-subtitle text-dark-muted">
-                They hallucinate edge cases, fail on subtle data leakage, and cannot formulate real business problem framing
-              </p>
+          <span class="widget-badge badge-gold">4K HD</span>
+        </div>
+        <div class="widget-body">
+          <div class="video-preview-box">
+            <div class="play-trigger-circle" id="playDemoVideoBtn">▶</div>
+            <div class="video-audio-bars">
+              <span></span><span></span><span></span><span></span><span></span>
             </div>
-
-            <!-- 3 Comparison Cards -->
-            <div class="ai-cards-grid">
-              
-              <!-- Card 1: Mathematical Foundations & Feature Semantics -->
-              <div class="ai-feature-card" data-tilt>
-                <div class="card-visual visual-tokens">
-                  <div class="tokens-pill">
-                    <span class="tok-icon">⛶</span>
-                    <span class="tok-label">Embedding Tokens</span>
-                    <span class="tok-pct">+25%</span>
-                  </div>
-                  <div class="hierarchy-nodes-row">
-                    <div class="swatch-box">
-                      <div class="swatch-fill" style="background: linear-gradient(135deg, #10b981 0%, #059669 100%);"></div>
-                      <span class="swatch-tag">#target_var</span>
-                    </div>
-                    <div class="folder-glass-card">
-                      <div class="folder-tab"></div>
-                      <div class="folder-body">
-                        <span class="folder-label">data.parquet</span>
-                      </div>
-                    </div>
-                  </div>
-                  <!-- Vector Space & Semantic Projection Tags -->
-                  <div class="vector-projection-rack">
-                    <span class="v-proj-tag">1536-D Vector Space</span>
-                    <span class="v-proj-tag green">cos(&theta;) = 0.94</span>
-                    <span class="v-proj-tag blue">Loss Manifold: Convex</span>
-                  </div>
-                </div>
-                <div class="card-caption">
-                  Understand mathematical intuition, loss manifolds, and causal inference
-                </div>
-              </div>
-
-              <!-- Card 2: Loss Convergence & Gradient Descent -->
-              <div class="ai-feature-card" data-tilt>
-                <div class="card-visual visual-curve">
-                  <div class="curve-chart-box">
-                    <div class="curve-header-stats">
-                      <span class="stat-pill adamw">AdamW: 0.042</span>
-                      <span class="stat-pill sgd">SGD: 0.086</span>
-                      <span class="stat-pill val">Val Loss: 0.058</span>
-                    </div>
-                    <svg class="bezier-svg" viewBox="0 0 280 120" fill="none">
-                      <path class="bezier-grid" d="M 0 30 H 280 M 0 60 H 280 M 0 90 H 280 M 70 0 V 120 M 140 0 V 120 M 210 0 V 120" stroke="rgba(0,0,0,0.06)" stroke-width="1"/>
-                      <!-- SGD Trajectory (Secondary) -->
-                      <path d="M 10 25 C 60 30, 100 48, 150 58 C 190 68, 220 74, 260 76" stroke="#a855f7" stroke-width="2" stroke-dasharray="4 3" stroke-linecap="round"/>
-                      <!-- AdamW Trajectory (Primary Animated) -->
-                      <path class="animated-curve-line" d="M 10 20 C 50 25, 80 60, 120 80 C 150 90, 190 94, 260 95" stroke="#38bdf8" stroke-width="2.5" stroke-linecap="round"/>
-                      <circle cx="260" cy="95" r="5" fill="#3b82f6" stroke="#ffffff" stroke-width="2"/>
-                    </svg>
-                    <div class="ask-ai-interactive-bar">
-                      <span class="check-icon">✓</span>
-                      <button class="pill-ask-ai" id="askAiBtn">
-                        <span class="ai-sparkle">✦</span>
-                        <span>Train Model</span>
-                      </button>
-                      <span class="star-icon">⚡</span>
-                    </div>
-                  </div>
-                </div>
-                <div class="card-caption">
-                  Design robust validation schemes and prevent overfitting in noisy environments
-                </div>
-              </div>
-
-              <!-- Card 3: Code Translation & Production Metaphors -->
-              <div class="ai-feature-card" data-tilt>
-                <div class="card-visual visual-json">
-                  <div class="code-browser-card">
-                    <div class="browser-dots">
-                      <span class="b-dot red"></span>
-                      <span class="b-dot yellow"></span>
-                      <span class="b-dot green"></span>
-                    </div>
-                    <div class="code-snippet-preview">
-                      <span class="code-title">PyTorch Training Loop {}</span>
-                      <pre class="code-lines"><code>loss = criterion(model(X), y)
-optimizer.zero_grad()
-loss.backward()
-optimizer.step()
-scheduler.step()</code></pre>
-                    </div>
-                    <div class="floating-icons-pack" style="background: #10b981;">
-                      <span class="icons-pack-title">weights.pt</span>
-                    </div>
-                  </div>
-                  <!-- Hardware & Runtime Inspector Rack -->
-                  <div class="hardware-spec-rack">
-                    <span class="hw-chip"><span class="hw-dot"></span> NVIDIA H100 (cuda:0)</span>
-                    <span class="hw-chip"><span class="hw-dot green"></span> bf16 AMP</span>
-                    <span class="hw-chip"><span class="hw-dot blue"></span> grad_clip=1.0</span>
-                  </div>
-                </div>
-                <div class="card-caption">
-                  Adapt complex business objectives into production-ready algorithmic pipelines
-                </div>
-              </div>
-
-            </div>
-
-            <!-- Bottom Connection Tree & Manifesto Banner -->
-            <div class="ai-bottom-hierarchy">
-              <svg class="tree-lines-svg" viewBox="0 0 400 90" fill="none">
-                <path d="M 200 0 V 45 H 100 V 70" stroke="rgba(255,255,255,0.3)" stroke-width="1.5"/>
-                <path d="M 200 45 H 300 V 70" stroke="rgba(255,255,255,0.3)" stroke-width="1.5"/>
-                <path d="M 200 45 V 70" stroke="rgba(255,255,255,0.3)" stroke-width="1.5"/>
-              </svg>
-
-              <div class="tree-nodes-cluster">
-                <div class="tree-subnode node-left" title="Scikit-Learn">
-                  <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#60a5fa" stroke-width="2">
-                    <circle cx="12" cy="12" r="10"/>
-                    <path d="M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z"/>
-                  </svg>
-                </div>
-                <div class="tree-center-figma" title="ATH AI Architecture Core">
-                  <svg width="34" height="40" viewBox="0 0 280 320" fill="none">
-                    <path d="M 259.68 21.29 L 20.95 20.57 L 20.0 154.29 L 22.06 154.71 L 142.54 57.14 L 258.89 155.0 Z" fill="#00D2FF" />
-                    <path d="M 259.52 259.29 L 142.06 155.71 L 20.63 258.0 L 20.0 298.43 L 257.94 299.71 L 259.68 298.43 Z M 137.52 241.04 L 149.62 240.96 L 158.83 240.99 L 165.14 241.12 L 168.55 241.34 L 169.07 241.66 L 169.48 242.32 L 169.8 243.32 L 170.02 244.66 L 170.14 246.34 L 170.21 247.78 L 170.23 248.97 L 170.2 249.93 L 170.12 250.64 L 170.01 251.23 L 169.87 251.7 L 169.7 252.04 L 169.5 252.25 L 168.44 252.43 L 166.52 252.57 L 163.73 252.68 L 160.08 252.75 L 157.27 252.86 L 155.31 253.0 L 154.19 253.18 L 153.91 253.39 L 153.71 255.68 L 153.59 260.04 L 153.55 266.46 L 153.59 274.96 L 153.53 281.49 L 153.37 286.04 L 153.12 288.62 L 152.76 289.23 L 151.49 289.7 L 149.31 290.02 L 146.21 290.2 L 142.2 290.23 L 139.11 290.18 L 136.92 290.04 L 135.65 289.8 L 135.3 289.48 L 135.04 287.03 L 134.88 282.44 L 134.82 275.71 L 134.82 266.86 L 134.82 260.17 L 134.7 255.65 L 134.5 253.3 L 134.23 253.12 L 133.09 252.96 L 128.21 252.7 L 124.48 252.59 L 121.64 252.45 L 119.67 252.27 L 118.59 252.05 L 118.39 251.8 L 118.24 251.1 L 118.14 249.94 L 118.1 248.32 L 118.1 246.25 L 118.17 244.57 L 118.33 243.29 L 118.57 242.39 L 118.89 241.89 L 122.15 241.5 L 128.36 241.21 Z M 69.62 271.14 L 76.57 260.0 L 81.92 251.51 L 85.69 245.67 L 87.88 242.48 L 88.47 241.95 L 89.57 241.53 L 91.18 241.22 L 93.29 241.04 L 95.91 240.96 L 98.05 240.94 L 99.69 240.96 L 100.85 241.02 L 101.53 241.12 L 102.15 241.32 L 102.73 241.61 L 103.25 241.98 L 103.73 242.45 L 105.6 245.37 L 108.85 250.74 L 113.49 258.57 L 119.52 268.86 L 124.18 276.86 L 127.45 282.57 L 129.35 286.0 L 129.86 287.14 L 130.16 288.09 L 130.24 288.84 L 130.1 289.39 L 129.74 289.75 L 128.42 290.01 L 126.14 290.17 L 122.9 290.23 L 118.69 290.2 L 115.43 290.1 L 113.11 289.94 L 111.73 289.71 L 111.29 289.43 L 110.81 288.93 L 110.3 288.21 L 109.74 287.29 L 109.15 286.14 L 108.57 285.19 L 108.02 284.42 L 107.48 283.84 L 106.96 283.45 L 105.04 283.15 L 101.71 282.96 L 96.96 282.86 L 90.81 282.86 L 86.08 282.96 L 82.77 283.15 L 80.87 283.45 L 80.4 283.84 L 79.87 284.44 L 79.3 285.24 L 78.67 286.25 L 78.0 287.46 L 77.38 288.44 L 76.83 289.17 L 76.33 289.66 L 75.89 289.91 L 74.65 290.1 L 72.61 290.22 L 69.76 290.29 L 66.11 290.29 L 63.29 290.23 L 61.31 290.12 L 60.16 289.96 L 59.84 289.75 L 59.59 289.49 L 59.41 289.19 L 59.31 288.84 L 59.27 288.45 L 60.97 285.37 L 64.42 279.6 Z M 91.83 264.61 L 90.4 266.82 L 89.32 268.58 L 88.58 269.88 L 88.19 270.73 L 88.15 271.12 L 88.19 271.47 L 88.31 271.78 L 88.51 272.04 L 88.79 272.25 L 89.65 272.4 L 93.13 272.52 L 95.75 272.48 L 97.77 272.35 L 99.18 272.12 L 99.98 271.79 L 100.18 271.36 L 100.04 270.54 L 99.56 269.32 L 98.75 267.71 L 97.6 265.71 L 96.62 264.12 L 95.8 262.95 L 95.16 262.18 L 94.68 261.82 L 93.97 262.11 L 93.02 263.04 Z M 215.85 243.04 L 216.05 243.25 L 216.29 244.15 L 216.57 245.74 L 216.88 248.02 L 217.24 250.98 L 217.45 253.28 L 217.51 254.9 L 217.42 255.86 L 217.18 256.14 L 216.92 256.38 L 216.65 256.55 L 216.35 256.68 L 216.03 256.75 L 215.12 256.56 L 213.61 256.12 L 211.51 255.41 L 208.81 254.45 L 206.3 253.65 L 203.98 253.03 L 201.85 252.57 L 199.9 252.29 L 198.05 252.12 L 196.28 252.06 L 194.6 252.12 L 193.02 252.3 L 191.77 252.49 L 190.85 252.69 L 190.28 252.89 L 190.04 253.11 L 189.86 253.36 L 189.86 253.64 L 189.74 253.64 L 189.68 253.96 L 189.68 254.32 L 189.77 254.67 L 189.95 255.01 L 190.22 255.34 L 190.58 255.66 L 191.21 256.01 L 192.12 256.38 L 193.31 256.79 L 194.78 257.21 L 196.61 257.68 L 198.79 258.18 L 201.33 258.71 L 204.23 259.29 L 206.64 259.81 L 208.56 260.29 L 210.0 260.73 L 210.95 261.12 L 211.93 261.61 L 212.95 262.18 L 213.99 262.84 L 215.06 263.59 L 216.06 264.45 L 216.99 265.41 L 217.86 266.48 L 218.65 267.66 L 219.3 268.79 L 219.79 269.88 L 220.14 270.93 L 220.34 271.93 L 220.46 273.03 L 220.5 274.22 L 220.46 275.52 L 220.34 276.91 L 220.08 278.26 L 219.68 279.56 L 219.15 280.82 L 218.47 282.04 L 217.62 283.21 L 216.59 284.36 L 215.38 285.46 L 213.99 286.54 L 212.4 287.49 L 210.62 288.33 L 208.63 289.05 L 206.45 289.66 L 204.23 290.14 L 201.96 290.5 L 199.66 290.73 L 197.32 290.84 L 195.04 290.88 L 192.82 290.87 L 190.65 290.79 L 188.55 290.64 L 186.36 290.4 L 184.08 290.06 L 181.71 289.62 L 179.25 289.09 L 177.36 288.62 L 176.05 288.23 L 175.32 287.91 L 175.16 287.66 L 174.98 286.68 L 174.78 284.96 L 174.56 282.52 L 174.33 279.34 L 174.22 276.89 L 174.24 275.18 L 174.38 274.2 L 174.66 273.95 L 175.54 273.99 L 177.0 274.33 L 179.07 274.96 L 181.73 275.89 L 184.24 276.7 L 186.6 277.38 L 188.81 277.93 L 190.87 278.36 L 192.86 278.67 L 194.76 278.87 L 196.59 278.95 L 198.33 278.91 L 199.81 278.82 L 201.02 278.68 L 201.96 278.48 L 202.64 278.23 L 203.19 277.97 L 203.63 277.71 L 203.95 277.43 L 204.15 277.14 L 204.28 276.82 L 204.34 276.46 L 204.33 276.07 L 204.25 275.64 L 204.05 275.24 L 203.73 274.87 L 203.29 274.52 L 202.74 274.2 L 201.27 273.71 L 198.89 273.07 L 195.6 272.27 L 191.39 271.3 L 187.99 270.47 L 185.39 269.78 L 183.59 269.21 L 182.6 268.79 L 181.56 268.25 L 180.47 267.61 L 179.33 266.86 L 178.13 266.0 L 177.09 265.1 L 176.2 264.15 L 175.46 263.16 L 174.86 262.12 L 174.38 261.01 L 174.0 259.81 L 173.73 258.54 L 173.57 257.18 L 173.49 255.91 L 173.49 254.73 L 173.57 253.64 L 173.73 252.64 L 174.0 251.62 L 174.38 250.59 L 174.86 249.54 L 175.46 248.46 L 176.21 247.42 L 177.12 246.4 L 178.19 245.41 L 179.42 244.45 L 180.67 243.6 L 181.94 242.87 L 183.23 242.25 L 184.54 241.75 L 185.91 241.32 L 187.34 240.96 L 188.83 240.68 L 190.38 240.46 L 192.34 240.33 L 194.72 240.28 L 197.52 240.3 L 200.73 240.41 L 203.77 240.62 L 206.63 240.95 L 209.31 241.38 L 211.81 241.91 L 213.73 242.37 L 215.08 242.74 Z" fill="#2563EB" fill-rule="evenodd" />
-                  </svg>
-                </div>
-                <div class="tree-subnode node-right" title="TensorFlow & HuggingFace">
-                  <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#60a5fa" stroke-width="2">
-                    <path d="M21 16V8a2 2 0 0 0-1-1.73l-7-4a2 2 0 0 0-2 0l-7 4A2 2 0 0 0 3 8v8a2 2 0 0 0 1 1.73l7 4a2 2 0 0 0 2 0l7-4A2 2 0 0 0 21 16z"/>
-                  </svg>
-                </div>
-              </div>
-
-              <p class="manifesto-banner-text">
-                That is why skilled data scientists and ML architects will always lead the tech industry, while automated tools remain just productivity assistants.
-              </p>
-            </div>
-
+            <span class="video-tag">Stanford AI Faculty</span>
           </div>
-        </section>
+          <p class="video-caption">Scaled Dot-Product Attention from Raw PyTorch Tensors</p>
+        </div>
+      </div>
 
-
-        <!-- ================= SECTION 4: WHAT IS INSIDE THE INTENSIVE ================= -->
-        <section class="section section-materials" id="materialsSection">
-          <div class="materials-content-wrapper">
-            
-            <div class="section-header-center">
-              <div class="badge-chip badge-dark-glass">
-                <span>Curriculum &amp; Deliverables</span>
-              </div>
-              <h2 class="section-title text-white">
-                What is inside the intensive
-              </h2>
-            </div>
-
-            <!-- Bento Master Grid (3 Columns) -->
-            <div class="materials-bento-grid">
-              
-              <!-- Column 1: Left Stack (2 Cards) -->
-              <div class="bento-column col-left">
-                
-                <!-- Card 1A: Anatomy Webinar -->
-                <div class="bento-card card-anatomy" data-tilt>
-                  <h3 class="bento-title">End-to-End ML Architecture<br>Masterclass</h3>
-                  <p class="bento-desc">How to formulate business requirements into ML problem definitions and design production topologies</p>
-                  
-                  <!-- Architecture Pipeline Visual & Production Topology Flow -->
-                  <div class="anatomy-pipeline-flow">
-                    <div class="pipe-node">
-                      <div class="pipe-icon-box" style="color: #38bdf8;">
-                        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                          <ellipse cx="12" cy="5" rx="9" ry="3"/>
-                          <path d="M21 12c0 1.66-4 3-9 3s-9-1.34-9-3"/>
-                          <path d="M3 5v14c0 1.66 4 3 9 3s9-1.34 9-3V5"/>
-                        </svg>
-                      </div>
-                      <div class="pipe-details">
-                        <span class="pipe-name">Streaming Ingestion</span>
-                        <span class="pipe-tech">Kafka &middot; AWS S3</span>
-                      </div>
-                    </div>
-                    <div class="pipe-arrow">
-                      <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="#94a3b8" stroke-width="2">
-                        <path d="M5 12h14M12 5l7 7-7 7"/>
-                      </svg>
-                    </div>
-                    <div class="pipe-node">
-                      <div class="pipe-icon-box" style="color: #818cf8;">
-                        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                          <rect x="2" y="2" width="20" height="8" rx="2"/>
-                          <rect x="2" y="14" width="20" height="8" rx="2"/>
-                        </svg>
-                      </div>
-                      <div class="pipe-details">
-                        <span class="pipe-name">Feature Store</span>
-                        <span class="pipe-tech">Feast &middot; Redis Cache</span>
-                      </div>
-                    </div>
-                    <div class="pipe-arrow">
-                      <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="#94a3b8" stroke-width="2">
-                        <path d="M5 12h14M12 5l7 7-7 7"/>
-                      </svg>
-                    </div>
-                    <div class="pipe-node">
-                      <div class="pipe-icon-box" style="color: #10b981;">
-                        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                          <polygon points="13 2 3 14 12 14 11 22 21 10 12 10 13 2"/>
-                        </svg>
-                      </div>
-                      <div class="pipe-details">
-                        <span class="pipe-name">Triton Serving</span>
-                        <span class="pipe-tech">TensorRT &middot; gRPC</span>
-                      </div>
-                    </div>
-                  </div>
-
-                  <!-- Live Production Telemetry Badges -->
-                  <div class="anatomy-telemetry-row">
-                    <span class="telemetry-badge green"><span class="badge-dot-live"></span> p99 &lt; 4.2ms</span>
-                    <span class="telemetry-badge blue">18,500 req/s</span>
-                    <span class="telemetry-badge purple">Zero-Downtime Rollout</span>
-                  </div>
-                </div>
-
-                <!-- Card 1B: Features Overview -->
-                <div class="bento-card card-features" data-tilt>
-                  <h3 class="bento-title">Deep Learning &amp; PyTorch<br>Toolkit</h3>
-                  <p class="bento-desc">Hands-on video workshops on PyTorch internals, tensor operations, and CUDA optimization, updated for 2026</p>
-                  
-                  <!-- Visual Toolbox & 3D Composition -->
-                  <div class="features-visual-shelf">
-                    <div class="figma-mini-toolbar">
-                      <span class="tool-glyph">tensor</span>
-                      <span class="tool-glyph">grad</span>
-                      <span class="tool-glyph">&lt;cuda/&gt;</span>
-                    </div>
-                    <div class="figma-dropdown-pill">
-                      <span class="prop-label">CrossEntropy</span>
-                      <span class="arrow-down">▾</span>
-                    </div>
-                    <div class="figma-dropdown-pill">
-                      <span class="prop-label">AdamW</span>
-                      <span class="arrow-down">▾</span>
-                    </div>
-
-                    <!-- 3D Blue Orb with Angled Translucent Layer Planes -->
-                    <div class="composition-orb-planes">
-                      <div class="angled-plane plane-1"></div>
-                      <div class="angled-plane plane-2"></div>
-                      <div class="vibrant-blue-sphere"></div>
-                    </div>
-                  </div>
-                </div>
-
-              </div>
-
-              <!-- Column 2: Center Showcase (Tall Card) -->
-              <div class="bento-column col-center">
-                <div class="bento-card card-saas-lessons" data-tilt>
-                  <h3 class="bento-title">Production LLMs &amp; Agentic AI<br>Video Workshops</h3>
-                  <p class="bento-desc">4 recorded deep-dive builds: creating custom RAG agents, vector index tuning, and latency optimizations</p>
-
-                  <div class="saas-interactive-showcase">
-                    <!-- Floating Pill: Deploy to Production -->
-                    <div class="pill-make-beautiful">
-                      <span class="figma-micro-icon">
-                        <svg width="14" height="20" viewBox="0 0 24 24" fill="none">
-                          <polygon points="13 2 3 14 12 14 11 22 21 10 12 10 13 2" fill="#2563eb"/>
-                        </svg>
-                      </span>
-                      <span>Deploy to Production</span>
-                    </div>
-
-                    <!-- Interactive Agent Reasoning Flow Pipeline -->
-                    <div class="agent-reasoning-flow">
-                      <div class="agent-step-bar">
-                        <div class="agent-step active">
-                          <span class="agent-num">01</span>
-                          <span class="agent-name">Embed Query</span>
-                          <span class="agent-tag">dim=1536</span>
-                        </div>
-                        <div class="agent-step active">
-                          <span class="agent-num">02</span>
-                          <span class="agent-name">Hybrid RAG</span>
-                          <span class="agent-tag">BM25 + Dense</span>
-                        </div>
-                        <div class="agent-step active">
-                          <span class="agent-num">03</span>
-                          <span class="agent-name">Reranker</span>
-                          <span class="agent-tag">Cross-Encoder</span>
-                        </div>
-                        <div class="agent-step active">
-                          <span class="agent-num">04</span>
-                          <span class="agent-name">Stream</span>
-                          <span class="agent-tag">140 tok/s</span>
-                        </div>
-                      </div>
-                      <div class="agent-prompt-chip">
-                        <span class="prompt-icon">🤖</span>
-                        <span class="prompt-text"><strong>Agent Prompt:</strong> &quot;Synthesize high-dimensional embeddings across multimodal vector index with sub-second retrieval...&quot;</span>
-                        <span class="prompt-status">✓ Context synthesized in 84ms</span>
-                      </div>
-                    </div>
-
-                    <!-- MLOps & LLM Pipeline Window Preview -->
-                    <div class="saas-window-frame">
-                      <div class="window-nav-dots">
-                        <span></span><span></span><span></span>
-                      </div>
-                      <div class="window-columns">
-                        <div class="win-left-widgets">
-                          <div class="widget-row">
-                            <span class="widget-thumb blue-grad"></span>
-                            <span class="check-mark">✓</span>
-                          </div>
-                          <div class="widget-row">
-                            <span class="widget-thumb indigo-grad"></span>
-                            <span class="check-mark">✓</span>
-                          </div>
-                        </div>
-                        <div class="win-right-channels">
-                          <div class="channel-chips-row">
-                            <span class="channel-icon" title="Docker Container">🐳</span>
-                            <span class="channel-icon" title="Kubernetes Cluster">☸</span>
-                            <span class="channel-icon" title="FastAPI Endpoint">⚡</span>
-                          </div>
-                          <div class="touchpoints-list">
-                            <div class="touchpoint-item">✓ Data validation &amp; drift monitoring</div>
-                            <div class="touchpoint-item">✓ Vector DB semantic indexing (pgvector)</div>
-                            <div class="touchpoint-item">✓ Quantized 4-bit LoRA inference</div>
-                            <div class="touchpoint-item">✓ Sub-5ms API latency guaranteed</div>
-                          </div>
-                        </div>
-                      </div>
-                    </div>
-                  </div>
-
-                </div>
-              </div>
-
-              <!-- Column 3: Right Stack (1 Wide Card + 2 Bonus Cards) -->
-              <div class="bento-column col-right">
-                
-                <!-- Card 3A: Working with Gradients / Hyperparameters -->
-                <div class="bento-card card-gradients" data-tilt>
-                  <h3 class="bento-title">Hyperparameter Optimization<br>&amp; Experiment Tracking</h3>
-                  <p class="bento-desc">How to track experiments with MLflow &amp; W&amp;B to ensure reproducible, production-ready model releases</p>
-
-                  <div class="gradients-matrix-showcase">
-                    <!-- 4x6 Matrix of Rich Hyperparameter Heatmap Swatches -->
-                    <div class="swatches-grid">
-                      <span class="swatch g1" title="Trial 01: Val Acc 94.2%"></span><span class="swatch g2" title="Trial 02: Val Acc 95.1%"></span><span class="swatch g3" title="Trial 03: Val Acc 96.0%"></span><span class="swatch g4" title="Trial 04"></span><span class="swatch g5" title="Trial 05"></span><span class="swatch g6" title="Trial 06"></span>
-                      <span class="swatch g7" title="Trial 07"></span><span class="swatch g8" title="Trial 08"></span><span class="swatch g9" title="Trial 09"></span><span class="swatch g10" title="Trial 10"></span><span class="swatch g11" title="Trial 11"></span><span class="swatch g12" title="Trial 12"></span>
-                      <span class="swatch g13" title="Trial 13"></span><span class="swatch g14" title="Trial 14"></span><span class="swatch g15" title="Trial 15"></span><span class="swatch g16" title="Trial 16"></span><span class="swatch g17" title="Trial 17"></span><span class="swatch g18" title="Trial 18"></span>
-                      <span class="swatch g19" title="Trial 19"></span><span class="swatch g20" title="Trial 20"></span><span class="swatch g21" title="Trial 21"></span><span class="swatch g22" title="Trial 22"></span><span class="swatch g23" title="Trial 23"></span><span class="swatch g24" title="Trial 24: Val Acc 98.4%"></span>
-                    </div>
-
-                    <!-- Floating Optimizer Controller Card -->
-                    <div class="floating-radial-card">
-                      <div class="radial-header">
-                        <span class="radial-type">Learning Rate</span>
-                        <span class="arrow-down">▾</span>
-                      </div>
-                      <div class="radial-slider-track">
-                        <span class="slider-thumb"></span>
-                      </div>
-                    </div>
-                  </div>
-                </div>
-
-                <!-- Dual Bonus Cards Row -->
-                <div class="bonus-cards-row">
-                  
-                  <!-- Bonus 1: Using AI for Feature Engineering -->
-                  <div class="bento-card card-bonus" data-tilt>
-                    <div class="bonus-visual-ai">
-                      <div class="pill-ask-ai-bonus">
-                        <span class="ai-sparkle">✦</span>
-                        <span>Run Inference</span>
-                      </div>
-                      <!-- Vector Embedding Telemetry Box -->
-                      <div class="bonus-rag-inspect">
-                        <div class="rag-chip"><span class="rag-dot"></span> FAISS HNSW Index</div>
-                        <div class="rag-chip"><span class="rag-dot green"></span> Cosine Sim: 0.96</div>
-                        <div class="rag-chip"><span class="rag-dot amber"></span> Chunk: 512 / 64 overlap</div>
-                      </div>
-                    </div>
-                    <div class="bonus-meta">
-                      <h4 class="bonus-title">Custom RAG Pipeline<br>Production Blueprint</h4>
-                      <span class="bonus-tag">🎁 Bonus</span>
-                    </div>
-                  </div>
-
-                  <!-- Bonus 2: Massive 500GB Curated Datasets Pack -->
-                  <div class="bento-card card-bonus" id="bonusDatasetCard" data-tilt>
-                    <div class="bonus-visual-textures">
-                      <!-- Dataset Cards Grid -->
-                      <div class="bonus-dataset-grid">
-                        <div class="ds-item" data-dataset="commoncrawl" role="button" tabindex="0" title="Click to preview Common Crawl HQ dataset">
-                          <span class="ds-icon">🌐</span>
-                          <span class="ds-name">Common Crawl HQ</span>
-                          <span class="ds-size">240 GB</span>
-                        </div>
-                        <div class="ds-item" data-dataset="finance" role="button" tabindex="0" title="Click to preview Financial Quotes L3 dataset">
-                          <span class="ds-icon">📈</span>
-                          <span class="ds-name">Financial Quotes L3</span>
-                          <span class="ds-size">110 GB</span>
-                        </div>
-                        <div class="ds-item" data-dataset="pubmed" role="button" tabindex="0" title="Click to preview Clinical PubMed QA dataset">
-                          <span class="ds-icon">🧬</span>
-                          <span class="ds-name">Clinical PubMed QA</span>
-                          <span class="ds-size">80 GB</span>
-                        </div>
-                        <div class="ds-item" data-dataset="code" role="button" tabindex="0" title="Click to preview Code Instruct 15L dataset">
-                          <span class="ds-icon">⚡</span>
-                          <span class="ds-name">Code Instruct 15L</span>
-                          <span class="ds-size">70 GB</span>
-                        </div>
-                      </div>
-                    </div>
-                    <div class="bonus-meta">
-                      <div class="bonus-meta-header">
-                        <h4 class="bonus-title">Massive 500GB Curated<br>Datasets &amp; Benchmarks</h4>
-                        <span class="bonus-tag">🎁 Free Access</span>
-                      </div>
-                      <button class="ds-explore-cta" id="btnOpenDatasetExplorer" type="button" aria-label="Explore and preview free datasets">
-                        <span>Preview &amp; Download Free Datasets (500GB)</span>
-                        <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5">
-                          <polyline points="9 18 15 12 9 6"></polyline>
-                        </svg>
-                      </button>
-                    </div>
-                  </div>
-
-                </div>
-
-              </div>
-
-            </div>
-
+      <!-- Panel 3: Financial Graphs (Right Top) -->
+      <div class="holo-widget holo-finance" id="holoFinance">
+        <div class="widget-header">
+          <div class="widget-icon-box">📈</div>
+          <div>
+            <h4 class="widget-title">Financial Alpha AI</h4>
+            <span class="widget-sub">High-Frequency Quant</span>
           </div>
-        </section>
+          <span class="widget-badge badge-green">+342% ROI</span>
+        </div>
+        <div class="widget-body">
+          <div class="mini-candles-box">
+            <div class="mini-candle up" style="height: 60%"></div>
+            <div class="mini-candle up" style="height: 80%"></div>
+            <div class="mini-candle down" style="height: 45%"></div>
+            <div class="mini-candle up" style="height: 95%"></div>
+            <div class="mini-candle up" style="height: 70%"></div>
+            <div class="mini-candle down" style="height: 55%"></div>
+            <div class="mini-candle up" style="height: 90%"></div>
+          </div>
+          <div class="widget-stat-line">
+            <span>Sharpe: <strong class="text-green">3.84</strong></span>
+            <span>Latency: <strong>420μs</strong></span>
+          </div>
+        </div>
+      </div>
 
-        <!-- ================= SECTION 5: ASIAN TECHNOLOGY HUB EXECUTIVE FOOTER ================= -->
-        <footer class="section-ath-footer" id="athFooter">
-          <div class="footer-ambient-glow"></div>
+      <!-- Panel 4: Key Topics Floating List (Right Bottom) -->
+      <div class="holo-widget holo-topics" id="holoTopics">
+        <div class="widget-header">
+          <div class="widget-icon-box">⚡</div>
+          <div>
+            <h4 class="widget-title">Key Core Topics</h4>
+            <span class="widget-sub">Enterprise Competencies</span>
+          </div>
+          <span class="widget-badge badge-purple">MASTERED</span>
+        </div>
+        <div class="widget-body">
+          <ul class="key-topics-list">
+            <li><span class="check-icon">✓</span> Deep Transformer Networks</li>
+            <li><span class="check-icon">✓</span> LLM Fine-Tuning (LoRA, DPO)</li>
+            <li><span class="check-icon">✓</span> Autonomous Multi-Agent Swarms</li>
+            <li><span class="check-icon">✓</span> Vector DBs &amp; Hybrid Graph RAG</li>
+            <li><span class="check-icon">✓</span> Production Triton &amp; MLOps</li>
+          </ul>
+        </div>
+      </div>
+
+      <!-- ================= CENTER BEZEL-LESS TRANSPARENT GLASS PANEL ================= -->
+      <div class="center-glass-panel" id="centerGlassPanel">
+        <div class="panel-sheen-line"></div>
+
+        <!-- Glass Panel Header -->
+        <div class="glass-header">
+          <div class="glass-dots">
+            <span class="g-dot dot-red"></span>
+            <span class="g-dot dot-yellow"></span>
+            <span class="g-dot dot-green"></span>
+          </div>
+          <div class="glass-file-meta">
+            <span class="ats-cluster-badge">ASIAN TECHNOLOGY HUB</span>
+            <span class="ats-code-file">data_science_ai_ml.py</span>
+          </div>
+          <div class="glass-ready-badge">
+            <span class="pulse-beacon"></span>
+            <span>H100 READY</span>
+          </div>
+        </div>
+
+        <!-- Glass Panel Body Content -->
+        <div class="glass-content">
           
-          <div class="ath-footer-inner">
-            <!-- Brand Column -->
-            <div class="footer-brand-col">
-              <div class="footer-ath-lockup">
-                <div class="footer-ath-crest-wrap">
-                  <svg class="footer-ath-crest" viewBox="0 0 280 320" fill="none">
-                    <path d="M 259.68 21.29 L 20.95 20.57 L 20.0 154.29 L 22.06 154.71 L 142.54 57.14 L 258.89 155.0 Z" fill="#38BDF8" />
-                    <path d="M 259.52 259.29 L 142.06 155.71 L 20.63 258.0 L 20.0 298.43 L 257.94 299.71 L 259.68 298.43 Z M 137.52 241.04 L 149.62 240.96 L 158.83 240.99 L 165.14 241.12 L 168.55 241.34 L 169.07 241.66 L 169.48 242.32 L 169.8 243.32 L 170.02 244.66 L 170.14 246.34 L 170.21 247.78 L 170.23 248.97 L 170.2 249.93 L 170.12 250.64 L 170.01 251.23 L 169.87 251.7 L 169.7 252.04 L 169.5 252.25 L 168.44 252.43 L 166.52 252.57 L 163.73 252.68 L 160.08 252.75 L 157.27 252.86 L 155.31 253.0 L 154.19 253.18 L 153.91 253.39 L 153.71 255.68 L 153.59 260.04 L 153.55 266.46 L 153.59 274.96 L 153.53 281.49 L 153.37 286.04 L 153.12 288.62 L 152.76 289.23 L 151.49 289.7 L 149.31 290.02 L 146.21 290.2 L 142.2 290.23 L 139.11 290.18 L 136.92 290.04 L 135.65 289.8 L 135.3 289.48 L 135.04 287.03 L 134.88 282.44 L 134.82 275.71 L 134.82 266.86 L 134.82 260.17 L 134.7 255.65 L 134.5 253.3 L 134.23 253.12 L 133.09 252.96 L 128.21 252.7 L 124.48 252.59 L 121.64 252.45 L 119.67 252.27 L 118.59 252.05 L 118.39 251.8 L 118.24 251.1 L 118.14 249.94 L 118.1 248.32 L 118.1 246.25 L 118.17 244.57 L 118.33 243.29 L 118.57 242.39 L 118.89 241.89 L 122.15 241.5 L 128.36 241.21 Z M 69.62 271.14 L 76.57 260.0 L 81.92 251.51 L 85.69 245.67 L 87.88 242.48 L 88.47 241.95 L 89.57 241.53 L 91.18 241.22 L 93.29 241.04 L 95.91 240.96 L 98.05 240.94 L 99.69 240.96 L 100.85 241.02 L 101.53 241.12 L 102.15 241.32 L 102.73 241.61 L 103.25 241.98 L 103.73 242.45 L 105.6 245.37 L 108.85 250.74 L 113.49 258.57 L 119.52 268.86 L 124.18 276.86 L 127.45 282.57 L 129.35 286.0 L 129.86 287.14 L 130.16 288.09 L 130.24 288.84 L 130.1 289.39 L 129.74 289.75 L 128.42 290.01 L 126.14 290.17 L 122.9 290.23 L 118.69 290.2 L 115.43 290.1 L 113.11 289.94 L 111.73 289.71 L 111.29 289.43 L 110.81 288.93 L 110.3 288.21 L 109.74 287.29 L 109.15 286.14 L 108.57 285.19 L 108.02 284.42 L 107.48 283.84 L 106.96 283.45 L 105.04 283.15 L 101.71 282.96 L 96.96 282.86 L 90.81 282.86 L 86.08 282.96 L 82.77 283.15 L 80.87 283.45 L 80.4 283.84 L 79.87 284.44 L 79.3 285.24 L 78.67 286.25 L 78.0 287.46 L 77.38 288.44 L 76.83 289.17 L 76.33 289.66 L 75.89 289.91 L 74.65 290.1 L 72.61 290.22 L 69.76 290.29 L 66.11 290.29 L 63.29 290.23 L 61.31 290.12 L 60.16 289.96 L 59.84 289.75 L 59.59 289.49 L 59.41 289.19 L 59.31 288.84 L 59.27 288.45 L 60.97 285.37 L 64.42 279.6 Z M 91.83 264.61 L 90.4 266.82 L 89.32 268.58 L 88.58 269.88 L 88.19 270.73 L 88.15 271.12 L 88.19 271.47 L 88.31 271.78 L 88.51 272.04 L 88.79 272.25 L 89.65 272.4 L 93.13 272.52 L 95.75 272.48 L 97.77 272.35 L 99.18 272.12 L 99.98 271.79 L 100.18 271.36 L 100.04 270.54 L 99.56 269.32 L 98.75 267.71 L 97.6 265.71 L 96.62 264.12 L 95.8 262.95 L 95.16 262.18 L 94.68 261.82 L 93.97 262.11 L 93.02 263.04 Z M 215.85 243.04 L 216.05 243.25 L 216.29 244.15 L 216.57 245.74 L 216.88 248.02 L 217.24 250.98 L 217.45 253.28 L 217.51 254.9 L 217.42 255.86 L 217.18 256.14 L 216.92 256.38 L 216.65 256.55 L 216.35 256.68 L 216.03 256.75 L 215.12 256.56 L 213.61 256.12 L 211.51 255.41 L 208.81 254.45 L 206.3 253.65 L 203.98 253.03 L 201.85 252.57 L 199.9 252.29 L 198.05 252.12 L 196.28 252.06 L 194.6 252.12 L 193.02 252.3 L 191.77 252.49 L 190.85 252.69 L 190.28 252.89 L 190.04 253.11 L 189.86 253.36 L 189.86 253.64 L 189.74 253.64 L 189.68 253.96 L 189.68 254.32 L 189.77 254.67 L 189.95 255.01 L 190.22 255.34 L 190.58 255.66 L 191.21 256.01 L 192.12 256.38 L 193.31 256.79 L 194.78 257.21 L 196.61 257.68 L 198.79 258.18 L 201.33 258.71 L 204.23 259.29 L 206.64 259.81 L 208.56 260.29 L 210.0 260.73 L 210.95 261.12 L 211.93 261.61 L 212.95 262.18 L 213.99 262.84 L 215.06 263.59 L 216.06 264.45 L 216.99 265.41 L 217.86 266.48 L 218.65 267.66 L 219.3 268.79 L 219.79 269.88 L 220.14 270.93 L 220.34 271.93 L 220.46 273.03 L 220.5 274.22 L 220.46 275.52 L 220.34 276.91 L 220.08 278.26 L 219.68 279.56 L 219.15 280.82 L 218.47 282.04 L 217.62 283.21 L 216.59 284.36 L 215.38 285.46 L 213.99 286.54 L 212.4 287.49 L 210.62 288.33 L 208.63 289.05 L 206.45 289.66 L 204.23 290.14 L 201.96 290.5 L 199.66 290.73 L 197.32 290.84 L 195.04 290.88 L 192.82 290.87 L 190.65 290.79 L 188.55 290.64 L 186.36 290.4 L 184.08 290.06 L 181.71 289.62 L 179.25 289.09 L 177.36 288.62 L 176.05 288.23 L 175.32 287.91 L 175.16 287.66 L 174.98 286.68 L 174.78 284.96 L 174.56 282.52 L 174.33 279.34 L 174.22 276.89 L 174.24 275.18 L 174.38 274.2 L 174.66 273.95 L 175.54 273.99 L 177.0 274.33 L 179.07 274.96 L 181.73 275.89 L 184.24 276.7 L 186.6 277.38 L 188.81 277.93 L 190.87 278.36 L 192.86 278.67 L 194.76 278.87 L 196.59 278.95 L 198.33 278.91 L 199.81 278.82 L 201.02 278.68 L 201.96 278.48 L 202.64 278.23 L 203.19 277.97 L 203.63 277.71 L 203.95 277.43 L 204.15 277.14 L 204.28 276.82 L 204.34 276.46 L 204.33 276.07 L 204.25 275.64 L 204.05 275.24 L 203.73 274.87 L 203.29 274.52 L 202.74 274.2 L 201.27 273.71 L 198.89 273.07 L 195.6 272.27 L 191.39 271.3 L 187.99 270.47 L 185.39 269.78 L 183.59 269.21 L 182.6 268.79 L 181.56 268.25 L 180.47 267.61 L 179.33 266.86 L 178.13 266.0 L 177.09 265.1 L 176.2 264.15 L 175.46 263.16 L 174.86 262.12 L 174.38 261.01 L 174.0 259.81 L 173.73 258.54 L 173.57 257.18 L 173.49 255.91 L 173.49 254.73 L 173.57 253.64 L 173.73 252.64 L 174.0 251.62 L 174.38 250.59 L 174.86 249.54 L 175.46 248.46 L 176.21 247.42 L 177.12 246.4 L 178.19 245.41 L 179.42 244.45 L 180.67 243.6 L 181.94 242.87 L 183.23 242.25 L 184.54 241.75 L 185.91 241.32 L 187.34 240.96 L 188.83 240.68 L 190.38 240.46 L 192.34 240.33 L 194.72 240.28 L 197.52 240.3 L 200.73 240.41 L 203.77 240.62 L 206.63 240.95 L 209.31 241.38 L 211.81 241.91 L 213.73 242.37 L 215.08 242.74 Z" fill="#2563EB" fill-rule="evenodd" />
-                  </svg>
-                </div>
-                <div class="footer-ath-typography">
-                  <span class="footer-ath-name">ASIAN TECHNOLOGY HUB</span>
-                  <span class="footer-ath-slogan">ASSURED SERVICE EXCELLENCE</span>
-                </div>
-              </div>
-              <p class="footer-mission-text">
-                Asia's premier engineering and applied research institute, advancing sovereign AI architecture, industrial deep learning, and frontier model intelligence across enterprise ecosystems.
-              </p>
-              <div class="footer-alliances-row">
-                <span class="alliance-tag">ISO 9001:2015</span>
-                <span class="alliance-tag">NVIDIA DLI Network</span>
-                <span class="alliance-tag">AWS Academy</span>
-                <span class="alliance-tag">IEEE Institutional</span>
-              </div>
-            </div>
+          <div class="promo-badge">
+            <span>✦ COHORT 2026 REGISTRATION OPEN</span>
+          </div>
 
-            <!-- Global Delivery Hubs -->
-            <div class="footer-links-col">
-              <h5 class="footer-col-title">Engineering Centers</h5>
-              <ul class="footer-list">
-                <li><span>Tokyo Research Facility</span></li>
-                <li><span>Singapore Advanced AI Lab</span></li>
-                <li><span>Bengaluru Systems Center</span></li>
-                <li><span>Seoul Neural Computing Hub</span></li>
-                <li><span>San Francisco Outpost</span></li>
-              </ul>
-            </div>
+          <h1 class="main-course-title">
+            Data Science with <span class="neon-gradient-text">AI &amp; ML</span>
+          </h1>
 
-            <!-- Curriculum & Platform -->
-            <div class="footer-links-col">
-              <h5 class="footer-col-title">Academic Tracks</h5>
-              <ul class="footer-list">
-                <li><a href="#skillsSection">Foundational Data Science</a></li>
-                <li><a href="#aiSection">Deep Learning &amp; Transformers</a></li>
-                <li><a href="#materialsSection">LLMs, RAG &amp; Agents</a></li>
-                <li><a href="#materialsSection">Enterprise MLOps &amp; Triton</a></li>
-                <li><a href="#" class="open-portal-footer">Student Cluster Login</a></li>
-              </ul>
-            </div>
+          <p class="main-course-desc">
+            Master Deep Neural Networks, Large Language Models (LLMs), Computer Vision, and Autonomous AI Agents with 1-on-1 access to Dedicated GPU Clusters.
+          </p>
 
-            <!-- Corporate Verification & Contact -->
-            <div class="footer-links-col">
-              <h5 class="footer-col-title">Accreditation</h5>
-              <div class="footer-accreditation-box">
-                <div class="seal-icon">🏛️</div>
-                <div class="seal-text">
-                  <strong>Asian Technology Hub</strong>
-                  <span>Global Directorate of Technical Sciences</span>
-                  <span class="verified-code">UID: ATH-IND-2026-AI</span>
-                </div>
-              </div>
+          <!-- Core Stat Highlights -->
+          <div class="course-highlights-bar">
+            <div class="highlight-item">
+              <span class="hl-num">400+ <small>Hrs</small></span>
+              <span class="hl-lbl">Live Hands-on Labs</span>
+            </div>
+            <div class="highlight-item">
+              <span class="hl-num">12+ <small>Projects</small></span>
+              <span class="hl-lbl">Production AI Capstones</span>
+            </div>
+            <div class="highlight-item">
+              <span class="hl-num">₹18.5 <small>LPA</small></span>
+              <span class="hl-lbl">Average Placement CTC</span>
+            </div>
+            <div class="highlight-item">
+              <span class="hl-num">100%</span>
+              <span class="hl-lbl">Placement Assurance</span>
             </div>
           </div>
 
-          <!-- Copyright & Bottom Legal Bar -->
-          <div class="ath-footer-bottom">
-            <div class="footer-bottom-copy">
-              <span>&copy; 2026 <strong>Asian Technology Hub (ATH)</strong>. Assured Service Excellence. All Rights Reserved.</span>
-            </div>
-            <div class="footer-bottom-links">
-              <span>Terms of Service</span>
-              <span class="dot-sep">&bull;</span>
-              <span>Privacy &amp; Telemetry Policy</span>
-              <span class="dot-sep">&bull;</span>
-              <span>Cluster Security</span>
-            </div>
+          <!-- Direct Action Buttons -->
+          <div class="glass-actions">
+            <button class="btn-primary-action" id="heroRegisterBtn" type="button">
+              <span class="btn-shimmer"></span>
+              <span class="btn-text">
+                <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2">
+                  <path d="M12 2L2 7l10 5 10-5-10-5zM2 17l10 5 10-5M2 12l10 5 10-5"/>
+                </svg>
+                <span>Enroll Now</span>
+              </span>
+            </button>
+
+            <button class="btn-secondary-action" id="spikeNeuralBtn" type="button">
+              <span class="action-icon">⚡</span>
+              <span>Trigger Synaptic Spike</span>
+            </button>
           </div>
-        </footer>
+
+          <!-- Student Cohort Telemetry Footer -->
+          <div class="glass-telemetry">
+            <span>CURRICULUM: <strong>Generative AI &amp; MLOps</strong></span>
+            <span>BATCH: <strong>Limited to 30 Seats</strong></span>
+            <span>OUTCOME: <strong class="text-green">100% Placement Assurance</strong></span>
+          </div>
+
+        </div>
 
       </div>
-      <!-- /canvas-scroll-track -->
+
+      <!-- ================= 3D LUMINOUS BLUE WIREFRAME BRAIN HOLOGRAM ================= -->
+      <div class="hologram-station" id="hologramStation">
+        
+        <!-- Three.js 3D Brain Viewport Canvas -->
+        <div class="brain-viewport" id="brainViewport">
+          <canvas id="brain3DCanvas"></canvas>
+          <div class="brain-hologram-glow"></div>
+          
+          <div class="brain-hud-tag tag-left">
+            <span class="hud-blink-dot"></span>
+            <span>100T Synaptic Pathways</span>
+          </div>
+          <div class="brain-hud-tag tag-right">
+            <span class="hud-blink-dot beacon-gold"></span>
+            <span>128 Attention Heads</span>
+          </div>
+        </div>
+
+        <!-- Technologic Emitter Base on Desk -->
+        <div class="techno-emitter-base">
+          <div class="emitter-volumetric-beam"></div>
+          <div class="emitter-outer-ring"></div>
+          <div class="emitter-mid-ring"></div>
+          <div class="emitter-core-bulb"></div>
+          <div class="emitter-label">
+            <span class="label-dot"></span>
+            <span>HOLOGRAPHIC NEURAL MATRIX EMITTER ACTIVE</span>
+          </div>
+        </div>
+
+      </div>
+
+      <!-- ================= REFLECTIVE DESK & ILLUMINATED CYBER KEYBOARD ================= -->
+      <div class="reflective-desk" id="reflectiveDesk">
+        <div class="desk-reflection-sheen"></div>
+
+        <!-- Cybernetic Keyboard Chassis -->
+        <div class="cyber-keyboard" id="cyberKeyboard">
+          <div class="kb-glow-bar"></div>
+          
+          <div class="kb-matrix">
+            <div class="kb-row">
+              <span class="k k-fn" data-k="esc">ESC</span>
+              <span class="k k-fn" data-k="f1">F1·PY</span>
+              <span class="k k-fn" data-k="f2">F2·TORCH</span>
+              <span class="k k-fn" data-k="f3">F3·CUDA</span>
+              <span class="k k-fn" data-k="f4">F4·LLM</span>
+              <span class="k k-fn" data-k="f5">F5·RAG</span>
+              <span class="k k-fn" data-k="f6">F6·MLOPS</span>
+              <span class="k k-fn" data-k="f7">F7·K8S</span>
+              <span class="k k-fn" data-k="f8">F8·TRITON</span>
+              <span class="k k-fn" data-k="f9">F9·H100</span>
+              <span class="k k-fn k-del" data-k="del">DEL</span>
+            </div>
+
+            <div class="kb-row">
+              <span class="k" data-k="1">1</span>
+              <span class="k" data-k="2">2</span>
+              <span class="k" data-k="3">3</span>
+              <span class="k" data-k="4">4</span>
+              <span class="k" data-k="5">5</span>
+              <span class="k" data-k="6">6</span>
+              <span class="k" data-k="7">7</span>
+              <span class="k" data-k="8">8</span>
+              <span class="k" data-k="9">9</span>
+              <span class="k" data-k="0">0</span>
+              <span class="k k-bksp" data-k="backspace">BKSP</span>
+            </div>
+
+            <div class="kb-row">
+              <span class="k k-tab" data-k="tab">TAB</span>
+              <span class="k" data-k="q">Q</span>
+              <span class="k" data-k="w">W</span>
+              <span class="k" data-k="e">E</span>
+              <span class="k" data-k="r">R</span>
+              <span class="k" data-k="t">T</span>
+              <span class="k" data-k="y">Y</span>
+              <span class="k" data-k="u">U</span>
+              <span class="k" data-k="i">I</span>
+              <span class="k" data-k="o">O</span>
+              <span class="k" data-k="p">P</span>
+            </div>
+
+            <div class="kb-row">
+              <span class="k k-caps" data-k="caps">CAPS</span>
+              <span class="k" data-k="a">A</span>
+              <span class="k" data-k="s">S</span>
+              <span class="k" data-k="d">D</span>
+              <span class="k" data-k="f">F</span>
+              <span class="k" data-k="g">G</span>
+              <span class="k" data-k="h">H</span>
+              <span class="k" data-k="j">J</span>
+              <span class="k" data-k="k">K</span>
+              <span class="k" data-k="l">L</span>
+              <span class="k k-enter" data-k="enter">ENTER ↵</span>
+            </div>
+
+            <div class="kb-row">
+              <span class="k k-shift" data-k="shift">SHIFT</span>
+              <span class="k" data-k="z">Z</span>
+              <span class="k" data-k="x">X</span>
+              <span class="k" data-k="c">C</span>
+              <span class="k" data-k="v">V</span>
+              <span class="k" data-k="b">B</span>
+              <span class="k" data-k="n">N</span>
+              <span class="k" data-k="m">M</span>
+              <span class="k k-shift" data-k="shift">SHIFT</span>
+            </div>
+
+            <div class="kb-row">
+              <span class="k k-mod" data-k="ctrl">CTRL</span>
+              <span class="k k-mod" data-k="cmd">CMD ⌘</span>
+              <span class="k k-space" data-k="space">SPACE · NEURAL SYNAPSE</span>
+              <span class="k k-mod" data-k="opt">OPT</span>
+              <span class="k k-mod" data-k="ctrl">CTRL</span>
+            </div>
+          </div>
+
+          <div class="keyboard-tip">
+            <span>⌨️ Press any key to synthesize audio harmonics and fire neural pathways</span>
+          </div>
+        </div>
+
+      </div>
 
     </div>
-    <!-- /canvas-window -->
-
-    <!-- Showcase Simulated Animated Cursor (Used during Walkthrough Mode) -->
-    <div class="simulated-cursor" id="simCursor" aria-hidden="true">
-      <svg width="24" height="28" viewBox="0 0 24 28" fill="none">
-        <path d="M1 1L9 25L13.5 15.5L22.5 13.5L1 1Z" fill="#000000" stroke="#ffffff" stroke-width="2" stroke-linejoin="round"/>
-      </svg>
-      <div class="cursor-ripple" id="cursorRipple"></div>
-    </div>
+    <!-- /universe-container -->
 
   </main>
 
-  <!-- ================= 3D USER LOGIN POPUP & MACOS MINIMIZE DOCK ================= -->
-  
-  <!-- Backdrop Overlay -->
-  <div class="portal-modal-backdrop" id="portalBackdrop" aria-hidden="true"></div>
-
-  <!-- 3D Modal Stage (Perspective viewport) -->
-  <div class="portal-modal-stage" id="portalStage" aria-hidden="true">
+  <!-- ================= STUDENT REGISTRATION MODAL ================= -->
+  <div class="popup-backdrop" id="registrationModalBackdrop" aria-hidden="true"></div>
+  <div class="popup-stage" id="registrationModalStage" aria-hidden="true">
     
-    <!-- 3D Modal Window (Mac OS Glass Card with 3D Tilt) -->
-    <div class="portal-window" id="portalWindow" role="dialog" aria-modal="true" aria-labelledby="portalTitle">
+    <div class="registration-modal-window" role="dialog" aria-modal="true" aria-labelledby="modalHeading">
       
-      <!-- Ambient Inner Glass Highlights -->
-      <div class="portal-glass-sheen" id="portalSheen"></div>
-      <div class="portal-mesh-glow"></div>
+      <!-- Top Neon Sheen Line -->
+      <div class="modal-neon-sheen"></div>
 
-      <!-- Mac OS Window Titlebar with Traffic Light Controls -->
-      <div class="portal-titlebar">
-        <div class="macos-traffic-lights">
-          <button class="mac-dot mac-close" id="portalCloseDot" title="Close &amp; minimize to side" aria-label="Close portal window">
-            <span class="mac-dot-icon">✕</span>
-          </button>
-          <button class="mac-dot mac-minimize" id="portalMinDot" title="Minimize to dock" aria-label="Minimize to side widget">
-            <span class="mac-dot-icon">−</span>
-          </button>
-          <button class="mac-dot mac-expand" id="portalExpandDot" title="Reset 3D Tilt" aria-label="Reset window view">
-            <span class="mac-dot-icon">+</span>
-          </button>
+      <!-- Modal Titlebar -->
+      <div class="reg-modal-titlebar">
+        <div class="reg-traffic-dots">
+          <button class="reg-mac-dot reg-mac-close" id="closeRegModalBtn" aria-label="Close modal">✕</button>
         </div>
-        <div class="portal-titlebar-meta">
-          <svg class="portal-tls-lock" width="12" height="12" viewBox="0 0 24 24" fill="currentColor">
-            <path d="M18 8h-1V6c0-2.76-2.24-5-5-5S7 3.24 7 6v2H6c-1.1 0-2 .9-2 2v10c0 1.1.9 2 2 2h12c1.1 0 2-.9 2-2V10c0-1.1-.9-2-2-2zm-6 9c-1.1 0-2-.9-2-2s.9-2 2-2 2 .9 2 2-.9 2-2 2zm3.1-9H8.9V6c0-1.71 1.39-3.1 3.1-3.1 1.71 0 3.1 1.39 3.1 3.1v2z"/>
-          </svg>
-          <span class="portal-titlebar-title">ATH AI Cluster · Student Workstation</span>
+        <div class="reg-titlebar-meta">
+          <span class="shield-icon">🎓</span>
+          <span>ASIAN TECHNOLOGY HUB · STUDENT ADMISSIONS</span>
         </div>
-        <div class="portal-titlebar-badge">
-          <span class="cluster-pulse-dot"></span>
-          <span>GPU Ready</span>
+        <div class="reg-status-badge">
+          <span class="live-dot"></span>
+          <span>COHORT 2026</span>
         </div>
       </div>
 
-      <!-- Modal Body Content -->
-      <div class="portal-window-body">
+      <!-- Modal Body -->
+      <div class="reg-modal-body">
 
-        <!-- ATH Branding Header -->
-        <div class="portal-brand-header">
-          <div class="portal-logo-wrap">
-            <svg class="portal-ath-emblem" viewBox="0 0 280 320" fill="none" xmlns="http://www.w3.org/2000/svg">
-              <path d="M 259.68 21.29 L 20.95 20.57 L 20.0 154.29 L 22.06 154.71 L 142.54 57.14 L 258.89 155.0 Z" fill="#38BDF8" />
-              <path d="M 259.52 259.29 L 142.06 155.71 L 20.63 258.0 L 20.0 298.43 L 257.94 299.71 L 259.68 298.43 Z M 137.52 241.04 L 149.62 240.96 L 158.83 240.99 L 165.14 241.12 L 168.55 241.34 L 169.07 241.66 L 169.48 242.32 L 169.8 243.32 L 170.02 244.66 L 170.14 246.34 L 170.21 247.78 L 170.23 248.97 L 170.2 249.93 L 170.12 250.64 L 170.01 251.23 L 169.87 251.7 L 169.7 252.04 L 169.5 252.25 L 168.44 252.43 L 166.52 252.57 L 163.73 252.68 L 160.08 252.75 L 157.27 252.86 L 155.31 253.0 L 154.19 253.18 L 153.91 253.39 L 153.71 255.68 L 153.59 260.04 L 153.55 266.46 L 153.59 274.96 L 153.53 281.49 L 153.37 286.04 L 153.12 288.62 L 152.76 289.23 L 151.49 289.7 L 149.31 290.02 L 146.21 290.2 L 142.2 290.23 L 139.11 290.18 L 136.92 290.04 L 135.65 289.8 L 135.3 289.48 L 135.04 287.03 L 134.88 282.44 L 134.82 275.71 L 134.82 266.86 L 134.82 260.17 L 134.7 255.65 L 134.5 253.3 L 134.23 253.12 L 133.09 252.96 L 128.21 252.7 L 124.48 252.59 L 121.64 252.45 L 119.67 252.27 L 118.59 252.05 L 118.39 251.8 L 118.24 251.1 L 118.14 249.94 L 118.1 248.32 L 118.1 246.25 L 118.17 244.57 L 118.33 243.29 L 118.57 242.39 L 118.89 241.89 L 122.15 241.5 L 128.36 241.21 Z M 69.62 271.14 L 76.57 260.0 L 81.92 251.51 L 85.69 245.67 L 87.88 242.48 L 88.47 241.95 L 89.57 241.53 L 91.18 241.22 L 93.29 241.04 L 95.91 240.96 L 98.05 240.94 L 99.69 240.96 L 100.85 241.02 L 101.53 241.12 L 102.15 241.32 L 102.73 241.61 L 103.25 241.98 L 103.73 242.45 L 105.6 245.37 L 108.85 250.74 L 113.49 258.57 L 119.52 268.86 L 124.18 276.86 L 127.45 282.57 L 129.35 286.0 L 129.86 287.14 L 130.16 288.09 L 130.24 288.84 L 130.1 289.39 L 129.74 289.75 L 128.42 290.01 L 126.14 290.17 L 122.9 290.23 L 118.69 290.2 L 115.43 290.1 L 113.11 289.94 L 111.73 289.71 L 111.29 289.43 L 110.81 288.93 L 110.3 288.21 L 109.74 287.29 L 109.15 286.14 L 108.57 285.19 L 108.02 284.42 L 107.48 283.84 L 106.96 283.45 L 105.04 283.15 L 101.71 282.96 L 96.96 282.86 L 90.81 282.86 L 86.08 282.96 L 82.77 283.15 L 80.87 283.45 L 80.4 283.84 L 79.87 284.44 L 79.3 285.24 L 78.67 286.25 L 78.0 287.46 L 77.38 288.44 L 76.83 289.17 L 76.33 289.66 L 75.89 289.91 L 74.65 290.1 L 72.61 290.22 L 69.76 290.29 L 66.11 290.29 L 63.29 290.23 L 61.31 290.12 L 60.16 289.96 L 59.84 289.75 L 59.59 289.49 L 59.41 289.19 L 59.31 288.84 L 59.27 288.45 L 60.97 285.37 L 64.42 279.6 Z M 91.83 264.61 L 90.4 266.82 L 89.32 268.58 L 88.58 269.88 L 88.19 270.73 L 88.15 271.12 L 88.19 271.47 L 88.31 271.78 L 88.51 272.04 L 88.79 272.25 L 89.65 272.4 L 93.13 272.52 L 95.75 272.48 L 97.77 272.35 L 99.18 272.12 L 99.98 271.79 L 100.18 271.36 L 100.04 270.54 L 99.56 269.32 L 98.75 267.71 L 97.6 265.71 L 96.62 264.12 L 95.8 262.95 L 95.16 262.18 L 94.68 261.82 L 93.97 262.11 L 93.02 263.04 Z M 215.85 243.04 L 216.05 243.25 L 216.29 244.15 L 216.57 245.74 L 216.88 248.02 L 217.24 250.98 L 217.45 253.28 L 217.51 254.9 L 217.42 255.86 L 217.18 256.14 L 216.92 256.38 L 216.65 256.55 L 216.35 256.68 L 216.03 256.75 L 215.12 256.56 L 213.61 256.12 L 211.51 255.41 L 208.81 254.45 L 206.3 253.65 L 203.98 253.03 L 201.85 252.57 L 199.9 252.29 L 198.05 252.12 L 196.28 252.06 L 194.6 252.12 L 193.02 252.3 L 191.77 252.49 L 190.85 252.69 L 190.28 252.89 L 190.04 253.11 L 189.86 253.36 L 189.86 253.64 L 189.74 253.64 L 189.68 253.96 L 189.68 254.32 L 189.77 254.67 L 189.95 255.01 L 190.22 255.34 L 190.58 255.66 L 191.21 256.01 L 192.12 256.38 L 193.31 256.79 L 194.78 257.21 L 196.61 257.68 L 198.79 258.18 L 201.33 258.71 L 204.23 259.29 L 206.64 259.81 L 208.56 260.29 L 210.0 260.73 L 210.95 261.12 L 211.93 261.61 L 212.95 262.18 L 213.99 262.84 L 215.06 263.59 L 216.06 264.45 L 216.99 265.41 L 217.86 266.48 L 218.65 267.66 L 219.3 268.79 L 219.79 269.88 L 220.14 270.93 L 220.34 271.93 L 220.46 273.03 L 220.5 274.22 L 220.46 275.52 L 220.34 276.91 L 220.08 278.26 L 219.68 279.56 L 219.15 280.82 L 218.47 282.04 L 217.62 283.21 L 216.59 284.36 L 215.38 285.46 L 213.99 286.54 L 212.4 287.49 L 210.62 288.33 L 208.63 289.05 L 206.45 289.66 L 204.23 290.14 L 201.96 290.5 L 199.66 290.73 L 197.32 290.84 L 195.04 290.88 L 192.82 290.87 L 190.65 290.79 L 188.55 290.64 L 186.36 290.4 L 184.08 290.06 L 181.71 289.62 L 179.25 289.09 L 177.36 288.62 L 176.05 288.23 L 175.32 287.91 L 175.16 287.66 L 174.98 286.68 L 174.78 284.96 L 174.56 282.52 L 174.33 279.34 L 174.22 276.89 L 174.24 275.18 L 174.38 274.2 L 174.66 273.95 L 175.54 273.99 L 177.0 274.33 L 179.07 274.96 L 181.73 275.89 L 184.24 276.7 L 186.6 277.38 L 188.81 277.93 L 190.87 278.36 L 192.86 278.67 L 194.76 278.87 L 196.59 278.95 L 198.33 278.91 L 199.81 278.82 L 201.02 278.68 L 201.96 278.48 L 202.64 278.23 L 203.19 277.97 L 203.63 277.71 L 203.95 277.43 L 204.15 277.14 L 204.28 276.82 L 204.34 276.46 L 204.33 276.07 L 204.25 275.64 L 204.05 275.24 L 203.73 274.87 L 203.29 274.52 L 202.74 274.2 L 201.27 273.71 L 198.89 273.07 L 195.6 272.27 L 191.39 271.3 L 187.99 270.47 L 185.39 269.78 L 183.59 269.21 L 182.6 268.79 L 181.56 268.25 L 180.47 267.61 L 179.33 266.86 L 178.13 266.0 L 177.09 265.1 L 176.2 264.15 L 175.46 263.16 L 174.86 262.12 L 174.38 261.01 L 174.0 259.81 L 173.73 258.54 L 173.57 257.18 L 173.49 255.91 L 173.49 254.73 L 173.57 253.64 L 173.73 252.64 L 174.0 251.62 L 174.38 250.59 L 174.86 249.54 L 175.46 248.46 L 176.21 247.42 L 177.12 246.4 L 178.19 245.41 L 179.42 244.45 L 180.67 243.6 L 181.94 242.87 L 183.23 242.25 L 184.54 241.75 L 185.91 241.32 L 187.34 240.96 L 188.83 240.68 L 190.38 240.46 L 192.34 240.33 L 194.72 240.28 L 197.52 240.3 L 200.73 240.41 L 203.77 240.62 L 206.63 240.95 L 209.31 241.38 L 211.81 241.91 L 213.73 242.37 L 215.08 242.74 Z" fill="#2563EB" fill-rule="evenodd" />
-            </svg>
-          </div>
-          <div class="portal-brand-text">
-            <div class="portal-ath-corp">
-              <span class="corp-name">ASIAN TECHNOLOGY HUB</span>
-              <span class="corp-slogan">ASSURED SERVICE EXCELLENCE</span>
-            </div>
-            <h3 class="portal-heading" id="portalTitle">Data Science &amp; AI Workstation</h3>
-            <p class="portal-subheading">Enterprise GPU Clusters, Model Notebooks &amp; Real-Time Labs</p>
+        <!-- Logo & Header -->
+        <div class="reg-brand-header">
+          <img src="ath_brand_logo.png" alt="Asian Technology Hub Logo" class="reg-logo-img">
+          <div>
+            <h3 class="reg-heading" id="modalHeading">Data Science with AI &amp; ML</h3>
+            <p class="reg-subheading">Reserve Your Batch Seat &amp; Scholarship Grant</p>
           </div>
         </div>
 
-        <!-- Mode Toggle (Sign In vs Register) -->
-        <div class="portal-mode-toggle" role="tablist">
-          <button class="portal-tab active" id="tabSignIn" role="tab" aria-selected="true">Student Sign In</button>
-          <button class="portal-tab" id="tabEnroll" role="tab" aria-selected="false">Enroll / Register</button>
-        </div>
-
-        <!-- Interactive Form -->
-        <form class="portal-form" id="portalForm" onsubmit="return false;">
+        <!-- Quick Registration Form -->
+        <form class="reg-form" id="quickRegisterForm" onsubmit="return false;">
           
-          <!-- Track Selector Pill Group -->
-          <div class="form-group role-selector-group">
-            <label class="form-label">Specialization Track</label>
-            <div class="track-pills">
-              <label class="track-pill active">
-                <input type="radio" name="portalTrack" value="ds" checked>
-                <span>📊 Data Science</span>
-              </label>
-              <label class="track-pill">
-                <input type="radio" name="portalTrack" value="mlops">
-                <span>⚙️ MLOps</span>
-              </label>
-              <label class="track-pill">
-                <input type="radio" name="portalTrack" value="genai">
-                <span>🤖 LLM &amp; GenAI</span>
-              </label>
+          <div class="form-row">
+            <div class="form-field">
+              <label for="regName">Full Name</label>
+              <input type="text" id="regName" placeholder="e.g. Alex Morgan" required autocomplete="name">
+            </div>
+
+            <div class="form-field">
+              <label for="regPhone">WhatsApp / Mobile</label>
+              <input type="tel" id="regPhone" placeholder="+91 98765 43210" required autocomplete="tel">
             </div>
           </div>
 
-          <!-- Email / Student ID -->
-          <div class="form-group">
-            <label class="form-label" for="portalEmail">Student ID or Institutional Email</label>
-            <div class="input-with-icon">
-              <svg class="input-icon" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                <path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"></path>
-                <polyline points="22,6 12,13 2,6"></polyline>
+          <div class="form-field">
+            <label for="regEmail">Email Address</label>
+            <input type="email" id="regEmail" placeholder="alex@techcompany.com" required autocomplete="email">
+          </div>
+
+          <div class="form-field">
+            <label for="regTrack">Focus Area</label>
+            <select id="regTrack">
+              <option value="ds_ai_ml">Full Stack Data Science, AI &amp; ML Masterclass</option>
+              <option value="llm_genai">Large Language Models (LLMs) &amp; Agentic AI</option>
+              <option value="mlops">Enterprise MLOps &amp; Multi-GPU Scaling</option>
+              <option value="quant">Quantitative AI &amp; Algorithmic Finance</option>
+            </select>
+          </div>
+
+          <!-- Submit Button -->
+          <button type="submit" class="btn-submit-registration" id="submitRegBtn">
+            <span class="btn-submit-shimmer"></span>
+            <span class="btn-submit-content">
+              <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5">
+                <path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"></path>
+                <polyline points="22 4 12 14.01 9 11.01"></polyline>
               </svg>
-              <input type="email" id="portalEmail" class="portal-input" placeholder="developer@institution.edu" value="engineer@ath.edu" required autocomplete="email">
-            </div>
-          </div>
-
-          <!-- Password / Security Token -->
-          <div class="form-group">
-            <div class="label-row">
-              <label class="form-label" for="portalPassword">Workstation Passkey</label>
-              <a href="#" class="forgot-link" tabindex="-1">Forgot key?</a>
-            </div>
-            <div class="input-with-icon">
-              <svg class="input-icon" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                <rect x="3" y="11" width="18" height="11" rx="2" ry="2"></rect>
-                <path d="M7 11V7a5 5 0 0 1 10 0v4"></path>
-              </svg>
-              <input type="password" id="portalPassword" class="portal-input" placeholder="••••••••••••" value="H100-CUDA-2026" required autocomplete="current-password">
-              <button type="button" class="pwd-toggle-btn" id="pwdToggleBtn" aria-label="Toggle password visibility">
-                <svg class="eye-icon" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                  <path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z"></path>
-                  <circle cx="12" cy="12" r="3"></circle>
-                </svg>
-              </button>
-            </div>
-          </div>
-
-          <!-- Remember Me & Telemetry Check -->
-          <div class="form-options-row">
-            <label class="remember-check">
-              <input type="checkbox" id="rememberWorkstation" checked>
-              <span>Keep GPU session authenticated</span>
-            </label>
-            <span class="latency-indicator">Ping: <strong>14ms</strong></span>
-          </div>
-
-          <!-- Submit Button with 3D Elevation -->
-          <button type="submit" class="portal-submit-btn" id="portalSubmitBtn">
-            <span class="btn-glow-layer"></span>
-            <span class="btn-content">
-              <svg class="btn-play-icon" width="16" height="16" viewBox="0 0 24 24" fill="currentColor">
-                <polygon points="5 3 19 12 5 21 5 3"></polygon>
-              </svg>
-              <span class="submit-text">Authenticate &amp; Launch Cluster</span>
+              <span>Submit Enrollment Application</span>
             </span>
           </button>
 
-          <!-- SSO Row -->
-          <div class="sso-divider">
-            <span>or single sign-on</span>
-          </div>
-
-          <div class="sso-buttons">
-            <button type="button" class="sso-btn google-sso">
-              <svg width="16" height="16" viewBox="0 0 24 24">
-                <path fill="#4285F4" d="M23.745 12.27c0-.7-.06-1.4-.19-2.07H12v4.51h6.6c-.29 1.52-1.14 2.8-2.4 3.66v3.05h3.88c2.27-2.09 3.66-5.17 3.66-9.15z"/>
-                <path fill="#34A853" d="M12 24c3.24 0 5.95-1.08 7.93-2.91l-3.88-3.05c-1.08.72-2.45 1.16-4.05 1.16-3.12 0-5.77-2.1-6.72-4.93H1.24v3.15C3.26 21.36 7.33 24 12 24z"/>
-                <path fill="#FBBC05" d="M5.28 14.27c-.25-.72-.38-1.49-.38-2.27s.13-1.55.38-2.27V6.58H1.24C.45 8.15 0 9.91 0 12s.45 3.85 1.24 5.42l4.04-3.15z"/>
-                <path fill="#EA4335" d="M12 4.75c1.77 0 3.35.61 4.6 1.8l3.42-3.42C17.95 1.19 15.24 0 12 0 7.33 0 3.26 2.64 1.24 6.58l4.04 3.15c.95-2.83 3.6-4.98 6.72-4.98z"/>
-              </svg>
-              <span>Google Workspace</span>
-            </button>
-            <button type="button" class="sso-btn github-sso">
-              <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor">
-                <path fill-rule="evenodd" clip-rule="evenodd" d="M12 2C6.477 2 2 6.484 2 12.017c0 4.425 2.865 8.18 6.839 9.504.5.092.682-.217.682-.483 0-.237-.008-.868-.013-1.703-2.782.605-3.369-1.343-3.369-1.343-.454-1.158-1.11-1.466-1.11-1.466-.908-.62.069-.608.069-.608 1.003.07 1.53 1.032 1.53 1.032.892 1.53 2.341 1.088 2.91.832.092-.647.35-1.088.636-1.338-2.22-.253-4.555-1.113-4.555-4.951 0-1.093.39-1.988 1.029-2.688-.103-.253-.446-1.272.098-2.65 0 0 .84-.27 2.75 1.026A9.564 9.564 0 0112 6.844c.85.004 1.705.115 2.504.337 1.909-1.296 2.747-1.027 2.747-1.027.546 1.379.202 2.398.1 2.651.64.7 1.028 1.595 1.028 2.688 0 3.848-2.339 4.695-4.566 4.943.359.309.678.92.678 1.855 0 1.338-.012 2.419-.012 2.747 0 .268.18.58.688.482A10.019 10.019 0 0022 12.017C22 6.484 17.522 2 12 2z"/>
-              </svg>
-              <span>GitHub Student</span>
-            </button>
-          </div>
-
-          <!-- Bottom Security Badge -->
-          <div class="portal-security-badge">
-            <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="#10b981" stroke-width="2.5">
-              <path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"></path>
-            </svg>
-            <span>256-Bit TLS End-to-End Encryption · Asian Technology Hub Verified</span>
+          <!-- Security Footnote -->
+          <div class="reg-security-note">
+            <span>🔒 Official Admissions Portal · Assured Excellent Service · Asian Technology Hub</span>
           </div>
 
         </form>
 
       </div>
-      <!-- /portal-window-body -->
 
     </div>
-    <!-- /portal-window -->
 
   </div>
-  <!-- /portal-modal-stage -->
 
-  <!-- ================= DOCKED SIDE LAUNCHER (MACOS DOCK STYLE) ================= -->
-  <aside class="portal-side-dock" id="portalSideDock" aria-label="Quick launch ATH Student Portal">
-    <button class="dock-pill-btn" id="dockRestoreBtn" title="Restore ATH Student Portal" aria-label="Open student login form">
-      <!-- Glow outline & status beacon -->
-      <div class="dock-beacon-ring"></div>
-      <div class="dock-ath-icon-wrap">
-        <svg class="dock-ath-svg" width="22" height="22" viewBox="0 0 280 320" fill="none">
-          <path d="M 259.68 21.29 L 20.95 20.57 L 20.0 154.29 L 22.06 154.71 L 142.54 57.14 L 258.89 155.0 Z" fill="#38BDF8" />
-          <path d="M 259.52 259.29 L 142.06 155.71 L 20.63 258.0 L 20.0 298.43 L 257.94 299.71 L 259.68 298.43 Z M 137.52 241.04 L 149.62 240.96 L 158.83 240.99 L 165.14 241.12 L 168.55 241.34 L 169.07 241.66 L 169.48 242.32 L 169.8 243.32 L 170.02 244.66 L 170.14 246.34 L 170.21 247.78 L 170.23 248.97 L 170.2 249.93 L 170.12 250.64 L 170.01 251.23 L 169.87 251.7 L 169.7 252.04 L 169.5 252.25 L 168.44 252.43 L 166.52 252.57 L 163.73 252.68 L 160.08 252.75 L 157.27 252.86 L 155.31 253.0 L 154.19 253.18 L 153.91 253.39 L 153.71 255.68 L 153.59 260.04 L 153.55 266.46 L 153.59 274.96 L 153.53 281.49 L 153.37 286.04 L 153.12 288.62 L 152.76 289.23 L 151.49 289.7 L 149.31 290.02 L 146.21 290.2 L 142.2 290.23 L 139.11 290.18 L 136.92 290.04 L 135.65 289.8 L 135.3 289.48 L 135.04 287.03 L 134.88 282.44 L 134.82 275.71 L 134.82 266.86 L 134.82 260.17 L 134.7 255.65 L 134.5 253.3 L 134.23 253.12 L 133.09 252.96 L 128.21 252.7 L 124.48 252.59 L 121.64 252.45 L 119.67 252.27 L 118.59 252.05 L 118.39 251.8 L 118.24 251.1 L 118.14 249.94 L 118.1 248.32 L 118.1 246.25 L 118.17 244.57 L 118.33 243.29 L 118.57 242.39 L 118.89 241.89 L 122.15 241.5 L 128.36 241.21 Z M 69.62 271.14 L 76.57 260.0 L 81.92 251.51 L 85.69 245.67 L 87.88 242.48 L 88.47 241.95 L 89.57 241.53 L 91.18 241.22 L 93.29 241.04 L 95.91 240.96 L 98.05 240.94 L 99.69 240.96 L 100.85 241.02 L 101.53 241.12 L 102.15 241.32 L 102.73 241.61 L 103.25 241.98 L 103.73 242.45 L 105.6 245.37 L 108.85 250.74 L 113.49 258.57 L 119.52 268.86 L 124.18 276.86 L 127.45 282.57 L 129.35 286.0 L 129.86 287.14 L 130.16 288.09 L 130.24 288.84 L 130.1 289.39 L 129.74 289.75 L 128.42 290.01 L 126.14 290.17 L 122.9 290.23 L 118.69 290.2 L 115.43 290.1 L 113.11 289.94 L 111.73 289.71 L 111.29 289.43 L 110.81 288.93 L 110.3 288.21 L 109.74 287.29 L 109.15 286.14 L 108.57 285.19 L 108.02 284.42 L 107.48 283.84 L 106.96 283.45 L 105.04 283.15 L 101.71 282.96 L 96.96 282.86 L 90.81 282.86 L 86.08 282.96 L 82.77 283.15 L 80.87 283.45 L 80.4 283.84 L 79.87 284.44 L 79.3 285.24 L 78.67 286.25 L 78.0 287.46 L 77.38 288.44 L 76.83 289.17 L 76.33 289.66 L 75.89 289.91 L 74.65 290.1 L 72.61 290.22 L 69.76 290.29 L 66.11 290.29 L 63.29 290.23 L 61.31 290.12 L 60.16 289.96 L 59.84 289.75 L 59.59 289.49 L 59.41 289.19 L 59.31 288.84 L 59.27 288.45 L 60.97 285.37 L 64.42 279.6 Z M 91.83 264.61 L 90.4 266.82 L 89.32 268.58 L 88.58 269.88 L 88.19 270.73 L 88.15 271.12 L 88.19 271.47 L 88.31 271.78 L 88.51 272.04 L 88.79 272.25 L 89.65 272.4 L 93.13 272.52 L 95.75 272.48 L 97.77 272.35 L 99.18 272.12 L 99.98 271.79 L 100.18 271.36 L 100.04 270.54 L 99.56 269.32 L 98.75 267.71 L 97.6 265.71 L 96.62 264.12 L 95.8 262.95 L 95.16 262.18 L 94.68 261.82 L 93.97 262.11 L 93.02 263.04 Z M 215.85 243.04 L 216.05 243.25 L 216.29 244.15 L 216.57 245.74 L 216.88 248.02 L 217.24 250.98 L 217.45 253.28 L 217.51 254.9 L 217.42 255.86 L 217.18 256.14 L 216.92 256.38 L 216.65 256.55 L 216.35 256.68 L 216.03 256.75 L 215.12 256.56 L 213.61 256.12 L 211.51 255.41 L 208.81 254.45 L 206.3 253.65 L 203.98 253.03 L 201.85 252.57 L 199.9 252.29 L 198.05 252.12 L 196.28 252.06 L 194.6 252.12 L 193.02 252.3 L 191.77 252.49 L 190.85 252.69 L 190.28 252.89 L 190.04 253.11 L 189.86 253.36 L 189.86 253.64 L 189.74 253.64 L 189.68 253.96 L 189.68 254.32 L 189.77 254.67 L 189.95 255.01 L 190.22 255.34 L 190.58 255.66 L 191.21 256.01 L 192.12 256.38 L 193.31 256.79 L 194.78 257.21 L 196.61 257.68 L 198.79 258.18 L 201.33 258.71 L 204.23 259.29 L 206.64 259.81 L 208.56 260.29 L 210.0 260.73 L 210.95 261.12 L 211.93 261.61 L 212.95 262.18 L 213.99 262.84 L 215.06 263.59 L 216.06 264.45 L 216.99 265.41 L 217.86 266.48 L 218.65 267.66 L 219.3 268.79 L 219.79 269.88 L 220.14 270.93 L 220.34 271.93 L 220.46 273.03 L 220.5 274.22 L 220.46 275.52 L 220.34 276.91 L 220.08 278.26 L 219.68 279.56 L 219.15 280.82 L 218.47 282.04 L 217.62 283.21 L 216.59 284.36 L 215.38 285.46 L 213.99 286.54 L 212.4 287.49 L 210.62 288.33 L 208.63 289.05 L 206.45 289.66 L 204.23 290.14 L 201.96 290.5 L 199.66 290.73 L 197.32 290.84 L 195.04 290.88 L 192.82 290.87 L 190.65 290.79 L 188.55 290.64 L 186.36 290.4 L 184.08 290.06 L 181.71 289.62 L 179.25 289.09 L 177.36 288.62 L 176.05 288.23 L 175.32 287.91 L 175.16 287.66 L 174.98 286.68 L 174.78 284.96 L 174.56 282.52 L 174.33 279.34 L 174.22 276.89 L 174.24 275.18 L 174.38 274.2 L 174.66 273.95 L 175.54 273.99 L 177.0 274.33 L 179.07 274.96 L 181.73 275.89 L 184.24 276.7 L 186.6 277.38 L 188.81 277.93 L 190.87 278.36 L 192.86 278.67 L 194.76 278.87 L 196.59 278.95 L 198.33 278.91 L 199.81 278.82 L 201.02 278.68 L 201.96 278.48 L 202.64 278.23 L 203.19 277.97 L 203.63 277.71 L 203.95 277.43 L 204.15 277.14 L 204.28 276.82 L 204.34 276.46 L 204.33 276.07 L 204.25 275.64 L 204.05 275.24 L 203.73 274.87 L 203.29 274.52 L 202.74 274.2 L 201.27 273.71 L 198.89 273.07 L 195.6 272.27 L 191.39 271.3 L 187.99 270.47 L 185.39 269.78 L 183.59 269.21 L 182.6 268.79 L 181.56 268.25 L 180.47 267.61 L 179.33 266.86 L 178.13 266.0 L 177.09 265.1 L 176.2 264.15 L 175.46 263.16 L 174.86 262.12 L 174.38 261.01 L 174.0 259.81 L 173.73 258.54 L 173.57 257.18 L 173.49 255.91 L 173.49 254.73 L 173.57 253.64 L 173.73 252.64 L 174.0 251.62 L 174.38 250.59 L 174.86 249.54 L 175.46 248.46 L 176.21 247.42 L 177.12 246.4 L 178.19 245.41 L 179.42 244.45 L 180.67 243.6 L 181.94 242.87 L 183.23 242.25 L 184.54 241.75 L 185.91 241.32 L 187.34 240.96 L 188.83 240.68 L 190.38 240.46 L 192.34 240.33 L 194.72 240.28 L 197.52 240.3 L 200.73 240.41 L 203.77 240.62 L 206.63 240.95 L 209.31 241.38 L 211.81 241.91 L 213.73 242.37 L 215.08 242.74 Z" fill="#2563EB" fill-rule="evenodd" />
-        </svg>
-        <span class="dock-online-dot"></span>
+  <!-- ================= CLEAN FOOTER ================= -->
+  <footer class="cyber-footer">
+    <div class="footer-inner">
+      <div class="footer-left">
+        <img src="ath_brand_logo.png" alt="Asian Technology Hub" class="footer-logo">
+        <span class="footer-slogan">ASSURED EXCELLENT SERVICE</span>
       </div>
-      <div class="dock-label-group">
-        <span class="dock-badge-title">PORTAL</span>
-        <span class="dock-badge-sub">Sign In</span>
+      <div class="footer-center">
+        <span>© 2026 Asian Technology Hub (ATS). All rights reserved.</span>
       </div>
-      <div class="dock-expand-arrow">
-        <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5">
-          <polyline points="15 18 9 12 15 6"></polyline>
-        </svg>
-      </div>
-    </button>
-  </aside>
-
-  <!-- ================= FREE DATASETS EXPLORER MODAL ================= -->
-  <div class="dataset-modal-backdrop" id="datasetModalBackdrop" aria-hidden="true"></div>
-  <div class="dataset-modal-stage" id="datasetModalStage" aria-hidden="true">
-    <div class="dataset-modal-window" id="datasetModalWindow" role="dialog" aria-modal="true" aria-labelledby="datasetModalName">
-      <div class="dataset-modal-titlebar">
-        <div class="macos-traffic-lights">
-          <button class="mac-dot mac-close" id="datasetModalCloseBtn" title="Close dataset viewer" aria-label="Close modal">
-            <span class="mac-dot-icon">✕</span>
-          </button>
-        </div>
-        <div class="dataset-titlebar-meta">
-          <span class="ds-vault-icon">🗄️</span>
-          <span class="ds-vault-title">ATH Research Data Lake · Curated Benchmarks</span>
-        </div>
-        <span class="ds-vault-badge">Verified Free Access</span>
-      </div>
-
-      <div class="dataset-modal-body">
-        <div class="dataset-header-row">
-          <div class="dataset-info">
-            <div class="ds-modal-pill-wrap">
-              <span class="ds-tag-license">CC-BY-4.0 · Open Data</span>
-              <span class="ds-tag-split" id="datasetSplitBadge">800K Verified Splits</span>
-            </div>
-            <h3 class="dataset-modal-name" id="datasetModalName">Clinical PubMed QA (80 GB)</h3>
-            <p class="dataset-modal-desc" id="datasetModalDesc">800K multi-turn biomedical reasoning pairs with clinical diagnostic rationales, PubMed ID citations, and human specialist ground truth.</p>
-          </div>
-          <button class="dataset-dl-btn" id="datasetDownloadBtn" type="button">
-            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5">
-              <path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"></path>
-              <polyline points="7 10 12 15 17 10"></polyline>
-              <line x1="12" y1="15" x2="12" y2="3"></line>
-            </svg>
-            <span>Download Parquet</span>
-          </button>
-        </div>
-
-        <!-- Dataset Quick Switcher Tabs -->
-        <div class="dataset-switcher-bar">
-          <button class="ds-switch-btn active" data-ds="pubmed">🧬 PubMed QA (80GB)</button>
-          <button class="ds-switch-btn" data-ds="finance">📈 Financial Quotes (110GB)</button>
-          <button class="ds-switch-btn" data-ds="commoncrawl">🌐 Common Crawl HQ (240GB)</button>
-          <button class="ds-switch-btn" data-ds="code">⚡ Code Instruct 15L (70GB)</button>
-        </div>
-
-        <!-- View Tabs Bar -->
-        <div class="dataset-tabs-bar">
-          <button class="ds-tab-btn active" data-view="sample">Sample Records (JSON)</button>
-          <button class="ds-tab-btn" data-view="schema">Parquet Schema (PyArrow)</button>
-          <button class="ds-tab-btn" data-view="code">Python Loader Snippet</button>
-        </div>
-
-        <div class="dataset-code-viewport">
-          <pre class="dataset-code-content" id="datasetCodeContent"></pre>
-        </div>
-
-        <div class="dataset-footer-nav">
-          <div class="ds-footer-note">
-            <span>Direct S3 High-Speed Mirror: <code>s3://ath-open-datasets/v2026/</code></span>
-          </div>
-          <button class="ds-done-btn" id="datasetDoneBtn" type="button">Close Preview</button>
-        </div>
+      <div class="footer-right">
+        <a href="#workspaceStage" class="back-to-top">Back to Top ↑</a>
       </div>
     </div>
-  </div>
+  </footer>
 
-  <!-- External Scripts: GSAP + ScrollTrigger + ScrollToPlugin -->
+  <!-- Scripts: Three.js + GSAP -->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollTrigger.min.js"></script>
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollToPlugin.min.js"></script>
   <script src="script.js"></script>
 </body>
 </html>
