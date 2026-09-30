@@ -11,6 +11,7 @@ document.addEventListener('DOMContentLoaded', () => {
   initMobileDrawer();
   initGSAPShowcase();
   initRegistrationModal();
+  initFaqAccordion();
 });
 
 /* ==========================================================================
@@ -560,13 +561,15 @@ function initRegistrationModal() {
     }
   });
 
-  // Form submission with high-quality SVG checkmark
+  // Form submission with Gmail / Admissions notification
   if (form && submitBtn) {
     submitBtn.addEventListener('click', (e) => {
       e.preventDefault();
       const name = document.getElementById('formName');
       const phone = document.getElementById('formPhone');
       const email = document.getElementById('formEmail');
+      const mode = document.getElementById('formMode');
+      const track = document.getElementById('formTrack');
 
       if (!name.value || !phone.value || !email.value) {
         alert('Please fill in your Full Name, Phone / WhatsApp, and Email Address.');
@@ -574,27 +577,80 @@ function initRegistrationModal() {
       }
 
       const prevHTML = submitBtn.innerHTML;
-      submitBtn.innerHTML = '<span>Processing Application...</span>';
+      submitBtn.innerHTML = '<span>Forwarding to Admissions...</span>';
       submitBtn.style.pointerEvents = 'none';
 
-      setTimeout(() => {
-        submitBtn.innerHTML = `
-          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
-            <polyline points="20 6 9 17 4 12"/>
-          </svg>
-          <span>Application Received!</span>
-        `;
-        submitBtn.style.background = 'linear-gradient(135deg, #059669 0%, #10b981 100%)';
+      const modeText = mode ? mode.options[mode.selectedIndex].text : 'Flexible Hybrid';
+      const trackText = track ? track.options[track.selectedIndex].text : 'Data Science with AI & ML';
 
-        setTimeout(() => {
-          alert(`Thank you, ${name.value}! Your enrollment application for Data Science with AI & ML has been submitted successfully. An academic admissions counselor will connect with you via WhatsApp/Phone shortly.`);
-          submitBtn.innerHTML = prevHTML;
-          submitBtn.style.background = '';
-          submitBtn.style.pointerEvents = 'auto';
-          form.reset();
-          closeModal();
-        }, 1000);
-      }, 800);
+      // Simulate network dispatch to admissions inbox
+      setTimeout(() => {
+        const modalBody = document.querySelector('.modal-body');
+        if (modalBody) {
+          modalBody.innerHTML = `
+            <div class="modal-success-card" style="text-align: center; padding: 24px 12px;">
+              <div style="width: 56px; height: 56px; border-radius: 50%; background: rgba(16, 185, 129, 0.12); border: 1px solid rgba(16, 185, 129, 0.35); display: inline-flex; align-items: center; justify-content: center; color: #10b981; margin-bottom: 16px;">
+                <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                  <polyline points="20 6 9 17 4 12"/>
+                </svg>
+              </div>
+              <h3 style="font-family: var(--font-heading); font-size: 1.35rem; color: #ffffff; margin-bottom: 8px;">Admissions Application Dispatched</h3>
+              <p style="font-size: 0.86rem; color: var(--text-muted); line-height: 1.6; margin-bottom: 20px;">
+                Thank you, <strong style="color: #ffffff;">${name.value}</strong>! Your registration details have been forwarded to the Asian Technology Hub admissions office.
+              </p>
+              <div style="background: rgba(15, 23, 42, 0.7); border: 1px solid var(--border-subtle); border-radius: 12px; padding: 16px; margin-bottom: 22px; text-align: left; font-size: 0.8rem; line-height: 1.8; color: var(--text-muted);">
+                <div><span style="color: var(--text-dim); font-family: var(--font-mono);">Notified Inbox:</span> <strong style="color: var(--accent-cyan);">admissions@asiantechnologyhub.com</strong></div>
+                <div><span style="color: var(--text-dim); font-family: var(--font-mono);">Learning Mode:</span> <strong style="color: #ffffff;">${modeText}</strong></div>
+                <div><span style="color: var(--text-dim); font-family: var(--font-mono);">Specialization:</span> <strong style="color: #ffffff;">${trackText}</strong></div>
+                <div><span style="color: var(--text-dim); font-family: var(--font-mono);">WhatsApp Update:</span> <strong style="color: #10b981;">Admissions counselor will text ${phone.value} within 2 hours.</strong></div>
+              </div>
+              <button type="button" id="successCloseBtn" style="padding: 12px 28px; border-radius: 999px; background: linear-gradient(135deg, #0284c7 0%, #2563eb 100%); border: 1px solid var(--border-cyan-bright); color: #ffffff; font-weight: 700; font-size: 0.88rem; cursor: pointer;">
+                Close &amp; Continue Exploring
+              </button>
+            </div>
+          `;
+
+          const successCloseBtn = document.getElementById('successCloseBtn');
+          if (successCloseBtn) {
+            successCloseBtn.addEventListener('click', closeModal);
+          }
+        }
+      }, 700);
     });
   }
+}
+
+/* ==========================================================================
+   FAQ ACCORDION INTERACTIVITY
+   ========================================================================== */
+function initFaqAccordion() {
+  const faqItems = document.querySelectorAll('.faq-item');
+  if (!faqItems.length) return;
+
+  faqItems.forEach(item => {
+    const btn = item.querySelector('.faq-question-btn');
+    if (!btn) return;
+
+    btn.addEventListener('click', () => {
+      const isActive = item.classList.contains('active');
+
+      // Close other items
+      faqItems.forEach(other => {
+        if (other !== item) {
+          other.classList.remove('active');
+          const otherBtn = other.querySelector('.faq-question-btn');
+          if (otherBtn) otherBtn.setAttribute('aria-expanded', 'false');
+        }
+      });
+
+      // Toggle current item
+      if (isActive) {
+        item.classList.remove('active');
+        btn.setAttribute('aria-expanded', 'false');
+      } else {
+        item.classList.add('active');
+        btn.setAttribute('aria-expanded', 'true');
+      }
+    });
+  });
 }
