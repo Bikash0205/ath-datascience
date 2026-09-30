@@ -11,6 +11,7 @@ document.addEventListener('DOMContentLoaded', () => {
   initLottieAnimations();
   initEducationalDoodles();
   initGsapScrollAnimations();
+  initScrollColorShifts();
   init3DCardTilt();
   initMagneticButtons();
   initCardFloatingPhysics();
@@ -1257,6 +1258,68 @@ function initGsapScrollAnimations() {
   // Refresh ScrollTrigger after dynamic resources load
   window.addEventListener('load', () => {
     ScrollTrigger.refresh();
+  });
+}
+
+/* ==========================================================================
+   3.2.1 DYNAMIC SCROLL COLOR SHIFTING & ADAPTIVE BLUE/WHITE THEME
+   ========================================================================== */
+function initScrollColorShifts() {
+  if (typeof gsap === 'undefined' || typeof ScrollTrigger === 'undefined') return;
+  if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) return;
+
+  // 1. Morph background radial glow coordinates and angles on scroll for blue sections
+  const blueSections = [
+    { el: document.querySelector('.section-why-ath'), varPrefix: 'why' },
+    { el: document.querySelector('.section-projects'), varPrefix: 'proj' },
+    { el: document.querySelector('.section-faq'), varPrefix: 'faq' }
+  ];
+
+  blueSections.forEach(({ el, varPrefix }) => {
+    if (!el) return;
+
+    gsap.to(el, {
+      scrollTrigger: {
+        trigger: el,
+        start: 'top bottom',
+        end: 'bottom top',
+        scrub: 1.2
+      },
+      [`--mesh-x-${varPrefix}`]: '30%',
+      [`--mesh-y-${varPrefix}`]: '70%',
+      [`--mesh-x2-${varPrefix}`]: '80%',
+      [`--mesh-y2-${varPrefix}`]: '30%',
+      [`--grad-angle-${varPrefix}`]: '180deg',
+      ease: 'none'
+    });
+  });
+
+  // 2. Toggle in-blue-section class on body for adaptive navbar, progress HUD, and cursor
+  const blueSectionElements = document.querySelectorAll('.section-why-ath, .section-projects, .section-faq, .site-footer');
+  blueSectionElements.forEach((sec) => {
+    ScrollTrigger.create({
+      trigger: sec,
+      start: 'top 70px',
+      end: 'bottom 70px',
+      onEnter: () => document.body.classList.add('in-blue-section'),
+      onLeave: () => document.body.classList.remove('in-blue-section'),
+      onEnterBack: () => document.body.classList.add('in-blue-section'),
+      onLeaveBack: () => document.body.classList.remove('in-blue-section')
+    });
+  });
+
+  // 3. Stagger FAQ accordion items
+  ScrollTrigger.batch('.faq-item', {
+    start: 'top 92%',
+    onEnter: batch => gsap.from(batch, {
+      opacity: 0,
+      y: 20,
+      duration: 0.55,
+      stagger: 0.08,
+      ease: 'power2.out',
+      overwrite: true
+    }),
+    once: true
   });
 }
 
